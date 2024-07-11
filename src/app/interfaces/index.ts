@@ -21,13 +21,13 @@ export interface IUser {
 
 export interface IBrandUser {
   id?: number;
-  legalId?: string;
+  legalId?: number;
   logoType?: string;
   brandName?: string;
   legalRepresentativeName?: string;
   mainLocationAddress?: string;
   legalDocument?: string;
-  brandCategory?: string;
+  brandCategories?: string;
   email?: string;
   password?: string;
   createdAt?: string;

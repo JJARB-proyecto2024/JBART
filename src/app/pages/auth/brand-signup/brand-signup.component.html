@@ -12,9 +12,9 @@
                     placeholder="Ingrese Cédula Jurídica" [(ngModel)]="userBrand.legalId" [ngClass]="{
                     'is-invalid': legalId.invalid && legalId.touched,
                     'is-valid': legalId.valid && legalId.touched
-                }" required>
+                }" minlength="9" maxlength="9" required>
                 <div *ngIf="legalId.invalid" class="invalid-feedback">
-                    La Cédula Jurídica es requerida
+                    La Cédula Jurídica es requerida, debe contener 9 dígitos
                 </div>
             </div>
             <!-- <div class="col-md-6 mb-3">
@@ -35,7 +35,7 @@
             <div class="col-md-6 mb-3">
                 <label for="brandCategory" class="form-label">Categorías de la Marca</label>
                 <input #brandCategory="ngModel" type="text" class="form-control" id="brandCategory" name="brandCategory"
-                    placeholder="Ingrese Categorías de la Marca" [(ngModel)]="userBrand.brandCategory" [ngClass]="{
+                    placeholder="Ingrese Categorías de la Marca" [(ngModel)]="userBrand.brandCategories" [ngClass]="{
                     'is-invalid': brandCategory.invalid && brandCategory.touched,
                     'is-valid': brandCategory.valid && brandCategory.touched
                 }" required>
@@ -57,7 +57,7 @@
             <div class="col-md-6 mb-3">
                 <label for="email" class="form-label">Correo Electrónico</label>
                 <input #email="ngModel" type="email" class="form-control" id="email" name="email"
-                    placeholder="Ingrese Correo Electrónico" [(ngModel)]="userBrand.email" [ngClass]="{
+                    placeholder="example@gmail.com" [(ngModel)]="userBrand.email" [ngClass]="{
                     'is-invalid': email.invalid && email.touched,
                     'is-valid': email.valid && email.touched
                 }" required>
@@ -67,14 +67,14 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="legalRepresentativeName" class="form-label">Nombre del Representante Legal</label>
-                <input #legalRepresentativeName="ngModel" type=" text" class="form-control" id="legalRepresentativeName"
+                <input #legalRepresentativeName="ngModel" type="text" class="form-control" id="legalRepresentativeName"
                     name="legalRepresentativeName" placeholder="Ingrese Nombre del Representante Legal"
                     [(ngModel)]="userBrand.legalRepresentativeName" [ngClass]="{
                     'is-invalid': legalRepresentativeName.invalid && legalRepresentativeName.touched,
                     'is-valid': legalRepresentativeName.valid && legalRepresentativeName.touched
-                }" required>
+                }" pattern="[a-zA-Z\s]+" required>
                 <div *ngIf="legalRepresentativeName.invalid" class="invalid-feedback">
-                    El Nombre del Representante Legal es requerido
+                    El Nombre del Representante Legal es requerido y debe contener solo letras
                 </div>
             </div>
             <div class="col-md-6 mb-3">
@@ -83,9 +83,9 @@
                     placeholder="Ingrese Contraseña" [(ngModel)]="userBrand.password" [ngClass]="{
                     'is-invalid': password.invalid && password.touched,
                     'is-valid': password.valid && password.touched
-                }" required>
+                }" minlength="8" maxlength="10" required>
                 <div *ngIf="password.invalid" class="invalid-feedback">
-                    La Contraseña es requerida
+                    La Contraseña es requerida, debe contener entre 8 y 10 caracteres
                 </div>
             </div>
             <div class="col-md-6 mb-3">

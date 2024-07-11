@@ -27,14 +27,15 @@ export class BrandSignupComponent {
 
   public userBrand: IBrandUser = {};
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   public handleSignup(event: Event) {
     event.preventDefault();
+
     if(!this.legalId.valid) {
       this.legalId.control.markAsTouched();
     }
-
+    
     if(!this.logoType.valid) {
       this.logoType.control.markAsTouched();
     }
@@ -51,36 +52,45 @@ export class BrandSignupComponent {
       this.mainLocationAddress.control.markAsTouched();
     }
 
-    // if(!this.legalDocument.valid) {
-    //   this.legalDocument.control.markAsTouched();
-    // }
-
     if(!this.brandCategory.valid) {
       this.brandCategory.control.markAsTouched();
     }
 
     if(this.email.valid && this.password.valid) {
-      this.authService.signupBrand(this.userBrand).subscribe({
-        next: () => {
-          // this.validSignup = true;
-          Swal.fire({
-            title: '¡Registro exitoso!',
-            text: 'Por favor, inicia sesión',
-            icon: 'success',
-            confirmButtonText: 'Aceptar',
-          })
-        },
-        error: (err: any) => {
-          this.signUpError = err.description;
-          Swal.fire({
-            title: '¡Error!',
-            text: 'Hubo un error al registrarte',
-            icon: 'error',
-            confirmButtonText: 'Aceptar',
-          })
-        },
-      })
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(this.email.value)) {
+        Swal.fire({
+          title: '¡Error!',
+          text: 'Por favor, ingresa un correo electrónico válido',
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+        });
+      } else {
+        this.signupUserBrand();
+      }
     }
+  }
+
+  private signupUserBrand() {
+    this.authService.signupBrand(this.userBrand).subscribe({
+      next: () => {
+        Swal.fire({
+          title: '¡Registro exitoso!',
+          text: 'Por favor, inicia sesión',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        });
+      },
+      error: (err: any) => {
+        this.signUpError = err.description;
+        Swal.fire({
+          title: '¡Error!',
+          text: 'Hubo un error al registrarte',
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+        });
+      },
+    });
   }
 
 }
