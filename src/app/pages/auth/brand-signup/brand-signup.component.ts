@@ -21,7 +21,7 @@ export class BrandSignupComponent {
   @ViewChild('brandName') brandName!: NgModel;
   @ViewChild('legalRepresentativeName') legalRepresentativeName!: NgModel;
   @ViewChild('mainLocationAddress') mainLocationAddress!: NgModel;
-  @ViewChild('brandCategory') brandCategory!: NgModel;
+  @ViewChild('brandCategory') brandCategories!: NgModel;
   @ViewChild('email') email!: NgModel;
   @ViewChild('password') password!: NgModel;
 
@@ -52,8 +52,8 @@ export class BrandSignupComponent {
       this.mainLocationAddress.control.markAsTouched();
     }
 
-    if(!this.brandCategory.valid) {
-      this.brandCategory.control.markAsTouched();
+    if(!this.brandCategories.valid) {
+      this.brandCategories.control.markAsTouched();
     }
 
     if(this.email.valid && this.password.valid) {
