@@ -17,10 +17,10 @@
                     La Cédula Jurídica es requerida
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <!-- <div class="col-md-6 mb-3">
                 <label for="legalDocument" class="form-label">Documentos Legales</label>
                 <input type="file" class="form-control" id="legalDocument" multiple>
-            </div>
+            </div> -->
             <div class="col-md-6 mb-3">
                 <label for="logoType" class="form-label">Logotipo</label>
                 <input #logoType="ngModel" type="file" class="form-control" id="logoType" name="logoType"
@@ -102,11 +102,11 @@
             </div>
         </div>
         <div class="text-center">
-            <button type="submit" class="btn btn-dark btn-block w-50">Registrar</button>
+            <button type="submit" class="btn btn-dark btn-block w-50 mt-3">Registrar</button>
             @if(signUpError) {
             <p class="text-danger">{{signUpError}}</p>
             } @else if (validSignup){
-            <p class="text-success">User registered, please go to login</p>
+            <p class="text-success">{{validSignup}}</p>
             }
         </div>
         <!-- <a href="/login">Login</a> -->

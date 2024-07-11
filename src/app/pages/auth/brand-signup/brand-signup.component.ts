@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, viewChild, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { IBrandUser } from '../../../interfaces';
 import { AuthService } from '../../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-brand-signup',
@@ -20,7 +21,6 @@ export class BrandSignupComponent {
   @ViewChild('brandName') brandName!: NgModel;
   @ViewChild('legalRepresentativeName') legalRepresentativeName!: NgModel;
   @ViewChild('mainLocationAddress') mainLocationAddress!: NgModel;
-  @ViewChild('legalDocument') legalDocument!: NgModel;
   @ViewChild('brandCategory') brandCategory!: NgModel;
   @ViewChild('email') email!: NgModel;
   @ViewChild('password') password!: NgModel;
@@ -51,9 +51,9 @@ export class BrandSignupComponent {
       this.mainLocationAddress.control.markAsTouched();
     }
 
-    if(!this.legalDocument.valid) {
-      this.legalDocument.control.markAsTouched();
-    }
+    // if(!this.legalDocument.valid) {
+    //   this.legalDocument.control.markAsTouched();
+    // }
 
     if(!this.brandCategory.valid) {
       this.brandCategory.control.markAsTouched();
@@ -61,8 +61,24 @@ export class BrandSignupComponent {
 
     if(this.email.valid && this.password.valid) {
       this.authService.signupBrand(this.userBrand).subscribe({
-        next: () => this.validSignup = true,
-        error: (err: any) => (this.signUpError = err.description)
+        next: () => {
+          // this.validSignup = true;
+          Swal.fire({
+            title: '¡Registro exitoso!',
+            text: 'Por favor, inicia sesión',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+          })
+        },
+        error: (err: any) => {
+          this.signUpError = err.description;
+          Swal.fire({
+            title: '¡Error!',
+            text: 'Hubo un error al registrarte',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+          })
+        },
       })
     }
   }
