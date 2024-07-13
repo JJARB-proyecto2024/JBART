@@ -77,7 +77,7 @@ export class AuthService {
     let permittedRoutes: any[] = [];
     for (const route of routes) {
       if(route.data && route.data.authorities) {
-        if (this.hasAnyRole(route.data.authorities)) {
+        if (this.hasAnyRole(route.data.authorities) && route.data.showInSidebar) {
           permittedRoutes.unshift(route);
         } 
       }

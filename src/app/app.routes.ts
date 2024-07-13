@@ -8,7 +8,8 @@ import { AccessDeniedComponent } from './pages/access-denied/access-denied.compo
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
-import { IRole } from './interfaces';
+import { IRoleType } from './interfaces';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -43,11 +44,11 @@ export const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
-        canActivate:[AdminRoleGuard],
-        data: { 
+        canActivate: [AdminRoleGuard],
+        data: {
           authorities: [
-            IRole.admin, 
-            IRole.superAdmin
+            IRoleType.admin,
+            IRoleType.superAdmin
           ],
           name: 'Users'
         }
@@ -55,15 +56,31 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        data: { 
+        data: {
           authorities: [
-            IRole.admin, 
-            IRole.superAdmin,
-            IRole.user
+            IRoleType.admin,
+            IRoleType.superAdmin,
+            IRoleType.user,
+            IRoleType.brand
           ],
+          showInSidebar: true,
           name: 'Dashboard'
         }
-      }
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        data: {
+          authorities: [
+            IRoleType.admin,
+            IRoleType.superAdmin,
+            IRoleType.user,
+            IRoleType.brand
+          ],
+          showInSidebar: false,
+          name: 'profile'
+        }
+      },
     ],
   },
 ];

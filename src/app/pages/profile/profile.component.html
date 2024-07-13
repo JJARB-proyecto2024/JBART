@@ -1,0 +1,49 @@
+<div class="row">
+  <h1 class="mt-3">Perfil</h1>
+  <div class="row border bg-white m-2 p-4 rounded-3">
+    <div class="col-md-6">
+      <img src="{{profileService.user$().picture}}" class="rounded-circle" alt="User profile picture">
+    </div>
+    <div class="col-md-6 d-flex align-items-center justify-content-end">
+      <button type="button" class="btn btn-dark m-2">Subir nueva imagen</button>
+      <button type="button" class="btn btn-danger">Eliminar</button>
+    </div>
+  </div>
+  <div class="row border bg-white m-2 p-4 rounded-3">
+    <div class="col-md-6 mt-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="name" value="{{profileService.user$().name}}">
+    </div>
+    <div class="col-md-6 mt-3">
+      <label for="lastname" class="form-label">Apellidos</label>
+      <input type="text" class="form-control" id="lastname" value="{{profileService.user$().lastname}}">
+    </div>
+    <div class="col-md-6 mt-3">
+      <label for="genre" class="form-label">Género</label>
+      <select class="form-select" aria-label="Default select example" id="genre">
+        <option selected>Género</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+      </select>
+    </div>
+    <div class="col-md-6 mt-3">
+      <label for="name" class="form-label">Dirección de envío</label>
+      <input type="text" class="form-control" id="deliveryLocation" value="{{profileService.user$().deliveryLocation}}">
+    </div>
+    <div class="col-md-6 mt-3">
+      <label for="phoneNumber" class="form-label">Teléfono</label>
+      <input type="tel" class="form-control" id="phoneNumber" value="{{profileService.user$().phoneNumber}}">
+    </div>
+    <div class="col-md-6 mt-3">
+      <label for="email" class="form-label">Correo electrónico</label>
+      <input type="email" class="form-control" id="email" value="{{profileService.user$().email}}">
+    </div>
+    <div class="col-md-6 mt-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" id="password" value="{{profileService.user$().password}}">
+    </div>
+    <div class="col-md-6 mt-4 align-content-end">
+      <button type="button" class="btn btn-dark">Guardar</button>
+    </div>
+  </div>
+</div>
