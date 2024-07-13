@@ -26,7 +26,7 @@ export interface IBrandUser {
   brandName?: string;
   legalRepresentativeName?: string;
   mainLocationAddress?: string;
-  legalDocument?: string;
+  legalDocuments?: string;
   brandCategories?: string;
   email?: string;
   password?: string;
