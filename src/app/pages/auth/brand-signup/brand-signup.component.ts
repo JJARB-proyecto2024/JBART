@@ -21,6 +21,7 @@ export class BrandSignupComponent {
   @ViewChild('brandName') brandName!: NgModel;
   @ViewChild('legalRepresentativeName') legalRepresentativeName!: NgModel;
   @ViewChild('mainLocationAddress') mainLocationAddress!: NgModel;
+  @ViewChild('legalDocuments') legalDocuments!: NgModel;
   @ViewChild('brandCategory') brandCategories!: NgModel;
   @ViewChild('email') email!: NgModel;
   @ViewChild('password') password!: NgModel;
