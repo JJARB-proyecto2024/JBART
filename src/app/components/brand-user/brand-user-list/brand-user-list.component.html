@@ -14,7 +14,7 @@
                     <th scope="col">Representante Legal</th>
                     <th scope="col">Dirección del Local</th>
                     <th scope="col">Categorías de la Marca</th>
-                    <th scope="col">Día de solicitud</th>
+                    <!-- <th scope="col">Día de solicitud</th> -->
                     <th class="text-center" scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -27,10 +27,10 @@
                     <td>{{item.legalRepresentativeName}}</td>
                     <td>{{item.mainLocationAddress}}</td>
                     <td>{{item.brandCategories}}</td>
-                    <td>{{item.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+                    <!-- <td>{{item.createdAt| date: 'dd/MM/yyyy HH:mm'}}</td> -->
                     <td>
                         <div class="d-flex justify-content-evenly align-items-center">
-                            <button type="button" class="btn btn-success">
+                            <button type="button" class="btn btn-dark">
                                 <i class="fa-solid white"></i>
                                 Aceptar
                             </button>
