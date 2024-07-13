@@ -17,10 +17,14 @@
                     La Cédula Jurídica es requerida, debe contener 9 dígitos
                 </div>
             </div>
-            <!-- <div class="col-md-6 mb-3">
-                <label for="legalDocument" class="form-label">Documentos Legales</label>
-                <input type="file" class="form-control" id="legalDocument" multiple>
-            </div> -->
+            <div class="col-md-6 mb-3">
+                <label for="legalDocuments" class="form-label">Documentos Legales</label>
+                <input #legalDocuments="ngModel" type="file" class="form-control" id="legalDocuments"
+                    name="legalDocuments" [(ngModel)]="userBrand.legalDocuments" [ngClass]="{
+                    'is-invalid': legalDocuments.invalid && legalDocuments.touched,
+                    'is-valid': legalDocuments.valid && legalDocuments.touched
+                }" required>
+            </div>
             <div class="col-md-6 mb-3">
                 <label for="logoType" class="form-label">Logotipo</label>
                 <input #logoType="ngModel" type="file" class="form-control" id="logoType" name="logoType"
