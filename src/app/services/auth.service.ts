@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IBrandUser, ILoginResponse, IResponse, IUser } from '../interfaces';
+import { IBrandUser, IBuyerUser, ILoginResponse, IResponse, IUser } from '../interfaces';
 import { Observable, firstValueFrom, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -91,6 +91,10 @@ export class AuthService {
 
   public signupBrand(brand: IBrandUser): Observable<ILoginResponse> {
     return this.http.post<ILoginResponse>('auth/signup/brand', brand);
+  }
+
+  public signupBuyer(buyer: IBuyerUser): Observable<ILoginResponse> {
+    return this.http.post<ILoginResponse>('auth/signup/buyer', buyer);
   }
 
   public logout() {

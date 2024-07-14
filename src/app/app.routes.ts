@@ -11,6 +11,7 @@ import { GuestGuard } from './guards/guest.guard';
 import { IRole } from './interfaces';
 import { BrandSignupComponent } from './pages/auth/brand-signup/brand-signup.component';
 import { BrandUserListComponent } from './components/brand-user/brand-user-list/brand-user-list.component';
+import { BuyerSignupComponent } from './pages/auth/buyer-signup/buyer-signup.component';
 
 export const routes: Routes = [
   {
@@ -26,6 +27,11 @@ export const routes: Routes = [
   {
     path: 'signup/brand',
     component: BrandSignupComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'signup/buyer',
+    component: BuyerSignupComponent,
     canActivate: [GuestGuard],
   },
   {
