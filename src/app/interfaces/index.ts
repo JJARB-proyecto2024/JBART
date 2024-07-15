@@ -28,6 +28,7 @@ export interface IBrandUser {
   mainLocationAddress?: string;
   legalDocuments?: string;
   brandCategories?: string;
+  status?: string;
   email?: string;
   password?: string;
   createdAt?: string;
@@ -48,6 +49,11 @@ export enum IFeedbackStatus {
   success = "SUCCESS",
   error = "ERROR",
   default = ''
+}
+
+export enum IRoleType {
+  user = "ROLE_USER",
+  superAdmin = 'ROLE_SUPER_ADMIN_ROLE'
 }
 
 export enum IRole {

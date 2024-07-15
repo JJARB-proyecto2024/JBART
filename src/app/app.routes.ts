@@ -10,7 +10,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
 import { IRole } from './interfaces';
 import { BrandSignupComponent } from './pages/auth/brand-signup/brand-signup.component';
-import { BrandUserListComponent } from './components/brand-user/brand-user-list/brand-user-list.component';
+import { BrandUsersComponent } from './pages/brandUsers/brand-users.component';
+
 
 export const routes: Routes = [
   {
@@ -61,13 +62,13 @@ export const routes: Routes = [
       },
       {
         path: 'brands',
-        component: BrandUserListComponent,
-        canActivate:[AdminRoleGuard],
+        component: BrandUsersComponent,
         data: { 
           authorities: [
             IRole.admin, 
             IRole.superAdmin
           ],
+          showInSidebar: true,
           name: 'Brands'
         }
       },

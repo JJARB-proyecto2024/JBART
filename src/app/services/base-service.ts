@@ -29,4 +29,9 @@ export class BaseService<T> {
   public del(id: any): Observable<IResponse<T>> {
     return this.http.delete<IResponse<T>>(this.source + '/' + id);
   }
+
+  // Método para actualizar una entidad usando PUT a una ruta específica
+  public updateStatus(id: number, status: string): Observable<IResponse<T>> {
+    return this.http.put<IResponse<T>>(this.source + '/upStatus/'+ id, { status });
+  }
 }

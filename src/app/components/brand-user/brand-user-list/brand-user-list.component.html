@@ -1,48 +1,47 @@
-<div class="container mt-5 form-container">
-    <div class="text-center">
-        <h1>Solicitudes de registro de marca</h1>
-        <p style="color: #AEAEAE;">Gestiona las solicitudes de registro de usuarios para tu marca.</p>
-    </div>
-
-    <div class="table-container table-responsive mt-5">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Cédula Jurídica</th>
-                    <th scope="col">Nombre de Marca</th>
-                    <th scope="col">Representante Legal</th>
-                    <th scope="col">Dirección del Local</th>
-                    <th scope="col">Categorías de la Marca</th>
-                    <!-- <th scope="col">Día de solicitud</th> -->
-                    <th class="text-center" scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (item of brandList; track item.id) {
-                <tr>
-                    <td scope="row">{{item.id}}</td>
-                    <td>{{item.legalId}}</td>
-                    <td>{{item.brandName}}</td>
-                    <td>{{item.legalRepresentativeName}}</td>
-                    <td>{{item.mainLocationAddress}}</td>
-                    <td>{{item.brandCategories}}</td>
-                    <!-- <td>{{item.createdAt| date: 'dd/MM/yyyy HH:mm'}}</td> -->
-                    <td>
-                        <div class="d-flex justify-content-evenly align-items-center">
-                            <button type="button" class="btn btn-dark">
-                                <i class="fa-solid white"></i>
-                                Aceptar
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="fa-solid white"></i>
-                                Rechazar
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+<div class="table-container table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Cédula Jurídica</th>
+          <th scope="col">Nombre de la Marca</th>
+          <th scope="col">Representante Legal</th>
+          <th scope="col">Correo Electrónico</th>
+          <th scope="col">Dirección Principal</th>
+          <th scope="col">Documentos Legales</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Categorías de la Marca</th>
+          <th scope="col">Fecha de Creación</th>
+          <th class="text-center" scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of itemList; track $index) {
+        <tr>
+          <th scope="row">{{ item.legalId }}</th>
+            <td>{{ item.brandName }}</td>
+            <td>{{ item.legalRepresentativeName }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.mainLocationAddress }}</td>
+            <td>{{ item.legalDocuments }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.brandCategories }}</td>
+            <td>{{ item.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+          <td >
+            <div class="d-flex justify-content-evenly align-items-center">
+              <button type="button" (click)="showDetailModal(item, detailModal)" class="btn btn-secondary">
+                <i class="fa-solid fa-eye white"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        } 
+      </tbody>
+    </table>
 </div>
+
+<app-modal #detailModal>
+  <app-brand-user-form 
+    [brandUser]="selectedItem"
+    (callParentEvent)="handleFormAction($event, detailModal)" 
+    (deleteBrandUserEvent)="deleteBrandUser($event, detailModal)"/>
+</app-modal>
