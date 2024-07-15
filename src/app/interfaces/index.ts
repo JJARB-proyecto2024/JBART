@@ -24,6 +24,24 @@ export interface IUser {
   role?: IRole;
 }
 
+export interface IBrandUser {
+  id?: number;
+  legalId?: number;
+  logoType?: string;
+  brandName?: string;
+  legalRepresentativeName?: string;
+  mainLocationAddress?: string;
+  legalDocuments?: string;
+  brandCategories?: string;
+  status?: string;
+  email?: string;
+  password?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  authorities?: IAuthority[];
+  role?: IRole;
+}
+
 export interface IRole {
   id?: number;
   description?: string;

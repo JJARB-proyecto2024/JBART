@@ -9,7 +9,8 @@ import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
 import { IRoleType } from './interfaces';
-import { ProfileComponent } from './pages/profile/profile.component';
+import { BuyerProfileComponent } from './pages/profile/buyer-profile/buyer-profile.component';
+import { BrandProfileComponent } from './pages/profile/brand-profile/brand-profile.component';
 
 export const routes: Routes = [
   {
@@ -68,13 +69,21 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'profile',
-        component: ProfileComponent,
+        path: 'buyer-profile',
+        component: BuyerProfileComponent,
         data: {
           authorities: [
-            IRoleType.admin,
-            IRoleType.superAdmin,
-            IRoleType.user,
+            IRoleType.user
+          ],
+          showInSidebar: false,
+          name: 'profile'
+        }
+      },
+      {
+        path: 'brand-profile',
+        component: BrandProfileComponent,
+        data: {
+          authorities: [
             IRoleType.brand
           ],
           showInSidebar: false,

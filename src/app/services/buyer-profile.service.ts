@@ -5,7 +5,7 @@ import { IUser } from '../interfaces';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileService extends BaseService<IUser>{
+export class BuyerProfileService extends BaseService<IUser>{
   protected override  source: string = 'users/me';
   private userSignal = signal<IUser>({});
 
