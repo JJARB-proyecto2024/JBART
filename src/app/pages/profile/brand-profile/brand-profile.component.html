@@ -13,8 +13,8 @@
     <div class="col-md-6 mt-3">
       <label for="name" class="form-label">Direccion del local principal</label>
       <input #mainLocationAddress="ngModel" type="text" class="form-control" id="mainLocationAddress"
-        name="mainLocationAddress" value="{{brandProfileService.user$().mainLocationAddress}}"
-        [(ngModel)]="brand.mainLocationAddress" [ngClass]="{
+        name="mainLocationAddress"
+        [(ngModel)]="brandProfileService.user$().mainLocationAddress" [ngClass]="{
         'is-invalid': mainLocationAddress.invalid && mainLocationAddress.touched,
         'is-valid': mainLocationAddress.valid && mainLocationAddress.touched
       }" required>
@@ -27,10 +27,10 @@
     <div class="col-md-6 mt-3">
       <label for="name" class="form-label">Categorias</label>
       <input #brandCategories="ngModel" type="text" class="form-control" id="brandCategories" name="brandCategories"
-        [(ngModel)]="brand.brandCategories" [ngClass]="{
+        [(ngModel)]="brandProfileService.user$().brandCategories" [ngClass]="{
         'is-invalid': brandCategories.invalid && brandCategories.touched,
         'is-valid': brandCategories.valid && brandCategories.touched}"
-        value="{{brandProfileService.user$().brandCategories}}" required>
+        required>
       @if (brandCategories.invalid) {
       <div *ngIf="brandCategories.invalid" class="invalid-feedback">
         Por favor, añade las categorias de tu marca
@@ -40,7 +40,7 @@
     <div class="col-md-6 mt-3">
       <label for="email" class="form-label">Correo electrónico</label>
       <input #email="ngModel" type="email" class="form-control" id="email" name="email"
-        value="{{brandProfileService.user$().email}}" [(ngModel)]="brand.email" [ngClass]="{
+        [(ngModel)]="brandProfileService.user$().email" [ngClass]="{
         'is-invalid': email.invalid && email.touched,
         'is-valid': email.valid && email.touched
         }" required>
@@ -53,7 +53,7 @@
     <div class="col-md-6 mt-3">
       <label for="password" class="form-label">Contraseña</label>
       <input #password="ngModel" type="password" class="form-control" id="password" name="password"
-        value="{{brandProfileService.user$().password}}" [(ngModel)]="brand.password" [ngClass]="{
+        value="{{brandProfileService.user$().password}}" [(ngModel)]="brandProfileService.user$().password" [ngClass]="{
         'is-invalid': password.invalid && password.touched,
         'is-valid': password.valid && password.touched
       }" required>

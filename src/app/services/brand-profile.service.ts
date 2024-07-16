@@ -6,7 +6,7 @@ import { IBrandUser } from '../interfaces';
   providedIn: 'root'
 })
 export class BrandProfileService extends BaseService<IBrandUser>{
-  protected override  source: string = 'users/me';
+  protected override  source: string = 'users';
   private userBrandSignal = signal<IBrandUser>({});
 
   get user$ () {

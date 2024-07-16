@@ -1,15 +1,17 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { IUser } from '../interfaces';
-
+import { Observable, catchError, tap, throwError } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root'
 })
-export class BuyerProfileService extends BaseService<IUser>{
-  protected override  source: string = 'usersBuyer/5';
+export class BuyerProfileService extends BaseService<IUser> {
+  protected override  source: string = 'usersBuyer/2';
   private userSignal = signal<IUser>({});
-
-  get user$ () {
+  private userListSignal = signal<IUser[]>([]);
+  private snackBar: MatSnackBar = inject(MatSnackBar);
+  get user$() {
     return this.userSignal
   }
 
@@ -21,4 +23,5 @@ export class BuyerProfileService extends BaseService<IUser>{
       }
     });
   }
+
 }

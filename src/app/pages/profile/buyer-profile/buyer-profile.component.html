@@ -3,7 +3,7 @@
   <div class="row border bg-white m-2 p-4 rounded-3">
     <div class="col-md-6">
       <img src="{{buyerProfileService.user$().picture}}" class="rounded-circle"
-        alt="User profile picture">
+        alt="User profile picture" id="picture" name="picture">
     </div>
     <div class="col-md-6 d-flex align-items-center justify-content-end">
       <button type="button" class="btn btn-dark m-2">Subir nueva imagen</button>
@@ -14,95 +14,83 @@
     <div class="col-md-6 mt-3">
       <label for="name" class="form-label">Nombre</label>
       <input #name="ngModel" type="text" class="form-control" id="name" name="name"
-        value="{{buyerProfileService.user$().name}}" [(ngModel)]="buyer.name" [ngClass]="{
+        [(ngModel)]="buyerProfileService.user$().name" [ngClass]="{
           'is-invalid': name.invalid && name.touched,
           'is-valid': name.valid && name.touched
         }" required>
-      @if (name.invalid) {
       <div *ngIf="name.invalid" class="invalid-feedback">
         Por favor, ingrese su nombre
       </div>
-      }
     </div>
     <div class="col-md-6 mt-3">
       <label for="lastname" class="form-label">Apellidos</label>
       <input #lastname="ngModel" type="text" class="form-control" id="lastname" name="lastname"
-        [(ngModel)]="buyer.lastname" [ngClass]="{
+        [(ngModel)]="buyerProfileService.user$().lastname" [ngClass]="{
         'is-invalid': lastname.invalid && lastname.touched,
         'is-valid': lastname.valid && lastname.touched
-      }" value="{{buyerProfileService.user$().lastname}}" required>
-      @if (lastname.invalid) {
+      }" required>
       <div *ngIf="lastname.invalid" class="invalid-feedback">
         Por favor, ingrese su apellido
       </div>
-      }
     </div>
     <div class="col-md-6 mt-3">
       <label for="genre" class="form-label">Género</label>
       <select #genre="ngModel" class="form-select" aria-label="Default select example" id="genre" name="genre"
-        [(ngModel)]="buyer.genre" [ngClass]="{
+        [(ngModel)]="buyerProfileService.user$().genre" [ngClass]="{
           'is-invalid': genre.invalid && genre.touched,
           'is-valid': genre.valid && genre.touched
-        }" value="{{buyerProfileService.user$().genre}}" required>
-        @if (genre.invalid) {
+        }" required>
         <div *ngIf="genre.invalid" class="invalid-feedback">
           Por favor, añade tu género
         </div>
-        }
         <option selected>Género</option>
         <option value="Masculino">Masculino</option>
         <option value="Femenino">Femenino</option>
       </select>
     </div>
     <div class="col-md-6 mt-3">
-      <label for="name" class="form-label">Dirección de envío</label>
+      <label for="deliveryLocation" class="form-label">Dirección de envío</label>
       <input #deliveryLocation="ngModel" type="text" class="form-control" id="deliveryLocation" name="deliveryLocation"
-        [(ngModel)]="buyer.deliveryLocation" [ngClass]="{
+        [(ngModel)]="buyerProfileService.user$().deliveryLocation" [ngClass]="{
         'is-invalid': deliveryLocation.invalid && deliveryLocation.touched,
         'is-valid': deliveryLocation.valid && deliveryLocation.touched
-      }" value="{{buyerProfileService.user$().deliveryLocation}}" required>
-      @if (deliveryLocation.invalid) {
+      }" required>
       <div *ngIf="deliveryLocation.invalid" class="invalid-feedback">
         Por favor, añade una dirección de envío válida
       </div>
-      }
     </div>
     <div class="col-md-6 mt-3">
       <label for="phoneNumber" class="form-label">Teléfono</label>
       <input #phoneNumber="ngModel" type="tel" class="form-control" id="phoneNumber" name="phoneNumber"
-        [(ngModel)]="buyer.phoneNumber" [ngClass]="{
+        [(ngModel)]="buyerProfileService.user$().phoneNumber" [ngClass]="{
         'is-invalid': phoneNumber.invalid && phoneNumber.touched,
         'is-valid': phoneNumber.valid && phoneNumber.touched
-      }" value="{{buyerProfileService.user$().phoneNumber}}">
+      }">
     </div>
     <div class="col-md-6 mt-3">
       <label for="email" class="form-label">Correo electrónico</label>
       <input #email="ngModel" type="email" class="form-control" id="email" name="email"
-        value="{{buyerProfileService.user$().email}}" [(ngModel)]="buyer.email" [ngClass]="{
+        [(ngModel)]="buyerProfileService.user$().email" [ngClass]="{
         'is-invalid': email.invalid && email.touched,
         'is-valid': email.valid && email.touched
       }" required />
-      @if (email.invalid) {
       <div *ngIf="email.invalid" class="invalid-feedback">
         Por favor, añade un correo electrónico válido
       </div>
-      }
     </div>
     <div class="col-md-6 mt-3">
       <label for="password" class="form-label">Contraseña</label>
       <input #password="ngModel" type="password" class="form-control" id="password" name="password"
-        value="{{buyerProfileService.user$().password}}" [(ngModel)]="buyer.password" [ngClass]="{
+        [(ngModel)]="buyerProfileService.user$().password" [ngClass]="{
           'is-invalid': password.invalid && password.touched,
           'is-valid': password.valid && password.touched
         }" required>
-      @if (password.invalid) {
       <div *ngIf="password.invalid" class="invalid-feedback">
-        Please add a valid password
+        Por favor, añade una contraseña válida
       </div>
-      }
     </div>
     <div class="col-md-6 mt-4 align-content-end">
-      <button type="button" class="btn btn-dark">Guardar</button>
+      <button (click)="handleFormAction();" type="button" class="btn btn-dark">Guardar</button>
     </div>
   </div>
 </div>

@@ -17,18 +17,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class BrandProfileComponent {
   public user!: IBrandUser;
-  @Input() brand: IBrandUser = {
-    logoType: '',
-    mainLocationAddress: '',
-    brandCategories: '',
-    email: '',
-    password: '',
-    status: ''
-  };
   public brandProfileService = inject(BrandProfileService);
 
   constructor() {
     this.brandProfileService.getUserProfileInfo();
+  }
+
+  handleFormAction() {
+    
   }
 
 }

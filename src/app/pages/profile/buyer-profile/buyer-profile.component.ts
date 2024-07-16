@@ -16,22 +16,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class BuyerProfileComponent {
   public user!: IUser;
-  @Input() buyer: IUser = {
-    name: '',
-    lastname: '',
-    picture: '',
-    genre: '',
-    deliveryLocation: '',
-    phoneNumber: '',
-    email: '',
-    password: '',
-    active: false,
-  };
 
   public buyerProfileService = inject(BuyerProfileService);
-  
+
   constructor() {
     this.buyerProfileService.getUserProfileInfo();
   }
 
+  handleFormAction() {
+
+  }
 }
