@@ -5,11 +5,12 @@ import { Router, RouterLink } from '@angular/router';
 import { IBrandUser } from '../../../interfaces';
 import { AuthService } from '../../../services/auth.service';
 import Swal from 'sweetalert2';
+import { BrandUserListComponent } from '../../../components/brand-user/brand-user-list/brand-user-list.component';
 
 @Component({
   selector: 'app-brand-signup',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, BrandUserListComponent],
   templateUrl: './brand-signup.component.html',
   styleUrl: './brand-signup.component.scss'
 })

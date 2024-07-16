@@ -10,6 +10,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
 import { IRole } from './interfaces';
 import { BrandSignupComponent } from './pages/auth/brand-signup/brand-signup.component';
+import { BrandUsersComponent } from './pages/brandUsers/brand-users.component';
+
 
 export const routes: Routes = [
   {
@@ -56,6 +58,18 @@ export const routes: Routes = [
             IRole.superAdmin
           ],
           name: 'Users'
+        }
+      },
+      {
+        path: 'brands',
+        component: BrandUsersComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.superAdmin
+          ],
+          showInSidebar: true,
+          name: 'Brands'
         }
       },
       {

@@ -1,0 +1,61 @@
+<form class="container">
+  <div>
+    <h2 class="subrayado">Detalle Marca</h2>
+  </div>
+
+  <div class="row">
+    <div class="row rowLabel">
+      <div class="col-6 mb-2">
+        <label for="legalId" class="form-label mb-2">Cédula Jurídica</label>
+        <p>{{ brandUser.legalId }}</p>
+      </div>
+      <!--<div class="col-6 mb-2">
+        <label for="logoType" class="form-label mb-2">Logo</label>
+        <img [src]="brandUser.logoType" class="img-fluid" alt="Logo">
+      </div>-->
+      <div class="col-6 mb-2">
+        <label for="brandName" class="form-label mb-2">Nombre de la Marca</label>
+        <p>{{ brandUser.brandName }}</p>
+      </div>
+      <div class="col-6 mb-2">
+        <label for="legalRepresentativeName" class="form-label mb-2">Representante Legal</label>
+        <p>{{ brandUser.legalRepresentativeName }}</p>
+      </div>
+      <div class="col-6 mb-2">
+        <label for="mainLocationAddress" class="form-label mb-2">Dirección Principal</label>
+        <p>{{ brandUser.mainLocationAddress }}</p>
+      </div>
+      <!--<div class="col-6 mb-2">
+        <label for="legalDocuments" class="form-label mb-2">Documentos Legales</label>
+        <img [src]="brandUser.legalDocuments" class="img-fluid" alt="Legal Documents">
+      </div>-->
+      <div class="col-6 mb-2">
+        <label for="brandCategories" class="form-label mb-2">Categorías de la Marca</label>
+        <p>{{ brandUser.brandCategories }}</p>
+      </div>
+      <div class="col-6 mb-2">
+        <label for="email" class="form-label mb-2">Correo Electrónico</label>
+        <p>{{ brandUser.email }}</p>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <button
+      (click)="callEvent();"
+      type="button"
+      class="btn btn-success d-flex align-items-center">
+      <p class="mb-0"> Aprobar </p>
+    </button>
+    </div>
+
+    <div class="col-6 divDanger">
+      <button 
+      (click)="deleteEvent();" 
+      type="button" 
+      class="btn btn-danger d-flex align-items-center">
+      <p class="mb-0"> Rechazar </p>
+      </button>
+    </div>
+  
+  </div>
+</form>
