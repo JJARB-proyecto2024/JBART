@@ -78,7 +78,7 @@ export class BrandSignupComponent {
       next: () => {
         Swal.fire({
           title: '¡Registro exitoso!',
-          text: 'Por favor, inicia sesión',
+          text: 'Tu registro ha sido exitoso. Un administrador revisará tu solicitud y te notificará por correo electrónico cuando tu cuenta esté activa.',
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
