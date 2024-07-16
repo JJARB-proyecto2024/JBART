@@ -19,6 +19,22 @@ export interface IUser {
   authorities?: IAuthority[];
 }
 
+export interface IBrandUser {
+  id?: number;
+  legalId?: number;
+  logoType?: string;
+  brandName?: string;
+  legalRepresentativeName?: string;
+  mainLocationAddress?: string;
+  legalDocuments?: string;
+  brandCategories?: string;
+  email?: string;
+  password?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  authorities?: IAuthority[];
+}
+
 export interface IAuthority {
   authority: string;
 }
@@ -37,5 +53,6 @@ export enum IFeedbackStatus {
 export enum IRole {
   admin = "ROLE_ADMIN",
   user = "ROLE_USER",
+  userBrand = "ROLE_USER_BRAND",
   superAdmin = 'ROLE_SUPER_ADMIN'
 }

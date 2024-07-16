@@ -4,12 +4,7 @@
       <div class="w-100">
         <div class="text-center">
           <a class="logo text-center" routerLink="/">
-            <img
-              width="40"
-              class="img-fluid mb-4"
-              src="../../../../assets/icons/logo@2x.png"
-              alt="Logo"
-            />
+            <img width="40" class="img-fluid mb-4" src="../../../../assets/icons/logo@2x.png" alt="Logo" />
           </a>
         </div>
         <div class="login-main">
@@ -26,8 +21,8 @@
                 <label for="name" class="form-label mb-2">
                   Name
                 </label>
-                <input #name="ngModel" type="text" class="form-control" id="name" name="name"
-                  placeholder="User" [(ngModel)]="user.name" [ngClass]="{
+                <input #name="ngModel" type="text" class="form-control" id="name" name="name" placeholder="User"
+                  [(ngModel)]="user.name" [ngClass]="{
                     'is-invalid': name.invalid && name.touched,
                     'is-valid': name.valid && name.touched
                   }" required />
@@ -68,7 +63,7 @@
               <label for="password" class="form-label mb-2">Password</label>
               <div class="form-input position-relative">
                 <input #password="ngModel" type="password" class="form-control" id="password" name="password"
-                placeholder="*****" [(ngModel)]="user.password" [ngClass]="{
+                  placeholder="*****" [(ngModel)]="user.password" [ngClass]="{
                   'is-invalid': password.invalid && password.touched,
                   'is-valid': password.valid && password.touched
                 }" required />
@@ -83,9 +78,9 @@
                 Sign up
               </button>
               @if(signUpError) {
-                <p class="text-danger">{{signUpError}}</p>
+              <p class="text-danger">{{signUpError}}</p>
               } @else if (validSignup){
-                <p class="text-success">User registered, please go to login</p>
+              <p class="text-success">User registered, please go to login</p>
               }
             </div>
             <a href="/login">Go Login</a>
