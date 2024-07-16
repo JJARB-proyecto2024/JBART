@@ -12,19 +12,57 @@
   <div class="row border bg-white m-2 p-4 rounded-3">
     <div class="col-md-6 mt-3">
       <label for="name" class="form-label">Direccion del local principal</label>
-      <input type="text" class="form-control" id="mainLocationAddress" value="{{brandProfileService.user$().mainLocationAddress}}">
+      <input #mainLocationAddress="ngModel" type="text" class="form-control" id="mainLocationAddress"
+        name="mainLocationAddress" value="{{brandProfileService.user$().mainLocationAddress}}"
+        [(ngModel)]="brand.mainLocationAddress" [ngClass]="{
+        'is-invalid': mainLocationAddress.invalid && mainLocationAddress.touched,
+        'is-valid': mainLocationAddress.valid && mainLocationAddress.touched
+      }" required>
+      @if(mainLocationAddress.invalid) {
+      <div *ngIf="mainLocationAddress.invalid" class="invalid-feedback">
+        Por favor, añade la dirección de tu local principal
+      </div>
+      }
     </div>
     <div class="col-md-6 mt-3">
       <label for="name" class="form-label">Categorias</label>
-      <input type="text" class="form-control" id="brandCategories" value="{{brandProfileService.user$().brandCategories}}">
+      <input #brandCategories="ngModel" type="text" class="form-control" id="brandCategories" name="brandCategories"
+        [(ngModel)]="brand.brandCategories" [ngClass]="{
+        'is-invalid': brandCategories.invalid && brandCategories.touched,
+        'is-valid': brandCategories.valid && brandCategories.touched}"
+        value="{{brandProfileService.user$().brandCategories}}" required>
+      @if (brandCategories.invalid) {
+      <div *ngIf="brandCategories.invalid" class="invalid-feedback">
+        Por favor, añade las categorias de tu marca
+      </div>
+      }
     </div>
     <div class="col-md-6 mt-3">
       <label for="email" class="form-label">Correo electrónico</label>
-      <input type="email" class="form-control" id="email" value="{{brandProfileService.user$().email}}">
+      <input #email="ngModel" type="email" class="form-control" id="email" name="email"
+        value="{{brandProfileService.user$().email}}" [(ngModel)]="brand.email" [ngClass]="{
+        'is-invalid': email.invalid && email.touched,
+        'is-valid': email.valid && email.touched
+        }" required>
+      @if (email.invalid) {
+      <div *ngIf="email.invalid" class="invalid-feedback">
+        Por favor, añade un correo electrónico válido
+      </div>
+      }
     </div>
     <div class="col-md-6 mt-3">
       <label for="password" class="form-label">Contraseña</label>
-      <input type="password" class="form-control" id="password" value="{{brandProfileService.user$().password}}">
+      <input #password="ngModel" type="password" class="form-control" id="password" name="password"
+        value="{{brandProfileService.user$().password}}" [(ngModel)]="brand.password" [ngClass]="{
+        'is-invalid': password.invalid && password.touched,
+        'is-valid': password.valid && password.touched
+      }" required>
+      >
+      @if (password.invalid) {
+      <div *ngIf="password.invalid" class="invalid-feedback">
+        Por favor, añade una contraseña válida
+      </div>
+      }
     </div>
     <div class="col-md-6 mt-4 align-content-end">
       <button type="button" class="btn btn-dark">Guardar</button>
