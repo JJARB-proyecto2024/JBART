@@ -12,6 +12,8 @@ import { IRole } from './interfaces';
 import { BrandSignupComponent } from './pages/auth/brand-signup/brand-signup.component';
 import { BrandUserListComponent } from './components/brand-user/brand-user-list/brand-user-list.component';
 import { BuyerSignupComponent } from './pages/auth/buyer-signup/buyer-signup.component';
+import { BrandUsersComponent } from './pages/brandUsers/brand-users.component';
+
 
 export const routes: Routes = [
   {
@@ -67,13 +69,13 @@ export const routes: Routes = [
       },
       {
         path: 'brands',
-        component: BrandUserListComponent,
-        canActivate:[AdminRoleGuard],
+        component: BrandUsersComponent,
         data: { 
           authorities: [
             IRole.admin, 
             IRole.superAdmin
           ],
+          showInSidebar: true,
           name: 'Brands'
         }
       },
