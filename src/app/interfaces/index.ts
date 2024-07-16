@@ -36,6 +36,17 @@ export interface IBrandUser {
   authorities?: IAuthority[];
 }
 
+export interface IBuyerUser {
+  id?: number;
+  name?: number;
+  lastname?: string;
+  email?: string;
+  password?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  authorities?: IAuthority[];
+}
+
 export interface IAuthority {
   authority: string;
 }

@@ -1,0 +1,34 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.vh-100 {
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 400px;
+    padding: 2rem;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 200px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.invalid-feedback {
+    display: block;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
