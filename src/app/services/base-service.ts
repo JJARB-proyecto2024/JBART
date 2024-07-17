@@ -34,4 +34,13 @@ export class BaseService<T> {
   public updateStatus(id: number, status: string): Observable<IResponse<T>> {
     return this.http.put<IResponse<T>>(this.source + '/upStatus/'+ id, { status });
   }
+
+  // Método especializado para generar OTP usando POST a una ruta específica
+  public generateOtp(email: string): Observable<IResponse<T>> {
+    return this.http.post<IResponse<T>>(this.source + '/generatePasswordResetOtp', { email }, { responseType: 'text' as 'json' });
+  }
+
+  public resetPassword(email: string, otpCode: string, newPassword: string): Observable<IResponse<T>> {
+    return this.http.post<IResponse<T>>(this.source+  '/resetPassword', { email, otpCode, newPassword });
+  }
 }

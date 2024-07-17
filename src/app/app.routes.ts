@@ -13,6 +13,8 @@ import { BrandSignupComponent } from './pages/auth/brand-signup/brand-signup.com
 import { BrandUserListComponent } from './components/brand-user/brand-user-list/brand-user-list.component';
 import { BuyerSignupComponent } from './pages/auth/buyer-signup/buyer-signup.component';
 import { BrandUsersComponent } from './pages/brandUsers/brand-users.component';
+import { ResetPasswordSendEmailComponent } from './pages/auth/reset-password/reset-password-send-email/reset-password-send-email.component';
+import { ResetPasswordValidateComponent } from './pages/auth/reset-password/reset-password-validate/reset-password-validate.component';
 
 
 export const routes: Routes = [
@@ -34,6 +36,16 @@ export const routes: Routes = [
   {
     path: 'signup/buyer',
     component: BuyerSignupComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'reset/email',
+    component: ResetPasswordSendEmailComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'reset/validate',
+    component: ResetPasswordValidateComponent,
     canActivate: [GuestGuard],
   },
   {

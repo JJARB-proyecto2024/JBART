@@ -47,6 +47,13 @@ export interface IBuyerUser {
   authorities?: IAuthority[];
 }
 
+export interface IOtp {
+  id?: number;
+  otpCode: string;
+  email: string;
+  expiryTime: Date;
+}
+
 export interface IAuthority {
   authority: string;
 }
