@@ -24,7 +24,15 @@ export class BrandProfileComponent {
   }
 
   handleFormAction() {
-    
+    const userProfileUpdate = {
+      id: this.brandProfileService.user$().id,
+      logoType: this.brandProfileService.user$().logoType,
+      mainLocationAddress: this.brandProfileService.user$().mainLocationAddress,
+      brandCategories: this.brandProfileService.user$().brandCategories,
+      email: this.brandProfileService.user$().email,
+      password: this.brandProfileService.user$().password
+    }
+    this.brandProfileService.updateUserProfileInfo(userProfileUpdate);
   }
 
 }
