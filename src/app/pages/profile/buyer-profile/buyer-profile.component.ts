@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { IUser } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
 import { BuyerProfileService } from '../../../services/buyer-profile.service';
@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class BuyerProfileComponent {
   public user!: IUser;
-
+ 
   public buyerProfileService = inject(BuyerProfileService);
 
   constructor() {
@@ -24,6 +24,17 @@ export class BuyerProfileComponent {
   }
 
   handleFormAction() {
-    this.buyerProfileService.updateUserProfileInfo(this.buyerProfileService.user$());
+    const userProfileUpdate = {
+      id: this.buyerProfileService.user$().id,
+      name: this.buyerProfileService.user$().name,
+      lastname: this.buyerProfileService.user$().lastname,
+      picture: this.buyerProfileService.user$().picture,
+      genre: this.buyerProfileService.user$().genre,
+      deliveryLocation: this.buyerProfileService.user$().deliveryLocation,
+      phoneNumber: this.buyerProfileService.user$().phoneNumber,
+      email: this.buyerProfileService.user$().email,
+      password: this.buyerProfileService.user$().password
+    }
+    this.buyerProfileService.updateUserProfileInfo(userProfileUpdate);
   }
 }
