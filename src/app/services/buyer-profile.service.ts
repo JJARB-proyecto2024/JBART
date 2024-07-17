@@ -7,21 +7,36 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 export class BuyerProfileService extends BaseService<IUser> {
-  protected override  source: string = 'usersBuyer/2';
+  protected override  source: string = 'usersBuyer';
+  protected override findSource: string = 'usersBuyer/me';
   private userSignal = signal<IUser>({});
-  private userListSignal = signal<IUser[]>([]);
   private snackBar: MatSnackBar = inject(MatSnackBar);
   get user$() {
     return this.userSignal
   }
 
   getUserProfileInfo() {
-    this.findAll().subscribe({
+    this.findProfile().subscribe({
       next: (response: any) => {
         console.log('response', response);
         this.userSignal.set(response);
       }
     });
   }
-
+  updateUserProfileInfo(user: IUser) {
+    this.editProfile(user.id, user).subscribe({
+      next: (response: any) => {
+        this.snackBar.open('Profile updated successfully', 'Close', {
+          duration: 2000
+        });
+        this.userSignal.set(response);
+      },
+      error: (error: any) => {
+        this.snackBar.open('Profile update failed', 'Close', {
+          duration: 2000
+        });
+        throwError(error);
+      }
+    });
+  }
 }

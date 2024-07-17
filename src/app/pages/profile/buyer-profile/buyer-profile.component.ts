@@ -24,6 +24,6 @@ export class BuyerProfileComponent {
   }
 
   handleFormAction() {
-
+    this.buyerProfileService.updateUserProfileInfo(this.buyerProfileService.user$());
   }
 }
