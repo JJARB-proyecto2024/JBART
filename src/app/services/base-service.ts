@@ -8,6 +8,7 @@ import { Injectable, inject } from '@angular/core';
 })
 export class BaseService<T> {
   protected source!: string;
+  protected findSource!: string;
   protected http = inject(HttpClient);
 
   public find(id: string | number): Observable<IResponse<T>> {
@@ -18,11 +19,19 @@ export class BaseService<T> {
     return this.http.get<IResponse<T[]>>(this.source, { params: { s } });
   }
 
+  public findProfile(s: string = ''): Observable<IResponse<T[]>> {
+    return this.http.get<IResponse<T[]>>(this.findSource, { params: { s } });
+  }
+
   public add(data: {}): Observable<IResponse<T>> {
     return this.http.post<IResponse<T>>(this.source, data);
   }
 
   public edit(id: number | undefined, data: {}): Observable<IResponse<T>> {
+    return this.http.put<IResponse<T>>(this.source + '/' + id, data);
+  }
+
+  public editProfile(id: number | undefined, data: {}): Observable<IResponse<T>> {
     return this.http.put<IResponse<T>>(this.source + '/' + id, data);
   }
 
