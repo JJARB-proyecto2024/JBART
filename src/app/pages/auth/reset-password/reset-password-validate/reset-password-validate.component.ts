@@ -18,9 +18,9 @@ export class ResetPasswordValidateComponent {
   @ViewChild('otpCode') otpCodeModel!: NgModel;
   @ViewChild('newPassword') newPasswordModel!: NgModel;
 
-  public email: string = '';
-  public otpCode: string = '';
-  public newPassword: string = '';
+  public email: string = " ";
+  public otpCode: string = " ";
+  public newPassword: string = " ";
 
   constructor(private otpService: OtpService, private snackBar: MatSnackBar, private router: Router) {}
 
@@ -32,8 +32,13 @@ export class ResetPasswordValidateComponent {
       this.emailModel.control.markAsTouched();
       this.otpCodeModel.control.markAsTouched();
       this.newPasswordModel.control.markAsTouched();
+
       return;
     }
+    
+    this.email = this.emailModel.value;
+    this.otpCode = this.otpCodeModel.value;
+    this.newPassword = this.newPasswordModel.value;
 
     // Llamar al servicio para restablecer la contraseña
     this.otpService.resetPassword(this.email, this.otpCode, this.newPassword).subscribe({
