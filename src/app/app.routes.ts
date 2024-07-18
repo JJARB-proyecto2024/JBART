@@ -13,6 +13,7 @@ import { BrandSignupComponent } from './pages/auth/brand-signup/brand-signup.com
 import { BrandUserListComponent } from './components/brand-user/brand-user-list/brand-user-list.component';
 import { BuyerSignupComponent } from './pages/auth/buyer-signup/buyer-signup.component';
 import { BrandUsersComponent } from './pages/brandUsers/brand-users.component';
+import { DisableAccountComponent } from './pages/auth/disable-account/disable-account.component';
 
 
 export const routes: Routes = [
@@ -34,6 +35,11 @@ export const routes: Routes = [
   {
     path: 'signup/buyer',
     component: BuyerSignupComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'disableaccount',
+    component: DisableAccountComponent,
     canActivate: [GuestGuard],
   },
   {
@@ -77,6 +83,17 @@ export const routes: Routes = [
           ],
           showInSidebar: true,
           name: 'Brands'
+        }
+      },
+      {
+        path: 'account',
+        component: DisableAccountComponent,
+        data: { 
+          authorities: [
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Account'
         }
       },
       {

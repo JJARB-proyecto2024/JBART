@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IResponse, IUser } from '../interfaces';
+import { IBuyerUser, IResponse, IUser } from '../interfaces';
 import { Injectable, inject } from '@angular/core';
 
 @Injectable({
@@ -34,4 +34,8 @@ export class BaseService<T> {
   public updateStatus(id: number, status: string): Observable<IResponse<T>> {
     return this.http.put<IResponse<T>>(this.source + '/upStatus/'+ id, { status });
   }
+
+  public disableAccount(user: IBuyerUser): Observable<string> {
+    return this.http.put<string>(`${this.source}/deactivate`, user , { responseType: 'text' as 'json' });
+  }  
 }

@@ -40,6 +40,7 @@ export interface IBuyerUser {
   id?: number;
   name?: number;
   lastname?: string;
+  status?: string;
   email?: string;
   password?: string;
   createdAt?: string;
