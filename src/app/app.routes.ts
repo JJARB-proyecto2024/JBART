@@ -14,6 +14,10 @@ import { BrandUserListComponent } from './components/brand-user/brand-user-list/
 import { BuyerSignupComponent } from './pages/auth/buyer-signup/buyer-signup.component';
 import { BrandUsersComponent } from './pages/brandUsers/brand-users.component';
 import { DisableAccountComponent } from './pages/auth/disable-account/disable-account.component';
+import { ResetPasswordSendEmailComponent } from './pages/auth/reset-password/reset-password-send-email/reset-password-send-email.component';
+import { ResetPasswordValidateComponent } from './pages/auth/reset-password/reset-password-validate/reset-password-validate.component';
+import { BuyerProfileComponent } from './pages/profile/buyer-profile/buyer-profile.component';
+import { BrandProfileComponent } from './pages/profile/brand-profile/brand-profile.component';
 
 
 export const routes: Routes = [
@@ -38,8 +42,18 @@ export const routes: Routes = [
     canActivate: [GuestGuard],
   },
   {
-    path: 'disableaccount',
+  path: 'disableaccount',
     component: DisableAccountComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'reset/email',
+    component: ResetPasswordSendEmailComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'reset/validate',
+    component: ResetPasswordValidateComponent,
     canActivate: [GuestGuard],
   },
   {
@@ -70,7 +84,7 @@ export const routes: Routes = [
             IRole.admin, 
             IRole.superAdmin
           ],
-          name: 'Users'
+          name: 'Usuarios'
         }
       },
       {
@@ -82,7 +96,7 @@ export const routes: Routes = [
             IRole.superAdmin
           ],
           showInSidebar: true,
-          name: 'Brands'
+          name: 'Marcas'
         }
       },
       {
@@ -107,7 +121,30 @@ export const routes: Routes = [
           ],
           name: 'Dashboard'
         }
+      },
+      {
+        path: 'buyer-profile',
+        component: BuyerProfileComponent,
+        data: { 
+          authorities: [
+            IRole.user
+          ],
+          showInSidebar: false,
+          name: 'Perfil'
+        }
+      },
+      {
+        path: 'brand-profile',
+        component: BrandProfileComponent,
+        data: { 
+          authorities: [
+            IRole.userBrand
+          ],
+          showInSidebar: false,
+          name: 'Perfil'
+        }
       }
+      
     ],
   },
 ];

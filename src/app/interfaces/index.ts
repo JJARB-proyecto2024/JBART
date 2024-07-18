@@ -11,6 +11,10 @@ export interface IUser {
   id?: number;
   name?: string;
   lastname?: string;
+  picture?: string;
+  genre?: string;
+  deliveryLocation?: string;
+  phoneNumber?: string;
   email?: string;
   password?: string;
   active?: boolean;
@@ -46,6 +50,13 @@ export interface IBuyerUser {
   createdAt?: string;
   updatedAt?: string;
   authorities?: IAuthority[];
+}
+
+export interface IOtp {
+  id?: number;
+  otpCode: string;
+  email: string;
+  expiryTime: Date;
 }
 
 export interface IAuthority {

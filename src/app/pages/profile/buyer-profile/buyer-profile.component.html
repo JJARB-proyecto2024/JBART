@@ -1,0 +1,96 @@
+<div class="row">
+  <h1 class="mt-3">Perfil</h1>
+  <div class="row border bg-white m-2 p-4 rounded-3">
+    <div class="col-md-6">
+      <img [src]="buyerProfileService.user$().picture ? buyerProfileService.user$().picture : 'https://res.cloudinary.com/drlznypvr/image/upload/t_profile%20pic/v1721246303/profile-sample.avif'  " class="rounded-circle" id="picture"/>
+    </div>
+    <div class="col-md-6 d-flex align-items-center justify-content-end">
+      <button (click)="openCloudinaryWidget()" type="button" class="btn btn-dark m-2">Subir nueva imagen</button>
+      <button (click)="handleRemoveImg()" type="button" class="btn btn-danger">Eliminar</button>
+    </div>
+  </div>
+  <div class="row border bg-white m-2 p-4 rounded-3">
+    <div class="col-md-6 mt-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input #name="ngModel" type="text" class="form-control" id="name" name="name"
+        [(ngModel)]="buyerProfileService.user$().name" [ngClass]="{
+            'is-invalid': name.invalid && name.touched,
+            'is-valid': name.valid && name.touched
+          }" required>
+      <div *ngIf="name.invalid" class="invalid-feedback">
+        Por favor, ingrese su nombre
+      </div>
+    </div>
+    <div class="col-md-6 mt-3">
+      <label for="lastname" class="form-label">Apellidos</label>
+      <input #lastname="ngModel" type="text" class="form-control" id="lastname" name="lastname"
+        [(ngModel)]="buyerProfileService.user$().lastname" [ngClass]="{
+          'is-invalid': lastname.invalid && lastname.touched,
+          'is-valid': lastname.valid && lastname.touched
+        }" required>
+      <div *ngIf="lastname.invalid" class="invalid-feedback">
+        Por favor, ingrese su apellido
+      </div>
+    </div>
+    <div class="col-md-6 mt-3">
+      <label for="genre" class="form-label">Género</label>
+      <select #genre="ngModel" class="form-select" aria-label="Default select example" id="genre" name="genre"
+        [(ngModel)]="buyerProfileService.user$().genre" [ngClass]="{
+            'is-invalid': genre.invalid && genre.touched,
+            'is-valid': genre.valid && genre.touched
+          }" required>
+        <div *ngIf="genre.invalid" class="invalid-feedback">
+          Por favor, añade tu género
+        </div>
+        <option selected>Género</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+      </select>
+    </div>
+    <div class="col-md-6 mt-3">
+      <label for="deliveryLocation" class="form-label">Dirección de envío</label>
+      <input #deliveryLocation="ngModel" type="text" class="form-control" id="deliveryLocation" name="deliveryLocation"
+        [(ngModel)]="buyerProfileService.user$().deliveryLocation" [ngClass]="{
+          'is-invalid': deliveryLocation.invalid && deliveryLocation.touched,
+          'is-valid': deliveryLocation.valid && deliveryLocation.touched
+        }" required>
+      <div *ngIf="deliveryLocation.invalid" class="invalid-feedback">
+        Por favor, añade una dirección de envío válida
+      </div>
+    </div>
+    <div class="col-md-6 mt-3">
+      <label for="phoneNumber" class="form-label">Teléfono</label>
+      <input #phoneNumber="ngModel" type="tel" class="form-control" id="phoneNumber" name="phoneNumber"
+        [(ngModel)]="buyerProfileService.user$().phoneNumber" [ngClass]="{
+          'is-invalid': phoneNumber.invalid && phoneNumber.touched,
+          'is-valid': phoneNumber.valid && phoneNumber.touched
+        }">
+    </div>
+    <div class="col-md-6 mt-3">
+      <label for="email" class="form-label">Correo electrónico</label>
+      <input #email="ngModel" type="email" class="form-control" id="email" name="email"
+        [(ngModel)]="buyerProfileService.user$().email" [ngClass]="{
+          'is-invalid': email.invalid && email.touched,
+          'is-valid': email.valid && email.touched
+        }" required />
+      <div *ngIf="email.invalid" class="invalid-feedback">
+        Por favor, añade un correo electrónico válido
+      </div>
+    </div>
+    <div class="col-md-6 mt-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input #password="ngModel" type="password" class="form-control" id="password" name="password"
+        [(ngModel)]="buyerProfileService.user$().password" [ngClass]="{
+            'is-invalid': password.invalid && password.touched,
+            'is-valid': password.valid && password.touched
+          }" required>
+      <div *ngIf="password.invalid" class="invalid-feedback">
+        Por favor, añade una contraseña válida
+      </div>
+    </div>
+    <div class="col-md-6 mt-4 align-content-end">
+      <button (click)="handleFormAction();" type="button" class="btn btn-dark">Guardar</button>
+    </div>
+  </div>
+</div>
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
