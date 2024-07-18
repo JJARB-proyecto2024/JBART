@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BrandProfileService } from '../../../services/brand-profile.service';
 import { Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+declare const cloudinary: any; 
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -35,4 +35,19 @@ export class BrandProfileComponent {
     this.brandProfileService.updateUserProfileInfo(userProfileUpdate);
   }
 
+  handleRemoveImg() {
+    this.brandProfileService.user$().logoType = '';
+  }
+
+  openCloudinaryWidget() {
+    cloudinary.openUploadWidget({ 
+      cloudName: 'drlznypvr', 
+      uploadPreset: 'ml_default'
+    }, (error: any, result: any) => {
+      if (!error && result && result.event === 'success') {
+        console.log('File uploaded successfully to Cloudinary');
+        this.brandProfileService.user$().logoType = result.info.secure_url;
+      }
+    });
+  }
 }

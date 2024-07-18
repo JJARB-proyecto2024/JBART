@@ -2,11 +2,11 @@
     <h1 class="mt-3">Perfil</h1>
     <div class="row border bg-white m-2 p-4 rounded-3">
         <div class="col-md-6">
-            <img src="{{brandProfileService.user$().logoType}}" class="rounded-circle" alt="User profile picture">
+          <img [src]="brandProfileService.user$().logoType ? brandProfileService.user$().logoType : 'https://res.cloudinary.com/drlznypvr/image/upload/t_profile%20pic/v1721246303/profile-sample.avif'  " class="rounded-circle" id="picture"/>
         </div>
         <div class="col-md-6 d-flex align-items-center justify-content-end">
-            <button type="button" class="btn btn-dark m-2">Subir nueva imagen</button>
-            <button type="button" class="btn btn-danger">Eliminar</button>
+            <button (click)="openCloudinaryWidget()" type="button" class="btn btn-dark m-2">Subir nueva imagen</button>
+            <button (click)="handleRemoveImg()" type="button" class="btn btn-danger">Eliminar</button>
         </div>
     </div>
     <div class="row border bg-white m-2 p-4 rounded-3">

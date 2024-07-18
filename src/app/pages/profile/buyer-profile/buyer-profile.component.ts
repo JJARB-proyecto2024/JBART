@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BuyerProfileService } from '../../../services/buyer-profile.service';
 import { Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+declare const cloudinary: any; 
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -18,7 +19,6 @@ export class BuyerProfileComponent {
   public user!: IUser;
  
   public buyerProfileService = inject(BuyerProfileService);
-
   constructor() {
     this.buyerProfileService.getUserProfileInfo();
   }
@@ -36,5 +36,20 @@ export class BuyerProfileComponent {
       password: this.buyerProfileService.user$().password
     }
     this.buyerProfileService.updateUserProfileInfo(userProfileUpdate);
+  }
+
+  handleRemoveImg() {
+    this.buyerProfileService.user$().picture = '';
+  }
+  openCloudinaryWidget() {
+    cloudinary.openUploadWidget({ 
+      cloudName: 'drlznypvr', 
+      uploadPreset: 'ml_default'
+    }, (error: any, result: any) => {
+      if (!error && result && result.event === 'success') {
+        console.log('File uploaded successfully to Cloudinary');
+        this.buyerProfileService.user$().picture = result.info.secure_url;
+      }
+    });
   }
 }

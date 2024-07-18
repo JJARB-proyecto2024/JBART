@@ -112,8 +112,8 @@ export const routes: Routes = [
           authorities: [
             IRole.user
           ],
-          name: 'Perfil',
-          showInSidebar: false
+          showInSidebar: false,
+          name: 'Perfil'
         }
       },
       {
@@ -123,8 +123,8 @@ export const routes: Routes = [
           authorities: [
             IRole.userBrand
           ],
-          name: 'Perfil',
-          showInSidebar: false
+          showInSidebar: false,
+          name: 'Perfil'
         }
       }
       
