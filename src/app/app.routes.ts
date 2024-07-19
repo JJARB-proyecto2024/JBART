@@ -8,7 +8,7 @@ import { AccessDeniedComponent } from './pages/access-denied/access-denied.compo
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
-import { IRole } from './interfaces';
+import { IRole, IRoleType } from './interfaces';
 import { BrandSignupComponent } from './pages/auth/brand-signup/brand-signup.component';
 import { BrandUserListComponent } from './components/brand-user/brand-user-list/brand-user-list.component';
 import { BuyerSignupComponent } from './pages/auth/buyer-signup/buyer-signup.component';
@@ -17,6 +17,8 @@ import { ResetPasswordSendEmailComponent } from './pages/auth/reset-password/res
 import { ResetPasswordValidateComponent } from './pages/auth/reset-password/reset-password-validate/reset-password-validate.component';
 import { BuyerProfileComponent } from './pages/profile/buyer-profile/buyer-profile.component';
 import { BrandProfileComponent } from './pages/profile/brand-profile/brand-profile.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 
 export const routes: Routes = [
@@ -78,6 +80,7 @@ export const routes: Routes = [
             IRole.admin, 
             IRole.superAdmin
           ],
+          showInSidebar: true,
           name: 'Usuarios'
         }
       },
@@ -103,6 +106,30 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Dashboard'
+        }
+      },
+      {
+        path: 'categories',
+        component: CategoriesComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Categories'
+        }
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Products'
         }
       },
       {

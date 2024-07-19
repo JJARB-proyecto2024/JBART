@@ -58,6 +58,28 @@ export interface IOtp {
   expiryTime: Date;
 }
 
+export interface ICategory {
+  id?: number;
+  name: string;
+  description: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+
+export interface IProduct {
+  id?: number;
+  name?: string;
+  price?: number;
+  quantityInStock?: number;
+  picture?: string;
+  status?: string;
+  rate?: string;
+  category?: ICategory;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface IAuthority {
   authority: string;
 }
