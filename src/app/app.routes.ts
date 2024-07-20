@@ -20,6 +20,7 @@ import { BrandProfileComponent } from './pages/profile/brand-profile/brand-profi
 import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { BrandUsersAvaliableComponent } from './pages/brandUsersAvaliable/brand-users-avaliable.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 
 export const routes: Routes = [
@@ -131,6 +132,18 @@ export const routes: Routes = [
           ],
           showInSidebar: true,
           name: 'Products'
+        }
+      },
+      {
+        path: 'orders',
+        component: OrdersComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Orders'
         }
       },
       {

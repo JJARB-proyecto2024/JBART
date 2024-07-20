@@ -47,6 +47,7 @@ export interface IBuyerUser {
   lastname?: string;
   email?: string;
   password?: string;
+  deliveryLocation?: string;
   createdAt?: string;
   updatedAt?: string;
   authorities?: IAuthority[];
@@ -77,8 +78,18 @@ export interface IProduct {
   status?: string;
   rate?: string;
   category?: ICategory;
+  userBrand?: IBrandUser;
   createdAt?: string;
   updatedAt?: string;
+}
+
+export interface IOrder {
+  id?: number;
+  product?: IProduct;
+  userBuyer?: IBuyerUser;
+  shippingAddress?: string;
+  status?: string;
+  createdAt?: string;
 }
 
 export interface IAuthority {

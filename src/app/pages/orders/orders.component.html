@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <div>
+    @defer {
+      <app-order-list
+      [areActionsAvailable]="areActionsAvailable"
+      [orderList]="orderService.orders$()"
+      />
+    } @loading (after 100ms; minimum 1s){
+      <app-loader></app-loader>
+    }
+  </div>
+</div>
