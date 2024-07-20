@@ -1,29 +1,45 @@
 <form class="container">
   <div>
-    <h2>{{ action }}</h2>
+    <h2>Añadir producto</h2>
   </div>
   <div class="row">
-    <div class="col-6 mb-2">
-      <input #name="ngModel" type="text" class="form-control" id="name" name="name" placeholder="Name"
+    <div class="row">
+      <div class="col-12 mb-3">
+        <img
+          class="rounded-3"
+          [src]="product.picture ? product.picture : 'https://res.cloudinary.com/drlznypvr/image/upload/c_fill,w_200,h_200/v1721447812/ch5sqtieivzzeaysvu8h.png'"
+          alt="">
+      </div>
+      <div class="col-12 mb-3">
+        <button (click)="openCloudinaryWidget()" class="btn btn-primary btn-block me-2">Añadir imagen</button>
+        <button (click)="handleRemoveImg()" class="btn btn-danger btn-block">Eliminar imagen</button>
+      </div>
+    </div>
+    <div class="row-6 mb-2">
+      <label for="name">Nombre</label>
+      <input #name="ngModel" type="text" class="form-control" id="name" name="name" placeholder="Nombre"
         [(ngModel)]="product.name" [ngClass]="{ 
           'is-invalid': name.invalid && name.touched,
           'is-valid': name.valid && name.touched
         }" required />
     </div>
-    <div class="col-6 mb-2">
-      <input #description="ngModel" type="number" class="form-control" id="price" name="price" placeholder="Price"
+    <div class="row-6 mb-2">
+      <label for="price">Precio</label>
+      <input #description="ngModel" type="number" class="form-control" id="price" name="price" placeholder="Precio"
         [(ngModel)]="product.price" required />
     </div>
-    <div class="col-6 mb-2">
-      <input #description="ngModel" type="number" class="form-control" id="quantityInStock" name="quantityInStock" placeholder="quantityInStock"
-        [(ngModel)]="product.quantityInStock" required />
+    <div class="row-6 mb-2">
+      <label for="quantityInStock">Stock</label>
+      <input #description="ngModel" type="number" class="form-control" id="quantityInStock" name="quantityInStock"
+        placeholder="Stock" [(ngModel)]="product.quantityInStock" required />
     </div>
-    <div class="col-12 mb-2">
+    <div class="row-6 mb-4">
+      <label for="category">Categoria</label>
       <select #category="ngModel" class="form-control" id="category" name="category" [(ngModel)]="product.category"
         [ngClass]="{ 
-  'is-invalid': category.invalid && category.touched,
-  'is-valid': category.valid && category.touched
-}" required>
+      'is-invalid': category.invalid && category.touched,
+      'is-valid': category.valid && category.touched
+      }">
         @for (category of categories; track $index) {
         <option [ngValue]="category">{{category.name}}</option>
         }
@@ -31,7 +47,7 @@
     </div>
     <div class="col-12 text-center d-grid">
       <button (click)="callEvent();" type="button" class="btn btn-primary btn-block">
-        <p class="mb-0"> {{action}} </p>
+        <p class="mb-0">Añadir producto</p>
       </button>
     </div>
   </div>

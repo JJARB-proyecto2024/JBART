@@ -114,7 +114,8 @@ export const routes: Routes = [
         data: { 
           authorities: [
             IRole.superAdmin,
-            IRole.user
+            IRole.user,
+            IRole.userBrand
           ],
           showInSidebar: true,
           name: 'Categories'
@@ -126,7 +127,8 @@ export const routes: Routes = [
         data: { 
           authorities: [
             IRole.superAdmin,
-            IRole.user
+            IRole.user,
+            IRole.userBrand
           ],
           showInSidebar: true,
           name: 'Products'
