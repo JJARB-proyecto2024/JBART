@@ -26,6 +26,7 @@
 <app-modal #addModal>
   <app-product-form
     [action]="'Add Product'"
+    [categories]="categoryService.items$()"
     (callParentEvent)="handleFormAction($event)" 
   />
 </app-modal>

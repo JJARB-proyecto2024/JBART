@@ -19,6 +19,7 @@ import { BuyerProfileComponent } from './pages/profile/buyer-profile/buyer-profi
 import { BrandProfileComponent } from './pages/profile/brand-profile/brand-profile.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { ProductTypesComponent } from './pages/product-types/product-types.component';
 
 
 export const routes: Routes = [
@@ -113,9 +114,7 @@ export const routes: Routes = [
         component: CategoriesComponent,
         data: { 
           authorities: [
-            IRole.superAdmin,
-            IRole.user,
-            IRole.userBrand
+            IRole.superAdmin
           ],
           showInSidebar: true,
           name: 'Categories'
@@ -127,7 +126,6 @@ export const routes: Routes = [
         data: { 
           authorities: [
             IRole.superAdmin,
-            IRole.user,
             IRole.userBrand
           ],
           showInSidebar: true,
@@ -154,6 +152,18 @@ export const routes: Routes = [
           ],
           showInSidebar: false,
           name: 'Perfil'
+        }
+      },
+      {
+        path: 'product-types',
+        component: ProductTypesComponent,
+        data: { 
+          authorities: [
+            IRole.user,
+            IRole.userBrand
+          ],
+          showInSidebar: true,
+          name: 'Categorias'
         }
       }
       

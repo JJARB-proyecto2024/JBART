@@ -3,10 +3,9 @@
     <h2>Añadir producto</h2>
   </div>
   <div class="row">
-    <div class="row">
+    <div class="row-6 m-auto">
       <div class="col-12 mb-3">
-        <img
-          class="rounded-3"
+        <img class="rounded-3"
           [src]="product.picture ? product.picture : 'https://res.cloudinary.com/drlznypvr/image/upload/c_fill,w_200,h_200/v1721447812/ch5sqtieivzzeaysvu8h.png'"
           alt="">
       </div>
@@ -22,16 +21,37 @@
           'is-invalid': name.invalid && name.touched,
           'is-valid': name.valid && name.touched
         }" required />
+      @if(name.invalid) {
+      <div *ngIf="name.invalid" class="invalid-feedback">
+        Por favor añade un nombre al producto
+      </div>
+      }
     </div>
     <div class="row-6 mb-2">
       <label for="price">Precio</label>
-      <input #description="ngModel" type="number" class="form-control" id="price" name="price" placeholder="Precio"
-        [(ngModel)]="product.price" required />
+      <input #price="ngModel" type="number" class="form-control" id="price" name="price" placeholder="Precio"
+        [(ngModel)]="product.price" [ngClass]="{ 
+          'is-invalid': price.invalid && price.touched,
+          'is-valid': price.valid && price.touched
+        }" required />
+      @if(price.invalid) {
+      <div *ngIf="price.invalid" class="invalid-feedback">
+        Por favor, establece un precio al producto
+      </div>
+      }
     </div>
     <div class="row-6 mb-2">
       <label for="quantityInStock">Stock</label>
-      <input #description="ngModel" type="number" class="form-control" id="quantityInStock" name="quantityInStock"
-        placeholder="Stock" [(ngModel)]="product.quantityInStock" required />
+      <input #quantityInStock="ngModel" type="number" class="form-control" id="quantityInStock" name="quantityInStock"
+        placeholder="Stock" [(ngModel)]="product.quantityInStock" [ngClass]="{ 
+          'is-invalid': quantityInStock.invalid && quantityInStock.touched,
+          'is-valid': quantityInStock.valid && quantityInStock.touched
+        }" required />
+      @if(quantityInStock.invalid) {
+      <div *ngIf="quantityInStock.invalid" class="invalid-feedback">
+        Por favor, establece una cantidad en stock
+      </div>
+      }
     </div>
     <div class="row-6 mb-4">
       <label for="category">Categoria</label>
@@ -39,11 +59,16 @@
         [ngClass]="{ 
       'is-invalid': category.invalid && category.touched,
       'is-valid': category.valid && category.touched
-      }">
+      }" required>
         @for (category of categories; track $index) {
         <option [ngValue]="category">{{category.name}}</option>
         }
       </select>
+      @if(category.invalid) {
+        <div *ngIf="category.invalid" class="invalid-feedback">
+          Por favor, selecciona una categoria para el producto
+        </div>
+        }
     </div>
     <div class="col-12 text-center d-grid">
       <button (click)="callEvent();" type="button" class="btn btn-dark btn-block">

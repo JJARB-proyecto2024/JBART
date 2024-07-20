@@ -64,6 +64,7 @@ export interface ICategory {
   id?: number;
   name: string;
   description: string;
+  image: string;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -76,7 +77,7 @@ export interface IProduct {
   quantityInStock?: number;
   picture?: string;
   status?: string;
-  rate?: string;
+  rate?: number;
   category?: ICategory;
   createdAt?: string;
   updatedAt?: string;

@@ -27,8 +27,11 @@ export class ProductFormComponent {
   @Output() callParentEvent: EventEmitter<IProduct> = new EventEmitter<IProduct>()
   public categoryService: CategoryService = inject(CategoryService)
   public brandUserService: BrandProfileService = inject(BrandProfileService)
-  public categories: ICategory[] = []
+  @Input() categories: ICategory[] = []
 
+  ngOnInit() {
+    this.brandUserService.getUserProfileInfo();
+  }
   callEvent() {
     this.product.status = 'Activo'
     this.product.userBrand = {
@@ -36,12 +39,6 @@ export class ProductFormComponent {
       role: this.brandUserService.user$().role
     };
     this.callParentEvent.emit(this.product);
-  }
-  ngOnInit() {
-    this.brandUserService.getUserProfileInfo()
-    this.categoryService.getAll()
-    this.categories = this.categoryService.items$()
-    console.log("categories", this.categories)
   }
 
   handleRemoveImg() {
