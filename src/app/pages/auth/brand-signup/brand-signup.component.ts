@@ -88,6 +88,18 @@ export class BrandSignupComponent {
     });
   }
 
+  public openCloudinaryWidgetLegalDocuments() {
+    cloudinary.openUploadWidget({
+      cloudName: 'drlznypvr',
+      uploadPreset: 'ml_default'
+    }, (error: any, result: any) => {
+      if (!error && result && result.event === 'success') {
+        console.log('File uploaded successfully to Cloudinary');
+        this.userBrand.legalDocuments = result.info.secure_url;
+      }
+    });
+  }
+
 
   private signupUserBrand() {
     this.authService.signupBrand(this.userBrand).subscribe({

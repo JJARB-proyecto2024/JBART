@@ -19,11 +19,15 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="legalDocuments" class="form-label">Documentos Legales</label>
-                <input #legalDocuments="ngModel" type="file" class="form-control" id="legalDocuments"
-                    name="legalDocuments" [(ngModel)]="userBrand.legalDocuments" [ngClass]="{
-                    'is-invalid': legalDocuments.invalid && legalDocuments.touched,
-                    'is-valid': legalDocuments.valid && legalDocuments.touched
-                }" required>
+                <div class="input-group">
+                    <input #legalDocuments="ngModel" type="hidden" class="form-control" id="legalDocuments"
+                        name="legalDocuments" [(ngModel)]="userBrand.legalDocuments" required>
+                    <button type="button" class="btn btn-primary" (click)="openCloudinaryWidget()">Subir
+                        Documento</button>
+                </div>
+                <div *ngIf="logoType.invalid" class="invalid-feedback">
+                    El Logotipo es requerido
+                </div>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="logoType" class="form-label">Logotipo</label>
