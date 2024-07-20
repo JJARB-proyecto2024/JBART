@@ -19,6 +19,7 @@ import { BuyerProfileComponent } from './pages/profile/buyer-profile/buyer-profi
 import { BrandProfileComponent } from './pages/profile/brand-profile/brand-profile.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { BrandUsersAvaliableComponent } from './pages/brandUsersAvaliable/brand-users-avaliable.component';
 import { ProductsRecommendedComponent } from './pages/productsRecommended/productsRecommended.component';
 
 
@@ -143,6 +144,18 @@ export const routes: Routes = [
           ],
           showInSidebar: true,
           name: 'Productos Recomendados'
+        }
+      },
+      {
+        path: 'brands-avaliable',
+        component: BrandUsersAvaliableComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Brands Avaliable'
         }
       },
       {

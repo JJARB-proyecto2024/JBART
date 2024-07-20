@@ -32,6 +32,7 @@ export interface IBrandUser {
   mainLocationAddress?: string;
   legalDocuments?: string;
   brandCategories?: string;
+  rate?: number;
   status?: string;
   email?: string;
   password?: string;

@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <div>
+    @defer {
+      <app-brand-user-avaliable-list
+      [areActionsAvailable]="areActionsAvailable"
+      [itemList]="brandUserService.items$()"
+      />
+    } @loading (after 100ms; minimum 1s){
+      <app-loader></app-loader>
+    }
+  </div>
+</div>
