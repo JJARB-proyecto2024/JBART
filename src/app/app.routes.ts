@@ -22,7 +22,6 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { ProductsRecommendedComponent } from './pages/productsRecommended/productsRecommended.component';
 
 
-
 export const routes: Routes = [
   {
     path: 'login',
