@@ -1,23 +1,20 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ProductListComponent } from '../../components/products/product-list/product-list.component';
-import { ProductFormComponent } from '../../components/products/product-form/product-form.component';
+import { ProductRecommendedListComponent } from '../../components/products-recomended/product-recommended-list/product-recommended-list.component';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { IProduct } from '../../interfaces';
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-products-recommended',
   standalone: true,
   imports: [
-    ProductListComponent,
-    LoaderComponent,
+    ProductRecommendedListComponent,
     CommonModule,
-    ModalComponent,
-    ProductFormComponent
+    LoaderComponent,
+    ModalComponent
   ],
   templateUrl: './productsRecommended.component.html',
   styleUrl: './productsRecommended.component.scss'
@@ -35,9 +32,5 @@ export class ProductsRecommendedComponent implements OnInit{
       this.routeAuthorities = data['authorities'] ? data['authorities'] : [];
       this.areActionsAvailable = this.authService.areActionsAvailable(this.routeAuthorities);
     });
-  }
-
-  handleFormAction(item: IProduct) {
-    this.productService.save(item);
   }
 }

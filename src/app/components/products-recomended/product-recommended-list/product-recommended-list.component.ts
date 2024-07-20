@@ -1,59 +1,71 @@
-import { Component, effect, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
-import { CategoryService } from '../../../services/category.service';
-import { IProduct, ICategory } from '../../../interfaces';
+import { IProduct } from '../../../interfaces';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
-import { ProductFormComponent } from '../product-recommended-form/product-recommended-form.component';
-import { CategoryFormComponent } from '../../category/category-from/category-form.component';
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { defineComponents, IgcRatingComponent } from 'igniteui-webcomponents';
 
+defineComponents(IgcRatingComponent);
 
 @Component({
-  selector: 'app-product-list',
+  selector: 'app-product-recommended-list',
   standalone: true,
-  imports: [
+ imports: [
     CommonModule, 
     FormsModule,
     ModalComponent,
-    ProductFormComponent,
-    CategoryFormComponent,
     MatSnackBarModule
   ],
   templateUrl: './product-recommended-list.component.html',
   styleUrl: './product-recommended-list.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [DatePipe]
 })
-export class ProductListComponent implements OnChanges{
+export class ProductRecommendedListComponent implements OnInit{
 
   @Input() itemList: IProduct[] = [];
-  @Input() areActionsAvailable: boolean = true;
-  public selectedItem: IProduct = {};
+  @Input() areActionsAvailable: boolean = false;
   public productService: ProductService = inject(ProductService);
-  constructor(private datePipe: DatePipe) { }
+  public Math = Math;
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['areActionsAvailable']) {
-      console.log('areActionsAvailable', this.areActionsAvailable);
-    }
+  paginatedList: IProduct[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 6;
+
+  ngOnInit() {
+    this.updatePaginatedList();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
     if (changes['itemList']) {
-      console.log('itemList', this.itemList);
+      this.updatePaginatedList();
     }
   }
 
-  showDetailModal(item: IProduct, modal: any) {
-    this.selectedItem = {...item}
-    modal.show();
+  updatePaginatedList() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.paginatedList = this.itemList.slice(startIndex, endIndex);
   }
 
-  handleFormAction(item: IProduct) {
-    this.productService.update(item);
+  goToPage(page: number) {
+    this.currentPage = page;
+    this.updatePaginatedList();
   }
 
-  deleteProduct(item: IProduct) {
-    this.productService.delete(item);
+  trackById(index: number, item: IProduct) {
+    
+    console.log(item.rate);
+    return item.id;
+  }
+
+  viewProducts(item: IProduct) {
+    // Redirige a la página de productos
+    //window.location.href = `/products/${item.id}`;
   }
 
 }
+

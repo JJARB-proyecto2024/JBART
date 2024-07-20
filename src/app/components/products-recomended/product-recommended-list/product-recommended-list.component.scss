@@ -1,0 +1,91 @@
+.container {
+    .row {
+      .col {
+        .card {
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          overflow: hidden;
+          transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+          &:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          }
+  
+          .card-img-top {
+            height: 200px;
+            object-fit: cover;
+          }
+  
+          .card-body {
+            padding: 16px;
+  
+            .card-title {
+              font-size: 1.25rem;
+              margin-bottom: 0.5rem;
+            }
+  
+            .card-text {
+              font-size: 1rem;
+              color: #555;
+  
+              strong {
+                color: #333;
+              }
+            }
+  
+            .btn {
+              margin-top: 1rem;
+            }
+          }
+        }
+      }
+    }
+  
+    // Estilos para la paginación
+    .pagination {
+      .page-item {
+        .page-link {
+          color: #007bff;
+          border-radius: 4px;
+  
+          &:hover {
+            background-color: #f8f9fa;
+            color: #0056b3;
+          }
+  
+          &:disabled {
+            color: #6c757d;
+            cursor: not-allowed;
+          }
+        }
+      }
+  
+      .active .page-link {
+        background-color: #007bff;
+        color: #fff;
+        border: 1px solid #007bff;
+      }
+  
+      .disabled .page-link {
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  // Estilos específicos para el igc-rating
+  igc-rating {
+    --rating-star-fill: #f39c12;  // Color de las estrellas llenas
+    --rating-star-empty: #ddd;    // Color de las estrellas vacías
+    --rating-star-size: 24px;     // Tamaño de las estrellas
+  
+    .igc-rating-star {
+      margin: 0 2px; // Espaciado entre las estrellas
+    }
+  }
+  
+  
+  .row-title{
+    align-items: center;
+    margin-top: 80px !important;
+  }
