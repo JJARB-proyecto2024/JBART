@@ -23,7 +23,7 @@ import { BrandUsersAvaliableComponent } from './pages/brandUsersAvaliable/brand-
 import { OrdersComponent } from './pages/orders/orders.component';
 import { OrderListComponent } from './components/orders/order-list/order-list.component';
 import { BrandOrdersComponent } from './pages/brandOrders/brand-orders.component';
-//import { UserOrdersComponent } from './pages/orders/';
+import { UserOrdersComponent } from './pages/userOrders/user-orders.component';
 
 
 
@@ -162,7 +162,7 @@ export const routes: Routes = [
           name: 'Brand Orders'
         }
       },
-      /*{
+      {
         path: 'user-orders',
         component: UserOrdersComponent,
         data: {
@@ -173,7 +173,7 @@ export const routes: Routes = [
           showInSidebar: true,
           name: 'User Orders'
         }
-      },*/
+      },
       {
         path: 'brands-avaliable',
         component: BrandUsersAvaliableComponent,

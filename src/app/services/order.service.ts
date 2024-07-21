@@ -50,20 +50,20 @@ export class OrderService extends BaseService<IOrder> {
     );
   }
 
-  public getOrdersForUser(): void {
-    this.http.get<IOrder[]>(`/orders/user`).subscribe({
-      next: (response: any) => {
-        response.reverse();
-        this.orderListSignal.set(response);
-      },
-      error: (error: any) => {
-        console.error('Error in get orders for user request', error);
+  public getOrdersForUser(): Observable<IOrder[]> {
+    return this.http.get<IOrder[]>(`/orders/user`).pipe(
+      tap((response: IOrder[]) => {
+        this.orderListSignal.set(response.reverse());
+      }),
+      catchError((error: any) => {
+        console.error('Error fetching orders for brand', error);
         this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
         });
-      }
-    });
+        return of([]); // Devuelve un observable con un array vacío en caso de error
+      })
+    );
   }
 }
