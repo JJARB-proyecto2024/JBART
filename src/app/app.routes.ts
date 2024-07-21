@@ -154,7 +154,7 @@ export const routes: Routes = [
           name: 'Perfil'
         }
       },
-      {
+     /*  {
         path: 'product-types',
         component: ProductTypesComponent,
         data: { 
@@ -165,7 +165,7 @@ export const routes: Routes = [
           showInSidebar: true,
           name: 'Categorias'
         }
-      }
+      } */
       
     ],
   },

@@ -25,7 +25,6 @@ export class ProductFormComponent {
   @Input() product: IProduct = {};
   @Input() action = '';
   @Output() callParentEvent: EventEmitter<IProduct> = new EventEmitter<IProduct>()
-  public categoryService: CategoryService = inject(CategoryService)
   public brandUserService: BrandProfileService = inject(BrandProfileService)
   @Input() categories: ICategory[] = []
 

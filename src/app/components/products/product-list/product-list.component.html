@@ -21,7 +21,7 @@
           <td>{{item.name}}</td>
           <td>{{item.price | currency}}</td>
           <td>{{item.quantityInStock}}</td>
-          <td>{{item.category?.name}}</td>
+          <td>{{item.category?.description}}</td>
           <td>{{item.status}}</td>
           <td>{{item.rate}}</td>
           <td>{{item.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
@@ -44,7 +44,8 @@
   
 <app-modal #detailModal>
   <app-product-form 
-    [product]="selectedItem" 
+    [product]="selectedItem"
+    [categories]="categoryService.items$()" 
     [action]="'Update Product'"
     (callParentEvent)="handleFormAction($event)" />
 </app-modal>

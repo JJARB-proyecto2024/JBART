@@ -21,11 +21,9 @@
           'is-invalid': name.invalid && name.touched,
           'is-valid': name.valid && name.touched
         }" required />
-      @if(name.invalid) {
       <div *ngIf="name.invalid" class="invalid-feedback">
         Por favor añade un nombre al producto
       </div>
-      }
     </div>
     <div class="row-6 mb-2">
       <label for="price">Precio</label>
@@ -34,11 +32,9 @@
           'is-invalid': price.invalid && price.touched,
           'is-valid': price.valid && price.touched
         }" required />
-      @if(price.invalid) {
       <div *ngIf="price.invalid" class="invalid-feedback">
         Por favor, establece un precio al producto
       </div>
-      }
     </div>
     <div class="row-6 mb-2">
       <label for="quantityInStock">Stock</label>
@@ -47,28 +43,31 @@
           'is-invalid': quantityInStock.invalid && quantityInStock.touched,
           'is-valid': quantityInStock.valid && quantityInStock.touched
         }" required />
-      @if(quantityInStock.invalid) {
       <div *ngIf="quantityInStock.invalid" class="invalid-feedback">
         Por favor, establece una cantidad en stock
       </div>
-      }
     </div>
     <div class="row-6 mb-4">
       <label for="category">Categoria</label>
-      <select #category="ngModel" class="form-control" id="category" name="category" [(ngModel)]="product.category"
+      <select #category="ngModel" class="form-select" id="category" name="category" [(ngModel)]="product.category"
         [ngClass]="{ 
       'is-invalid': category.invalid && category.touched,
       'is-valid': category.valid && category.touched
       }" required>
-        @for (category of categories; track $index) {
-        <option [ngValue]="category">{{category.name}}</option>
-        }
+        <!-- Placeholder -->
+        <option [ngValue]="null" enabled selected>Seleccione una categoria</option>
+        <!-- Mostrar la categoría seleccionada previamente -->
+        <option *ngIf="product.category" [ngValue]="product.category">{{product.category.description}}</option>
+        <!-- Mostrar las demás categorías, excluyendo la seleccionada previamente -->
+        <ng-container *ngFor="let category of categories">
+          <option *ngIf="!product.category || product.category.id !== category.id" [ngValue]="category">
+            {{category.description}}
+          </option>
+        </ng-container>
       </select>
-      @if(category.invalid) {
-        <div *ngIf="category.invalid" class="invalid-feedback">
-          Por favor, selecciona una categoria para el producto
-        </div>
-        }
+      <div *ngIf="category.invalid" class="invalid-feedback">
+        Por favor, selecciona una categoria para el producto
+      </div>
     </div>
     <div class="col-12 text-center d-grid">
       <button (click)="callEvent();" type="button" class="btn btn-dark btn-block">
