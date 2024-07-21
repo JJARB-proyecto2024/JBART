@@ -9,7 +9,7 @@ import { IOrder } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-orders',
+  selector: 'app-brand-orders',
   standalone: true,
   imports: [
     OrderListComponent,
@@ -17,17 +17,17 @@ import { CommonModule } from '@angular/common';
     LoaderComponent,
     ModalComponent
   ],
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss']
+  templateUrl: './brand-orders.component.html',
+  styleUrls: ['./brand-orders.component.scss']
 })
-export class OrdersComponent implements OnInit {
-  public orderService: OrderService = inject(OrderService);
-  public route: ActivatedRoute = inject(ActivatedRoute);
-  public areActionsAvailable: boolean = false;
-  public authService: AuthService = inject(AuthService);
+export class BrandOrdersComponent implements OnInit {
+  public orderService = inject(OrderService);
+  public route = inject(ActivatedRoute);
+  public authService = inject(AuthService);
+  public areActionsAvailable = false;
   public routeAuthorities: string[] = [];
   public orders: IOrder[] = [];
-  public isLoading: boolean = true;
+  public isLoading = true;
 
   ngOnInit(): void {
     this.loadOrders();
@@ -38,8 +38,12 @@ export class OrdersComponent implements OnInit {
   }
 
   private loadOrders() {
-    this.orderService.getAll();
-    this.orders = this.orderService.orders;
-    this.isLoading = false;
+    this.orderService.getOrdersForBrand();
+
+    // Suscríbete a los cambios en la señal de orders del servicio
+    setTimeout(() => {
+      this.orders = this.orderService.orders;  // Aquí se accede a la señal directamente
+      this.isLoading = false;
+    }, 0);
   }
 }

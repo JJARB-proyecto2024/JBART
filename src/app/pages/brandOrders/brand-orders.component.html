@@ -1,8 +1,8 @@
 <div class="container-fluid">
-  <div>
+  <div *ngIf="!isLoading && orders.length > 0">
     <app-order-list
-      [areActionsAvailable]="areActionsAvailable"
       [orderList]="orders"
+      [areActionsAvailable]="false"
     ></app-order-list>
   </div>
 </div>
