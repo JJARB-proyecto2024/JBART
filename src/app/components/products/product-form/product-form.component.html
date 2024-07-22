@@ -1,41 +1,77 @@
 <form class="container">
   <div>
-    <h2 class="subrayado">Detalles del Producto</h2>
+    <h2>{{action}}</h2>
   </div>
   <div class="row">
-    <div class="col-6 mb-2">
-      <input #name="ngModel" type="text" class="form-control" id="name" name="name" placeholder="Name"
+    <div class="row-6 m-auto">
+      <div class="col-12 mb-3">
+        <img class="rounded-3"
+          [src]="product.picture ? product.picture : 'https://res.cloudinary.com/drlznypvr/image/upload/c_fill,w_200,h_200/v1721447812/ch5sqtieivzzeaysvu8h.png'"
+          alt="">
+      </div>
+      <div class="col-12 mb-3">
+        <button (click)="openCloudinaryWidget()" class="btn btn-dark btn-block me-2">Añadir imagen</button>
+        <button (click)="handleRemoveImg()" class="btn btn-danger btn-block">Eliminar imagen</button>
+      </div>
+    </div>
+    <div class="row-6 mb-2">
+      <label for="name">Nombre</label>
+      <input #name="ngModel" type="text" class="form-control" id="name" name="name" placeholder="Nombre"
         [(ngModel)]="product.name" [ngClass]="{ 
           'is-invalid': name.invalid && name.touched,
           'is-valid': name.valid && name.touched
         }" required />
+      <div *ngIf="name.invalid" class="invalid-feedback">
+        Por favor añade un nombre al producto
+      </div>
     </div>
-    <div class="col-6 mb-2">
-      <input #description="ngModel" type="number" class="form-control" id="price" name="price" placeholder="Price"
-        [(ngModel)]="product.price" required />
+    <div class="row-6 mb-2">
+      <label for="price">Precio</label>
+      <input #price="ngModel" type="number" class="form-control" id="price" name="price" placeholder="Precio"
+        [(ngModel)]="product.price" [ngClass]="{ 
+          'is-invalid': price.invalid && price.touched,
+          'is-valid': price.valid && price.touched
+        }" required />
+      <div *ngIf="price.invalid" class="invalid-feedback">
+        Por favor, establece un precio al producto
+      </div>
     </div>
-    <div class="col-6 mb-2">
-      <input #description="ngModel" type="number" class="form-control" id="quantityInStock" name="quantityInStock" placeholder="quantityInStock"
-        [(ngModel)]="product.quantityInStock" required />
+    <div class="row-6 mb-2">
+      <label for="quantityInStock">Stock</label>
+      <input #quantityInStock="ngModel" type="number" class="form-control" id="quantityInStock" name="quantityInStock"
+        placeholder="Stock" [(ngModel)]="product.quantityInStock" [ngClass]="{ 
+          'is-invalid': quantityInStock.invalid && quantityInStock.touched,
+          'is-valid': quantityInStock.valid && quantityInStock.touched
+        }" required />
+      <div *ngIf="quantityInStock.invalid" class="invalid-feedback">
+        Por favor, establece una cantidad en stock
+      </div>
     </div>
-    <div class="col-6 mb-2">
-      <input #description="ngModel" type="text" class="form-control" id="status" name="status" placeholder="status"
-        [(ngModel)]="product.status" required />
-    </div>
-    <div class="col-12 mb-2">
-      <select #category="ngModel" class="form-control" id="category" name="category" [(ngModel)]="product.category"
+    <div class="row-6 mb-4">
+      <label for="category">Categoria</label>
+      <select #category="ngModel" class="form-select" id="category" name="category" [(ngModel)]="product.category"
         [ngClass]="{ 
-  'is-invalid': category.invalid && category.touched,
-  'is-valid': category.valid && category.touched
-}" required>
-        @for (category of categories; track $index) {
-        <option [ngValue]="category">{{category.name}}</option>
-        }
+      'is-invalid': category.invalid && category.touched,
+      'is-valid': category.valid && category.touched
+      }" required>
+        <!-- Placeholder -->
+        <option [ngValue]="null" enabled selected>Seleccione una categoria</option>
+        <!-- Mostrar la categoría seleccionada previamente -->
+        <option *ngIf="product.category" [ngValue]="product.category">{{product.category.description}}</option>
+        <!-- Mostrar las demás categorías, excluyendo la seleccionada previamente -->
+        <ng-container *ngFor="let category of categories">
+          <option *ngIf="!product.category || product.category.id !== category.id" [ngValue]="category">
+            {{category.description}}
+          </option>
+        </ng-container>
       </select>
+      <div *ngIf="category.invalid" class="invalid-feedback">
+        Por favor, selecciona una categoria para el producto
+      </div>
     </div>
     <div class="col-12 text-center d-grid">
-      <button (click)="callEvent();" type="button" class="btn btn-primary btn-block">
-        <p class="mb-0"> Actualizar </p>
+      <button (click)="callEvent();" type="button" class="btn btn-dark btn-block">
+        <p class="mb-0">{{action}}</p>
       </button>
     </div>
   </div>

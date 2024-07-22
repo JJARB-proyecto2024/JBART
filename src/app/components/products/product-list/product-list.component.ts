@@ -27,11 +27,11 @@ import { ActivatedRoute } from '@angular/router';
   providers: [DatePipe]
 })
 export class ProductListComponent implements OnChanges{
-
   @Input() itemList: IProduct[] = [];
   @Input() areActionsAvailable: boolean = true;
   public selectedItem: IProduct = {};
   public productService: ProductService = inject(ProductService);
+  public categoryService: CategoryService = inject(CategoryService);
   constructor(private datePipe: DatePipe) { }
 
   ngOnChanges(changes: SimpleChanges): void {

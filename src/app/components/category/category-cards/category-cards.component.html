@@ -1,0 +1,14 @@
+
+<div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+  @for (item of categoryList; track $index) {
+    <div class="col-3">
+      <div class="card rounded-3">
+        <img src="{{item.image}}" class="card-img-top hover-zoom" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <p class="card-text">{{item.description}}</p>
+        </div>
+      </div>
+    </div>
+  }
+</div>

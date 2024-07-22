@@ -29,7 +29,8 @@ export class CategoryListComponent implements OnChanges{
 
   public selectedItem: ICategory = {
     name: '',
-    description: ''
+    description:'',
+    image:''
   };
 
   constructor(private datePipe: DatePipe) { }

@@ -17,7 +17,8 @@ import { CategoryService } from '../../../services/category.service';
 export class CategoryFormComponent  {
   @Input() category: ICategory =  {
     name: '',
-    description: ''
+    description: '',
+    image: ''
   };
   @Input() action = '';
   @Output() callParentEvent: EventEmitter<ICategory> = new EventEmitter<ICategory>()

@@ -39,6 +39,7 @@ export interface IBrandUser {
   createdAt?: string;
   updatedAt?: string;
   authorities?: IAuthority[];
+  role?: IRole;
 }
 
 export interface IBuyerUser {
@@ -51,6 +52,7 @@ export interface IBuyerUser {
   createdAt?: string;
   updatedAt?: string;
   authorities?: IAuthority[];
+  role?: IRole;
 }
 
 export interface IOtp {
@@ -64,6 +66,7 @@ export interface ICategory {
   id?: number;
   name: string;
   description: string;
+  image: string;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -76,10 +79,11 @@ export interface IProduct {
   quantityInStock?: number;
   picture?: string;
   status?: string;
-  rate?: string;
+  rate?: number;
   category?: ICategory;
   createdAt?: string;
   updatedAt?: string;
+  userBrand?: IBrandUser;
 }
 
 export interface IAuthority {

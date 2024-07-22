@@ -22,6 +22,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { BrandUsersAvaliableComponent } from './pages/brandUsersAvaliable/brand-users-avaliable.component';
 import { ProductsRecommendedComponent } from './pages/productsRecommended/productsRecommended.component';
+import { ProductTypesComponent } from './pages/product-types/product-types.component';
 
 
 export const routes: Routes = [
@@ -132,8 +133,7 @@ export const routes: Routes = [
         component: CategoriesComponent,
         data: { 
           authorities: [
-            IRole.superAdmin,
-            IRole.user
+            IRole.superAdmin
           ],
           showInSidebar: true,
           name: 'Categorias'
@@ -145,7 +145,7 @@ export const routes: Routes = [
         data: { 
           authorities: [
             IRole.superAdmin,
-            IRole.user
+            IRole.userBrand
           ],
           showInSidebar: true,
           name: 'Productos'
@@ -196,7 +196,19 @@ export const routes: Routes = [
           showInSidebar: false,
           name: 'Perfil'
         }
-      }
+      },
+     /*  {
+        path: 'product-types',
+        component: ProductTypesComponent,
+        data: { 
+          authorities: [
+            IRole.user,
+            IRole.userBrand
+          ],
+          showInSidebar: true,
+          name: 'Categorias'
+        }
+      } */
       
     ],
   },
