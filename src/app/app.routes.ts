@@ -20,6 +20,7 @@ import { BrandProfileComponent } from './pages/profile/brand-profile/brand-profi
 import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { BrandUsersAvaliableComponent } from './pages/brandUsersAvaliable/brand-users-avaliable.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 
 export const routes: Routes = [
@@ -61,6 +62,10 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent,
   },
   {
     path: 'app',
@@ -166,7 +171,7 @@ export const routes: Routes = [
           showInSidebar: false,
           name: 'Perfil'
         }
-      }
+      },
       
     ],
   },
