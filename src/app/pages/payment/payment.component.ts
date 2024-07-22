@@ -24,7 +24,7 @@ export class PaymentComponent implements OnInit {
       clientId: `${environment.Client_ID}`,
       // for creating orders (transactions) on server see
       // https://developer.paypal.com/docs/checkout/reference/server-integration/set-up-transaction/
-      createOrderOnServer: (data: any) => fetch( `${environment.apiUrl}` + '/paypal/createPayment', {
+      createOrderOnServer: (data: any) => fetch( `${environment.apiUrl}` + '/auth/createPayment', {
         method: 'post',
         headers: {
           "Content-Type": "application/json"
@@ -37,7 +37,7 @@ export class PaymentComponent implements OnInit {
         .then((res) => res.json())
         .then((order) => order.token),
       authorizeOnServer: (approveData: any) => {
-        return fetch(`${environment.apiUrl}` + '/paypal/executePayment', {
+        return fetch(`${environment.apiUrl}` + '/auth/executePayment', {
           method: 'post',
           headers: {
             "Content-Type": "application/json"
@@ -57,6 +57,7 @@ export class PaymentComponent implements OnInit {
       },
       onError: err => {
         console.log('OnError', err);
+        alert('Error: ' + err.message); // Add an alert to display the error message
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);
