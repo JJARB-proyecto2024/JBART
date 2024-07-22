@@ -14,7 +14,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PaymentComponent implements OnInit {
   public payPalConfig?: IPayPalConfig;
-  private http: HttpClient = inject(HttpClient);
 
   ngOnInit(): void {
     this.initConfig();
@@ -25,7 +24,7 @@ export class PaymentComponent implements OnInit {
       clientId: `${environment.Client_ID}`,
       // for creating orders (transactions) on server see
       // https://developer.paypal.com/docs/checkout/reference/server-integration/set-up-transaction/
-      createOrderOnServer: (data: any) => fetch('http://localhost:8080/paypal/createPayment', {
+      createOrderOnServer: (data: any) => fetch( `${environment.apiUrl}` + '/paypal/createPayment', {
         method: 'post',
         headers: {
           "Content-Type": "application/json"
@@ -38,7 +37,7 @@ export class PaymentComponent implements OnInit {
         .then((res) => res.json())
         .then((order) => order.token),
       authorizeOnServer: (approveData: any) => {
-        return fetch('http://localhost:8080/paypal/executePayment', {
+        return fetch(`${environment.apiUrl}` + '/paypal/executePayment', {
           method: 'post',
           headers: {
             "Content-Type": "application/json"
