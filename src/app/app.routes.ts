@@ -21,6 +21,7 @@ import { BrandProfileComponent } from './pages/profile/brand-profile/brand-profi
 import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { BrandUsersAvaliableComponent } from './pages/brandUsersAvaliable/brand-users-avaliable.component';
+import { ProductsRecommendedComponent } from './pages/productsRecommended/productsRecommended.component';
 
 
 export const routes: Routes = [
@@ -135,7 +136,7 @@ export const routes: Routes = [
             IRole.user
           ],
           showInSidebar: true,
-          name: 'Categories'
+          name: 'Categorias'
         }
       },
       {
@@ -147,7 +148,19 @@ export const routes: Routes = [
             IRole.user
           ],
           showInSidebar: true,
-          name: 'Products'
+          name: 'Productos'
+        }
+      },
+      {
+        path: 'products-recommended',
+        component: ProductsRecommendedComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Productos Recomendados'
         }
       },
       {

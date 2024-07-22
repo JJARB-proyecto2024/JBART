@@ -1,6 +1,6 @@
 <form class="container">
   <div>
-    <h2>{{ action }}</h2>
+    <h2 class="subrayado">Detalles del Producto</h2>
   </div>
   <div class="row">
     <div class="col-6 mb-2">
@@ -18,6 +18,10 @@
       <input #description="ngModel" type="number" class="form-control" id="quantityInStock" name="quantityInStock" placeholder="quantityInStock"
         [(ngModel)]="product.quantityInStock" required />
     </div>
+    <div class="col-6 mb-2">
+      <input #description="ngModel" type="text" class="form-control" id="status" name="status" placeholder="status"
+        [(ngModel)]="product.status" required />
+    </div>
     <div class="col-12 mb-2">
       <select #category="ngModel" class="form-control" id="category" name="category" [(ngModel)]="product.category"
         [ngClass]="{ 
@@ -31,7 +35,7 @@
     </div>
     <div class="col-12 text-center d-grid">
       <button (click)="callEvent();" type="button" class="btn btn-primary btn-block">
-        <p class="mb-0"> {{action}} </p>
+        <p class="mb-0"> Actualizar </p>
       </button>
     </div>
   </div>
