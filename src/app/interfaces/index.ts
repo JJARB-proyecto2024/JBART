@@ -62,6 +62,18 @@ export interface IOtp {
   expiryTime: Date;
 }
 
+export interface IPayment {
+  intent: string;
+  method: string;
+  transactions: any[];
+}
+
+export interface IItem {
+  name: string;
+  price: number;
+  quantity: number;
+}
+
 export interface ICategory {
   id?: number;
   name: string;
