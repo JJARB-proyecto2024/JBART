@@ -23,6 +23,7 @@
     "@cloudinary/ng": "^2.0.2",
     "@cloudinary/url-gen": "^1.19.0",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
+    "igniteui-webcomponents": "^4.11.1",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.12.2",
     "tslib": "^2.3.0",
