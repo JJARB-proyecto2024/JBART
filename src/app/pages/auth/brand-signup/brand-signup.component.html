@@ -19,19 +19,24 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="legalDocuments" class="form-label">Documentos Legales</label>
-                <input #legalDocuments="ngModel" type="file" class="form-control" id="legalDocuments"
-                    name="legalDocuments" [(ngModel)]="userBrand.legalDocuments" [ngClass]="{
-                    'is-invalid': legalDocuments.invalid && legalDocuments.touched,
-                    'is-valid': legalDocuments.valid && legalDocuments.touched
-                }" required>
+                <div class="input-group">
+                    <input #legalDocuments="ngModel" type="hidden" class="form-control" id="legalDocuments"
+                        name="legalDocuments" [(ngModel)]="userBrand.legalDocuments" required>
+                    <button type="button" class="btn btn-primary" (click)="openCloudinaryWidget()">Subir
+                        Documento</button>
+                </div>
+                <div *ngIf="logoType.invalid" class="invalid-feedback">
+                    El Logotipo es requerido
+                </div>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="logoType" class="form-label">Logotipo</label>
-                <input #logoType="ngModel" type="file" class="form-control" id="logoType" name="logoType"
-                    [(ngModel)]="userBrand.logoType" [ngClass]="{
-                    'is-invalid': logoType.invalid && logoType.touched,
-                    'is-valid': logoType.valid && logoType.touched
-                }" required>
+                <div class="input-group">
+                    <input #logoType="ngModel" type="hidden" class="form-control" id="logoType" name="logoType"
+                        [(ngModel)]="userBrand.logoType" required>
+                    <button type="button" class="btn btn-primary" (click)="openCloudinaryWidget()">Subir
+                        Logotipo</button>
+                </div>
                 <div *ngIf="logoType.invalid" class="invalid-feedback">
                     El Logotipo es requerido
                 </div>
@@ -107,12 +112,8 @@
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-dark btn-block w-50 mt-3">Registrar</button>
-            @if(signUpError) {
-            <p class="text-danger">{{signUpError}}</p>
-            } @else if (validSignup){
-            <p class="text-success">{{validSignup}}</p>
-            }
+            <p *ngIf="signUpError" class="text-danger">{{signUpError}}</p>
+            <p *ngIf="validSignup" class="text-success">{{validSignup}}</p>
         </div>
-        <!-- <a href="/login">Login</a> -->
     </form>
 </div>
