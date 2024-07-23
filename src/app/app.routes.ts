@@ -23,7 +23,7 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { BrandUsersAvaliableComponent } from './pages/brandUsersAvaliable/brand-users-avaliable.component';
 import { ProductsRecommendedComponent } from './pages/productsRecommended/productsRecommended.component';
 import { ProductTypesComponent } from './pages/product-types/product-types.component';
-import { PaymentComponent } from './pages/payment/payment.component';
+import { PaymentComponent } from './pages/store/payment/payment.component';
 
 
 export const routes: Routes = [
@@ -73,6 +73,10 @@ export const routes: Routes = [
   },
   {
     path: 'payment',
+    component: PaymentComponent,
+  },
+  {
+    path: "success",
     component: PaymentComponent,
   },
   {
