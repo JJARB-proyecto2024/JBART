@@ -24,6 +24,11 @@ import { BrandUsersAvaliableComponent } from './pages/brandUsersAvaliable/brand-
 import { ProductsRecommendedComponent } from './pages/productsRecommended/productsRecommended.component';
 import { ProductTypesComponent } from './pages/product-types/product-types.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { OrderListComponent } from './components/orders/order-list/order-list.component';
+import { BrandOrdersComponent } from './pages/brandOrders/brand-orders.component';
+import { UserOrdersComponent } from './pages/userOrders/user-orders.component';
+
 
 
 export const routes: Routes = [
@@ -166,6 +171,42 @@ export const routes: Routes = [
           ],
           showInSidebar: true,
           name: 'Productos Recomendados'
+        }
+      },
+      {
+        path: 'orders',
+        component: OrdersComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Orders'
+        }
+      },
+      {
+        path: 'brand-orders',
+        component: BrandOrdersComponent,
+        data: {
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Brand Orders'
+        }
+      },
+      {
+        path: 'user-orders',
+        component: UserOrdersComponent,
+        data: {
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'User Orders'
         }
       },
       {
