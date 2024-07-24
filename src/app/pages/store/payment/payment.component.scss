@@ -1,8 +1,17 @@
-.container{
-    width: 400px;
-    margin: auto;    
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
 }
 
-h1{
-    text-align: center;
+h1 {
+    color: #333;
+}
+
+hr {
+    border-top: 2px solid #eee;
+}
+
+ngx-paypal {
+    margin-top: 20px;
 }

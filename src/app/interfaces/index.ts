@@ -97,7 +97,6 @@ export interface IProduct {
   userBrand?: IBrandUser;
   createdAt?: string;
   updatedAt?: string;
-  userBrand?: IBrandUser;
 }
 
 export interface IOrder {

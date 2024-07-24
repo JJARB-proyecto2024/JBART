@@ -49,7 +49,7 @@ export class PaymentComponent implements OnInit {
           })
         }).then((res) => res.json())
           .then((details) => {
-            alert('Authorization created for ' + details.payer_given_name);
+            console.log(('Authorization created for ' + details.payer_given_name));
           });
       },
       onCancel: (data, actions) => {
@@ -57,7 +57,6 @@ export class PaymentComponent implements OnInit {
       },
       onError: (err) => {
         console.log('OnError', err);
-        alert('Error: ' + err.message); // Add an alert to display the error message
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);

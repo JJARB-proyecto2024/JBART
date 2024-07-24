@@ -28,6 +28,7 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { OrderListComponent } from './components/orders/order-list/order-list.component';
 import { BrandOrdersComponent } from './pages/brandOrders/brand-orders.component';
 import { UserOrdersComponent } from './pages/userOrders/user-orders.component';
+import { auto } from '@cloudinary/url-gen/actions/resize';
 
 
 
@@ -75,14 +76,6 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
-  },
-  {
-    path: 'payment',
-    component: PaymentComponent,
-  },
-  {
-    path: "success",
-    component: PaymentComponent,
   },
   {
     path: 'app',
@@ -258,7 +251,16 @@ export const routes: Routes = [
           showInSidebar: true,
           name: 'Categorias'
         }
-      }
+      },
+      {
+        path: 'payment',
+        component: PaymentComponent,
+        data: {
+          autorities: [
+            IRole.user
+          ],
+        }
+      },
       
     ],
   },
