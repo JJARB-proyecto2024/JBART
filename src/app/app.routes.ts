@@ -25,9 +25,9 @@ import { ProductsRecommendedComponent } from './pages/productsRecommended/produc
 import { ProductTypesComponent } from './pages/product-types/product-types.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { OrdersComponent } from './pages/orders/orders.component';
-import { OrderListComponent } from './components/orders/order-list/order-list.component';
 import { BrandOrdersComponent } from './pages/brandOrders/brand-orders.component';
 import { UserOrdersComponent } from './pages/userOrders/user-orders.component';
+
 
 
 
@@ -178,8 +178,7 @@ export const routes: Routes = [
         component: OrdersComponent,
         data: { 
           authorities: [
-            IRole.superAdmin,
-            IRole.user
+            IRole.superAdmin
           ],
           showInSidebar: true,
           name: 'Orders'
@@ -191,7 +190,7 @@ export const routes: Routes = [
         data: {
           authorities: [
             IRole.superAdmin,
-            IRole.user
+            IRole.userBrand
           ],
           showInSidebar: true,
           name: 'Brand Orders'

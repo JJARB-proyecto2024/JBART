@@ -33,8 +33,8 @@ export class OrderService extends BaseService<IOrder> {
     });
   }
 
-  public getOrdersForBrand(): Observable<IOrder[]> {
-    return this.http.get<IOrder[]>(`/orders/brand`).pipe(
+  public getOrdersListForBrand(): Observable<IOrder[]> {
+    return this.http.get<IOrder[]>(`${this.source}/brand`).pipe(
       tap((response: IOrder[]) => {
         this.orderListSignal.set(response.reverse());
       }),
@@ -50,13 +50,13 @@ export class OrderService extends BaseService<IOrder> {
     );
   }
 
-  public getOrdersForUser(): Observable<IOrder[]> {
-    return this.http.get<IOrder[]>(`/orders/user`).pipe(
+  public getOrdersListForUser(): Observable<IOrder[]> {
+    return this.http.get<IOrder[]>(`${this.source}/user`).pipe(
       tap((response: IOrder[]) => {
         this.orderListSignal.set(response.reverse());
       }),
       catchError((error: any) => {
-        console.error('Error fetching orders for brand', error);
+        console.error('Error fetching orders for user', error);
         this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
@@ -66,4 +66,5 @@ export class OrderService extends BaseService<IOrder> {
       })
     );
   }
+  
 }
