@@ -97,7 +97,16 @@ export interface IProduct {
   userBrand?: IBrandUser;
   createdAt?: string;
   updatedAt?: string;
-  userBrand?: IBrandUser;
+}
+
+export interface INotification {
+  id: number;
+  title: string;
+  description: string;
+  seen: boolean;
+  IBuyerUser?: IBuyerUser;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface IOrder {

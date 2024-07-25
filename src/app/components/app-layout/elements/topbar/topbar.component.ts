@@ -5,11 +5,12 @@ import { AuthService } from '../../../../services/auth.service';
 import { IUser } from '../../../../interfaces';
 import { LayoutService } from '../../../../services/layout.service';
 import { MyAccountComponent } from '../../../my-account/my-account.component';
+import { NotificationsComponent } from "../../../notifications/notifications.component";
 
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [CommonModule, RouterLink, MyAccountComponent],
+  imports: [CommonModule, RouterLink, MyAccountComponent, NotificationsComponent],
   templateUrl: './topbar.component.html',
 })
 export class TopbarComponent implements OnInit {
