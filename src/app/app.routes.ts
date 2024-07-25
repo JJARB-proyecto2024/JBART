@@ -29,6 +29,8 @@ import { OrderListComponent } from './components/orders/order-list/order-list.co
 import { BrandOrdersComponent } from './pages/brandOrders/brand-orders.component';
 import { UserOrdersComponent } from './pages/userOrders/user-orders.component';
 import { auto } from '@cloudinary/url-gen/actions/resize';
+import { SalesComponent } from './pages/sales/sales.component';
+import { name } from '@cloudinary/url-gen/actions/namedTransformation';
 
 
 
@@ -259,6 +261,17 @@ export const routes: Routes = [
           autorities: [
             IRole.user
           ],
+        }
+      },
+      {
+        path: 'sales',
+        component: SalesComponent,
+        data: { 
+          authorities: [
+            IRole.userBrand
+          ],
+          showInSidebar: true,
+          name: 'Ventas'
         }
       },
       
