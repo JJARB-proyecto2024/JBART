@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { AppLayoutComponent } from './components/app-layout/app-layout.component';
 import { SigUpComponent } from './pages/auth/sign-up/signup.component';
@@ -24,6 +24,7 @@ import { BrandUsersAvaliableComponent } from './pages/brandUsersAvaliable/brand-
 import { ProductsRecommendedComponent } from './pages/productsRecommended/productsRecommended.component';
 import { ProductTypesComponent } from './pages/product-types/product-types.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { NgModule } from '@angular/core';
 
 
 export const routes: Routes = [
@@ -218,3 +219,9 @@ export const routes: Routes = [
     ],
   },
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

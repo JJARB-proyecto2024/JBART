@@ -84,8 +84,24 @@ igc-rating {
   }
 }
 
-
 .row-title{
   align-items: center;
   margin-top: 80px !important;
+}
+
+.modal-title{
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.modal-body{
+  font-size: 20px;
+}
+
+.modalE{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.modal-body label{
+  margin-bottom: 10px;
 }

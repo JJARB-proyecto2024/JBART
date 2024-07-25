@@ -32,13 +32,32 @@
           <p class="card-text">
             <strong>Categoría:</strong> {{ item.brandCategories }}<br>
             <strong>Calificación:</strong>
-            <igc-rating [value]="item.rate" min="0" max="5" readonly="true"></igc-rating>
+            <app-star-rating [rating]="item.rate"></app-star-rating>
           </p>
           <button type="button" (click)="viewProducts(item)" class="btn btn-primary">
             Ver Productos
+          </button>
+          <button type="button" (click)="showDetailModal(item, modal)" class="btn btn-secondary">
+            Calificar
           </button>
         </div>
       </div>
     </div>
   </div>
+  <!-- Modal para calificar -->
+  <app-modal #modal>
+    <div class="modalE">
+      <div class="modal-header">
+        <h5 class="modal-title">Calificar a {{ selectedItem.brandName }}</h5>
+      </div>
+      <div class="modal-body">
+        <label for="rating">Calificación:</label>
+        <br>
+        <igc-rating [rating]="ratingValue"  (ratingChange)="handleRatingChange($event)"></igc-rating>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="handleFormAction($event, modal)">Calificar</button>
+      </div>
+    </div>
+  </app-modal>
 </div>

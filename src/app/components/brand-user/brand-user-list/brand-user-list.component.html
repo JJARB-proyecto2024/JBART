@@ -28,9 +28,11 @@
             <td>{{ item.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
           <td >
             <div class="d-flex justify-content-evenly align-items-center">
+
               <button type="button" (click)="showDetailModal(item, detailModal)" class="btn btn-secondary">
                 <i class="fa-solid fa-eye white"></i>
               </button>
+              
             </div>
           </td>
         </tr>
