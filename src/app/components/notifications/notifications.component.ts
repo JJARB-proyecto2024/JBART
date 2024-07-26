@@ -1,9 +1,8 @@
-import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, inject, Input, input, OnInit, SimpleChanges } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { INotification, IUser } from '../../interfaces';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -18,21 +17,29 @@ export class NotificationsComponent implements OnInit {
   public userService: UserService = inject(UserService);
   public authService: AuthService = inject(AuthService);
   public user: IUser = {};
-  public seenAll: boolean = false;
-  ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('auth_user') || '{}');
-    if (this.user.id !== undefined) {
-      this.notificationService.getAllByUserId(this.user.id);
-    }
+  public seenAll = false;
+  @Input() notifications: INotification[] = [];
+  public selectedNotification: INotification = {};
+
+  ngOnInit(): void {
+    this.user = this.authService.getUser() || {};
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['notifications']) {
+      this.handleSeenAll();
+    }
+  }
   handleNotificationRead(item: INotification) {
-    item.seen = true;
+    this.selectedNotification = item;
+    this.selectedNotification.seen = true;
     const userBuyer = {
       id: this.user.id
     }
-    item.user = userBuyer;
+    this.selectedNotification.user = userBuyer;
     this.notificationService.update(item);
   }
-
+  handleSeenAll() {
+    this.seenAll = this.notifications.filter(notification => !notification.seen).length === 0;
+  }
 }

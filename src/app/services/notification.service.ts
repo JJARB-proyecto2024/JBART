@@ -15,7 +15,7 @@ export class NotificationService extends BaseService<INotification> {
     return this.notificationListSignal;
   }
 
-  public getAllByUserId(id: number) {
+  public getAllByUserId(id: number): INotification[] {
     this.find(id).subscribe({
       next: (response: any) => {
         response.reverse();
@@ -25,6 +25,7 @@ export class NotificationService extends BaseService<INotification> {
         console.error('Error fetching notifications', error);
       }
     });
+    return []; // Add a return statement here
   }
 
   public getAll() {

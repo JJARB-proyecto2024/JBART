@@ -100,10 +100,10 @@ export interface IProduct {
 }
 
 export interface INotification {
-  id: number;
-  title: string;
-  description: string;
-  seen: boolean;
+  id?: number;
+  title?: string;
+  description?: string;
+  seen?: boolean;
   user?: IUser;
   createdAt?: string;
   updatedAt?: string;
