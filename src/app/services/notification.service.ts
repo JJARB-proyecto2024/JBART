@@ -7,12 +7,24 @@ import { INotification } from '../interfaces';
   providedIn: 'root'
 })
 export class NotificationService extends BaseService<INotification> {
-  protected override source: string = 'notifications';
+  protected override source: string = 'notifications/user';
   protected notificationListSignal = signal<INotification[]>([]);
   private snackBar: MatSnackBar = inject(MatSnackBar);
 
   get notifications$() {
     return this.notificationListSignal;
+  }
+
+  public getAllByUserId(id:number | 0) {
+    this.find(id).subscribe({
+      next: (response: any) => {
+        response.reverse();
+        this.notificationListSignal.set(response);
+      },
+      error: (error: any) => {
+        console.error('Error fetching notifications', error);
+      }
+    });
   }
 
   public getAll() {
