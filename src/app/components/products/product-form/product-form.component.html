@@ -54,8 +54,6 @@
       'is-invalid': category.invalid && category.touched,
       'is-valid': category.valid && category.touched
       }" required>
-        <!-- Placeholder -->
-        <option [ngValue]="null" enabled selected>Seleccione una categoria</option>
         <!-- Mostrar la categoría seleccionada previamente -->
         <option *ngIf="product.category" [ngValue]="product.category">{{product.category.description}}</option>
         <!-- Mostrar las demás categorías, excluyendo la seleccionada previamente -->
