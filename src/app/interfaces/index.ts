@@ -104,7 +104,7 @@ export interface INotification {
   title: string;
   description: string;
   seen: boolean;
-  IBuyerUser?: IBuyerUser;
+  user?: IUser;
   createdAt?: string;
   updatedAt?: string;
 }
