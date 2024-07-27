@@ -2,7 +2,6 @@ import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { IBuyerUser, IOtp, IResponse } from '../interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
