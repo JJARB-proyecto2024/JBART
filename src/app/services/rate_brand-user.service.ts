@@ -16,23 +16,36 @@ export class RateBrandService extends BaseService<IRateBrand> {
   get items$() {
     return this.itemListSignal;
   }
-  
-  public save(item: IRateBrand) {
-    this.add(item).subscribe({
-      next: (response: any) => {
-        this.itemListSignal.update((ratesBrand: IRateBrand[]) => [response, ...ratesBrand]);
-      },
-      error: (error: any) => {
-        console.error('response', error.description);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
-      }
-    })
+
+  save1(item: IRateBrand): Observable<any>{
+    return this.add(item).pipe(
+      tap((response: any) => {
+        this.itemListSignal.update( items => [response, ...items]);
+      }),
+      catchError(error => {
+        console.error('Error saving rate brand', error);
+        return throwError(error);
+      })
+    );
   }
-  
+
+  save(item: IRateBrand): Observable<any> {
+    return this.add(item).pipe(
+      tap((response: any) => {
+        const currentRates = this.itemListSignal();
+        if (Array.isArray(currentRates)) {
+          this.itemListSignal.update((ratesBrand: IRateBrand[]) => [response, ...ratesBrand]);
+        } else {
+          this.itemListSignal.update(() => [response]);
+        }
+      }),
+      catchError((error: any) => {
+        console.error('Error saving rate brand', error);
+        return throwError(error);
+      })
+    );
+  }
+
   public getAll() {
     this.findAll().subscribe({
       next: (response: any) => {
@@ -40,66 +53,21 @@ export class RateBrandService extends BaseService<IRateBrand> {
         this.itemListSignal.set(response);
       },
       error: (error: any) => {
-        console.error('Error in get all rates brand request', error);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
+        console.error('Error fetching rates brand', error);
       }
     })
   }
 
-  /*public getHasRatedBrand(brandId: number | undefined) {
-    this.hasRatedBrand(brandId).subscribe({
-      next: (response: number) => {
-        console.log("Resultado: "+ response)
-        if (response == 1) {
-          // Si el usuario ya ha calificado
-          Swal.fire({
-            title: 'Rating Error',
-            text: 'You have already rated this brand.',
-            icon: 'error',
-            confirmButtonText: 'Close',
-            confirmButtonColor: '#FF5733'
-          });
-        } 
-      }
-    });
-  }*/
-
-  /*public getHasRatedBrand(brandId: number | undefined) {
-    this.hasRatedBrand(brandId).subscribe({
-      next: (response: any) => {
-        response.reverse();
+  getHasRatedBrand(brandId: number | undefined): Observable<any>{
+    return this.hasRatedBrand(brandId).pipe(
+      tap((response: any) => {
         this.itemListSignal.set(response);
-      },
-      error: (error: any) => {
-        console.error('Error in get all rates brand request', error);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
-      }
-    })
-  }*/
-
-  public getHasRatedBrand(brandId: number | undefined) {
-    this.hasRatedBrand(brandId).subscribe({
-      next: (response: any) => {
-        response.reverse();
-        this.itemListSignal.set(response);
-      },
-      error: (error: any) => {
-        console.error('Error in get all rates brand request', error);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
-      }
-    })
+      }),
+      catchError(error => {
+        console.error('Error get rate', error);
+        return throwError(error);
+      })
+    );
   }
   
 }

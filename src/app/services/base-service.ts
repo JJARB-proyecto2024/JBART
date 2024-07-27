@@ -57,13 +57,8 @@ export class BaseService<T> {
     return this.http.put<string>(`${this.source}/deactivate`, user , { responseType: 'text' as 'json' });
   }
 
-  // Método para verificar si el usuario ya ha calificado la marca
-  /*public hasRatedBrand(brandId: number | undefined): Observable<number> {
-    return this.http.get<number>(this.source+  '/rate/'+ { brandId });
-  }*/
-
-    public hasRatedBrand(brandId: number | undefined): Observable<IResponse<T>> {
-      return this.http.get<IResponse<T>>(this.source+  '/rate/' + brandId);
-    }
+  public hasRatedBrand(brandId: number | undefined): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source+  '/rate/' + brandId);
+  }
 
 }

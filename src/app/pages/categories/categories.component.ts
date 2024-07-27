@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ICategory } from '../../interfaces';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categories',
@@ -37,8 +38,36 @@ export class CategoriesComponent implements OnInit{
     });
   }
 
-  handleFormAction(item: ICategory) {
-    this.categoryService.save(item);
+  hideModal(modal: any) {
+    modal.hide();
+  }
+
+  handleFormAction(item: ICategory, modal: any) {
+    this.categoryService.save(item).subscribe({
+      next: (response: any) => {
+        // Mostrar mensaje de éxito
+        Swal.fire(
+          'Éxito',
+          'La categoría ha sido guardada exitosamente.',
+          'success'
+        ).then(() => {
+          // Ocultar el modal después de mostrar el mensaje de éxito
+          this.hideModal(modal);
+        });
+      },
+      error: (error: any) => {
+        // Manejar el error
+        console.error('Error saving category', error);
+        Swal.fire(
+          'Error',
+          'Hubo un problema al guardar la categoría.',
+          'error'
+        ).then(() => {
+          // Ocultar el modal después de mostrar el mensaje de error
+          this.hideModal(modal);
+        });
+      }
+    });
   }
 
 }

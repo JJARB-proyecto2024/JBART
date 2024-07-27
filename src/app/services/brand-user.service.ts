@@ -23,89 +23,64 @@ export class BrandUserService extends BaseService<IBrandUser> {
         this.itemListSignal.set(response);
       },
       error: (error: any) => {
-        console.error('Error in get all users brand request', error);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
-      }
-    })
-  }
-
-  public save(item: IBrandUser) {
-    this.add(item).subscribe({
-      next: (response: any) => {
-        this.itemListSignal.update((users: IBrandUser[]) => [response, ...users]);
-      },
-      error: (error: any) => {
-        console.error('response', error.description);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
-      }
-    })
-  }
-
-  public update(item: IBrandUser) {
-      this.add(item).subscribe({
-      next: () => {
-        const updatedItems = this.itemListSignal().map(u => u.id === item.id ? item: u);
-        this.itemListSignal.set(updatedItems);
-      },
-      error: (error: any) => {
-        console.error('response', error.description);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
+        console.error('Error fetching users', error);
       }
     })
   }
   
-  public updateStat(item: IBrandUser) {
+  save(user: IBrandUser): Observable<any>{
+    return this.add(user).pipe(
+      tap((response: any) => {
+        this.itemListSignal.update( users => [response, ...users]);
+      }),
+      catchError(error => {
+        console.error('Error saving user', error);
+        return throwError(error);
+      })
+    );
+  }
+
+  update(user: IBrandUser): Observable<any>{
+    return this.edit(user.id, user).pipe(
+      tap((response: any) => {
+        const updatedUsers = this.itemListSignal().map(u => u.id === user.id ? response : u);
+        this.itemListSignal.set(updatedUsers);
+      }),
+      catchError(error => {
+        console.error('Error saving user', error);
+        return throwError(error);
+      })
+    );
+  }
+  
+  updateStat(item: IBrandUser): Observable<any> {
     if (item.id !== undefined && item.status !== undefined) {
-      this.updateStatus(item.id, item.status).subscribe({
-        next: (response: any) => {
+      return this.updateStatus(item.id, item.status).pipe(
+        tap((response: any) => {
           const updatedItems = this.itemListSignal().map(u => u.id === item.id ? { ...u, status: item.status } : u);
           this.itemListSignal.set(updatedItems);
-          console.log(updatedItems);
-        },
-        error: (error: any) => {
+        }),
+        catchError((error: any) => {
           console.error('Error in updating brand user status', error);
-          this.snackBar.open(error.error.description, 'Close', {
-            horizontalPosition: 'right',
-            verticalPosition: 'top',
-            panelClass: ['error-snackbar']
-          });
-        }
-      });
+          return throwError(error);
+        })
+      );
     } else {
-      console.error('Item id is undefined');
-      this.snackBar.open('Item id is undefined', 'Close', {
-        horizontalPosition: 'right',
-        verticalPosition: 'top',
-        panelClass: ['error-snackbar']
-      });
+      console.error('Item id or status is undefined');
+      return throwError('Item id or status is undefined');
     }
   }
 
-  public delete(item: IBrandUser) {
-    this.del(item.id).subscribe({
-      next: () => {
-        this.itemListSignal.set(this.itemListSignal().filter(u => u.id != item.id));
-      },
-      error: (error: any) => {
-        console.error('response', error.description);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
-      }
-    })
+  delete(user: IBrandUser): Observable<any>{
+    return this.del(user.id).pipe(
+      tap((response: any) => {
+        const updatedUsers = this.itemListSignal().filter(u => u.id !== user.id);
+        this.itemListSignal.set(updatedUsers);
+      }),
+      catchError(error => {
+        console.error('Error saving user', error);
+        return throwError(error);
+      })
+    );
   }
 }

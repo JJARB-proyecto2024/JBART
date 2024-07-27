@@ -6,7 +6,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
-    selector: 'igc-rating',
+    selector: 'change-rating',
     standalone: true,
     imports: [
       CommonModule, 

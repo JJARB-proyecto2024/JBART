@@ -32,7 +32,7 @@
           <p class="card-text">
             <strong>Categoría:</strong> {{ item.brandCategories }}<br>
             <strong>Calificación:</strong>
-            <app-star-rating [rating]="item.rate"></app-star-rating>
+            <igc-rating [value]="item.rate" min="0" max="5" readonly="true"></igc-rating>
           </p>
           <button type="button" (click)="viewProducts(item)" class="btn btn-primary">
             Ver Productos
@@ -53,7 +53,7 @@
       <div class="modal-body">
         <label for="rating">Calificación:</label>
         <br>
-        <igc-rating [rating]="ratingValue"  (ratingChange)="handleRatingChange($event)"></igc-rating>
+        <change-rating [rating]="ratingValue"  (ratingChange)="handleRatingChange($event)"></change-rating>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="handleFormAction($event, modal)">Calificar</button>

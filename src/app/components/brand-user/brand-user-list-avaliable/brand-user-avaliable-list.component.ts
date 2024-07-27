@@ -11,7 +11,7 @@ import { RateBrandService } from '../../../services/rate_brand-user.service';
 import Swal from 'sweetalert2';
 import { StarRatingComponent } from '../../star-rating/star-rating.component';
 
-
+defineComponents(IgcRatingComponent);
 @Component({
   selector: 'app-brand-user-avaliable-list',
   standalone: true,
@@ -66,6 +66,10 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
     this.paginatedList = this.itemList.slice(startIndex, endIndex);
   }
 
+  updateItemList() {
+    this.brandUserService.getAll();
+  }
+
   goToPage(page: number) {
     this.currentPage = page;
     this.updatePaginatedList();
@@ -84,7 +88,7 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
 
   showDetailModal(item: IBrandUser, modal: any) {
     this.selectedItem = {...item}
-    this.rateBrandService.hasRatedBrand(this.selectedItem.id).subscribe({
+    this.rateBrandService.getHasRatedBrand(this.selectedItem.id).subscribe({
       next: (response: IResponse<IRateBrand>) => {
         if (response) {
           Swal.fire({
@@ -117,83 +121,44 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
     modal.hide();
   }
 
-  // Método para verificar si el usuario ya ha calificado la marca
-  private checkIfUserHasRatedBrand(brandId: number | undefined): void {
-    if (brandId === undefined) {
-      console.error('Brand ID is undefined');
-      //return 1;
-    }
-
-
-    console.log(JSON.stringify (this.rateBrandService.hasRatedBrand(brandId)))
-
-    const val = this.rateBrandService.hasRatedBrand(brandId);
-
-    console.log("Respuesta: "+val)
-
-    
-
-    /*this.rateBrandService.getHasRatedBrand(brandId).subscribe({
-      next: (hasRated: boolean) => {
-        this.hasRated = hasRated;
-      },
-      error: (error: any) => {
-        console.error('You have already rated this brand.', error);
-        Swal.fire({
-          title: 'Error',
-          text: 'An error occurred while checking the rating.',
-          icon: 'error',
-          confirmButtonText: 'Close',
-          confirmButtonColor: '#FF5733'
-        }).then(() => {
-          this.hideModal(this.selectedItem); // Ocultar el modal si ya se ha calificado
-        });
-      }
-    });*/
-
-  }
-
   // Método para manejar el cambio de calificación
   handleRatingChange(event: number) {
-    console.log('Rating changed to:', event);
     this.ratingValue = event;
   }
 
   handleFormAction(event: any, modal: any) {
-    /*if (this.hasRated) {
-      Swal.fire({
-        title: 'Rating Error',
-        text: 'You have already rated this brand.',
-        icon: 'error',
-        confirmButtonText: 'Close',
-        confirmButtonColor: '#FF5733'
-      });
-      return; // No permite enviar la calificación si ya ha calificado
-    }*/
     // Crea un objeto rateData con la estructura requerida por la interfaz IRateBrand
     const rateData: IRateBrand = {
-      // Asigna el id del userBrand seleccionado a la propiedad userBrand del objeto rateData
-      userBrand: { id: this.selectedItem.id },
-      // Asigna la calificación proporcionada por el usuario a la propiedad rate del objeto rateData
-      rate: this.ratingValue
+      userBrand: { id: this.selectedItem.id }, // Asigna el id del userBrand seleccionado
+      rate: this.ratingValue // Asigna la calificación proporcionada por el usuario
     };
-
-    
-    console.log("User Brand:"+ rateData.userBrand);
-    console.log("Rate:"+ rateData.rate);
   
     // Llama al método save del servicio rateBrandService para enviar rateData al backend
-    // Este método realiza una solicitud HTTP POST a la URL configurada para agregar la calificación
-    this.rateBrandService.save(rateData);
-  
-    // Muestra una alerta de éxito usando SweetAlert
-    Swal.fire({
-      title: 'Calificación Enviada',
-      text: 'La calificación se ha registrado correctamente.',
-      icon: 'success',
-      confirmButtonText: 'OK'
-    }).then(() => {
-      modal.hide();
+    this.rateBrandService.save(rateData).subscribe({
+      next: (response: IResponse<IRateBrand>) => {
+        // Muestra un mensaje de éxito usando SweetAlert
+        Swal.fire({
+          title: 'Éxito',
+          text: 'La calificación se ha guardado correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Cerrar',
+          confirmButtonColor: '#3085d6'
+        }).then(() => {
+          // Cierra el modal si el usuario hace clic en el botón 'Cerrar'
+          this.hideModal(modal);
+          this.updateItemList();
+        });
+      },
+      error: (error: any) => {
+        // Muestra un mensaje de error usando SweetAlert
+        Swal.fire({
+          title: 'Error',
+          text: 'No se pudo guardar la calificación. Por favor, inténtelo de nuevo más tarde.',
+          icon: 'error',
+          confirmButtonText: 'Cerrar',
+          confirmButtonColor: '#d33'
+        });
+      }
     });
   }
 
