@@ -8,6 +8,7 @@ import { ModalComponent } from '../../modal/modal.component';
 import { ProductFormComponent } from '../product-form/product-form.component';
 import { CategoryFormComponent } from '../../category/category-from/category-form.component';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({

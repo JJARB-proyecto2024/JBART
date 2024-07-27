@@ -1,7 +1,14 @@
 import { Component, EventEmitter, Input, Output, effect, inject } from '@angular/core';
 import { IFeedBackMessage, IProduct, ICategory, IFeedbackStatus } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+import { ModalComponent } from '../../modal/modal.component';
+import { CategoryService } from '../../../services/category.service';
+import { ProductService } from '../../../services/product.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
+import { UserService } from '../../../services/user.service';
+import { BrandUserService } from '../../../services/brand-user.service';
 import { BrandProfileService } from '../../../services/brand-profile.service';
 declare const cloudinary: any; 
 @Component({

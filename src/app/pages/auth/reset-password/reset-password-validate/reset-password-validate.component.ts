@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OtpService } from '../../../../services/otp.service';
+import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
 @Component({

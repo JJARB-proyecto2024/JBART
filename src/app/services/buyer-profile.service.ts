@@ -1,6 +1,6 @@
 import { BaseService } from './base-service';
 import { IUser } from '../interfaces';
-import { throwError } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { inject, Injectable, signal } from '@angular/core';
 @Injectable({

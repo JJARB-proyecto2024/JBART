@@ -1,8 +1,9 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { IRateBrand } from '../interfaces';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
