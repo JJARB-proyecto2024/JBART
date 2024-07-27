@@ -16,7 +16,7 @@ export class NotificationService extends BaseService<INotification> {
   }
 
   public getAllByUserId(id: number): INotification[] {
-    this.find(id).subscribe({
+    this.findNotifications(id).subscribe({
       next: (response: any) => {
         response.reverse();
         this.notificationListSignal.set(response);

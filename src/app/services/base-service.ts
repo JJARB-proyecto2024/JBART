@@ -15,6 +15,10 @@ export class BaseService<T> {
     return this.http.get<IResponse<T>>(this.source + '/' + id);
   }
 
+  public findNotifications(id: string | number): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source + '/user/' + id);
+  }
+
   public findAll(s: string = ''): Observable<IResponse<T[]>> {
     return this.http.get<IResponse<T[]>>(this.source, { params: { s } });
   }
