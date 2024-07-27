@@ -9,7 +9,6 @@ import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { IProduct } from '../../interfaces';
 import { CategoryService } from '../../services/category.service';
-import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-products',

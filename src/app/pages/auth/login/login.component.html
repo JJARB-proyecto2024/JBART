@@ -26,9 +26,6 @@
                   'is-invalid': email.invalid && email.touched,
                   'is-valid': email.valid && email.touched
                 }" required />
-              <div *ngIf="email.invalid" class="invalid-feedback">
-                Porfavor agregue un correo electrónico valido
-              </div>
             </div>
 
             <div class="form-group mb-4">
@@ -39,9 +36,6 @@
                   'is-invalid': password.invalid && password.touched,
                   'is-valid': password.valid && password.touched
                 }" required />
-                <div *ngIf="password.invalid" class="invalid-feedback">
-                  Porfavor agregue una contraseña valida
-                </div>
               </div>
             </div>
 
@@ -59,4 +53,9 @@
                 Restablecer contraseña
               </a>
             </div>
-            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { BaseService } from './base-service';
 import { IBrandUser } from '../interfaces';
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root'
