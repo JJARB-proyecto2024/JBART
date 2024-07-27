@@ -105,6 +105,7 @@ export interface INotification {
   description?: string;
   seen?: boolean;
   user?: IUser;
+  redirectLink?: string;
   createdAt?: string;
   updatedAt?: string;
 }

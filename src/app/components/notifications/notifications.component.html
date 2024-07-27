@@ -10,7 +10,7 @@
     <p class="text-center">No hay notificaciones</p>
   </div>
   <div *ngIf="notifications.length > 0">
-    <div *ngFor="let item of notifications; let i = index" (click)="handleNotificationRead(item)"
+    <div [routerLink]="item.redirectLink" *ngFor="let item of notifications; let i = index" (click)="handleNotificationRead(item)"
       class="d-flex justify-content-start flex-row py-2 px-2 border-bottom border-light border-2">
       <div class="d-flex flex-column justify-content-center me-3">
         <span class="dot" [ngClass]="{'bg-primary': !item.seen}">

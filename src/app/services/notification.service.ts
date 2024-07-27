@@ -7,7 +7,7 @@ import { INotification } from '../interfaces';
   providedIn: 'root'
 })
 export class NotificationService extends BaseService<INotification> {
-  protected override source: string = 'notifications/user';
+  protected override source: string = 'notifications';
   protected notificationListSignal = signal<INotification[]>([]);
   private snackBar: MatSnackBar = inject(MatSnackBar);
 
@@ -63,7 +63,7 @@ export class NotificationService extends BaseService<INotification> {
 
   public update(item: INotification) {
     console.log('item', item);
-    this.edit(item.id, item).subscribe({
+    this.setNotificationStatus(item.id, item).subscribe({
       next: () => {
         const updatedItems = this.notificationListSignal().map(notification => notification.id === item.id ? item : notification);
         this.notificationListSignal.set(updatedItems);

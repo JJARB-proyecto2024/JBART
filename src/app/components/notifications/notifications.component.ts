@@ -4,11 +4,12 @@ import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { INotification, IUser } from '../../interfaces';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-notifications',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.scss'
 })
@@ -20,6 +21,7 @@ export class NotificationsComponent implements OnInit {
   public seenAll = false;
   @Input() notifications: INotification[] = [];
   public selectedNotification: INotification = {};
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
     this.user = this.authService.getUser() || {};
