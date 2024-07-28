@@ -19,6 +19,14 @@ export class BaseService<T> {
     return this.http.get<IResponse<T[]>>(this.source, { params: { s } });
   }
 
+  public findBrandActive(s: string = ''): Observable<IResponse<T[]>> {
+    return this.http.get<IResponse<T[]>>(this.source + '/active', { params: { s } });
+  }
+
+  public findBrandByNewRequest(s: string = ''): Observable<IResponse<T[]>> {
+    return this.http.get<IResponse<T[]>>(this.source + '/newRequests', { params: { s } });
+  }
+
   public findProfile(s: string = ''): Observable<IResponse<T[]>> {
     return this.http.get<IResponse<T[]>>(this.findSource, { params: { s } });
   }

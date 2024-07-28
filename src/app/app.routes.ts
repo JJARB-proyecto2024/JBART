@@ -23,8 +23,16 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { BrandUsersAvaliableComponent } from './pages/brandUsersAvaliable/brand-users-avaliable.component';
 import { ProductsRecommendedComponent } from './pages/productsRecommended/productsRecommended.component';
 import { ProductTypesComponent } from './pages/product-types/product-types.component';
-import { PaymentComponent } from './pages/payment/payment.component';
 import { NgModule } from '@angular/core';
+import { PaymentComponent } from './pages/store/payment/payment.component';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { OrderListComponent } from './components/orders/order-list/order-list.component';
+import { BrandOrdersComponent } from './pages/brandOrders/brand-orders.component';
+import { UserOrdersComponent } from './pages/userOrders/user-orders.component';
+import { auto } from '@cloudinary/url-gen/actions/resize';
+import { SalesComponent } from './pages/sales/sales.component';
+import { name } from '@cloudinary/url-gen/actions/namedTransformation';
+
 
 
 export const routes: Routes = [
@@ -73,10 +81,6 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'payment',
-    component: PaymentComponent,
-  },
-  {
     path: 'app',
     component: AppLayoutComponent,
     canActivate: [AuthGuard],
@@ -119,7 +123,7 @@ export const routes: Routes = [
             IRole.user
           ],
           showInSidebar: true,
-          name: 'Account'
+          name: 'Desactivación de cuenta'
         }
       },
       {
@@ -170,6 +174,42 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'orders',
+        component: OrdersComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Ordenes'
+        }
+      },
+      {
+        path: 'brand-orders',
+        component: BrandOrdersComponent,
+        data: {
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Ordenes de Marca'
+        }
+      },
+      {
+        path: 'user-orders',
+        component: UserOrdersComponent,
+        data: {
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Ordenes de Usuario'
+        }
+      },
+      {
         path: 'brands-avaliable',
         component: BrandUsersAvaliableComponent,
         data: { 
@@ -178,7 +218,7 @@ export const routes: Routes = [
             IRole.user
           ],
           showInSidebar: true,
-          name: 'Brands Avaliable'
+          name: 'Marcas Disponibles'
         }
       },
       {
@@ -214,7 +254,27 @@ export const routes: Routes = [
           showInSidebar: true,
           name: 'Categorias'
         }
-      }
+      },
+      {
+        path: 'payment',
+        component: PaymentComponent,
+        data: {
+          autorities: [
+            IRole.user
+          ],
+        }
+      },
+      {
+        path: 'sales',
+        component: SalesComponent,
+        data: { 
+          authorities: [
+            IRole.userBrand
+          ],
+          showInSidebar: true,
+          name: 'Ventas'
+        }
+      },
       
     ],
   },

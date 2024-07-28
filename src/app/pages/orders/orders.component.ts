@@ -1,37 +1,45 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { BrandUserAvaliableListComponent } from '../../components/brand-user/brand-user-list-avaliable/brand-user-avaliable-list.component';
+import { OrderListComponent } from '../../components/orders/order-list/order-list.component';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { ModalComponent } from '../../components/modal/modal.component';
-import { BrandUserService } from '../../services/brand-user.service';
+import { OrderService } from '../../services/order.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { IBrandUser } from '../../interfaces';
+import { IOrder } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-brand-users-avaliable',
+  selector: 'app-orders',
   standalone: true,
   imports: [
-    BrandUserAvaliableListComponent,
+    OrderListComponent,
     CommonModule,
     LoaderComponent,
     ModalComponent
   ],
-  templateUrl: './brand-users-avaliable.component.html',
-  styleUrl: './brand-users-avaliable.component.scss'
+  templateUrl: './orders.component.html',
+  styleUrls: ['./orders.component.scss']
 })
-export class BrandUsersAvaliableComponent implements OnInit{
-  public brandUserService: BrandUserService = inject(BrandUserService);
+export class OrdersComponent implements OnInit {
+  public orderService: OrderService = inject(OrderService);
   public route: ActivatedRoute = inject(ActivatedRoute);
   public areActionsAvailable: boolean = false;
   public authService: AuthService = inject(AuthService);
   public routeAuthorities: string[] = [];
+  public orders: IOrder[] = [];
+  public isLoading: boolean = true;
 
   ngOnInit(): void {
-    this.brandUserService.getActive();
-    this.route.data.subscribe( data => {
+    this.loadOrders();
+    this.route.data.subscribe(data => {
       this.routeAuthorities = data['authorities'] ? data['authorities'] : [];
       this.areActionsAvailable = this.authService.areActionsAvailable(this.routeAuthorities);
     });
+  }
+
+  private loadOrders() {
+    this.orderService.getAll();
+    this.orders = this.orderService.orders;
+    this.isLoading = false;
   }
 }
