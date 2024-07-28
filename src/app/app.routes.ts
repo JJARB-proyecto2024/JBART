@@ -122,7 +122,7 @@ export const routes: Routes = [
             IRole.user
           ],
           showInSidebar: true,
-          name: 'Cuenta'
+          name: 'Desactivación de cuenta'
         }
       },
       {
