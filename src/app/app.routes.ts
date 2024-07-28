@@ -122,7 +122,7 @@ export const routes: Routes = [
             IRole.user
           ],
           showInSidebar: true,
-          name: 'Account'
+          name: 'Cuenta'
         }
       },
       {
@@ -181,7 +181,7 @@ export const routes: Routes = [
             IRole.user
           ],
           showInSidebar: true,
-          name: 'Orders'
+          name: 'Ordenes'
         }
       },
       {
@@ -193,7 +193,7 @@ export const routes: Routes = [
             IRole.user
           ],
           showInSidebar: true,
-          name: 'Brand Orders'
+          name: 'Ordenes de Marca'
         }
       },
       {
@@ -205,7 +205,7 @@ export const routes: Routes = [
             IRole.user
           ],
           showInSidebar: true,
-          name: 'User Orders'
+          name: 'Ordenes de Usuario'
         }
       },
       {
@@ -217,7 +217,7 @@ export const routes: Routes = [
             IRole.user
           ],
           showInSidebar: true,
-          name: 'Brands Avaliable'
+          name: 'Marcas Disponibles'
         }
       },
       {
