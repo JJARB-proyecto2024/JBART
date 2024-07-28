@@ -67,7 +67,7 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
   }
 
   updateItemList() {
-    this.brandUserService.getAll();
+    this.brandUserService.getActive();
   }
 
   goToPage(page: number) {

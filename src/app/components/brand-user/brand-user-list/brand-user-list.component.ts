@@ -64,6 +64,10 @@ export class BrandUserListComponent implements OnChanges{
     modal.hide();
   }
 
+  updateItemList() {
+    this.brandUserService.getNewRequests();
+  }
+
   handleFormAction(item: IBrandUser, modal: any) {
     item.status = "Activo";
     console.log(item.status);
@@ -86,6 +90,7 @@ export class BrandUserListComponent implements OnChanges{
             this.itemList = this.itemList.filter(u => u.id !== item.id);
             // Ocultar el modal
             this.hideModal(modal);
+            this.updateItemList();
             // Mostrar mensaje de éxito
             Swal.fire(
               'Aprobado',
