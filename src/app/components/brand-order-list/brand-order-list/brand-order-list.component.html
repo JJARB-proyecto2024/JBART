@@ -11,14 +11,28 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let order of brandOrderList; trackBy: trackByFn">
-        <th scope="row">{{order.id}}</th>
-        <td>{{order.product?.name}}</td>
-        <td>{{order.userBuyer?.name}} {{order.userBuyer?.lastname}}</td>
-        <td>{{order.shippingAddress}} {{order.userBuyer?.deliveryLocation}}</td>
-        <td>{{order.status}}</td>
-        <td>{{order.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+      @for (item of brandOrderList; track $index) {
+      <tr>
+        <th scope="row">{{item.id}}</th>
+        <td>{{item.product?.name}}</td>
+        <td>{{item.userBuyer?.name}} {{item.userBuyer?.lastname}}</td>
+        <td>{{item.shippingAddress}} {{item.userBuyer?.deliveryLocation}}</td>
+        <td>{{item.status}}</td>
+        <td>{{item.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+        <td>
+          <button type="button" (click)="showDetailModal(item, detailModal)" class="btn btn-secondary">
+            <i class="fa-solid fa-eye white"></i>
+          </button>
+        </td>
       </tr>
+      }
     </tbody>
   </table>
 </div>
+
+<app-modal #detailModal>
+  <app-brand-order-form 
+    [order]="selectedItem" 
+    [action]="'Actualizar Order'"
+    (callParentEvent)="handleFormAction($event)"/>
+</app-modal>
