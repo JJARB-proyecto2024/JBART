@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-6 mb-2">
       <input #name="ngModel" type="text" class="form-control" id="name" name="name" 
-        placeholder="Name"
+        placeholder="Nombre"
         [(ngModel)]="category.name" 
         [ngClass]="{ 
           'is-invalid': name.invalid && name.touched,
@@ -17,7 +17,7 @@
     </div>
     <div class="col-6 mb-2">
       <input #description="ngModel" type="text" class="form-control" id="description" name="description" 
-        placeholder="Description"
+        placeholder="Descripción"
         [(ngModel)]="category.description" 
         [ngClass]="{ 
           'is-invalid': description.invalid && description.touched,

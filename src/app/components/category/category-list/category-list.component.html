@@ -3,11 +3,11 @@
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Description</th>
-          <th scope="col">Created</th>
-          <th scope="col">Updated</th>
-          <th class="text-center" scope="col">Actions</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Fecha de creación</th>
+          <th scope="col">Fecha de actualización</th>
+          <th class="text-center" scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -37,6 +37,6 @@
 <app-modal #detailModal>
   <app-category-form 
     [category]="selectedItem" 
-    [action]="'Update category'"
+    [action]="'Actualizar Categoría'"
     (callParentEvent)="handleFormAction($event, detailModal)" />
 </app-modal>

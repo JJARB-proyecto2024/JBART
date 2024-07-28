@@ -93,7 +93,7 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
         if (response) {
           Swal.fire({
             title: 'Rating Error',
-            text: 'You have already rated this brand.',
+            text: 'Usted ya cuenta con una calificación registrada.',
             icon: 'error',
             confirmButtonText: 'Close',
             confirmButtonColor: '#FF5733'
@@ -108,7 +108,7 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
         console.error('Error handling rating check:', error);
         Swal.fire({
           title: 'Error',
-          text: 'An error occurred while checking the rating.',
+          text: 'Error al revisar la calificación.',
           icon: 'error',
           confirmButtonText: 'Close',
           confirmButtonColor: '#FF5733'
