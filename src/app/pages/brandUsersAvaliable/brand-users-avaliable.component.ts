@@ -28,7 +28,7 @@ export class BrandUsersAvaliableComponent implements OnInit{
   public routeAuthorities: string[] = [];
 
   ngOnInit(): void {
-    this.brandUserService.getAll();
+    this.brandUserService.getActive();
     this.route.data.subscribe( data => {
       this.routeAuthorities = data['authorities'] ? data['authorities'] : [];
       this.areActionsAvailable = this.authService.areActionsAvailable(this.routeAuthorities);
