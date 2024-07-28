@@ -114,7 +114,7 @@ export interface IOrder {
   id?: number;
   product?: IProduct;
   userBuyer?: IBuyerUser;
-  shippingAddress?: string;
+  deliveryLocation?: string;
   status?: string;
   createdAt?: string;
 }

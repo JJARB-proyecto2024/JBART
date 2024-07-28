@@ -1,0 +1,25 @@
+<div class="row">
+  <h2 class="my-3">Orden #{{this.orderService.order.id}}</h2>
+  <div class="col p-2 justify-content-start">
+    <div class="col-md-12 border p-3 bg-white rounded-3">
+      <h2>Informacion del comprador</h2>
+      <div>
+        <p>Nombre: {{this.orderService.order.userBuyer?.name +' '+ this.orderService.order.userBuyer?.lastname}}</p>
+        <p>Correo: {{this.orderService.order.userBuyer?.email}}</p>
+      </div>
+    </div>
+    <div class="col-md-12 border my-4 p-3 bg-white rounded-3">
+      <h2>Información del pedido</h2>
+      <div>
+        <img *ngIf="this.orderService.order.product?.picture" [src]="this.orderService.order.product?.picture" class="mb-2" alt="">
+        <p>Producto: {{this.orderService.order.product?.name}}</p>
+        <p>Precio del producto: ${{this.orderService.order.product?.price}}</p>
+        <p></p>
+        <p>Estado: {{this.orderService.order.status}}</p>
+        <p>Fecha de creación: {{this.orderService.order.createdAt | date: 'dd/MM/yyyy'}}</p>
+      </div>
+    </div>
+    <div class="my-2">
+      <app-order-map></app-order-map>
+    </div>
+  </div>

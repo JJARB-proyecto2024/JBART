@@ -19,7 +19,7 @@
         <td>{{order.product?.price}}</td>
         <td>{{order.product?.userBrand?.brandName}}</td>
         <td>{{order.userBuyer?.name}} {{order.userBuyer?.lastname}}</td>
-        <td>{{order.shippingAddress}} {{order.userBuyer?.deliveryLocation}}</td>
+        <td>{{order.deliveryLocation}} {{order.userBuyer?.deliveryLocation}}</td>
         <td>{{order.status}}</td>
         <td>{{order.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
       </tr>

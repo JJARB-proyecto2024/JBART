@@ -27,9 +27,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { BrandOrdersComponent } from './pages/brandOrders/brand-orders.component';
 import { UserOrdersComponent } from './pages/userOrders/user-orders.component';
-
-
-
+import { BrandOrderDetailsComponent } from './pages/brand-order-details/brand-order-details.component';
 
 export const routes: Routes = [
   {
@@ -194,6 +192,16 @@ export const routes: Routes = [
           ],
           showInSidebar: true,
           name: 'Brand Orders'
+        }
+      },
+      {
+        path: 'brand-order-details/:id',
+        component: BrandOrderDetailsComponent,
+        data: {
+          authorities: [
+            IRole.userBrand
+          ],
+          name: 'Brand Order Details'
         }
       },
       {

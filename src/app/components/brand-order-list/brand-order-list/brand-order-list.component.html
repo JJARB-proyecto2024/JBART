@@ -5,9 +5,10 @@
         <th scope="col">ID</th>
         <th scope="col">Producto</th>
         <th scope="col">Comprador</th>
-        <th scope="col">Dirección</th>
+        <th scope="col">Dirección de envío</th>
         <th scope="col">Estado</th>
         <th scope="col">Fecha de creación</th>
+        <th class="text-center" scope="col">Acción</th>
       </tr>
     </thead>
     <tbody>
@@ -15,9 +16,19 @@
         <th scope="row">{{order.id}}</th>
         <td>{{order.product?.name}}</td>
         <td>{{order.userBuyer?.name}} {{order.userBuyer?.lastname}}</td>
-        <td>{{order.shippingAddress}} {{order.userBuyer?.deliveryLocation}}</td>
+        <td>{{order.deliveryLocation}}</td>
         <td>{{order.status}}</td>
         <td>{{order.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+        <td>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <button (click)="showOrderDetails(order)" type="button" class="btn btn-secondary">
+              <i class="fa-solid fa-eye white"></i>
+            </button>
+            <button type="button" class="btn btn-danger">
+              <i class="fa-solid fa-trash white"></i>
+            </button>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>

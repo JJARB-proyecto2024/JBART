@@ -3,6 +3,7 @@ import { OrderService } from '../../../services/order.service';
 import { IOrder } from '../../../interfaces';
 import { CommonModule, DatePipe } from '@angular/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-brand-order-list',
@@ -20,13 +21,16 @@ export class BrandOrderListComponent implements OnChanges {
   @Input() brandOrderList: IOrder[] = [];
   @Input() areActionsAvailable: boolean = true;
   public orderService: OrderService = inject(OrderService);
-
-  constructor(private datePipe: DatePipe) { }
+  constructor(private router: Router) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['brandOrderList']) {
       console.log('brandOrderList', this.brandOrderList);
     }
+  }
+
+  showOrderDetails(order: IOrder) {
+    this.router.navigateByUrl('app/brand-order-details/' + order.id);
   }
 
   trackByFn(index: number, item: IOrder) {
