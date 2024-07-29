@@ -4,6 +4,7 @@ import { AppLayoutComponent } from './components/app-layout/app-layout.component
 import { SigUpComponent } from './pages/auth/sign-up/signup.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AuthGuard } from './guards/auth.guard';
+import { NgxParticlesModule } from "@tsparticles/angular";
 import { AccessDeniedComponent } from './pages/access-denied/access-denied.component';
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -32,10 +33,22 @@ import { UserOrdersComponent } from './pages/userOrders/user-orders.component';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import { SalesComponent } from './pages/sales/sales.component';
 import { name } from '@cloudinary/url-gen/actions/namedTransformation';
+import { LandingTeamComponent } from './pages/landingTeam/landingTeam.component';
+import { LandingProductComponent } from './pages/landingProduct/landingProduct.component';
 
 
 
 export const routes: Routes = [
+  {
+    path: 'landingTeam',
+    component: LandingTeamComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'landingProduct',
+    component: LandingProductComponent,
+    canActivate: [GuestGuard],
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -77,7 +90,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'landingTeam',
     pathMatch: 'full',
   },
   {
