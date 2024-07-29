@@ -18,5 +18,5 @@
 </div>
 
 <app-modal #addModal>
-  <app-category-form [action]="'Añadir categoria'" (callParentEvent)="handleFormAction($event)" />
+  <app-category-form [action]="'Añadir categoria'" (callParentEvent)="handleFormAction($event, addModal)" />
 </app-modal>

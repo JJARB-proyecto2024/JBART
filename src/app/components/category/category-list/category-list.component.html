@@ -36,5 +36,5 @@
 
 <app-modal #detailModal>
   <app-category-form [category]="selectedItem" [action]="'Actualizar categoria'"
-    (callParentEvent)="handleFormAction($event)" />
+    (callParentEvent)="handleFormAction($event, detailModal)" />
 </app-modal>
