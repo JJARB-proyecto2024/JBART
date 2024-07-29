@@ -10,10 +10,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class OrderService extends BaseService<IOrder> {
   protected override source: string = 'orders';
   private orderListSignal = signal<IOrder[]>([]);
+  private orderSignal = signal<IOrder>({});
   private snackBar: MatSnackBar = inject(MatSnackBar);
 
   get orders() {
     return this.orderListSignal();
+  }
+
+  get order() {
+    return this.orderSignal();
   }
 
   public getAll() {
@@ -32,6 +37,23 @@ export class OrderService extends BaseService<IOrder> {
       }
     });
   }
+
+  public getOrderByID(id: number) {
+    this.find(id).subscribe({
+      next: (response: any) => {
+        this.orderSignal.set(response);
+      },
+      error: (error: any) => {
+        console.error('Error fetching order by id', error);
+        this.snackBar.open(error.error.description, 'Close', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          panelClass: ['error-snackbar']
+        });
+      }
+    });
+  }
+
 
   public getOrdersListForBrand(): Observable<IOrder[]> {
     return this.http.get<IOrder[]>(`${this.source}/brand`).pipe(

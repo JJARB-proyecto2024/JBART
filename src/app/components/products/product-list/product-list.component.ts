@@ -9,19 +9,21 @@ import { ProductFormComponent } from '../product-form/product-form.component';
 import { CategoryFormComponent } from '../../category/category-from/category-form.component';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { OrderMapComponent } from "../../order-map/order-map.component";
 
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     FormsModule,
     ModalComponent,
     ProductFormComponent,
     CategoryFormComponent,
-    MatSnackBarModule
-  ],
+    MatSnackBarModule,
+    OrderMapComponent
+],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
   providers: [DatePipe]

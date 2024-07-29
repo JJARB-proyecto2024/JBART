@@ -6,6 +6,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
 import { OrderBrandFormComponent } from '../brand-order-form/brand-order-form.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-brand-order-list',
@@ -26,11 +27,7 @@ export class BrandOrderListComponent implements OnChanges {
   @Input() brandOrderList: IOrder[] = [];
   @Input() areActionsAvailable: boolean = true;
   public orderService: OrderService = inject(OrderService);
-  public selectedItem: IOrder = {
-    status: ''
-  };
-
-  constructor(private datePipe: DatePipe) { }
+  constructor(private router: Router) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['areActionsAvailable']) {
@@ -41,9 +38,12 @@ export class BrandOrderListComponent implements OnChanges {
     }
   }
 
-  showDetailModal(item: IOrder, modal: any) {
-    this.selectedItem = {...item};
-    modal.show();
+  showOrderDetails(order: IOrder) {
+    this.router.navigateByUrl('app/brand-order-details/' + order.id);
+  }
+
+  trackByFn(index: number, item: IOrder) {
+    return item.id;
   }
 
   handleFormAction(item: IOrder, modal: any) {

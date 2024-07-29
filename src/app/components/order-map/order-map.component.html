@@ -1,0 +1,28 @@
+<div>
+  <aol-map height="400px" width="100%">
+    <aol-interaction-default></aol-interaction-default>
+    <aol-view [zoom]="15">
+      <aol-coordinate [x]="-84.076621" [y]="9.876596" [srid]="'EPSG:4326'"></aol-coordinate>
+    </aol-view>
+    <aol-layer-tile>
+      <aol-source-osm></aol-source-osm>
+    </aol-layer-tile>
+    <aol-layer-vector>
+      <aol-source-vector>
+        <aol-feature>
+          <aol-geometry-point>
+            <aol-coordinate [x]="-84.076621" [y]="9.876596" [srid]="'EPSG:4326'"></aol-coordinate>
+          </aol-geometry-point>
+          <aol-style>
+            <aol-style-icon
+              [src]="'https://res.cloudinary.com/drlznypvr/image/upload/v1722055782/i1upcxzwi351klogess0.svg'"
+              [scale]="0.6"> <!-- Adjust scale as needed -->
+            </aol-style-icon>
+          </aol-style>
+        </aol-feature>
+      </aol-source-vector>
+    </aol-layer-vector>
+    <aol-control-zoomslider></aol-control-zoomslider>
+    <aol-control-zoom></aol-control-zoom>
+  </aol-map>
+</div>

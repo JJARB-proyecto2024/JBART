@@ -105,12 +105,28 @@ export interface IProduct {
   updatedAt?: string;
 }
 
+export interface INotification {
+  id?: number;
+  title?: string;
+  description?: string;
+  seen?: boolean;
+  user?: IUser;
+  redirectLink?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface IOrder {
   id?: number;
   product?: IProduct;
   userBuyer?: IBuyerUser;
-  shippingAddress?: string;
+  quantity?: number;
+  subtotal?: number;
+  shippingCost?: number;
+  total?: number;
   status?: string;
+  deliveryLocation?: string;
+  currentLocation?: string;
   createdAt?: string;
 }
 
@@ -118,6 +134,11 @@ export interface ISales {
   productName?: string;
   category?: string;
   quantitySold?: number;
+}
+
+export interface IGeocoding {
+  lat: string;
+  lon: string;
 }
 
 export interface IAuthority {

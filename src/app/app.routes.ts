@@ -31,9 +31,7 @@ import { UserOrdersComponent } from './pages/userOrders/user-orders.component';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import { SalesComponent } from './pages/sales/sales.component';
 import { name } from '@cloudinary/url-gen/actions/namedTransformation';
-
-
-
+import { BrandOrderDetailsComponent } from './pages/brand-order-details/brand-order-details.component';
 
 export const routes: Routes = [
   {
@@ -194,6 +192,16 @@ export const routes: Routes = [
           ],
           showInSidebar: true,
           name: 'Ordenes de Marca'
+        }
+      },
+      {
+        path: 'brand-order-details/:id',
+        component: BrandOrderDetailsComponent,
+        data: {
+          authorities: [
+            IRole.userBrand
+          ],
+          name: 'Brand Order Details'
         }
       },
       {

@@ -15,6 +15,10 @@ export class BaseService<T> {
     return this.http.get<IResponse<T>>(this.source + '/' + id);
   }
 
+  public findNotifications(id: string | number): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source + '/user/' + id);
+  }
+
   public findAll(s: string = ''): Observable<IResponse<T[]>> {
     return this.http.get<IResponse<T[]>>(this.source, { params: { s } });
   }
@@ -37,6 +41,10 @@ export class BaseService<T> {
 
   public edit(id: number | undefined, data: {}): Observable<IResponse<T>> {
     return this.http.put<IResponse<T>>(this.source + '/' + id, data);
+  }
+
+  public setNotificationStatus(id: number | undefined, data: {}): Observable<IResponse<T>> {
+    return this.http.put<IResponse<T>>(this.source + '/user/' + id, data);
   }
 
   public editProfile(id: number | undefined, data: {}): Observable<IResponse<T>> {
