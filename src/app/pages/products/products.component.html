@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div>
-    <h2>Products</h2>
+    <h2>Productos</h2>
   </div>
   <div>
     @defer {
@@ -25,7 +25,7 @@
 
 <app-modal #addModal>
   <app-product-form
-    [action]="'Add Product'"
+    [action]="'Añadir producto'"
     [categories]="categoryService.items$()"
     (callParentEvent)="handleFormAction($event)" 
   />
