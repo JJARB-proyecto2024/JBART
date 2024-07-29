@@ -33,6 +33,6 @@
 <app-modal #detailModal>
   <app-brand-order-form 
     [order]="selectedItem" 
-    [action]="'Actualizar Order'"
-    (callParentEvent)="handleFormAction($event)"/>
+    [action]="'Actualizar Orden'"
+    (callParentEvent)="handleFormAction($event,detailModal)"/>
 </app-modal>

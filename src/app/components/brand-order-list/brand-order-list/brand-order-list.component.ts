@@ -33,6 +33,9 @@ export class BrandOrderListComponent implements OnChanges {
   constructor(private datePipe: DatePipe) { }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes['areActionsAvailable']) {
+      console.log('areActionsAvailable', this.areActionsAvailable);
+    }
     if (changes['brandOrderList']) {
       console.log('brandOrderList', this.brandOrderList);
     }
@@ -43,7 +46,18 @@ export class BrandOrderListComponent implements OnChanges {
     modal.show();
   }
 
-  handleFormAction(item: IOrder) {
+  handleFormAction(item: IOrder, modal: any) {
     this.orderService.updateStat(item);
+    this.updateItemList();
+    this.hideModal(modal);
   }
+
+  updateItemList() {
+    this.orderService.getOrdersListForBrand();
+  }
+
+  hideModal(modal: any) {
+    modal.hide();
+  }
+
 }
