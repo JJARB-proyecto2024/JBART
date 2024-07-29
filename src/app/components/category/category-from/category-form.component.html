@@ -4,7 +4,7 @@
   </div>
   
   <div class="row">
-    <div class="col-6 mb-2">
+    <div class="row-6 mb-2">
       <input #name="ngModel" type="text" class="form-control" id="name" name="name" 
         placeholder="Nombre"
         [(ngModel)]="category.name" 
@@ -15,7 +15,7 @@
         required 
       />
     </div>
-    <div class="col-6 mb-2">
+    <div class="row-6 mb-2">
       <input #description="ngModel" type="text" class="form-control" id="description" name="description" 
         placeholder="Descripción"
         [(ngModel)]="category.description" 
@@ -26,7 +26,7 @@
         required 
       />
     </div>
-    <div class="col-6">
+    <div class="col-12 text-center d-grid">
       <button
       (click)="callEvent();"
       type="button"
