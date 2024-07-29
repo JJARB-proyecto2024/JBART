@@ -35,8 +35,7 @@ import { SalesComponent } from './pages/sales/sales.component';
 import { name } from '@cloudinary/url-gen/actions/namedTransformation';
 import { LandingTeamComponent } from './pages/landingTeam/landingTeam.component';
 import { LandingProductComponent } from './pages/landingProduct/landingProduct.component';
-
-
+import { RegisterOptionsComponent } from './pages/register-options/register-options.component';
 
 export const routes: Routes = [
   {
@@ -70,7 +69,7 @@ export const routes: Routes = [
     canActivate: [GuestGuard],
   },
   {
-  path: 'disableaccount',
+    path: 'disableaccount',
     component: DisableAccountComponent,
     canActivate: [GuestGuard],
   },
@@ -288,8 +287,11 @@ export const routes: Routes = [
           name: 'Ventas'
         }
       },
-      
     ],
+  },
+  {
+    path: 'register-options',
+    component: RegisterOptionsComponent,
   },
 ];
 

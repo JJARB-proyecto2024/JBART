@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import { StarRatingComponent } from '../../star-rating/star-rating.component';
 
 defineComponents(IgcRatingComponent);
+
 @Component({
   selector: 'app-brand-user-avaliable-list',
   standalone: true,
@@ -22,12 +23,11 @@ defineComponents(IgcRatingComponent);
     MatSnackBarModule,
     StarRatingComponent
   ],
-  templateUrl:'./brand-user-avaliable-list.component.html',
+  templateUrl: './brand-user-avaliable-list.component.html',
   styleUrls: ['./brand-user-avaliable-list.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [DatePipe]
 })
-
 export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
   
   @Input() itemList: IBrandUser[] = [];
@@ -79,11 +79,9 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
     return item.id;
   }
 
-  viewProducts(item: IBrandUser) {
-    // Redirige a la página de productos
-    //window.location.href = `/products/${item.id}`;
-    console.log(item.id);
-    this.router.navigate(['/ratesBrand', item.id]);
+  // Cambiado para redirigir a products-recommended
+  viewProducts() {
+    this.router.navigate(['/app/product-types']);
   }
 
   showDetailModal(item: IBrandUser, modal: any) {
@@ -127,16 +125,13 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
   }
 
   handleFormAction(event: any, modal: any) {
-    // Crea un objeto rateData con la estructura requerida por la interfaz IRateBrand
     const rateData: IRateBrand = {
-      userBrand: { id: this.selectedItem.id }, // Asigna el id del userBrand seleccionado
-      rate: this.ratingValue // Asigna la calificación proporcionada por el usuario
+      userBrand: { id: this.selectedItem.id },
+      rate: this.ratingValue
     };
   
-    // Llama al método save del servicio rateBrandService para enviar rateData al backend
     this.rateBrandService.save(rateData).subscribe({
       next: (response: IResponse<IRateBrand>) => {
-        // Muestra un mensaje de éxito usando SweetAlert
         Swal.fire({
           title: 'Éxito',
           text: 'La calificación se ha guardado correctamente.',
@@ -144,13 +139,11 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
           confirmButtonText: 'Cerrar',
           confirmButtonColor: '#3085d6'
         }).then(() => {
-          // Cierra el modal si el usuario hace clic en el botón 'Cerrar'
           this.hideModal(modal);
           this.updateItemList();
         });
       },
       error: (error: any) => {
-        // Muestra un mensaje de error usando SweetAlert
         Swal.fire({
           title: 'Error',
           text: 'No se pudo guardar la calificación. Por favor, inténtelo de nuevo más tarde.',
@@ -161,5 +154,4 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
       }
     });
   }
-
 }
