@@ -24,6 +24,7 @@
     "@cloudinary/url-gen": "^1.19.0",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@paypal/paypal-js": "^8.1.0",
+    "chart.js": "^4.4.3",
     "igniteui-webcomponents": "^4.11.1",
     "ng-openlayers": "^17.1.3",
     "ngx-paypal": "^11.0.0",

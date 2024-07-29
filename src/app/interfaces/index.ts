@@ -124,6 +124,12 @@ export interface IOrder {
   createdAt?: string;
 }
 
+export interface ISales {
+  productName?: string;
+  category?: string;
+  quantitySold?: number;
+}
+
 export interface IGeocoding {
   lat: string;
   lon: string;
