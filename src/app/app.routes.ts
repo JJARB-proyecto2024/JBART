@@ -26,12 +26,12 @@ import { ProductTypesComponent } from './pages/product-types/product-types.compo
 import { NgModule } from '@angular/core';
 import { PaymentComponent } from './pages/store/payment/payment.component';
 import { OrdersComponent } from './pages/orders/orders.component';
-import { OrderListComponent } from './components/orders/order-list/order-list.component';
 import { BrandOrdersComponent } from './pages/brandOrders/brand-orders.component';
 import { UserOrdersComponent } from './pages/userOrders/user-orders.component';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import { SalesComponent } from './pages/sales/sales.component';
 import { name } from '@cloudinary/url-gen/actions/namedTransformation';
+
 
 
 
@@ -178,8 +178,7 @@ export const routes: Routes = [
         component: OrdersComponent,
         data: { 
           authorities: [
-            IRole.superAdmin,
-            IRole.user
+            IRole.superAdmin
           ],
           showInSidebar: true,
           name: 'Ordenes'
@@ -191,7 +190,7 @@ export const routes: Routes = [
         data: {
           authorities: [
             IRole.superAdmin,
-            IRole.user
+            IRole.userBrand
           ],
           showInSidebar: true,
           name: 'Ordenes de Marca'

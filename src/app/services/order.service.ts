@@ -24,46 +24,74 @@ export class OrderService extends BaseService<IOrder> {
       },
       error: (error: any) => {
         console.error('Error in get all orders request', error);
-        this.snackBar.open(error.error.description, 'Close', {
+        /*this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
-        });
+        });*/
       }
     });
   }
 
-  public getOrdersForBrand(): Observable<IOrder[]> {
-    return this.http.get<IOrder[]>(`/orders/brand`).pipe(
+  public getOrdersListForBrand(): Observable<IOrder[]> {
+    return this.http.get<IOrder[]>(`${this.source}/brand`).pipe(
       tap((response: IOrder[]) => {
         this.orderListSignal.set(response.reverse());
       }),
       catchError((error: any) => {
         console.error('Error fetching orders for brand', error);
-        this.snackBar.open(error.error.description, 'Close', {
+        /*this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
-        });
+        });*/
         return of([]); // Devuelve un observable con un array vacío en caso de error
       })
     );
   }
 
-  public getOrdersForUser(): Observable<IOrder[]> {
-    return this.http.get<IOrder[]>(`/orders/user`).pipe(
+  public getOrdersListForUser(): Observable<IOrder[]> {
+    return this.http.get<IOrder[]>(`${this.source}/user`).pipe(
       tap((response: IOrder[]) => {
         this.orderListSignal.set(response.reverse());
       }),
       catchError((error: any) => {
-        console.error('Error fetching orders for brand', error);
-        this.snackBar.open(error.error.description, 'Close', {
+        console.error('Error fetching orders for user', error);
+        /*this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
-        });
+        });*/
         return of([]); // Devuelve un observable con un array vacío en caso de error
       })
     );
   }
+
+  public updateStat(item: IOrder) {
+    if (item.id !== undefined && item.status !== undefined) {
+      this.updateStatus(item.id, item.status).subscribe({
+        next: (response: any) => {
+          const updatedItems = this.orderListSignal().map(o => o.id === item.id ? { ...o, status: item.status } : o);
+          this.orderListSignal.set(updatedItems);
+          console.log(updatedItems);
+        },
+        error: (error: any) => {
+          console.error('Error in updating order status', error);
+          /*this.snackBar.open(error.error.description, 'Close', {
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+            panelClass: ['error-snackbar']
+          });*/
+        }
+      });
+    } else {
+      console.error('Order id or status is undefined');
+      /*this.snackBar.open('Order id or status is undefined', 'Close', {
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+        panelClass: ['error-snackbar']
+      });*/
+    }
+  }
+
 }

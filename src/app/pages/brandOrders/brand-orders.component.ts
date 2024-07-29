@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { OrderListComponent } from '../../components/orders/order-list/order-list.component';
+import { BrandOrderListComponent } from '../../components/brand-order-list/brand-order-list/brand-order-list.component';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { OrderService } from '../../services/order.service';
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-brand-orders',
   standalone: true,
   imports: [
-    OrderListComponent,
+    BrandOrderListComponent,
     CommonModule,
     LoaderComponent,
     ModalComponent
@@ -38,12 +38,14 @@ export class BrandOrdersComponent implements OnInit {
   }
 
   private loadOrders() {
-    this.orderService.getOrdersForBrand();
-
-    // Suscríbete a los cambios en la señal de orders del servicio
-    setTimeout(() => {
-      this.orders = this.orderService.orders;  // Aquí se accede a la señal directamente
-      this.isLoading = false;
-    }, 0);
+    this.orderService.getOrdersListForBrand().subscribe({
+      next: (orders: IOrder[]) => {
+        this.orders = orders;
+        this.isLoading = false;
+      },
+      error: () => {
+        this.isLoading = false;
+      }
+    });
   }
 }
