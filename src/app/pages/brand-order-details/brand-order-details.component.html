@@ -26,6 +26,6 @@
     </div>
     <div class="col-md-12 bg-white border p-3 rounded-3">
       <h2>Ubicación actual del pedido</h2>
-      <app-order-map />
+      <app-order-map [order]="this.orderService.order" />
     </div>
   </div>

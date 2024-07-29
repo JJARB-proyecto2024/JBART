@@ -4,7 +4,7 @@
   </div>
   <div>
     @defer {
-      <!--<div class="d-flex justify-content-end pb-2">
+    <!--<div class="d-flex justify-content-end pb-2">
         <button
           (click)="addModal.show()" 
           type="button" 
@@ -13,19 +13,13 @@
           <p class="mb-0">Add Brand User</p>
         </button>
       </div>-->
-      <app-brand-user-list
-      [areActionsAvailable]="areActionsAvailable"
-      [itemList]="brandUserService.items$()"
-      />
+    <app-brand-user-list [areActionsAvailable]="areActionsAvailable" [itemList]="brandUserService.items$()" />
     } @loading (after 100ms; minimum 1s){
-      <app-loader></app-loader>
+    <app-loader></app-loader>
     }
   </div>
 </div>
 
 <app-modal #addModal>
-  <app-brand-user-form
-    [action]="'Agregar usuario marca'"
-    (callParentEvent)="handleFormAction($event)" 
-  />
+  <app-brand-user-form [action]="'Añadir usuario marca'" (callParentEvent)="handleFormAction($event)" />
 </app-modal>

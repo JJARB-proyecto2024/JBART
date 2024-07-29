@@ -5,28 +5,19 @@
   <div>
     @defer {
     <div class="d-flex justify-content-end pb-2">
-      <button
-          (click)="addModal.show()" 
-          type="button" 
-          class="btn btn-primary d-flex align-items-center">
-          <i class="fa-solid fa-plus white"></i>
-          <p class="mb-0">Agregar producto</p>
-        </button>
+      <button (click)="addModal.show()" type="button" class="btn btn-primary d-flex align-items-center">
+        <i class="fa-solid fa-plus white"></i>
+        <p class="mb-0">Agregar producto</p>
+      </button>
     </div>
-    <app-product-list
-    [areActionsAvailable]="areActionsAvailable"
-    [itemList]="productService.items$()"
-    />
-  } @loading (after 100ms; minimum 1s){
+    <app-product-list [areActionsAvailable]="areActionsAvailable" [itemList]="productService.items$()" />
+    } @loading (after 100ms; minimum 1s){
     <app-loader></app-loader>
-  }
+    }
   </div>
 </div>
 
 <app-modal #addModal>
-  <app-product-form
-    [action]="'Agregar Producto'"
-    [categories]="categoryService.items$()"
-    (callParentEvent)="handleFormAction($event)" 
-  />
+  <app-product-form [action]="'Añadir producto'" [categories]="categoryService.items$()"
+    (callParentEvent)="handleFormAction($event)" />
 </app-modal>

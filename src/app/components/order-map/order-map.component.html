@@ -2,7 +2,7 @@
   <aol-map height="400px" width="100%">
     <aol-interaction-default></aol-interaction-default>
     <aol-view [zoom]="15">
-      <aol-coordinate [x]="-84.076621" [y]="9.876596" [srid]="'EPSG:4326'"></aol-coordinate>
+      <aol-coordinate [x]="longitude" [y]="latitude" [srid]="'EPSG:4326'"></aol-coordinate>
     </aol-view>
     <aol-layer-tile>
       <aol-source-osm></aol-source-osm>
@@ -11,11 +11,11 @@
       <aol-source-vector>
         <aol-feature>
           <aol-geometry-point>
-            <aol-coordinate [x]="-84.076621" [y]="9.876596" [srid]="'EPSG:4326'"></aol-coordinate>
+            <aol-coordinate [x]="longitude" [y]="latitude" [srid]="'EPSG:4326'"></aol-coordinate>
           </aol-geometry-point>
           <aol-style>
             <aol-style-icon
-              [src]="'https://res.cloudinary.com/drlznypvr/image/upload/v1722055782/i1upcxzwi351klogess0.svg'"
+              [src]="'https://res.cloudinary.com/drlznypvr/image/upload/v1722236928/y5txoknw843iatvmjp0r.svg'"
               [scale]="0.6"> <!-- Adjust scale as needed -->
             </aol-style-icon>
           </aol-style>
