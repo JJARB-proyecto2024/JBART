@@ -114,9 +114,19 @@ export interface IOrder {
   id?: number;
   product?: IProduct;
   userBuyer?: IBuyerUser;
-  deliveryLocation?: string;
+  quantity?: number;
+  subtotal?: number;
+  shippingCost?: number;
+  total?: number;
   status?: string;
+  deliveryLocation?: string;
+  currentLocation?: string;
   createdAt?: string;
+}
+
+export interface IGeocoding {
+  lat: string;
+  lon: string;
 }
 
 export interface IAuthority {
