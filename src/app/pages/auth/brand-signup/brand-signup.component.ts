@@ -119,7 +119,7 @@ export class BrandSignupComponent {
           icon: 'error',
           confirmButtonText: 'Aceptar',
         });
-      },
+      }
     });
   }
 
