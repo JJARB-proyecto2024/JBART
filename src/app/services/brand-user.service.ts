@@ -16,14 +16,31 @@ export class BrandUserService extends BaseService<IBrandUser> {
     return this.itemListSignal;
   }
   
-  public getAll() {
-    this.findAll().subscribe({
+  public getActive() {
+    this.findBrandActive().subscribe({
       next: (response: any) => {
         response.reverse();
         this.itemListSignal.set(response);
       },
       error: (error: any) => {
-        console.error('Error in get all users brand request', error);
+        console.error('Error in get active users brand request', error);
+        this.snackBar.open(error.error.description, 'Close' , {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          panelClass: ['error-snackbar']
+        });
+      }
+    })
+  }
+
+  public getNewRequests() {
+    this.findBrandByNewRequest().subscribe({
+      next: (response: any) => {
+        response.reverse();
+        this.itemListSignal.set(response);
+      },
+      error: (error: any) => {
+        console.error('Error in get new requests users brand request', error);
         this.snackBar.open(error.error.description, 'Close' , {
           horizontalPosition: 'right',
           verticalPosition: 'top',

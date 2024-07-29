@@ -1,0 +1,23 @@
+<div class="table-container table-responsive">
+    <div style="display: block;">
+        <canvas #barChart></canvas>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Cantidad Vendida</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of itemsList; track $index) {
+            <tr>
+                <th>{{item.productName}}</th>
+                <td>{{item.category}}</td>
+                <td>{{item.quantitySold}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

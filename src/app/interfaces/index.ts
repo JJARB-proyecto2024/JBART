@@ -108,6 +108,12 @@ export interface IOrder {
   createdAt?: string;
 }
 
+export interface ISales {
+  productName?: string;
+  category?: string;
+  quantitySold?: number;
+}
+
 export interface IAuthority {
   authority: string;
 }
