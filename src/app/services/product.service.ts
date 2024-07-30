@@ -50,21 +50,21 @@ export class ProductService extends BaseService<IProduct> {
     );
   }
 
-  public update(item: IProduct) {
-    this.add(item).subscribe({
-      next: () => {
-        const updatedItems = this.itemListSignal().map(product => product.id === item.id ? item : product);
-        this.itemListSignal.set(updatedItems);
-      },
-      error: (error: any) => {
+  public update(item: IProduct): Observable<any> {
+    return this.edit(item.id, item).pipe(
+      tap((response: any) => {
+        this.itemListSignal.update((products: IProduct[]) => products.map(product => product.id === item.id ? item : product));
+      }),
+      catchError((error: any) => {
         console.error('response', error.description);
         this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
         });
-      }
-    })
+        return throwError(error);
+      })
+    );
   }
 
 

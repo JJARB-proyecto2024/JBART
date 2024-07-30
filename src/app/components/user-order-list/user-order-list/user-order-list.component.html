@@ -10,6 +10,7 @@
         <th scope="col">Dirección</th>
         <th scope="col">Estado</th>
         <th scope="col">Fecha de creación</th>
+        <th scope="col">Acción</th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,13 @@
         <td>{{order.deliveryLocation}} {{order.userBuyer?.deliveryLocation}}</td>
         <td>{{order.status}}</td>
         <td>{{order.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+        <td>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <button type="button" (click)="showOrderDetails(order)" class="btn btn-secondary">
+              <i class="fa-solid fa-eye white"></i>
+            </button>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>

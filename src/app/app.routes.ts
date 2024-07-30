@@ -31,6 +31,7 @@ import { auto } from '@cloudinary/url-gen/actions/resize';
 import { SalesComponent } from './pages/sales/sales.component';
 import { name } from '@cloudinary/url-gen/actions/namedTransformation';
 import { BrandOrderDetailsComponent } from './pages/brand-order-details/brand-order-details.component';
+import { BuyerOrderDetails } from './pages/buyer-order-details/buyer-order-details.component';
 
 export const routes: Routes = [
   {
@@ -199,6 +200,16 @@ export const routes: Routes = [
         data: {
           authorities: [
             IRole.userBrand
+          ],
+          name: 'Brand Order Details'
+        }
+      },
+      {
+        path: 'buyer-order-details/:id',
+        component: BuyerOrderDetails,
+        data: {
+          authorities: [
+            IRole.user
           ],
           name: 'Brand Order Details'
         }

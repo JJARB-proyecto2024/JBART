@@ -32,7 +32,7 @@ export class BrandOrderListComponent implements OnChanges {
   showOrderDetails(order: IOrder) {
     this.router.navigateByUrl('app/brand-order-details/' + order.id);
   }
-
+  
   trackByFn(index: number, item: IOrder) {
     return item.id;
   }
