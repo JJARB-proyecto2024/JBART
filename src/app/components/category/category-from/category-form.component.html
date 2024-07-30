@@ -1,6 +1,8 @@
 <form class="container">
   <div>
-    <h2>{{ action }}</h2>
+    <h2 class="titulo">{{ action }}</h2>
+  </div>
+  <div class="divisor">
   </div>
   
   <div class="row">
@@ -30,7 +32,7 @@
       <button
       (click)="callEvent();"
       type="button"
-      class="btn btn-primary d-flex align-items-center">
+      class="btn btn-up d-flex align-items-center">
       <p class="mb-0"> {{action}} </p>
     </button>
     </div>
