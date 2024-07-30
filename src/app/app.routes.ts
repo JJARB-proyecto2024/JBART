@@ -32,6 +32,8 @@ import { SalesComponent } from './pages/sales/sales.component';
 import { name } from '@cloudinary/url-gen/actions/namedTransformation';
 import { BrandOrderDetailsComponent } from './pages/brand-order-details/brand-order-details.component';
 import { BuyerOrderDetails } from './pages/buyer-order-details/buyer-order-details.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { NotificationListComponent } from './components/notification-list/notification-list.component';
 
 export const routes: Routes = [
   {
@@ -134,6 +136,18 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Dashboard'
+        }
+      },
+      {
+        path: 'notifications',
+        component: NotificationsComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.superAdmin,
+            IRole.user
+          ],
+          name: 'Notifications'
         }
       },
       {
