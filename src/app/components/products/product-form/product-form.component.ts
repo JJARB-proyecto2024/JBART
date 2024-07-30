@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output, effect, inject, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges, ViewChild, AfterViewInit, inject } from '@angular/core';
 import { IProduct, ICategory } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { BrandProfileService } from '../../../services/brand-profile.service';
 declare const cloudinary: any;
+
 @Component({
   selector: 'app-product-form',
   standalone: true,
@@ -12,14 +13,15 @@ declare const cloudinary: any;
     FormsModule
   ],
   templateUrl: './product-form.component.html',
-  styleUrl: './product-form.component.scss'
+  styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent implements OnInit {
   @Input() product: IProduct = {};
   @Input() action = '';
-  @Output() callParentEvent: EventEmitter<IProduct> = new EventEmitter<IProduct>()
-  public brandUserService: BrandProfileService = inject(BrandProfileService)
-  @Input() categories: ICategory[] = []
+  @Output() callParentEvent: EventEmitter<IProduct> = new EventEmitter<IProduct>();
+  public brandUserService: BrandProfileService = inject(BrandProfileService);
+  @Input() categories: ICategory[] = [];
+  @ViewChild('form') form!: NgForm;
 
   ngOnInit() {
     this.brandUserService.getUserProfileInfo();
@@ -27,11 +29,13 @@ export class ProductFormComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['categories']) {
+      this.resetForm()
       this.product.category = this.categories[0];
     }
   }
+
   callEvent() {
-    this.product.status = 'Activo'
+    this.product.status = 'Activo';
     this.product.userBrand = {
       id: this.brandUserService.user$().id,
       role: this.brandUserService.user$().role
@@ -55,4 +59,14 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
+  resetForm() {
+    if (this.form) {
+      this.form.form.markAsUntouched();
+    }
+    this.product = {
+      name: '',
+      picture: '',
+      category: this.categories[0],
+    };
+  }
 }
