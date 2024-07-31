@@ -4,12 +4,13 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { IBuyerUser } from '../../../interfaces';
 import { AuthService } from '../../../services/auth.service';
+import { BackgroundParticlesModule } from '../../../components/background-particles/background-particles.module';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-Buyer-signup',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, BackgroundParticlesModule],
   templateUrl: './buyer-signup.component.html',
   styleUrl: './buyer-signup.component.scss'
 })
@@ -23,7 +24,7 @@ export class BuyerSignupComponent {
 
   public userBuyer: IBuyerUser = {};
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   public handleSignup(event: Event) {
     event.preventDefault();
@@ -58,17 +59,19 @@ export class BuyerSignupComponent {
       }
     }
   }
-
+ 
   private signupUserBuyer() {
     this.authService.signupBuyer(this.userBuyer).subscribe({
       next: () => {
-        Swal.fire({
-          title: '¡Registro exitoso!',
-          text: 'Por favor, inicia sesión',
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-        });
-      },
+      Swal.fire(
+        '¡Registro exitoso!',
+        'Por favor, inicia sesión',
+        'success'
+      ).then(() => {
+        // Ocultar el modal después de mostrar el mensaje de éxito
+        this.router.navigateByUrl('login')
+      });
+    },
       error: (err: any) => {
         this.signUpError = err.description;
         Swal.fire({

@@ -21,7 +21,7 @@
   padding: 20px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
 }
 
 .tools-wave-section, .tools-wave-section-top {
@@ -84,15 +84,15 @@
 
 .mission-vision-section h2.section-title {
   color: #a6ce38;
-  font-size: 36px;
+  font: 600 45px / 35px Roboto;
   margin-bottom: 50px;
 }
 
 .mission-vision-section p.section-description {
   color: #cbe5ff;
-  font-size: 18px;
-  max-width: 800px;
-  margin: 0 auto 40px;
+  font: 200 22px / 22px Roboto, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto 20px;
 }
 
 .mission-vision-section .cards-container {
@@ -140,19 +140,26 @@
   background-color: #fb6837;
 }
 
+.btn {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.0) !important;
+}
+
+.card-title {
+  font: 500 25px / 22px Roboto, sans-serif !important;
+}
 .register-container {
   background: linear-gradient(to bottom, #062489 50%, #f8f9fa 50%);
-  margin-top: 40px;
-  margin-bottom: 4px;
+  margin-top: 80px;
+  margin-bottom: 80px;
 }
 
 
 .footer-small {
   background-color: #181818; /* Color de fondo */
   color: #fff;
-  padding: 20px;
   text-align: center;
   margin-top: 50px;
+  height: 220px;
 
   .footer-content {
     display: flex;
