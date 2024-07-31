@@ -7,6 +7,11 @@ html, body {
   justify-content: center;
 }
 
+.cont{
+  width: 100% !important;
+  justify-content: center;
+}
+
 .register-container {
   display: flex;
   flex-direction: column;
@@ -16,24 +21,25 @@ html, body {
   padding: 40px;
   background-color: #f8f8f8;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 80%; /* Ajusta el ancho según sea necesario */
-  max-width: 600px; /* Ajusta el tamaño máximo */
-  box-sizing: border-box; /* Asegura que el padding se incluya en el tamaño total */
+  width: 100%; /* Ajusta el ancho según sea necesario */
+  padding-top: 200px;
+}
+.icon{
+  font-size: 40px;
 }
 
 .register-btn {
   width: 100%;
-  max-width: 300px;
-  padding: 10px 20px;
-  font-size: 16px;
+  max-width: 500px;
+  padding: 120px 100px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
   background-color: #007bff; /* Color de fondo por defecto */
   color: #fff; /* Color del texto */
+  margin-right: 20px;
 }
 
 .register-btn:hover {
@@ -41,8 +47,30 @@ html, body {
   color: #fff; /* Color del texto al pasar el cursor */
 }
 
-h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #a6ce38;
+.card-title {
+  font: 500 20px / 35px Roboto !important;
+}
+
+.titulo {
+  font: 600 40px / 35px Roboto;
+  color: #4b545c;
+  padding-left: 16px;
+  margin-bottom: 6px !important; 
+}
+
+.divisor {
+  position: relative;
+  margin-bottom: 40px; /* Espacio para la línea */
+}
+
+.divisor::after {
+  content: "";
+  display: block;
+  width: 20%; /* Ajusta el ancho de la línea */
+  border-bottom: 2.8px solid #4a4d54; /* Línea divisoria */
+  position: absolute;
+  bottom: 0;
+  left: 30%; /* Ajusta para centrar la línea */
+  right: 40%;
+  top: 0;
 }
