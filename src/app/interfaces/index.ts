@@ -63,6 +63,12 @@ export interface IOtp {
   expiryTime: Date;
 }
 
+export interface IRateBrand {
+  id?: number;
+  rate?: number;
+  userBrand : IBrandUser;
+}
+
 export interface IPayment {
   intent: string;
   method: string;

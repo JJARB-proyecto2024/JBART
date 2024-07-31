@@ -1,0 +1,9 @@
+<div class="rating">
+    <span *ngFor="let star of stars"
+          [ngClass]="{'filled': star <= rating, 'empty': star > rating}"
+          (click)="onClick(star)"
+          (mouseover)="onMouseOver(star)"
+          (mouseout)="onMouseOut()">
+      ★
+    </span>
+  </div>

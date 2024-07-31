@@ -18,11 +18,15 @@ export class ResetPasswordSendEmailComponent {
   public email: string = ''; // Asegúrate de inicializar correctamente la variable email
   public signUpError!: String;
 
+  public loginForm: { email: string;} = {
+    email: '',
+  };
+
   constructor(private otpService: OtpService, private snackBar: MatSnackBar, private router: Router) {}
 
   generateOtp(event: Event): void {
     event.preventDefault();
-    this.email = this.emailModel.value;
+    this.email = this.emailModel.value +"";
   
     if (this.emailModel.valid) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

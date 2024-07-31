@@ -7,6 +7,7 @@ import { ModalComponent } from '../../modal/modal.component';
 import { BrandUserFormComponent } from '../brand-user-form/brand-user-form.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-brand-user-list',
@@ -63,23 +64,90 @@ export class BrandUserListComponent implements OnChanges{
     modal.hide();
   }
 
+  updateItemList() {
+    this.brandUserService.getNewRequests();
+  }
+
   handleFormAction(item: IBrandUser, modal: any) {
     item.status = "Activo";
     console.log(item.status);
-    this.brandUserService.updateStat(item);
-    if (confirm('¿Está seguro de que desea aprobar esta solicitud?')) {
-      this.brandUserService.updateStat(item);
-      this.itemList = this.itemList.filter(u => u.id !== item.id);
-      this.hideModal(modal);
-    }
+
+    // Usar SweetAlert para la confirmación
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: '¿Está seguro de que desea aprobar esta solicitud?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, aprobar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.brandUserService.updateStat(item).subscribe({
+          next: () => {
+            // Actualizar la lista de elementos
+            this.itemList = this.itemList.filter(u => u.id !== item.id);
+            // Ocultar el modal
+            this.hideModal(modal);
+            this.updateItemList();
+            // Mostrar mensaje de éxito
+            Swal.fire(
+              'Aprobado',
+              'La solicitud ha sido aprobada.',
+              'success'
+            );
+          },
+          error: (error: any) => {
+            // Manejar el error
+            console.error('Error updating item status', error);
+            Swal.fire(
+              'Error',
+              'Hubo un problema al aprobar la solicitud.',
+              'error'
+            );
+          }
+        });
+      }
+    });
   }
 
   deleteBrandUser(item: IBrandUser, modal: any) {
-    this.brandUserService.delete(item);
-    if (confirm('¿Está seguro de que desea rechazar esta solicitud?')) {
-      this.brandUserService.delete(item);
-      this.itemList = this.itemList.filter(u => u.id !== item.id);
-      this.hideModal(modal);
-    }
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: '¿Está seguro de que desea rechazar esta solicitud?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, rechazar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.brandUserService.delete(item).subscribe({
+          next: () => {
+            // Actualizar la lista de elementos
+            this.itemList = this.itemList.filter(u => u.id !== item.id);
+            // Ocultar el modal
+            this.hideModal(modal);
+            // Mostrar mensaje de éxito
+            Swal.fire(
+              'Rechazado',
+              'La solicitud ha sido rechazada.',
+              'success'
+            );
+          },
+          error: (error: any) => {
+            // Manejar el error
+            console.error('Error deleting item', error);
+            Swal.fire(
+              'Error',
+              'Hubo un problema al rechazar la solicitud.',
+              'error'
+            );
+          }
+        });
+      }
+    });
   }
 }

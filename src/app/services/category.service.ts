@@ -16,7 +16,7 @@ export class CategoryService extends BaseService<ICategory> {
   get items$() {
     return this.itemListSignal;
   }
-  
+
   public getAll() {
     this.findAll().subscribe({
       next: (response: any) => {
@@ -24,62 +24,46 @@ export class CategoryService extends BaseService<ICategory> {
         this.itemListSignal.set(response);
       },
       error: (error: any) => {
-        console.error('Error in get all categories request', error);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
+        console.error('Error fetching categories', error);
       }
     })
   }
 
-  public save(item: ICategory) {
-    this.add(item).subscribe({
-      next: (response: any) => {
-        this.itemListSignal.update((categories: ICategory[]) => [response, ...categories]);
-      },
-      error: (error: any) => {
-        console.error('response', error.description);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
-      }
-    })
-  }
-  
-  public update(item: ICategory) {
-    this.add(item).subscribe({
-      next: () => {
-        const updatedItems = this.itemListSignal().map(category => category.id === item.id ? item: category);
-        this.itemListSignal.set(updatedItems);
-      },
-      error: (error: any) => {
-        console.error('response', error.description);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
-      }
-    })
+  save(item: ICategory): Observable<any>{
+    return this.add(item).pipe(
+      tap((response: any) => {
+        this.itemListSignal.update( items => [response, ...items]);
+      }),
+      catchError(error => {
+        console.error('Error saving category', error);
+        return throwError(error);
+      })
+    );
   }
 
-  public delete(item: ICategory) {
-    this.del(item.id).subscribe({
-      next: () => {
-        this.itemListSignal.set(this.itemListSignal().filter(category => category.id != item.id));
-      },
-      error: (error: any) => {
-        console.error('response', error.description);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
-      }
-    })
+  update(item: ICategory): Observable<any>{
+    return this.edit(item.id, item).pipe(
+      tap((response: any) => {
+        const updateItems = this.itemListSignal().map(u => u.id === item.id ? response : u);
+        this.itemListSignal.set(updateItems);
+      }),
+      catchError(error => {
+        console.error('Error saving category', error);
+        return throwError(error);
+      })
+    );
+  }
+
+  delete(item: ICategory): Observable<any>{
+    return this.del(item.id).pipe(
+      tap((response: any) => {
+        const updateItems = this.itemListSignal().filter(u => u.id !== item.id);
+        this.itemListSignal.set(updateItems);
+      }),
+      catchError(error => {
+        console.error('Error saving user', error);
+        return throwError(error);
+      })
+    );
   }
 }

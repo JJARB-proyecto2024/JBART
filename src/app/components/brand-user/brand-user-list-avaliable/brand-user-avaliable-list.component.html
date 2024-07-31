@@ -1,25 +1,24 @@
 <div class="container mt-4">
-  
   <div class="row row-title">
-    <div  class="col-6 mb-2">
-        <h2>Marcas Disponibles</h2>
+    <div class="col-6 mb-2">
+      <h2>Marcas Disponibles</h2>
     </div>
-    <div  class="col-6 mb-2">
-        <!-- Paginación -->
-  <nav aria-label="Page navigation" class="mt-4">
-    <ul class="pagination justify-content-center">
-      <li class="page-item" [ngClass]="{'disabled': currentPage === 1}">
-        <a class="page-link" (click)="goToPage(currentPage - 1)">Anterior</a>
-      </li>
-      <li class="page-item" *ngFor="let page of [].constructor(Math.ceil(itemList.length / itemsPerPage)); let i = index"
-          [ngClass]="{'active': currentPage === i + 1}">
-        <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
-      </li>
-      <li class="page-item" [ngClass]="{'disabled': currentPage === Math.ceil(itemList.length / itemsPerPage)}">
-        <a class="page-link" (click)="goToPage(currentPage + 1)">Siguiente</a>
-      </li>
-    </ul>
-  </nav>
+    <div class="col-6 mb-2">
+      <!-- Paginación -->
+      <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [ngClass]="{'disabled': currentPage === 1}">
+            <a class="page-link" (click)="goToPage(currentPage - 1)">Anterior</a>
+          </li>
+          <li class="page-item" *ngFor="let page of [].constructor(Math.ceil(itemList.length / itemsPerPage)); let i = index"
+              [ngClass]="{'active': currentPage === i + 1}">
+            <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
+          </li>
+          <li class="page-item" [ngClass]="{'disabled': currentPage === Math.ceil(itemList.length / itemsPerPage)}">
+            <a class="page-link" (click)="goToPage(currentPage + 1)">Siguiente</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
   
@@ -34,11 +33,31 @@
             <strong>Calificación:</strong>
             <igc-rating [value]="item.rate" min="0" max="5" readonly="true"></igc-rating>
           </p>
-          <button type="button" (click)="viewProducts(item)" class="btn btn-primary">
+          <button (click)="viewProducts()" class="btn btn-primary">
             Ver Productos
+          </button>
+          
+          <button (click)="showDetailModal(item, modal)" class="btn btn-secondary">
+            Calificar
           </button>
         </div>
       </div>
     </div>
   </div>
+  <!-- Modal para calificar -->
+  <app-modal #modal>
+    <div class="modalE">
+      <div class="modal-header">
+        <h5 class="modal-title">Calificar a {{ selectedItem.brandName }}</h5>
+      </div>
+      <div class="modal-body">
+        <label for="rating">Calificación:</label>
+        <br>
+        <change-rating [rating]="ratingValue"  (ratingChange)="handleRatingChange($event)"></change-rating>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="handleFormAction($event, modal)">Calificar</button>
+      </div>
+    </div>
+  </app-modal>
 </div>

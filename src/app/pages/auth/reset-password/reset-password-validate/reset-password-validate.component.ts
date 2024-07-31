@@ -22,6 +22,12 @@ export class ResetPasswordValidateComponent {
   public otpCode: string = " ";
   public newPassword: string = " ";
 
+  public loginForm: { email: string; otpCode: string; newPassword: string;} = {
+    email: '',
+    otpCode: '',
+    newPassword: '',
+  };
+
   constructor(private otpService: OtpService, private snackBar: MatSnackBar, private router: Router) {}
 
   resetPassword(event: Event): void {

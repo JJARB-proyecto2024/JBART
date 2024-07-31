@@ -72,4 +72,9 @@ export class BaseService<T> {
   public disableAccount(user: IBuyerUser): Observable<string> {
     return this.http.put<string>(`${this.source}/deactivate`, user , { responseType: 'text' as 'json' });
   }
+
+  public hasRatedBrand(brandId: number | undefined): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source+  '/rate/' + brandId);
+  }
+
 }
