@@ -36,6 +36,9 @@ import { name } from '@cloudinary/url-gen/actions/namedTransformation';
 import { LandingTeamComponent } from './pages/landingTeam/landingTeam.component';
 import { LandingProductComponent } from './pages/landingProduct/landingProduct.component';
 import { RegisterOptionsComponent } from './pages/register-options/register-options.component';
+import { ViewOptionsComponent } from './pages/product-options/product-options.component';
+import { ProductsRecommendedCategoriesComponent } from './pages/productsRecommendedCategories/productsRecommendedCategories.component';
+import { ProductsRecommendedBrandsComponent } from './pages/productsRecommendedBrands/productsRecommendedBrands.component';
 
 export const routes: Routes = [
   {
@@ -170,7 +173,7 @@ export const routes: Routes = [
             IRole.userBrand
           ],
           showInSidebar: true,
-          name: 'Productos'
+          name: 'Lista de Productos'
         }
       },
       {
@@ -183,6 +186,30 @@ export const routes: Routes = [
           ],
           showInSidebar: true,
           name: 'Productos Recomendados'
+        }
+      },
+      {
+        path: 'products-recommended-categories',
+        component: ProductsRecommendedCategoriesComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Productos por Categoria'
+        }
+      },
+      {
+        path: 'products-recommended-brands',
+        component: ProductsRecommendedBrandsComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Productos por Marcas'
         }
       },
       {
@@ -285,6 +312,17 @@ export const routes: Routes = [
           ],
           showInSidebar: true,
           name: 'Ventas'
+        }
+      },
+      {
+        path: 'BuyerProducts',
+        component: ViewOptionsComponent,
+        data: { 
+          authorities: [
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Productos'
         }
       },
     ],
