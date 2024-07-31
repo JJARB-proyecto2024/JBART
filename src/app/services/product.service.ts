@@ -33,6 +33,23 @@ export class ProductService extends BaseService<IProduct> {
     })
   }
 
+  public getAllProductsBrand() {
+    this.findAllProductsBrand().subscribe({
+      next: (response: any) => {
+        response.reverse();
+        this.itemListSignal.set(response);
+      },
+      error: (error: any) => {
+        console.error('Error in get all products request', error);
+        this.snackBar.open(error.error.description, 'Close' , {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          panelClass: ['error-snackbar']
+        });
+      }
+    })
+  }
+
   public getAllLanding() {
     this.findProductsLanding().subscribe({
       next: (response: any) => {
