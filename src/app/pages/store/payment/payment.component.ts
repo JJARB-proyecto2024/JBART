@@ -44,7 +44,8 @@ export class PaymentComponent implements OnInit {
       createOrderOnServer: () => fetch(`${environment.apiUrl}/auth/createPayment`, {
         method: 'post',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.authService.getAccessToken()?.replace(/"/g, '')}`,
         },
         body: JSON.stringify([
           { name,
