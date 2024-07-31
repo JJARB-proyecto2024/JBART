@@ -31,9 +31,7 @@ export class BuyerProfileComponent {
       picture: this.buyerProfileService.user$().picture,
       genre: this.buyerProfileService.user$().genre,
       deliveryLocation: this.buyerProfileService.user$().deliveryLocation,
-      phoneNumber: this.buyerProfileService.user$().phoneNumber,
-      email: this.buyerProfileService.user$().email,
-      password: this.buyerProfileService.user$().password
+      phoneNumber: this.buyerProfileService.user$().phoneNumber
     }
     this.buyerProfileService.updateUserProfileInfo(userProfileUpdate);
   }
