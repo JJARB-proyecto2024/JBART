@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest , NgxPayPalModule } from 'ngx-paypal';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { IProduct } from '../../../interfaces';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-payment',
@@ -16,9 +17,17 @@ import { IProduct } from '../../../interfaces';
 export class PaymentComponent implements OnInit {
   public payPalConfig?: IPayPalConfig;
   public product: IProduct | null = null;
+  public route: ActivatedRoute = inject(ActivatedRoute);
+  public areActionsAvailable: boolean = false;
+  public authService: AuthService = inject(AuthService);
+  public routeAuthorities: string[] = [];
 
   ngOnInit(): void {
     this.product = history.state.product;
+    this.route.data.subscribe( data => {
+      this.routeAuthorities = data['authorities'] ? data['authorities'] : [];
+      this.areActionsAvailable = this.authService.areActionsAvailable(this.routeAuthorities);
+    });
     this.initConfig();
   }
 

@@ -310,6 +310,8 @@ export const routes: Routes = [
           autorities: [
             IRole.user
           ],
+          showInSidebar: false,
+          name: 'Pago'
         }
       },
       {
