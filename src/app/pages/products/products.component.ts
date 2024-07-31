@@ -36,8 +36,8 @@ export class ProductsComponent implements OnInit {
   @ViewChild(ProductFormComponent) productFormComponent!: ProductFormComponent;
   ngOnInit() {
     this.categoryService.getAll();
-    this.productService.getAll();
-    this.route.data.subscribe(data => {
+    this.productService.getAllProductsBrand();
+    this.route.data.subscribe( data => {
       this.routeAuthorities = data['authorities'] ? data['authorities'] : [];
       this.areActionsAvailable = this.authService.areActionsAvailable(this.routeAuthorities);
     });

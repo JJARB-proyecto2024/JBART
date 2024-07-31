@@ -1,7 +1,30 @@
+
 <div class="register-container">
-    <h2>Opciones a Ver</h2>
-    <button mat-button class="register-btn" (click)="navigateToProducts()">Ver Productos</button>
-    <button mat-button class="register-btn" (click)="navigateToCategories()">Ver Categorias</button>
-    <button mat-button class="register-btn" (click)="navigateToBrands()">Ver Marcas</button>
+  <div>
+    <h2 class="titulo">Visualizar Productos</h2>
   </div>
-  
+  <div class="divisor">
+  </div>
+
+  <div class="row cont">
+    <div class="col-4 btn register-btn" (click)="navigateToProducts()">
+      <div class="row mb-2">
+        <i class="fas icon fa-shopping-bag"></i>
+      </div>
+      <h3 class="card-title">Ver Productos</h3>
+    </div>
+    <div class="col-4 btn register-btn" (click)="navigateToCategories()">
+      <div class="row mb-2">
+        <i class="fas icon fa-th-list"></i>
+      </div>
+      <h3 class="card-title">Ver por Categorias</h3>
+    </div>
+    <div class="col-4 btn register-btn" (click)="navigateToBrands()">
+      <div class="row mb-2">
+        <i class="fas icon fa-tags"></i>
+      </div>
+      <h3 class="card-title">Ver por Marcas</h3>
+    </div>
+  </div>
+</div>
+

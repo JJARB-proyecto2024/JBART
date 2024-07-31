@@ -1,63 +1,74 @@
-<div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="container form-container">
-        <div class="text-center">
-            <img src="../../../../assets/icons/jbart-logo.png" alt="Logo" class="logo mb-3">
-            <h1>Registro</h1>
-        </div>
-        <form (ngSubmit)="handleSignup($event)" autocomplete="off" #frm="ngForm">
-            <div class="mb-3">
-                <label for="name" class="form-label">Nombre</label>
-                <input #name="ngModel" type="text" class="form-control" id="name" name="name"
-                    placeholder="Ingrese su nombre" [(ngModel)]="userBuyer.name" [ngClass]="{
-                    'is-invalid': name.invalid && name.touched,
-                    'is-valid': name.valid && name.touched
-                }" required>
-                <div *ngIf="name.invalid" class="invalid-feedback">
-                    El nombre es requerido.
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="lastname" class="form-label">Apellidos</label>
-                <input #lastname="ngModel" type="text" class="form-control" id="lastname" name="lastname"
-                    placeholder="Ingrese sus apellidos" [(ngModel)]="userBuyer.lastname" [ngClass]="{
-                    'is-invalid': lastname.invalid && lastname.touched,
-                    'is-valid': lastname.valid && lastname.touched
-                }" required>
-                <div *ngIf="lastname.invalid" class="invalid-feedback">
-                    Los apellidos son requeridos.
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Correo Electrónico</label>
-                <input #email="ngModel" type="email" class="form-control" id="email" name="email"
-                    placeholder="example@gmail.com" [(ngModel)]="userBuyer.email" [ngClass]="{
-                    'is-invalid': email.invalid && email.touched,
-                    'is-valid': email.valid && email.touched
-                }" required>
-                <div *ngIf="email.invalid" class="invalid-feedback">
-                    El correo electrónico es requerido.
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Contraseña</label>
-                <input #password="ngModel" type="password" class="form-control" id="password" name="password"
-                    placeholder="Ingrese su contraseña" [(ngModel)]="userBuyer.password" [ngClass]="{
-                    'is-invalid': password.invalid && password.touched,
-                    'is-valid': password.valid && password.touched
-                }" minlength="8" maxlength="10" required>
-                <div *ngIf="password.invalid" class="invalid-feedback">
-                    La contraseña es requerida, debe contener entre 8 y 10 caracteres.
-                </div>
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-dark btn-block w-100">Registrar</button>
-                <!-- Mostrar mensajes de error o éxito -->
-                <p *ngIf="signUpError" class="text-danger">{{signUpError}}</p>
-                <p *ngIf="validSignup" class="text-success">{{validSignup}}</p>
-            </div>
-        </form>
-        <div class="text-center mt-3">
-            <p style="color: #AEAEAE;">Crea tu cuenta y inicia esta aventura</p>
-        </div>
-    </div>
-</div>
+<app-background-particles></app-background-particles>
+<div class="register-conteiner">
+    <div class="d-flex align-items-center justify-content-center h-100">
+        <div class="register-card">
+            <div class="w-100">
+                <div class="container form-container">
+                    <div class="text-center">
+                        <a class="logo text-center" routerLink="/">
+                          <img
+                            width="250"
+                            class="img-fluid mb-4"
+                            src="../../../../assets/icons/jbart-logo.png"
+                            alt="Logo"
+                          />
+                        </a>
+                      </div>
+                      <div class="register-main"></div>
+                        <form (ngSubmit)="handleSignup($event)" autocomplete="off" #frm="ngForm">
+                        <div class="mb-3">
+                            <h4 class="titulo">Registarse</h4>
+                            <div class="divisor"></div>
+                          </div>
+
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input #name="ngModel" type="text" class="form-control" id="name" name="name"
+                                placeholder="Ingrese su nombre" [(ngModel)]="userBuyer.name" [ngClass]="{
+                                'is-invalid': name.invalid && name.touched,
+                                'is-valid': name.valid && name.touched
+                            }" required>
+                            <div *ngIf="name.invalid" class="invalid-feedback">
+                                El nombre es requerido.
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="lastname" class="form-label">Apellidos</label>
+                            <input #lastname="ngModel" type="text" class="form-control" id="lastname" name="lastname"
+                                placeholder="Ingrese sus apellidos" [(ngModel)]="userBuyer.lastname" [ngClass]="{
+                                'is-invalid': lastname.invalid && lastname.touched,
+                                'is-valid': lastname.valid && lastname.touched
+                            }" required>
+                            <div *ngIf="lastname.invalid" class="invalid-feedback">
+                                Los apellidos son requeridos.
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input #email="ngModel" type="email" class="form-control" id="email" name="email"
+                                placeholder="example@gmail.com" [(ngModel)]="userBuyer.email" [ngClass]="{
+                                'is-invalid': email.invalid && email.touched,
+                                'is-valid': email.valid && email.touched
+                            }" required>
+                            <div *ngIf="email.invalid" class="invalid-feedback">
+                                El correo electrónico es requerido.
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input #password="ngModel" type="password" class="form-control" id="password" name="password"
+                                placeholder="Ingrese su contraseña" [(ngModel)]="userBuyer.password" [ngClass]="{
+                                'is-invalid': password.invalid && password.touched,
+                                'is-valid': password.valid && password.touched
+                            }" minlength="8" maxlength="10" required>
+                            <div *ngIf="password.invalid" class="invalid-feedback">
+                                La contraseña es requerida, debe contener entre 8 y 10 caracteres.
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <button class="btn btn-dark btn-block w-100" type="submit">
+                                Registrarse
+                            </button>
+                            <p class="text-danger">{{signUpError}}</p>
+                          </div>

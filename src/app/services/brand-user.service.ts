@@ -33,6 +33,23 @@ export class BrandUserService extends BaseService<IBrandUser> {
     })
   }
 
+  public getActiveLanding() {
+    this.findBrandActiveLanding().subscribe({
+      next: (response: any) => {
+        response.reverse();
+        this.itemListSignal.set(response);
+      },
+      error: (error: any) => {
+        console.error('Error in get active users brand request', error);
+        this.snackBar.open(error.error.description, 'Close' , {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          panelClass: ['error-snackbar']
+        });
+      }
+    })
+  }
+
   public getNewRequests() {
     this.findBrandByNewRequest().subscribe({
       next: (response: any) => {

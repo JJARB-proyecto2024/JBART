@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  
+  <div class="row row-title">
+    <div class="col-6 mb-2">
+      <h2 class="titulo">Nuestros Productos</h2>
+    </div>
+    <div class="divisor">
+    </div>
+  
+  <div class="row row-cols-1 row-cols-md-3">
+    <div *ngFor="let item of paginatedList; trackBy: trackById" class="col my-3">
+      <div class="card h-100">
+        <img [src]="item.picture" class="card-img-top" alt="Logo de {{ item.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.name }}</h5>
+          <p class="card-text">
+            <strong>Calificación:</strong>
+            <igc-rating [value]="item.rate" min="0" max="5" readonly="true"></igc-rating>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div  class="col-12 mb-2">
+    <!-- Paginación -->
+<nav aria-label="Page navigation" class="mt-4">
+<ul class="pagination justify-content-center">
+  <li class="page-item" *ngFor="let page of [].constructor(Math.ceil(itemList.length / itemsPerPage)); let i = index"
+      [ngClass]="{'active': currentPage === i + 1}">
+    <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
+  </li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
