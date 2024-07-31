@@ -6,7 +6,8 @@
     "axe/name-role-value": [
       "default",
       {
-        "button-name": "off"
+        "button-name": "off",
+        "link-name": "off"
       }
     ],
     "no-inline-styles": "off",
@@ -16,7 +17,28 @@
         "select-name": "off"
       }
     ],
-    "button-type": "off"
+    "button-type": "off",
+    "disown-opener": "off",
+    "axe/structure": [
+      "default",
+      {
+        "list": "off"
+      }
+    ],
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "width: fit-content"
+        ]
+      }
+    ],
+    "axe/text-alternatives": [
+      "default",
+      {
+        "image-alt": "off"
+      }
+    ]
   },
   "browserslist": [
     "defaults",

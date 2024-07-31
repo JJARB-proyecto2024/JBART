@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div>
+    @defer {
+      <app-product-recommended-brands-list
+      [itemList]="productService.items$()"
+      />
+    } @loading (after 100ms; minimum 1s){
+      <app-loader></app-loader>
+    }
+  </div>
+</div>
