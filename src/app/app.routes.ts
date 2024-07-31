@@ -1,7 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { AppLayoutComponent } from './components/app-layout/app-layout.component';
-import { SigUpComponent } from './pages/auth/sign-up/signup.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NgxParticlesModule } from "@tsparticles/angular";
@@ -56,11 +55,7 @@ export const routes: Routes = [
     component: LoginComponent,
     canActivate: [GuestGuard],
   },
-  {
-    path: 'signup',
-    component: SigUpComponent,
-    canActivate: [GuestGuard],
-  },
+
   {
     path: 'signup/brand',
     component: BrandSignupComponent,
