@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { IOrder } from '../../interfaces';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-orders',
@@ -42,9 +43,27 @@ export class UserOrdersComponent implements OnInit {
       next: (orders: IOrder[]) => {
         this.orders = orders;
         this.isLoading = false;
+        if (orders.length > 0) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Órdenes cargadas',
+            text: 'Las órdenes se han cargado con éxito.'
+          });
+        } else {
+          Swal.fire({
+            icon: 'info',
+            title: 'Sin órdenes',
+            text: 'No hay órdenes para mostrar.'
+          });
+        }
       },
       error: () => {
         this.isLoading = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un error al cargar las órdenes.'
+        });
       }
     });
   }
