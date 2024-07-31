@@ -1,0 +1,12 @@
+<div class="d-flex align-items-center">
+  <i class="fa-solid fa-cart-shopping"></i>
+  <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+    <span class="visually-hidden">New alerts</span>
+  </span>
+
+</div>
+<div class="d-flex flex-column onhover-show-div">
+  <div *ngFor="let item of carts">
+    <div>{{item.product?.name}}</div>
+  </div>
+</div>
