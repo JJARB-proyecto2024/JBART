@@ -4,6 +4,7 @@ import { Router, RouterOutlet } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest , NgxPayPalModule } from 'ngx-paypal';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { IProduct } from '../../../interfaces';
 
 @Component({
   selector: 'app-payment',
@@ -14,12 +15,21 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PaymentComponent implements OnInit {
   public payPalConfig?: IPayPalConfig;
+  public product: IProduct | null = null;
 
   ngOnInit(): void {
+    this.product = history.state.product;
     this.initConfig();
   }
 
   private initConfig(): void {
+    if(!this.product) {
+      console.error('Product not found');
+      return;
+    }
+
+    const { name, price } = this.product;
+
     this.payPalConfig = {
       clientId: `${environment.Client_ID}`,
       createOrderOnServer: () => fetch(`${environment.apiUrl}/auth/createPayment`, {
@@ -28,8 +38,10 @@ export class PaymentComponent implements OnInit {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify([
-          { name: 'Shoe', price: 18, quantity: 2 },
-          { name: 'Jacket', price: 12, quantity: 1 }
+          { name,
+            price,
+            quantity: 1,
+          },
         ])
       })
         .then((res) => res.json())
