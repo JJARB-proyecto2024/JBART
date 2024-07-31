@@ -4,12 +4,13 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { IBuyerUser } from '../../../interfaces';
 import { AuthService } from '../../../services/auth.service';
+import { BackgroundParticlesModule } from '../../../components/background-particles/background-particles.module';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-Buyer-signup',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink,BackgroundParticlesModule],
   templateUrl: './buyer-signup.component.html',
   styleUrl: './buyer-signup.component.scss'
 })
