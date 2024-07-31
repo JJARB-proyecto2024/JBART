@@ -184,7 +184,7 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'products-recommended-categories',
+        path: 'products-recommended-categories/:id',
         component: ProductsRecommendedCategoriesComponent,
         data: { 
           authorities: [
@@ -196,7 +196,7 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'products-recommended-brands',
+        path: 'products-recommended-brands/:id',
         component: ProductsRecommendedBrandsComponent,
         data: { 
           authorities: [

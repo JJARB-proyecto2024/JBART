@@ -80,8 +80,8 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
   }
 
   // Cambiado para redirigir a products-recommended
-  viewProducts() {
-    this.router.navigate(['/app/product-types']);
+  viewProducts(item: IBrandUser) {
+    this.router.navigateByUrl('app/products-recommended-brands/' + item.id);
   }
 
   showDetailModal(item: IBrandUser, modal: any) {

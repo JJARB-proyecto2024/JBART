@@ -6,6 +6,8 @@ import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { IProduct } from '../../interfaces';
+import { CategoryCardsComponent } from '../../components/category/category-cards/category-cards.component';
 
 @Component({
   selector: 'app-products-recommended-categories',
@@ -14,23 +16,25 @@ import { CommonModule } from '@angular/common';
     ProductRecommendedCategoriesListComponent,
     CommonModule,
     LoaderComponent,
-    ModalComponent
+    ModalComponent,
+    CategoryCardsComponent
   ],
   templateUrl: './productsRecommendedCategories.component.html',
   styleUrl: './productsRecommendedCategories.component.scss'
 })
 export class ProductsRecommendedCategoriesComponent implements OnInit{
   public productService: ProductService = inject(ProductService);
-  public route: ActivatedRoute = inject(ActivatedRoute);
-  public areActionsAvailable: boolean = false;
-  public authService: AuthService = inject(AuthService);
-  public routeAuthorities: string[] = [];
+  public itemId: number | undefined = 0;
+  public item: IProduct = {};
+
+  constructor(private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
-    this.productService.getAll();
-    this.route.data.subscribe( data => {
-      this.routeAuthorities = data['authorities'] ? data['authorities'] : [];
-      this.areActionsAvailable = this.authService.areActionsAvailable(this.routeAuthorities);
+    this.route.params.subscribe(params => {
+      this.itemId = params['id'];
+      console.log(this.itemId)
     });
+    this.productService.getByCategory(this.itemId);
   }
 }

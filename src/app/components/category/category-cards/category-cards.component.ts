@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ICategory } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category-cards',
@@ -15,8 +16,10 @@ export class CategoryCardsComponent {
   @Input() categoryList: ICategory[] = [];
   @Output() categorySelected = new EventEmitter<ICategory>();
 
-  onCategoryClick(category: ICategory) {
-    this.categorySelected.emit(category);
+  constructor(private router: Router) {}
+  // Cambiado para redirigir a products-recommended
+  viewProducts(item: ICategory) {
+    this.router.navigateByUrl('app/products-recommended-categories/' + item.id);
   }
 
   ngOnInit(): void {
