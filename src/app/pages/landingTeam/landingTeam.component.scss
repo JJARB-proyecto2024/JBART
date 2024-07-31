@@ -90,9 +90,10 @@
 
 .tools-content {
   background-color: #062489;
-  padding: 200px 350px;
   align-items: center; /* Centra verticalmente */
   justify-content: center; /* Centra horizontalmente */
+  width: 100%;
+  padding-top: 160px;
 }
 
 .tools-container{
@@ -112,18 +113,22 @@
   font: 300 20px / 35px Roboto;
   justify-content: center; /* Centra horizontalmente */  
   align-items: center; /* Centra verticalmente */
+  padding: 0 100px;
 }
 
 .tools-grid {
   display: flex !important;
   padding-top: 50px;
   color:#cbe5ff;
-  width: 1300px;
+  max-width: 1300px;
+  width: 100%;
+  margin-left: 40px;
 }
 
 .category-title{
   font: 500 25px / 35px Roboto;
   border-bottom: 2px solid #cbe5ff; /* Línea divisoria debajo del título */
+  padding-top: 10px;
   padding-bottom: 10px; /* Espaciado entre el título y la lista */
 }
 
@@ -133,9 +138,9 @@
 
 .tool-category {
   flex: 0 0 calc(22%); /* Ancho fijo para cada cuadro, ajusta el porcentaje según desees */
-  margin: 0 15px; /* Margen entre los cuadros */
+  width: 100%;
+  margin: 0 5px; /* Margen entre los cuadros */
   background-color: #1938a2;
-  padding: 40px 30px;
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza la transición en hover */
 }
 
@@ -194,14 +199,14 @@
 /* Estilo inicial para los elementos de texto */
 .tools-content .intro-text, 
 .tools-content .tools-title{
-  opacity: 0; /* Inicialmente oculto */
-  transform: translateX(-30px); /* Inicialmente desplazado hacia la izquierda */
+  opacity: 1; /* Inicialmente oculto */
+  transform: slideRight 0.50s ease-out forwards; /* Inicialmente desplazado hacia la izquierda */
 }
 
 /* Animación cuando el cursor pasa sobre la sección */
 .tools-content:hover .intro-text, 
 .tools-content:hover .tools-title {
-  animation: slideRight 0.5s ease-out forwards; /* Aplica la animación al pasar el cursor */
+  animation: slideRight 0.10s ease-out forwards; /* Aplica la animación al pasar el cursor */
 }
 
 .tools-content {
@@ -447,98 +452,67 @@
   }
 }
 
+/* General section styling */
 .values-section {
-  margin-top: 60px;
-  padding: 40px;
-  background-color: white;
+  padding: 60px 20px;
+  background-color: #f8f9fa;
   text-align: center;
-
-  .section-title {
-    font: 600 50px / 35px Roboto;
-    margin-bottom: 40px;
-    color: #1938a2;
-    animation: fadeInUp 0.5s ease forwards;
-    opacity: 0;
-  }
-
-  .section-description {
-    font: 350 22px / 35px Roboto;
-    color: black;
-    margin-bottom: 30px;
-    animation: fadeInUp 0.5s ease forwards;
-    animation-delay: 0.3s; /* Retraso para que aparezca después del título */
-    opacity: 0;
-    padding: 0px 90px;
-    margin-bottom: 40px;
-  }
-
-  .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    opacity: 0;
-    animation: fadeInUp 0.5s ease forwards;
-    animation-delay: 0.5s; /* Retraso para que aparezca después de la descripción */
-  }
-
-  .card {
-    background: #94c117;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px 30px;
-    width: 800px;
-    text-align: center;
-    justify-content: center;
-    opacity: 0;
-    animation: fadeInUp 0.5s ease forwards;
-    animation-delay: 0.7s; /* Retraso para que aparezca después del contenedor */
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-    
-    &.leadership-card {
-      animation-delay: 0.5s; /* Retraso para la tarjeta de liderazgo */
-    }
-    
-    &.cooperation-card {
-      animation-delay: 0.6s; /* Retraso para la tarjeta de cooperación */
-    }
-    
-    &.diversity-card {
-      animation-delay: 0.7s; /* Retraso para la tarjeta de diversidad */
-    }
-    
-    &.empathy-card {
-      animation-delay: 0.8s; /* Retraso para la tarjeta de empatía */
-    }
-    
-    &.dynamism-card {
-      animation-delay: 0.9s; /* Retraso para la tarjeta de dinamismo */
-    }
-
-    &:hover {
-      animation: pulse 0.2s ease infinite; /* Efecto de pulso al pasar el cursor */
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada en hover */
-    }
-
-    .icon-container {
-      font-size: 80px;
-      margin-bottom: 15px;
-      color: #1938a2;
-    }
-
-    .card-title {
-      font: 500 26px / 35px Roboto;
-      margin-bottom: 10px;
-      color: #1938a2;
-    }
-
-    .card-description {
-      font: 350 20px / 35px Roboto;
-      color: black;
-    }
-  }
 }
 
+.values-section .section-title {
+  margin-top: 40px;
+  font: 600 40px / 35px Roboto;
+  margin-bottom: 20px;
+  color: #94c117;
+}
+
+.values-section .section-description {
+  font: 200 20px / 22px Roboto, sans-serif;
+  margin-bottom: 40px;
+  color: #606060;
+  padding: 20px 140px;
+}
+
+/* Card container styling */
+.values-section .cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Individual card styling */
+.values-section .card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 300px;
+  flex: 1 1 calc(25% - 40px); /* Adjusts for spacing between cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.values-section .card:hover {
+  transform: translateY(-10px);
+}
+
+.values-section .icon-container {
+  font: 600 50px / 22px Roboto, sans-serif;
+  margin-bottom: 15px;
+  color: #94c117;
+}
+
+.values-section .card-title {
+  font: 500 25px / 22px Roboto, sans-serif;
+  margin-bottom: 10px;
+  color: #94c117;
+}
+
+.values-section .card-description {
+  font: 200 18px / 22px Roboto, sans-serif;
+  color: #606060;
+}
 
 @keyframes fadeIn {
   0% {

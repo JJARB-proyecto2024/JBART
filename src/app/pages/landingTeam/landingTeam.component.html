@@ -7,7 +7,7 @@
         <h1>JJARB</h1>
         <h2>¡Codea para el futuro!</h2>
         <p>En JJARB, nos dedicamos a convertir visiones en realidades, utilizando la tecnología y la creatividad para diseñar soluciones únicas que impulsan el éxito y la innovación en cada proyecto.</p>
-        <button class="login-button">Ver Servicios</button>
+        <button routerLink="/landingProduct" class="login-button">Ver Servicios</button>
       </div>
       <div class="right-content">
         <img src="assets/icons/JJARB.png" alt="JJARB Logo" class="logo">
@@ -19,8 +19,8 @@
       <h2 class="tools-title">Herramientas Tecnológicas</h2>
       <p class="intro-text">Bienvenidos a nuestro mundo de desarrollo, desde la creación de interfaces atractivas hasta la magia detrás de escena, estamos preparados para llevar tus ideas a la vida. Con habilidades tanto en front-end como en back-end, podemos construir experiencias digitales que cautivan y hacen brillar tu proyecto.</p>
       <div class="divider"></div>
-      <div class="tools-grid">
-          <div class="tool-category">
+      <div class="row tools-grid">
+          <div class="tool-category col-4 col-md-3">
               <h3 class="category-title">Front-end:</h3>
               <ul class="tool-list">
                   <li><i class="fa-brands fa-html5"></i> HTML</li>
@@ -32,7 +32,7 @@
                   <li><i class="fab fa-angular"></i> Angular</li>
               </ul>
           </div>
-          <div class="tool-category">
+          <div class="tool-category col-4 col-md-3">
               <h3 class="category-title">Back-end:</h3>
               <ul class="tool-list">
                   <li><i class="fab fa-java"></i> Java</li>
@@ -41,7 +41,7 @@
                   <li><i class="fab fa-windows"></i> ASP.NET</li>
               </ul>
           </div>
-          <div class="tool-category">
+          <div class="tool-category col-4 col-md-3">
               <h3 class="category-title">Bases de Datos:</h3>
               <ul class="tool-list">
                   <li><i class="fi fi-brands-oracle"></i> Oracle</li>
@@ -50,7 +50,7 @@
                   <li><i class="fas fa-database"></i> Microsoft SQL Server</li>
               </ul>
           </div>
-          <div class="tool-category">
+          <div class="tool-category col-4 col-md-3">
               <h3 class="category-title">Otros:</h3>
               <ul class="tool-list">
                   <li><i class="fab fa-git"></i> Git</li>
@@ -252,7 +252,7 @@
         <h2>¡Codea para el futuro!</h2>
         <p>En nuestra empresa, nos dedicamos a ofrecer una amplia gama de servicios diseñados para satisfacer las necesidades únicas de cada cliente. Nuestro enfoque se basa en la innovación, la calidad y la personalización, asegurando que cada solución esté perfectamente adaptada a tus objetivos y desafíos. Desde el desarrollo de software a medida hasta la consultoría técnica y la implementación de estrategias digitales, estamos comprometidos en proporcionar un servicio excepcional que impulse tu negocio hacia el éxito. Permítenos ayudarte a transformar tus ideas en realidades tangibles con soluciones efectivas y eficientes.
         </p>
-        <button class="login-button">Ver Servicios</button>
+        <button routerLink="/landingProduct" class="login-button">Ver Servicios</button>
       </div>
       <div class="right-content">
         <img src="assets/icons/JJARB.png" alt="JJARB Logo" class="logo">
@@ -267,11 +267,10 @@
         <h1 class="footer-name">JBART</h1>
       </div>
       <nav class="footer-nav">
-        <a href="#">Inicio</a>
-        <a href="#">Nosotros</a>
-        <a href="#">Servicios</a>
+        <a routerLink="/">Nosotros</a>
+        <a routerLink="/landingProduct">Servicios</a>
       </nav>
-      <a href="#" class="register-button">Registrarse</a>
+      <a routerLink="/register-options" class="register-button">Registrarse</a>
     </div>
   </footer>
 
