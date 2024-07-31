@@ -5,17 +5,17 @@ import { Router, RouterLink } from '@angular/router';
 import { IBrandUser } from '../../../interfaces';
 import { AuthService } from '../../../services/auth.service';
 import Swal from 'sweetalert2';
+import { BackgroundParticlesModule } from '../../../components/background-particles/background-particles.module';
 import { BrandUserListComponent } from '../../../components/brand-user/brand-user-list/brand-user-list.component';
 import { Cloudinary } from '@cloudinary/url-gen';
 declare const cloudinary: any; 
 
-
 @Component({
   selector: 'app-brand-signup',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, BrandUserListComponent],
+  imports: [CommonModule, FormsModule, RouterLink, BrandUserListComponent, BackgroundParticlesModule],
   templateUrl: './brand-signup.component.html',
-  styleUrl: './brand-signup.component.scss'
+  styleUrls: ['./brand-signup.component.scss']
 })
 export class BrandSignupComponent {
   public signUpError!: String;
@@ -32,7 +32,7 @@ export class BrandSignupComponent {
 
   public userBrand: IBrandUser = {};
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   public handleSignup(event: Event) {
     event.preventDefault();
@@ -100,7 +100,6 @@ export class BrandSignupComponent {
     });
   }
 
-
   private signupUserBrand() {
     this.authService.signupBrand(this.userBrand).subscribe({
       next: () => {
@@ -109,6 +108,8 @@ export class BrandSignupComponent {
           text: 'Tu registro ha sido exitoso. Un administrador revisará tu solicitud y te notificará por correo electrónico cuando tu cuenta esté activa.',
           icon: 'success',
           confirmButtonText: 'Aceptar',
+        }).then(() => {
+          this.router.navigate(['/login']); // Redirige al usuario a la pantalla de login
         });
       },
       error: (err: any) => {
@@ -122,5 +123,4 @@ export class BrandSignupComponent {
       },
     });
   }
-
 }
