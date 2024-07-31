@@ -18,6 +18,13 @@ export class BaseService<T> {
   public findAll(s: string = ''): Observable<IResponse<T[]>> {
     return this.http.get<IResponse<T[]>>(this.source, { params: { s } });
   }
+  public findByBrand(id: number | undefined): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source + '/brand' + '/' + id);
+  }
+
+  public findByCategory(id: number | undefined): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source + '/category' + '/' + id);
+  }
 
   public findProductsLanding(s: string = ''): Observable<IResponse<T[]>> {
     return this.http.get<IResponse<T[]>>('auth/products', { params: { s } });

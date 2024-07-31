@@ -2,7 +2,6 @@
   <div>
     @defer {
       <app-product-recommended-categories-list
-      [areActionsAvailable]="areActionsAvailable"
       [itemList]="productService.items$()"
       />
     } @loading (after 100ms; minimum 1s){

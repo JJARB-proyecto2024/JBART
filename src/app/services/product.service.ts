@@ -50,6 +50,41 @@ export class ProductService extends BaseService<IProduct> {
     })
   }
   
+  public getByBrand(item: number | undefined) {
+    this.findByBrand(item).subscribe({
+      next: (response: any) => {
+        response.reverse();
+        this.itemListSignal.set(response);
+      },
+      error: (error: any) => {
+        console.error('Error in get all products request', error);
+        this.snackBar.open(error.error.description, 'Close' , {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          panelClass: ['error-snackbar']
+        });
+      }
+    })
+  }
+
+  public getByCategory(item: number | undefined) {
+    this.findByCategory(item).subscribe({
+      next: (response: any) => {
+        response.reverse();
+        this.itemListSignal.set(response);
+      },
+      error: (error: any) => {
+        console.error('Error in get all products request', error);
+        this.snackBar.open(error.error.description, 'Close' , {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          panelClass: ['error-snackbar']
+        });
+      }
+    })
+  }
+
+
   public save(item: IProduct) {
     this.add(item).subscribe({
       next: (response: any) => {
