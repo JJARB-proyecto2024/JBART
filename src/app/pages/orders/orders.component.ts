@@ -30,7 +30,9 @@ export class OrdersComponent implements OnInit {
   public isLoading: boolean = true;
 
   ngOnInit(): void {
-    this.loadOrders();
+    this.orderService.getAll();
+    this.orders = this.orderService.orders;
+    //this.loadOrders();
     this.route.data.subscribe(data => {
       this.routeAuthorities = data['authorities'] ? data['authorities'] : [];
       this.areActionsAvailable = this.authService.areActionsAvailable(this.routeAuthorities);

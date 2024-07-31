@@ -44,11 +44,6 @@ export class BrandOrdersComponent implements OnInit {
         this.orders = orders;
         this.isLoading = false;
         if (orders.length > 0) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Órdenes cargadas',
-            text: 'Las órdenes se han cargado con éxito.'
-          });
         } else {
           Swal.fire({
             icon: 'info',
