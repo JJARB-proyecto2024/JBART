@@ -1,0 +1,176 @@
+<app-layout-landing>
+    <div class="container-fluid">
+      <section id="index" class="header-section">
+        <div class="container">
+          <div class="left-content">
+            <h1>JBART</h1>
+            <h2>¡Personaliza tus productos favoritos!</h2>
+            <p>Descubre una nueva manera de personalizar productos únicos con JBArt. Nuestra plataforma innovadora te permite crear y visualizar en 3D tus propios diseños en ropa, accesorios y más. Conecta con tus marcas favoritas y transforma tus ideas en realidad. Crea, diseña y compra productos únicos a tu medida.</p>
+            <button class="registrer-button">Registrarse</button>
+          </div>
+          <div class="right-content">
+            <img src="assets/icons/ProductLanding.png" alt="JJARB Logo" class="logo">
+          </div>
+        </div>
+      </section>
+      
+      
+      <section class="tools-wave-section">
+        <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+          <defs>
+            <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+          </defs>
+          <g class="wave1">
+            <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)"></use>
+          </g>
+          <g class="wave2">
+            <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)"></use>
+          </g>
+          <g class="wave3">
+            <use xlink:href="#wave-path" x="50" y="9" fill="#fff"></use>
+          </g>
+        </svg>
+      </section>
+    
+      <section class="section-brands">
+        @defer {
+            <app-brand-user-avaliable-list-landing
+            [itemList]="brandUserService.items$()"
+            />
+          } @loading (after 100ms; minimum 1s){
+            <app-loader></app-loader>
+          }
+      </section>
+
+      <section class="tools-wave-section-top">
+        <svg class="hero-waves-top" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+          <defs>
+            <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+          </defs>
+          <g class="wave1">
+            <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)"></use>
+          </g>
+          <g class="wave2">
+            <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)"></use>
+          </g>
+          <g class="wave3">
+            <use xlink:href="#wave-path" x="50" y="9" fill="#fff"></use>
+          </g>
+        </svg>
+      </section>
+
+      <section class="platform-advantages">
+        <div class="container">
+          <h2>Ventajas de la Plataforma</h2>
+          <div class="row">
+            <div class="col-md-3 advantage-item">
+              <div class="icon">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <h4>Experiencia Única de Compra</h4>
+              <p>"Transforma tus ideas en productos reales."</p>
+            </div>
+            <div class="col-md-3 advantage-item">
+              <div class="icon">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <h4>Interacción Directa con Marcas</h4>
+              <p>"Colabora directamente con tus marcas favoritas."</p>
+            </div>
+            <div class="col-md-3 advantage-item">
+              <div class="icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <h4>Diseños Exclusivos</h4>
+              <p>"Crea productos que nadie más tiene."</p>
+            </div>
+            <div class="col-md-3 advantage-item">
+              <div class="icon">
+                <i class="fas fa-sync-alt"></i>
+              </div>
+              <h4>Actualizaciones en Tiempo Real</h4>
+              <p>"Sigue tu pedido en cada etapa del proceso."</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tools-wave-section">
+        <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+          <defs>
+            <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+          </defs>
+          <g class="wave1">
+            <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)"></use>
+          </g>
+          <g class="wave2">
+            <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)"></use>
+          </g>
+          <g class="wave3">
+            <use xlink:href="#wave-path" x="50" y="9" fill="#fff"></use>
+          </g>
+        </svg>
+      </section>
+
+      <section class="section-products">
+        @defer {
+            <app-product-landing
+            [itemList]="productService.items$()"
+            />
+          } @loading (after 100ms; minimum 1s){
+            <app-loader></app-loader>
+          }
+      </section>
+
+      
+      <section class="tools-wave-section-top">
+        <svg class="hero-waves-top" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+          <defs>
+            <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+          </defs>
+          <g class="wave1">
+            <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)"></use>
+          </g>
+          <g class="wave2">
+            <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)"></use>
+          </g>
+          <g class="wave3">
+            <use xlink:href="#wave-path" x="50" y="9" fill="#fff"></use>
+          </g>
+        </svg>
+      </section>
+
+      <section class="services-intro">
+        <div class="container">
+          <div class="left-content">
+            <h1>JBART</h1>
+            <h2>¡Diseña y Personaliza tu Mundo!</h2>
+            <p>En JBArt, nos dedicamos a ofrecer una experiencia única y personalizada para cada cliente. Nuestra plataforma está diseñada para satisfacer las necesidades de aquellos que buscan exclusividad y originalidad en sus productos. Con un enfoque en la innovación, la calidad y la interactividad, proporcionamos herramientas avanzadas para que cada usuario pueda transformar sus ideas en realidades tangibles. Desde la personalización de productos en 3D hasta la interacción directa con marcas de renombre, estamos comprometidos en proporcionar un servicio excepcional que eleve tu experiencia de compra a nuevos niveles. Permítenos ayudarte a crear productos únicos y personalizados que reflejen tu estilo y creatividad.
+              
+            </p>
+            <button class="registrer-button">Registrarse</button>
+          </div>
+          <div class="right-content">
+            <img src="assets/icons/JBART.png" alt="JJARB Logo" class="logo">
+          </div>
+        </div>
+      </section>
+    
+    
+      <footer class="footer-small">
+        <div class="footer-content">
+          <div class="logo-container">
+            <img src="assets/icons/JBART.png" alt="JBART Logo" class="logo">
+            <h1 class="footer-name">JBART</h1>
+          </div>
+          <nav class="footer-nav">
+            <a href="#">Inicio</a>
+            <a href="#">Nosotros</a>
+            <a href="#">Servicios</a>
+          </nav>
+          <a href="#" class="register-button">Registrarse</a>
+        </div>
+      </footer>
+    
+    </div>
+</app-layout-landing>

@@ -158,6 +158,27 @@
   z-index: -1; /* Asegura que el SVG esté detrás del contenido */
 }
 
+.tools-wave-section-top {
+  position: relative; /* Asegura que el SVG se posicione correctamente dentro de esta sección */
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: 100px; /* Ajusta la altura según el diseño */
+  overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+  background-color: #062489;
+}
+
+/* SVG de ondas en la orilla inferior */
+.hero-waves-top {
+  top: 0;  /* Alineado a la parte inferior */
+  left: 0;
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: 100px; /* Ajusta la altura según el diseño */
+  z-index: -1; /* Asegura que el SVG esté detrás del contenido */
+  transform: rotate(180deg); /* Voltea el SVG verticalmente */
+}
+
+
+
+
 /* Define la animación para el texto desplazándose hacia la derecha */
 @keyframes slideRight {
   0% {
