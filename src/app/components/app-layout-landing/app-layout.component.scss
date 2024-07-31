@@ -1,0 +1,125 @@
+/* app-layout.component.css */
+.container-fluid {
+    padding: 0 2px;
+  }
+  
+  .header-nav {
+    background-color: #062489;
+    color: #ffffff;
+  }
+  
+  .logo {
+    width: 100px;
+    height: auto;
+  }
+  
+  .app-name {
+    font-size: 35px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0px !important;
+    margin-top: 8px !important;
+  }
+  
+  .nav {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .nav-item {
+    margin-right: 20px;
+  }
+  
+  .nav-link {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    color: #f96232;
+  }
+  
+  @media (max-width: 768px) {
+    .header-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .nav-item {
+      margin-bottom: 10px;
+      margin-right: 0;
+    }
+  
+    .nav-link {
+      margin-right: 0;
+    }
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #282b30;
+    padding: 20px;
+  }
+  
+  .logo img {
+    width: 100px;
+  }
+  
+  .menu {
+    display: flex;
+    gap: 20px;
+  
+    font-size: 23px;
+  }
+  
+  .menu-item {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .menu-item:hover {
+    color: #f96232;
+  }
+  
+  .login-button {
+    background-color: #f0450f;
+    color: #ffffff;
+    border: none;
+    font-size: 20px;
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .login-button:hover {
+    background-color: #fb6837;
+  }
+
+  .registrer-button {
+    background-color: #f0450f;
+    color: #ffffff;
+    border: none;
+    font-size: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .registrer-button:hover {
+    background-color: #fb6837;
+  }
+
+  .botones {
+    margin-right: 20px;
+  }

@@ -4,6 +4,7 @@ import { AppLayoutComponent } from './components/app-layout/app-layout.component
 import { SigUpComponent } from './pages/auth/sign-up/signup.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AuthGuard } from './guards/auth.guard';
+import { NgxParticlesModule } from "@tsparticles/angular";
 import { AccessDeniedComponent } from './pages/access-denied/access-denied.component';
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -32,8 +33,24 @@ import { auto } from '@cloudinary/url-gen/actions/resize';
 import { SalesComponent } from './pages/sales/sales.component';
 import { name } from '@cloudinary/url-gen/actions/namedTransformation';
 import { BrandOrderDetailsComponent } from './pages/brand-order-details/brand-order-details.component';
+import { LandingTeamComponent } from './pages/landingTeam/landingTeam.component';
+import { LandingProductComponent } from './pages/landingProduct/landingProduct.component';
+import { RegisterOptionsComponent } from './pages/register-options/register-options.component';
+import { ViewOptionsComponent } from './pages/product-options/product-options.component';
+import { ProductsRecommendedCategoriesComponent } from './pages/productsRecommendedCategories/productsRecommendedCategories.component';
+import { ProductsRecommendedBrandsComponent } from './pages/productsRecommendedBrands/productsRecommendedBrands.component';
 
 export const routes: Routes = [
+  {
+    path: 'landingTeam',
+    component: LandingTeamComponent,
+    canActivate: [GuestGuard],
+  },
+  {
+    path: 'landingProduct',
+    component: LandingProductComponent,
+    canActivate: [GuestGuard],
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -55,7 +72,7 @@ export const routes: Routes = [
     canActivate: [GuestGuard],
   },
   {
-  path: 'disableaccount',
+    path: 'disableaccount',
     component: DisableAccountComponent,
     canActivate: [GuestGuard],
   },
@@ -75,7 +92,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'landingTeam',
     pathMatch: 'full',
   },
   {
@@ -156,7 +173,7 @@ export const routes: Routes = [
             IRole.userBrand
           ],
           showInSidebar: true,
-          name: 'Productos'
+          name: 'Lista de Productos'
         }
       },
       {
@@ -169,6 +186,30 @@ export const routes: Routes = [
           ],
           showInSidebar: true,
           name: 'Productos Recomendados'
+        }
+      },
+      {
+        path: 'products-recommended-categories',
+        component: ProductsRecommendedCategoriesComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Productos por Categoria'
+        }
+      },
+      {
+        path: 'products-recommended-brands',
+        component: ProductsRecommendedBrandsComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Productos por Marcas'
         }
       },
       {
@@ -282,8 +323,22 @@ export const routes: Routes = [
           name: 'Ventas'
         }
       },
-      
+      {
+        path: 'BuyerProducts',
+        component: ViewOptionsComponent,
+        data: { 
+          authorities: [
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Productos'
+        }
+      },
     ],
+  },
+  {
+    path: 'register-options',
+    component: RegisterOptionsComponent,
   },
 ];
 

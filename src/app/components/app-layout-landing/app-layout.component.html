@@ -1,0 +1,28 @@
+<!-- app-layout.component.html -->
+<div class="container-fluid">
+  <header class="d-flex justify-content-between align-items-center py-3 header-nav">
+    <div class="d-flex align-items-center">
+      <img src="assets/icons/JBART.png" alt="Logo" class="logo">
+      <h1 class="app-name ms-3">JBART</h1>
+    </div>
+    <nav class="menu">
+      <a (click)="landingTeam()" class="menu-item">
+        <i class="fa fa-users"></i> Nosotros
+      </a>
+      <a (click)="landingProduct()" class="menu-item">
+        <i class="fa fa-cogs"></i> Servicios
+      </a>
+    </nav>
+    <div class="row botones">
+      <div class="col-6">
+        <button (click)="login()" class="login-button">Ingresar</button>
+      </div>
+      <div class="col-6">
+        <button routerLink="/register-options" class="registrer-button">Registrarse</button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <ng-content></ng-content>
+  </main>
+</div>

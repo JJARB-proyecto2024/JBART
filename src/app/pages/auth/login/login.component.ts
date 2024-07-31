@@ -3,11 +3,18 @@ import { Component, ViewChild } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { BackgroundParticlesModule } from '../../../components/background-particles/background-particles.module';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    RouterLink,
+    BackgroundParticlesModule
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

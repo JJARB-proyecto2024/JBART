@@ -1,11 +1,13 @@
 <div class="container-fluid">
   <div>
-    <h2>Categoría</h2>
+    <h2 class="titulo">Listado de Categorías</h2>
+  </div>
+  <div class="divisor">
   </div>
   <div>
     @defer {
     <div class="d-flex justify-content-end pb-2">
-      <button (click)="addModal.show()" type="button" class="btn btn-primary d-flex align-items-center">
+      <button (click)="addModal.show()" type="button" class="btn btn-add d-flex align-items-center">
         <i class="fa-solid fa-plus white"></i>
         <p class="mb-0">Agregar Categoría</p>
       </button>
@@ -18,5 +20,5 @@
 </div>
 
 <app-modal #addModal>
-  <app-category-form [action]="'Añadir categoria'" (callParentEvent)="handleFormAction($event, addModal)" />
+  <app-category-form [action]="'Añadir Categoría'" (callParentEvent)="handleFormAction($event, addModal)" />
 </app-modal>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ICategory } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
 
@@ -9,13 +9,17 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   templateUrl: './category-cards.component.html',
-  styleUrl: './category-cards.component.scss'
+  styleUrls: ['./category-cards.component.scss']
 })
 export class CategoryCardsComponent {
   @Input() categoryList: ICategory[] = [];
+  @Output() categorySelected = new EventEmitter<ICategory>();
+
+  onCategoryClick(category: ICategory) {
+    this.categorySelected.emit(category);
+  }
 
   ngOnInit(): void {
     console.log(this.categoryList);
   }
-
 }

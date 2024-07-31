@@ -1,0 +1,655 @@
+.container-fluid {
+  padding: 0;
+  margin: 0;
+}
+
+.header-section {
+  position: relative;
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Limita el ancho máximo del container */
+  height: 470px; /* Limita el ancho máximo del container */
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1); /* Fondo con sombra */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.left-content {
+  flex: 2; /* Más espacio para el contenido de la izquierda */
+  text-align: center;
+  padding: 20px; /* Espacio alrededor del contenido */
+}
+
+.right-content {
+  flex: 1; /* Menos espacio para el contenido de la derecha */
+  text-align: center;
+  padding: 20px; /* Espacio alrededor del contenido */
+}
+
+.left-content h1 {
+  color: #a6ce38;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font: 800 70px / 35px Roboto;
+}
+
+.left-content h2 {
+  color: #94c117;
+  margin-top: 30px;
+  font: 800 40px / 35px Roboto;
+}
+
+.left-content p {
+  font-size: 30px;
+  color: #ffffff;
+  font: 400 20px / 35px Roboto;
+}
+
+.right-content .logo {
+  width: 100%;
+  max-width: 450px;
+}
+
+.main-content {
+  padding: 40px;
+  background: #f8f9fa;
+}
+
+.main-content h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.main-content p {
+  font-size: 16px;
+  color: #333333;
+}
+
+.login-button {
+  background-color: #f0450f;
+  color: #ffffff;
+  font-size: 20px;
+  border: none;
+  padding: 10px 130px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.login-button:hover {
+  background-color: #fb6837;
+}
+
+.tools-content {
+  background-color: #062489;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+  width: 100%;
+  padding-top: 160px;
+}
+
+.tools-container{
+  display: ruby;
+}
+
+.tools-title {
+  color: #a6ce38;
+  justify-content: center; /* Centra horizontalmente */  
+  align-items: center; /* Centra verticalmente */
+  font: 600 50px / 35px Roboto;
+  padding-bottom: 20px;
+}
+
+.intro-text{
+  color: #ffffff;
+  font: 300 20px / 35px Roboto;
+  justify-content: center; /* Centra horizontalmente */  
+  align-items: center; /* Centra verticalmente */
+  padding: 0 100px;
+}
+
+.tools-grid {
+  display: flex !important;
+  padding-top: 50px;
+  color:#cbe5ff;
+  max-width: 1300px;
+  width: 100%;
+  margin-left: 40px;
+}
+
+.category-title{
+  font: 500 25px / 35px Roboto;
+  border-bottom: 2px solid #cbe5ff; /* Línea divisoria debajo del título */
+  padding-top: 10px;
+  padding-bottom: 10px; /* Espaciado entre el título y la lista */
+}
+
+.tool-list {
+  font: 300 18px / 35px Roboto;
+}
+
+.tool-category {
+  flex: 0 0 calc(22%); /* Ancho fijo para cada cuadro, ajusta el porcentaje según desees */
+  width: 100%;
+  margin: 0 5px; /* Margen entre los cuadros */
+  background-color: #1938a2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza la transición en hover */
+}
+
+
+/* Nueva sección para el SVG */
+.tools-wave-section {
+  position: relative; /* Asegura que el SVG se posicione correctamente dentro de esta sección */
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: 100px; /* Ajusta la altura según el diseño */
+  overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+  background-color: #062489;
+}
+
+/* SVG de ondas en la orilla inferior */
+.hero-waves {
+  bottom: 0; /* Alineado a la parte inferior */
+  left: 0;
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: 100px; /* Ajusta la altura según el diseño */
+  z-index: -1; /* Asegura que el SVG esté detrás del contenido */
+}
+
+.tools-wave-section-top {
+  position: relative; /* Asegura que el SVG se posicione correctamente dentro de esta sección */
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: 100px; /* Ajusta la altura según el diseño */
+  overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+  background-color: #062489;
+}
+
+/* SVG de ondas en la orilla inferior */
+.hero-waves-top {
+  top: 0;  /* Alineado a la parte inferior */
+  left: 0;
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: 100px; /* Ajusta la altura según el diseño */
+  z-index: -1; /* Asegura que el SVG esté detrás del contenido */
+  transform: rotate(180deg); /* Voltea el SVG verticalmente */
+}
+
+
+
+
+/* Define la animación para el texto desplazándose hacia la derecha */
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px); /* Inicialmente desplazado hacia la izquierda */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* Posición original */
+  }
+}
+
+/* Estilo inicial para los elementos de texto */
+.tools-content .intro-text, 
+.tools-content .tools-title{
+  opacity: 1; /* Inicialmente oculto */
+  transform: slideRight 0.50s ease-out forwards; /* Inicialmente desplazado hacia la izquierda */
+}
+
+/* Animación cuando el cursor pasa sobre la sección */
+.tools-content:hover .intro-text, 
+.tools-content:hover .tools-title {
+  animation: slideRight 0.10s ease-out forwards; /* Aplica la animación al pasar el cursor */
+}
+
+.tools-content {
+  overflow: hidden;
+}
+
+
+@keyframes moveUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Inicialmente desplazado hacia abajo */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Posición original */
+  }
+}
+
+@keyframes hoverMove {
+  0% {
+    transform: translateY(0); /* Posición original */
+    box-shadow: none;
+  }
+  100% {
+    transform: translateY(-10px); /* Mueve el cuadro hacia arriba al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade sombra al cuadro en hover */
+  }
+}
+
+/* Los cuadros de categorías inicialmente ocultos */
+.tools-container .tool-category,
+.tools-container .tools-grid {
+  opacity: 0;
+  transform: translateY(20px); /* Inicialmente desplazado hacia abajo */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Suaviza la transición */
+  animation: moveUp 0.10s ease-out 0.50s forwards; /* Aplica la animación al cargar la página */
+}
+
+/* Aplica la animación al pasar el cursor por la sección */
+.tools-container:hover .tool-category,
+.tools-container .tools-grid {
+  animation: moveUp 0.10s ease-out 0.50s forwards; /* Aplica la animación al ser visible */
+  animation-delay: 0s; /* Sin retraso antes de que comience la animación */
+  animation-duration: 2s; /* Duración de la animación */
+  opacity: 1;
+  transform: translateY(0);
+  animation-fill-mode: forwards; /* Mantiene el estado final de la animación */
+}
+
+/* Animación cuando el cursor pasa sobre el elemento */
+.tools-container .tool-category:hover {
+  animation: hoverMove 0.20s ease-out forwards; /* Aplica la animación al pasar el cursor */
+}
+
+
+
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Inicialmente desplazado hacia abajo */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Posición original */
+  }
+}
+
+.team-section {
+  padding: 40px;
+  background-color: #f9f9f9;
+  text-align: center;
+
+  /* Animación inicial para las tarjetas del equipo */
+  .team-container .team-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: calc(var(--card-index) * 0.2s); /* Para que las tarjetas aparezcan una después de otra */
+  }
+}
+
+.team-section {
+  margin-top: 50px;
+  background-color: white;
+  margin-bottom: 50px;
+}
+
+.team-title {
+  font: 600 50px / 35px Roboto;
+  margin-bottom: 80px;
+  color: #062489;
+}
+
+.team-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.team-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 300px;
+  padding: 20px;
+  height: 600px;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.team-photo {
+  border-radius: 50%;
+  width: 100%;
+  height: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.team-name {
+  font: 500 22px / 35px Roboto;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.team-role {
+  font: 400 20px / 35px Roboto;
+  margin-bottom: 10px;
+  color: #777;
+}
+
+.team-strengths {
+  font: 300 19px / 35px Roboto;
+  color: #555;
+}
+
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Inicialmente desplazado hacia abajo */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Posición original */
+  }
+}
+
+.mission-vision-section {
+  padding: 40px;
+  background-color: #062489;
+  text-align: center;
+  justify-content: center;
+
+  .section-title {
+    font: 600 50px / 35px Roboto;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    color: #a6ce38;
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .section-description {
+    color: white;
+    font: 300 20px / 35px Roboto;
+    margin-bottom: 60px;
+    padding: 0px 80px;
+  }
+
+  .cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: 0.3s; /* Retraso para que aparezca después del título */
+    margin-bottom: 70px;
+  }
+
+  .card {
+    background: #1938a2;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 600px;
+    height: 350px;
+    text-align: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: 0.5s; /* Retraso para que aparezca después del contenedor */
+    
+    &.mission-card {
+      animation-delay: 0.5s; /* Retraso para la tarjeta de misión */
+    }
+    
+    &.vision-card {
+      animation-delay: 0.7s; /* Retraso para la tarjeta de visión */
+    }
+
+    .card-title {
+      font: 500 35px / 35px Roboto;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .card-description {
+      font: 300 20px / 35px Roboto;
+      color: #cbe5ff;
+    }
+  }
+}
+
+
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Inicialmente desplazado hacia abajo */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Posición original */
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* General section styling */
+.values-section {
+  padding: 60px 20px;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.values-section .section-title {
+  margin-top: 40px;
+  font: 600 40px / 35px Roboto;
+  margin-bottom: 20px;
+  color: #94c117;
+}
+
+.values-section .section-description {
+  font: 200 20px / 22px Roboto, sans-serif;
+  margin-bottom: 40px;
+  color: #606060;
+  padding: 20px 140px;
+}
+
+/* Card container styling */
+.values-section .cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Individual card styling */
+.values-section .card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 300px;
+  flex: 1 1 calc(25% - 40px); /* Adjusts for spacing between cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.values-section .card:hover {
+  transform: translateY(-10px);
+}
+
+.values-section .icon-container {
+  font: 600 50px / 22px Roboto, sans-serif;
+  margin-bottom: 15px;
+  color: #94c117;
+}
+
+.values-section .card-title {
+  font: 500 25px / 22px Roboto, sans-serif;
+  margin-bottom: 10px;
+  color: #94c117;
+}
+
+.values-section .card-description {
+  font: 200 18px / 22px Roboto, sans-serif;
+  color: #606060;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services-intro {
+  position: relative;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    display: flex;
+    background-color: #062489;
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+  animation: fadeIn 1s ease-out forwards;
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Limita el ancho máximo del container */
+    height: 800px; /* Limita el ancho máximo del container */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); /* Fondo con sombra */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  }
+  
+
+  .intro-title {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .intro-description {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.3s; /* Retraso para que aparezca después del título */
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .intro-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    color: #fff;
+    background-color: #007bff; /* Color del botón */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.6s; /* Retraso para que aparezca después de la descripción */
+
+    &:hover {
+      background-color: #0056b3; /* Color del botón al pasar el cursor */
+      transform: scale(1.05); /* Efecto de escala en hover */
+    }
+  }
+}
+
+
+.footer-small {
+  background-color: #181818; /* Color de fondo */
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Espacio entre los elementos */
+
+    .logo-container {
+      align-items: center;
+      
+      .logo {
+        width: 150px; /* Ajusta según el tamaño deseado del logo */
+        height: auto;
+        margin-right: 40px;
+        margin-bottom: 15px;
+      }
+
+      .footer-name {
+        font: 600 30px / 35px Roboto;
+        margin: 0;
+      }
+    }
+
+    .footer-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0px 0;
+      display: flex;
+      gap: 15px;
+
+      a {
+        color: white;
+        text-decoration: none;
+        font: 50 20px / 35px Roboto;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #f0450f;
+        }
+      }
+    }
+
+    .register-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #f0450f;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font: 400 20px / 35px Roboto;
+      transition: background-color 0.3s, transform 0.3s;
+
+      &:hover {
+        background-color: #fb6837;
+        transform: scale(1.05);
+      }
+    }
+  }
+}

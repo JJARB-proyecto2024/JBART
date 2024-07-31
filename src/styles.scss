@@ -1,6 +1,6 @@
 :root {
-  --theme-default: #7366ff;
-  --theme-secondary: #f73164;
+  --theme-default: #007bff;
+  --theme-secondary: #fb6837;
   --light-background: rgba(242, 243, 247, 0.7);
   --body-font-color: #2f2f3b;
   --chart-border: #ecf3fa;
@@ -59,8 +59,77 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: rgb(197, 49, 49) !important;
 }
 
-/*.btn-primary{
-  background-color: black !important;
-  border-color:black !important;
+
+
+// Estilos generales para los botones
+.btn {
+  // Añade una transición para suavizar el cambio de tamaño
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  border-radius: 4px; // Ajusta el radio de borde si lo necesitas
+  padding: 10px 20px; // Ajusta el relleno si lo necesitas
+  border: 1px solid transparent; // Para asegurarse de que el borde esté presente
+  // Sombra opcional para mejor apariencia
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+// Botón de agregar
+.btn-add {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+  color: white;
   
-}*/
+  font: 450 18px/30px Roboto, sans-serif !important;
+
+  &:hover {
+    background-color: #0872e2 !important; // Color más oscuro para hover
+    border-color: #0872e2 !important;
+    color: white;
+    transform: scale(1.1); // Agrandar el botón
+  }
+}
+
+// Botón de actualizar
+.btn-up {
+  background-color: #fb6837 !important;
+  border-color: #fb6837 !important;
+  color: white;
+  font: 450 18px/30px Roboto, sans-serif !important;
+
+  &:hover {
+    background-color: #e55e2a !important; // Color más oscuro para hover
+    border-color: #e55e2a !important;
+    color: white;
+    transform: scale(1.1); // Agrandar el botón
+  }
+}
+
+// Botón de eliminar
+.btn-del {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  color: white;
+  font: 450 18px/30px Roboto, sans-serif !important;
+
+  &:hover {
+    background-color: #bf162a !important; // Color más oscuro para hover
+    border-color: #bf162a !important;
+    color: white;
+    transform: scale(1.1); // Agrandar el botón
+  }
+}
+
+// Botón de ver
+.btn-see {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: white;
+  font: 450 18px/30px Roboto, sans-serif !important;
+
+  &:hover {
+    background-color: #555b60 !important; // Color más oscuro para hover
+    border-color: #555b60 !important;
+    color: white;
+    transform: scale(1.1); // Agrandar el botón
+  }
+}

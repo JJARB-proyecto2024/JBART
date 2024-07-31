@@ -1,0 +1,199 @@
+/* CSS */
+.container-fluid {
+  padding: 0;
+  margin: 0;
+}
+
+.header-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  height: 470px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tools-wave-section, .tools-wave-section-top {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  background-color: #062489;
+}
+
+.hero-waves, .hero-waves-top {
+  width: 100%;
+  height: 100px;
+  z-index: -1;
+}
+
+.hero-waves-top {
+  transform: rotate(180deg);
+}
+
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hoverMove {
+  0% {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  100% {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.mission-vision-section {
+  padding: 40px;
+  background-color: #062489;
+  text-align: center;
+  justify-content: center;
+}
+
+.mission-vision-section h2.section-title {
+  color: #a6ce38;
+  font-size: 36px;
+  margin-bottom: 50px;
+}
+
+.mission-vision-section p.section-description {
+  color: #cbe5ff;
+  font-size: 18px;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+
+.mission-vision-section .cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+.mission-vision-section .card {
+  background: #a6ce38;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100px;
+  width: 290px;
+
+}
+
+.mission-vision-section .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.mission-vision-section .card h3.card-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #062489;
+  height: 50px;
+  align-content: center;
+}
+
+.mission-vision-section .card .register-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #062489;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.mission-vision-section .card .register-btn:hover {
+  background-color: #fb6837;
+}
+
+.register-container {
+  background: linear-gradient(to bottom, #062489 50%, #f8f9fa 50%);
+  margin-top: 40px;
+  margin-bottom: 4px;
+}
+
+
+.footer-small {
+  background-color: #181818; /* Color de fondo */
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  margin-top: 50px;
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Espacio entre los elementos */
+
+    .logo-container {
+      align-items: center;
+      
+      .logo {
+        width: 150px; /* Ajusta según el tamaño deseado del logo */
+        height: auto;
+        margin-right: 40px;
+        margin-bottom: 15px;
+        margin-top: 40px;
+      }
+
+      .footer-name {
+        font: 600 30px / 35px Roboto;
+        margin-bottom: 3px;
+      }
+    }
+
+    .footer-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0px 0;
+      display: flex;
+      gap: 15px;
+
+      a {
+        color: white;
+        text-decoration: none;
+        font: 50 20px / 35px Roboto;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #f0450f;
+        }
+      }
+    }
+  }
+}
