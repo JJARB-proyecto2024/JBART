@@ -1,11 +1,12 @@
-<div class="container mt-5 form-container">
+<app-background-particles></app-background-particles>
+<div class="form-container">
     <div class="text-center">
         <img src="../../../../assets/icons/jbart-logo.png" alt="Logo" class="logo">
-        <h1>Registro de Marca</h1>
-        <p style="color: #AEAEAE;">Completa el siguiente formulario para registrar tu marca.</p>
+        <h1 class="title">Registro de Marca</h1>
     </div>
     <form (ngSubmit)="handleSignup($event)" autocomplete="off" #frm="ngForm">
         <div class="row">
+            <!-- Campos del formulario -->
             <div class="col-md-6 mb-3">
                 <label for="legalId" class="form-label">Cédula Jurídica</label>
                 <input #legalId="ngModel" type="text" class="form-control" id="legalId" name="legalId"
