@@ -18,10 +18,10 @@ export class ViewOptionsComponent {
   }
 
   navigateToCategories() {
-    this.router.navigate(['app/product-types']);
+    this.router.navigate(['app/products-recommended-categories']);
   }
 
   navigateToBrands() {
-    this.router.navigate(['app/brands-avaliable']);
+    this.router.navigate(['app/products-recommended-brands']);
   }
 }
