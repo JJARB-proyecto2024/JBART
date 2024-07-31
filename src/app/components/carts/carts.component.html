@@ -1,12 +1,29 @@
 <div class="d-flex align-items-center">
   <i class="fa-solid fa-cart-shopping"></i>
-  <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+  <span *ngIf="carts.length > 0" class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
     <span class="visually-hidden">New alerts</span>
   </span>
 
 </div>
-<div class="d-flex flex-column onhover-show-div">
-  <div *ngFor="let item of carts">
-    <div>{{item.product?.name}}</div>
+<div class="d-flex flex-column onhover-show-div rounded-3">
+  <div class="py-3 px-3 bg-light">Carrito de compras</div>
+
+  <div *ngIf="carts.length === 0" class="py-2">
+    <p class="text-center">No hay productos agregados al carrito</p>
+  </div>
+  <div *ngIf="carts.length > 0">
+    <div *ngFor="let item of carts | slice:0:3; let i = index" class="d-flex flex-column border-bottom">
+      <div class="d-flex flex-row py-2 px-2 align-items-center">
+        <div class="mx-2">
+          <img [src]="item.product?.picture" alt="">
+        </div>
+        <div class="mx-2">
+          <div>{{ item.product?.name }}</div>
+          <div> Costo: ${{ item.product?.price }}</div>
+          <div> Cantidad: {{ item.quantity }}</div>
+          <a type="button" class="my-2 btn btn-primary">Ver producto</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
