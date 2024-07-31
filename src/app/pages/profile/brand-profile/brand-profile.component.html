@@ -1,15 +1,16 @@
 <div class="row">
-    <h1 class="mt-3">Perfil</h1>
-    <div class="row border bg-white m-2 p-4 rounded-3">
+    <h1 class="titulo">Perfil</h1>
+   
+    <div class="row border color m-2 p-4 rounded-3">
         <div class="col-md-6">
           <img [src]="brandProfileService.user$().logoType ? brandProfileService.user$().logoType : 'https://res.cloudinary.com/drlznypvr/image/upload/t_profile%20pic/v1721246303/profile-sample.avif'" class="rounded-circle" id="picture"/>
         </div>
         <div class="col-md-6 d-flex align-items-center justify-content-end">
-            <button (click)="openCloudinaryWidget()" type="button" class="btn btn-dark m-2">Subir nueva imagen</button>
-            <button (click)="handleRemoveImg()" type="button" class="btn btn-danger">Eliminar</button>
+            <button (click)="openCloudinaryWidget()" type="button" class="btn btn-add m-2">Subir nueva imagen</button>
+            <button (click)="handleRemoveImg()" type="button" class="btn btn-del">Eliminar</button>
         </div>
     </div>
-    <div class="row border bg-white m-2 p-4 rounded-3">
+    <div class="row border  m-2 p-4 rounded-3">
         <div class="col-md-6 mt-3">
             <label for="name" class="form-label">Direccion del local principal</label>
             <input #mainLocationAddress="ngModel" type="text" class="form-control" id="mainLocationAddress"
@@ -63,7 +64,7 @@
             }
         </div>
         <div class="col-md-6 mt-4 align-content-end">
-            <button (click)="handleFormAction();" type="button" class="btn btn-dark">Guardar</button>
+            <button (click)="handleFormAction();" type="button" class="btn btn-add">Guardar</button>
         </div>
     </div>
 </div>
