@@ -1,0 +1,14 @@
+<div>
+    <h2 class="titulo">Productos Recomendados</h2>
+  </div>
+  <div class="divisor">
+  </div>
+  <section class="section-products">
+    @defer {
+        <app-product-recommended-list
+        [itemList]="productService.items$()"
+        />
+      } @loading (after 100ms; minimum 1s){
+        <app-loader></app-loader>
+      }
+  </section>
