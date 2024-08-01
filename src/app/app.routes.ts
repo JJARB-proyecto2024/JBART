@@ -169,6 +169,7 @@ export const routes: Routes = [
         component: CategoriesComponent,
         data: { 
           authorities: [
+            IRole.admin, 
             IRole.superAdmin
           ],
           showInSidebar: true,
@@ -182,7 +183,6 @@ export const routes: Routes = [
         canActivateChild: [AdminRoleGuard],
         data: { 
           authorities: [
-            IRole.superAdmin,
             IRole.userBrand
           ],
           showInSidebar: true,
@@ -197,7 +197,7 @@ export const routes: Routes = [
             IRole.superAdmin,
             IRole.user
           ],
-          showInSidebar: true,
+          showInSidebar: false,
           name: 'Productos Recomendados'
         }
       },
@@ -209,7 +209,7 @@ export const routes: Routes = [
             IRole.superAdmin,
             IRole.user
           ],
-          showInSidebar: true,
+          showInSidebar: false,
           name: 'Productos por Categoria'
         }
       },
@@ -221,30 +221,7 @@ export const routes: Routes = [
             IRole.superAdmin,
             IRole.user
           ],
-          showInSidebar: true,
-          name: 'Productos por Marcas'
-        }
-      },
-      {
-        path: 'products-recommended-categories',
-        component: ProductsRecommendedCategoriesComponent,
-        data: { 
-          authorities: [
-            IRole.superAdmin,
-            IRole.user
-          ],
-          showInSidebar: true,
-          name: 'Productos por Categoria'
-        }
-      },
-      {
-        path: 'products-recommended-brands',
-        component: ProductsRecommendedBrandsComponent,
-        data: { 
-          authorities: [
-            IRole.superAdmin
-          ],
-          showInSidebar: true,
+          showInSidebar: false,
           name: 'Productos por Marcas'
         }
       },
@@ -264,7 +241,6 @@ export const routes: Routes = [
         component: BrandOrdersComponent,
         data: {
           authorities: [
-            IRole.superAdmin,
             IRole.userBrand
           ],
           showInSidebar: true,
@@ -296,7 +272,6 @@ export const routes: Routes = [
         component: UserOrdersComponent,
         data: {
           authorities: [
-            IRole.superAdmin,
             IRole.user
           ],
           showInSidebar: true,
@@ -377,7 +352,8 @@ export const routes: Routes = [
         component: ViewOptionsComponent,
         data: { 
           authorities: [
-            IRole.user
+            IRole.user,
+            IRole.superAdmin
           ],
           showInSidebar: true,
           name: 'Productos'
