@@ -1,0 +1,40 @@
+/* Estilo general para el contenedor del logo y botones */
+.logo-wrapper {
+  background-color: #212427; /* Color de fondo del contenedor del logo y botones */
+  padding: 1rem; /* Espaciado interno */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color:#ffffff !important;
+}
+
+/* Estilo para el contenedor del logo icono */
+.logo-icon-wrapper {
+  background-color: #212427; /* Color de fondo del contenedor del logo icono */
+  padding: 1rem; /* Espaciado interno */
+}
+
+/* Estilo para el menú del sidebar */
+.sidebar-main {
+  background-color: #212427; /* Color de fondo del sidebar */
+  height: 100vh; /* Altura completa de la ventana */
+  overflow-y: auto; /* Desplazamiento vertical si es necesario */
+}
+
+.page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li .sidebar-link.active {
+  transition: 0.5s;
+  position: relative;
+  margin-bottom: 10px;
+  background-color: rgb(33 52 72) !important;
+}
+
+.sidebar-menu a.active {
+  background-color: #007bff !important;
+  color: #ffffff !important;
+}
+
+/* Estilo para los enlaces en el sidebar */
+.sidebar-link {
+  color: #ffffff !important; /* Color del texto */
+  text-decoration: none; /* Elimina el subrayado del enlace */
+}

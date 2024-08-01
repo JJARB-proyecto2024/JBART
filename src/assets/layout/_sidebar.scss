@@ -1274,12 +1274,14 @@
   }
   .sidebar-main-title {
     h6 {
-      font-size: 14px;
+      font-size: 18px;
       font-weight: 600;
-      color: $theme-body-sub-title-color;
+      color: white;
       text-transform: uppercase;
-      margin-bottom: 0;
+      margin-bottom: 5px;
       letter-spacing: 0.4px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #4f5962; /* Línea divisoria inferior */
     }
   }
 
@@ -1519,8 +1521,7 @@
 
               li {
                 a {
-                  font-weight: 500;
-
+                  font: 200 18px / 22px Roboto, sans-serif;
                   svg {
                     width: 18px;
                     height: 18px;
@@ -1533,7 +1534,7 @@
                   span {
                     letter-spacing: 0.7px;
                     text-transform: capitalize;
-                    color: rgba($theme-body-sub-title-color, 0.8);
+                    color: white;
                   }
 
                   &.link-nav {
@@ -1641,8 +1642,8 @@
                               }
 
                               span {
-                                color: var(--theme-default);
-                                transition: all 0.3s ease;
+                                color: rgba($primary-color, 0.9);
+                                transition: all 0.1s ease;
                               }
 
                               .according-menu {
@@ -1912,7 +1913,8 @@
                             transition: all 0.5s ease;
                             position: relative;
                             margin-bottom: 10px;
-                            background-color: lighten($primary-color, 27%);
+                            background-color: rgba($primary-color, 0.5);
+
                             &::after {
                               opacity: 1;
                               visibility: visible;
@@ -1930,8 +1932,8 @@
                             }
 
                             span {
-                              color: var(--theme-default);
                               transition: all 0.3s ease;
+                              color: #ffffff; // Color blanco para el texto
                             }
                           }
                         }

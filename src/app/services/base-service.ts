@@ -23,8 +23,28 @@ export class BaseService<T> {
     return this.http.get<IResponse<T[]>>(this.source, { params: { s } });
   }
 
+  public findAllProductsBrand(s: string = ''): Observable<IResponse<T[]>> {
+    return this.http.get<IResponse<T[]>>(this.source + '/brands', { params: { s } });
+  }
+
+  public findByBrand(id: number | undefined): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source + '/brand' + '/' + id);
+  }
+
+  public findByCategory(id: number | undefined): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source + '/category' + '/' + id);
+  }
+
+  public findProductsLanding(s: string = ''): Observable<IResponse<T[]>> {
+    return this.http.get<IResponse<T[]>>('auth/products', { params: { s } });
+  }
+
   public findBrandActive(s: string = ''): Observable<IResponse<T[]>> {
     return this.http.get<IResponse<T[]>>(this.source + '/active', { params: { s } });
+  }
+
+  public findBrandActiveLanding(s: string = ''): Observable<IResponse<T[]>> {
+    return this.http.get<IResponse<T[]>>('auth/brands', { params: { s } });
   }
 
   public findBrandByNewRequest(s: string = ''): Observable<IResponse<T[]>> {

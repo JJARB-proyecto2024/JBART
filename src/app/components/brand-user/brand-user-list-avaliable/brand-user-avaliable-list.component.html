@@ -1,28 +1,5 @@
 <div class="container mt-4">
   
-  <div class="row row-title">
-    <div  class="col-6 mb-2">
-        <h2>Marcas Disponibles</h2>
-    </div>
-    <div  class="col-6 mb-2">
-        <!-- Paginación -->
-  <nav aria-label="Page navigation" class="mt-4">
-    <ul class="pagination justify-content-center">
-      <li class="page-item" [ngClass]="{'disabled': currentPage === 1}">
-        <a class="page-link" (click)="goToPage(currentPage - 1)">Anterior</a>
-      </li>
-      <li class="page-item" *ngFor="let page of [].constructor(Math.ceil(itemList.length / itemsPerPage)); let i = index"
-          [ngClass]="{'active': currentPage === i + 1}">
-        <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
-      </li>
-      <li class="page-item" [ngClass]="{'disabled': currentPage === Math.ceil(itemList.length / itemsPerPage)}">
-        <a class="page-link" (click)="goToPage(currentPage + 1)">Siguiente</a>
-      </li>
-    </ul>
-  </nav>
-    </div>
-  </div>
-  
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div *ngFor="let item of paginatedList; trackBy: trackById" class="col">
       <div class="card h-100">
@@ -34,16 +11,44 @@
             <strong>Calificación:</strong>
             <igc-rating [value]="item.rate" min="0" max="5" readonly="true"></igc-rating>
           </p>
-          <button type="button" (click)="viewProducts(item)" class="btn btn-primary">
-            Ver Productos
-          </button>
-          <button type="button" (click)="showDetailModal(item, modal)" class="btn btn-secondary">
-            Calificar
-          </button>
+          <div class="row">
+              <div class="col-6 der">
+                <button (click)="viewProducts(item)" class="btn btn-primary">
+                  Ver Productos
+                </button>
+              </div>
+              <div class="col-6 izq">
+                <button (click)="showDetailModal(item, modal)" class="btn btn-secondary">
+                  Calificar
+                </button>
+              </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-12 mb-2">
+      <!-- Paginación -->
+      <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [ngClass]="{'disabled': currentPage === 1}">
+            <a class="page-link" (click)="goToPage(currentPage - 1)">Anterior</a>
+          </li>
+          <li class="page-item" *ngFor="let page of [].constructor(Math.ceil(itemList.length / itemsPerPage)); let i = index"
+              [ngClass]="{'active': currentPage === i + 1}">
+            <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
+          </li>
+          <li class="page-item" [ngClass]="{'disabled': currentPage === Math.ceil(itemList.length / itemsPerPage)}">
+            <a class="page-link" (click)="goToPage(currentPage + 1)">Siguiente</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+
   <!-- Modal para calificar -->
   <app-modal #modal>
     <div class="modalE">

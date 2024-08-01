@@ -3,6 +3,8 @@
     <h2>Tipos de productos disponibles</h2>
   </div>
   <div class="row">
-      <app-category-cards [categoryList]="categoryService.items$()"/>
+    <app-category-cards [categoryList]="categoryService.items$()"
+                        (categorySelected)="onCategorySelected($event)">
+    </app-category-cards>
   </div>
 </div>

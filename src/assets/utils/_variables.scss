@@ -6,8 +6,9 @@ $body-color: #f8f8f8;
 $main-body-color: #f7f8f9;
 
 // Theme colors variables
-$primary-color: #7366ff;
-$secondary-color: #ff3364;
+$grey-color: #4b545c;
+$primary-color: #007bff;
+$secondary-color: #fb6837;
 $success-color: #54ba4a;
 $info-color: #16c7f9;
 $warning-color: #ffaa05;
@@ -46,17 +47,17 @@ $dropdown-border-color: #918e99;
 $gradient-primary: linear-gradient(
   26deg,
   var(--theme-default) 0%,
-  #a26cf8 100%
+  #007bffa1 100%
 );
 $gradient-bg-primary: linear-gradient(
   103.75deg,
-  #33b1ee -13.9%,
+  #0098e4 -13.9%,
   var(--theme-default) 79.68%
 );
 
 //social colors
 $fb: #50598e;
-$twitter: #6fa2d8;
+$twitter: #387bc3;
 $google-plus: #c64e40;
 $linkedin: #0077b5;
 

@@ -1,0 +1,24 @@
+.titulo {
+  font: 600 40px / 35px Roboto;
+  color: #4b545c;
+  margin-bottom: 6px !important; 
+  padding-top: 75px;
+  padding-left: 58px;
+}
+
+.divisor {
+  position: relative;
+  margin-bottom: 40px; /* Espacio para la línea */
+}
+
+.divisor::after {
+  content: "";
+  display: block;
+  width: 7%; /* Ajusta el ancho de la línea */
+  border-bottom: 2.8px solid #4a4d54; /* Línea divisoria */
+  position: absolute;
+  bottom: 0;
+  left: 3.5%; /* Ajusta para centrar la línea */
+  right: 40%;
+  top: 0;
+}

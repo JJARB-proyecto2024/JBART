@@ -3,6 +3,7 @@ import { BaseService } from './base-service';
 import { IBuyerUser, IOtp, IResponse } from '../interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -55,22 +56,40 @@ export class OtpService extends BaseService<IOtp> {
     });
   }
 
-
   public resetPasswordOTP(email: string, otpCode: string, newPassword: string) {
-    this.http.post<any>(`${this.source}/resetPassword`, { email, otpCode, newPassword }).subscribe({
-      next: (response: any) => {
-        this.snackBar.open('Contraseña restablecida exitosamente', 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['success-snackbar']
-        });
+    this.http.post<boolean>(`${this.source}/resetPassword`, { email, otpCode, newPassword }).subscribe({
+      next: (response: boolean) => {
+        if (response === false) {
+          // Manejar el caso en el que el servidor devuelve false
+          Swal.fire({
+            title: '¡Error!',
+            text: 'No se pudo restablecer la contraseña. Verifica el OTP y el correo electrónico.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+          });
+        } else {
+          // Caso en el que el servidor devuelve true
+          Swal.fire({
+            title: 'Éxito!',
+            text: 'Contraseña restablecida exitosamente',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+          })
+        }
       },
       error: (error: any) => {
-        console.error('Error resetting password', error);
-        this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
+        console.error('Error restableciendo contraseña:', error);
+        let errorMessage = 'Error restableciendo contraseña';
+        if (error && error.status === 403) {
+          errorMessage = 'Acceso denegado. No tienes permisos para restablecer la contraseña.';
+        } else if (error && error.error && error.error.description) {
+          errorMessage = error.error.description;
+        }
+        Swal.fire({
+          title: '¡Error!',
+          text: errorMessage,
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
         });
       }
     });
