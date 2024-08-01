@@ -178,8 +178,6 @@ export const routes: Routes = [
       {
         path: 'products',
         component: ProductsComponent,
-        canActivate: [UserBrandRoleGuard],
-        canActivateChild: [AdminRoleGuard],
         data: { 
           authorities: [
             IRole.superAdmin,
