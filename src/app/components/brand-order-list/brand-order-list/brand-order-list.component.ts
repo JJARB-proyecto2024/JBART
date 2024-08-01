@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
 import { OrderBrandFormComponent } from '../brand-order-form/brand-order-form.component';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-brand-order-list',
@@ -58,6 +59,15 @@ export class BrandOrderListComponent implements OnChanges {
 
   hideModal(modal: any) {
     modal.hide();
+  }
+
+  showSuccessAlert() {
+    Swal.fire({
+      title: 'Éxito',
+      text: 'La orden se ha actualizado con éxito',
+      icon: 'success',
+      confirmButtonText: 'Aceptar'
+    });
   }
 
 }

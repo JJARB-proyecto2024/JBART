@@ -97,4 +97,12 @@ export class BaseService<T> {
     return this.http.get<IResponse<T>>(this.source+  '/rate/' + brandId);
   }
 
+  public findOrdersForBrand(s: string = ''): Observable<IResponse<T[]>> {
+    return this.http.get<IResponse<T[]>>(this.source + '/brand', { params: { s } });
+  }
+
+  public findOrdersForUser(s: string = ''): Observable<IResponse<T[]>> {
+    return this.http.get<IResponse<T[]>>(this.source + '/user', { params: { s } });
+  }
+
 }

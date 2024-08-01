@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from './base-service';
-import { IOrder } from '../interfaces';
+import { IOrder, IResponse } from '../interfaces';
 import { Observable, catchError, of, tap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -55,39 +55,36 @@ export class OrderService extends BaseService<IOrder> {
   }
 
 
-  public getOrdersListForBrand(): Observable<IOrder[]> {
-    return this.http.get<IOrder[]>(`${this.source}/brand`).pipe(
-      tap((response: IOrder[]) => {
-        this.orderListSignal.set(response.reverse());
+  public getOrdersListForBrand(): Observable<any> {
+    return this.findOrdersForBrand().pipe(
+      tap((response: any) => {
+        if (response && response.data) {
+          const sortedOrders = response.data; // Ordenar de mayor a menor
+          this.orderListSignal.set(sortedOrders);
+        }
       }),
       catchError((error: any) => {
         console.error('Error fetching orders for brand', error);
-        /*this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });*/
         return of([]); // Devuelve un observable con un array vacío en caso de error
       })
     );
   }
 
-  public getOrdersListForUser(): Observable<IOrder[]> {
-    return this.http.get<IOrder[]>(`${this.source}/user`).pipe(
-      tap((response: IOrder[]) => {
-        this.orderListSignal.set(response.reverse());
+  public getOrdersListForUser(): Observable<any> {
+    return this.findOrdersForUser().pipe(
+      tap((response: any) => {
+        if (response && response.data) {
+          const sortedOrders = response.data; // Ordenar de mayor a menor
+          this.orderListSignal.set(sortedOrders);
+        }
       }),
       catchError((error: any) => {
-        console.error('Error fetching orders for user', error);
-        /*this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });*/
+        console.error('Error fetching orders for brand', error);
         return of([]); // Devuelve un observable con un array vacío en caso de error
       })
     );
   }
+
 
   public updateStat(item: IOrder) {
     if (item.id !== undefined && item.status !== undefined) {
