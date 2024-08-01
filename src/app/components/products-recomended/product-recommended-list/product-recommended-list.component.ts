@@ -5,7 +5,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { defineComponents, IgcRatingComponent } from 'igniteui-webcomponents';
 
 defineComponents(IgcRatingComponent);
@@ -30,6 +30,7 @@ export class ProductRecommendedListComponent implements OnInit{
   @Input() areActionsAvailable: boolean = false;
   public productService: ProductService = inject(ProductService);
   public Math = Math;
+  public router: Router = inject(Router);
 
   paginatedList: IProduct[] = [];
   currentPage: number = 1;
@@ -65,6 +66,9 @@ export class ProductRecommendedListComponent implements OnInit{
   viewProducts(item: IProduct) {
     // Redirige a la página de productos
     //window.location.href = `/products/${item.id}`;
+  }
+  buyProduct(item: IProduct) {
+    this.router.navigate(['/app/payment'], { state: { product: item } });
   }
 
 }
