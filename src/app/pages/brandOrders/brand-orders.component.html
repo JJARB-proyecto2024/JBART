@@ -1,9 +1,10 @@
 <div class="container-fluid">
-  <h2>Órdenes</h2>
+  <div>
+    <h2 class="titulo">Listado de Ordenes</h2>
+  </div>
+  <div class="divisor">
+  </div>
   <div *ngIf="!isLoading && orders.length > 0">
-    <app-brand-order-list
-      [brandOrderList]="orders"
-      [areActionsAvailable]="false"
-    ></app-brand-order-list>
+    <app-brand-order-list [brandOrderList]="orders" [areActionsAvailable]="false"></app-brand-order-list>
   </div>
 </div>
