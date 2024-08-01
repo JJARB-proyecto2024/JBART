@@ -1,0 +1,36 @@
+<div class="table-container table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Comprador</th>
+        <th scope="col">Dirección</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Fecha de creación</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of userOrderList; trackBy: trackByFn">
+        <th scope="row">{{order.id}}</th>
+        <td>{{order.product?.name}}</td>
+        <td>{{order.product?.price}}</td>
+        <td>{{order.product?.userBrand?.brandName}}</td>
+        <td>{{order.userBuyer?.name}} {{order.userBuyer?.lastname}}</td>
+        <td>{{order.deliveryLocation}}</td>
+        <td>{{order.status}}</td>
+        <td>{{order.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+        <td>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <button type="button" (click)="showOrderDetails(order)" class="btn btn-secondary">
+              <i class="fa-solid fa-eye white"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

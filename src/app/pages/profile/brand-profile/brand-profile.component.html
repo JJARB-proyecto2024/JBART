@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="row border color m-2 p-4 border-title">
+        <div class="col-7">
+            <div>
+                <h2 class="titulo">Perfil</h2>
+              </div>
+              <div class="divisor">
+              </div>
+        </div>
+        <div class="col-5">
+            <div class="row">
+                <div class="col-md-12 align-items-center justify-content-end">
+                    <img [src]="brandProfileService.user$().logoType ? brandProfileService.user$().logoType : 'https://res.cloudinary.com/drlznypvr/image/upload/t_profile%20pic/v1721246303/profile-sample.avif'" class="rounded-circle" id="picture"/>
+                  </div>
+                  <div class="col-md-12 d-flex align-items-center justify-content-end">
+                      <button (click)="openCloudinaryWidget()" type="button" class="btn btn-add m-2">Subir nueva imagen</button>
+                      <button (click)="handleRemoveImg()" type="button" class="btn btn-del">Eliminar</button>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="row border  m-2 p-4 rounded-3">
+        <div class="col-md-6 mt-3">
+            <label for="name" class="form-label">Direccion del local principal</label>
+            <input #mainLocationAddress="ngModel" type="text" class="form-control" id="mainLocationAddress"
+                name="mainLocationAddress" [(ngModel)]="brandProfileService.user$().mainLocationAddress" [ngClass]="{
+          'is-invalid': mainLocationAddress.invalid && mainLocationAddress.touched,
+          'is-valid': mainLocationAddress.valid && mainLocationAddress.touched
+        }" required>
+            @if(mainLocationAddress.invalid) {
+            <div *ngIf="mainLocationAddress.invalid" class="invalid-feedback">
+                Por favor, añade la dirección de tu local principal
+            </div>
+            }
+        </div>
+        <div class="col-md-6 mt-3">
+            <label for="name" class="form-label">Categorias</label>
+            <input #brandCategories="ngModel" type="text" class="form-control" id="brandCategories"
+                name="brandCategories" [(ngModel)]="brandProfileService.user$().brandCategories" [ngClass]="{
+          'is-invalid': brandCategories.invalid && brandCategories.touched,
+          'is-valid': brandCategories.valid && brandCategories.touched}" required>
+            @if (brandCategories.invalid) {
+            <div *ngIf="brandCategories.invalid" class="invalid-feedback">
+                Por favor, añade las categorias de tu marca
+            </div>
+            }
+        </div>
+        <div class="col-md-6 mt-4 align-content-end">
+            <button (click)="handleFormAction();" type="button" class="btn btn-add">Guardar</button>
+        </div>
+    </div>
+</div>

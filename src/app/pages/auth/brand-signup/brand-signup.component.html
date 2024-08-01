@@ -1,0 +1,130 @@
+<app-background-particles></app-background-particles>
+<div class="form-container">
+    <div class="text-center">
+        <a class="logo text-center" routerLink="/">
+          <img
+            width="250"
+            class="img-fluid"
+            src="../../../../assets/icons/jbart-logo.png"
+            alt="Logo"
+          />
+        </a>
+      </div>
+    <form (ngSubmit)="handleSignup($event)" autocomplete="off" #frm="ngForm">
+        <div class="mb-3">
+            <h4 class="titulo">Registrarse</h4>
+            <div class="divisor"></div>
+          </div>
+        <div class="row">
+            <!-- Campos del formulario -->
+            <div class="col-md-6 mb-3">
+                <label for="legalDocuments" class="form-label">Documentos Legales</label>
+                <div class="input-group">
+                    <input #legalDocuments="ngModel" type="hidden" class="form-control" id="legalDocuments"
+                        name="legalDocuments" [(ngModel)]="userBrand.legalDocuments" required>
+                    <button type="button" class="btn btn-up" (click)="openCloudinaryWidget()">Subir
+                        Documento</button>
+                </div>
+                <div *ngIf="logoType.invalid" class="invalid-feedback">
+                    El Logotipo es requerido
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="logoType" class="form-label">Logotipo</label>
+                <div class="input-group">
+                    <input #logoType="ngModel" type="hidden" class="form-control" id="logoType" name="logoType"
+                        [(ngModel)]="userBrand.logoType" required>
+                    <button type="button" class="btn btn-up" (click)="openCloudinaryWidget()">Subir
+                        Logotipo</button>
+                </div>
+                <div *ngIf="logoType.invalid" class="invalid-feedback">
+                    El Logotipo es requerido
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="legalId" class="form-label">Cédula Jurídica</label>
+                <input #legalId="ngModel" type="text" class="form-control" id="legalId" name="legalId"
+                    placeholder="Ingrese Cédula Jurídica" [(ngModel)]="userBrand.legalId" [ngClass]="{
+                    'is-invalid': legalId.invalid && legalId.touched,
+                    'is-valid': legalId.valid && legalId.touched
+                }" minlength="9" maxlength="9" required>
+                <div *ngIf="legalId.invalid" class="invalid-feedback">
+                    La Cédula Jurídica es requerida, debe contener 9 dígitos
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="brandCategory" class="form-label">Categorías de la Marca</label>
+                <input #brandCategory="ngModel" type="text" class="form-control" id="brandCategory" name="brandCategory"
+                    placeholder="Ingrese Categorías de la Marca" [(ngModel)]="userBrand.brandCategories" [ngClass]="{
+                    'is-invalid': brandCategory.invalid && brandCategory.touched,
+                    'is-valid': brandCategory.valid && brandCategory.touched
+                }" required>
+                <div *ngIf="brandCategory.invalid" class="invalid-feedback">
+                    Las Categorías de la Marca son requeridas
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="brandName" class="form-label">Nombre de la Marca</label>
+                <input #brandName="ngModel" type="text" class="form-control" id="brandName" name="brandName"
+                    placeholder="Ingrese Nombre de la Marca" [(ngModel)]="userBrand.brandName" [ngClass]="{
+                    'is-invalid': brandName.invalid && brandName.touched,
+                    'is-valid': brandName.valid && brandName.touched
+                }" required>
+                <div *ngIf="brandName.invalid" class="invalid-feedback">
+                    El Nombre de la Marca es requerido
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input #email="ngModel" type="email" class="form-control" id="email" name="email"
+                    placeholder="example@gmail.com" [(ngModel)]="userBrand.email" [ngClass]="{
+                    'is-invalid': email.invalid && email.touched,
+                    'is-valid': email.valid && email.touched
+                }" required>
+                <div *ngIf="email.invalid" class="invalid-feedback">
+                    El Correo Electrónico es requerido
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="legalRepresentativeName" class="form-label">Nombre del Representante Legal</label>
+                <input #legalRepresentativeName="ngModel" type="text" class="form-control" id="legalRepresentativeName"
+                    name="legalRepresentativeName" placeholder="Ingrese Nombre del Representante Legal"
+                    [(ngModel)]="userBrand.legalRepresentativeName" [ngClass]="{
+                    'is-invalid': legalRepresentativeName.invalid && legalRepresentativeName.touched,
+                    'is-valid': legalRepresentativeName.valid && legalRepresentativeName.touched
+                }" pattern="[a-zA-Z\s]+" required>
+                <div *ngIf="legalRepresentativeName.invalid" class="invalid-feedback">
+                    El Nombre del Representante Legal es requerido y debe contener solo letras
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input #password="ngModel" type="password" class="form-control" id="password" name="password"
+                    placeholder="Ingrese Contraseña" [(ngModel)]="userBrand.password" [ngClass]="{
+                    'is-invalid': password.invalid && password.touched,
+                    'is-valid': password.valid && password.touched
+                }" minlength="8" maxlength="10" required>
+                <div *ngIf="password.invalid" class="invalid-feedback">
+                    La Contraseña es requerida, debe contener entre 8 y 10 caracteres
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="mainLocationAddress" class="form-label">Dirección del Local Principal</label>
+                <input #mainLocationAddress="ngModel" type="text" class="form-control" id="mainLocationAddress"
+                    name="mainLocationAddress" placeholder="Ingrese Dirección del Local Principal"
+                    [(ngModel)]="userBrand.mainLocationAddress" [ngClass]="{
+                    'is-invalid': mainLocationAddress.invalid && mainLocationAddress.touched,
+                    'is-valid': mainLocationAddress.valid && mainLocationAddress.touched
+                }" required>
+                <div *ngIf="mainLocationAddress.invalid" class="invalid-feedback">
+                    La Dirección del Local Principal es requerida
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-dark">Registrar</button>
+            <p *ngIf="signUpError" class="text-danger">{{signUpError}}</p>
+            <p *ngIf="validSignup" class="text-success">{{validSignup}}</p>
+        </div>
+    </form>
+</div>

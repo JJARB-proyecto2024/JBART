@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ILoginResponse, IResponse, IUser } from '../interfaces';
+import { IAuthority, IBuyerUser , IBrandUser, ILoginResponse, IResponse, IRoleType, IUser } from '../interfaces';
 import { Observable, firstValueFrom, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -77,7 +77,7 @@ export class AuthService {
     let permittedRoutes: any[] = [];
     for (const route of routes) {
       if(route.data && route.data.authorities) {
-        if (this.hasAnyRole(route.data.authorities)) {
+        if (this.hasAnyRole(route.data.authorities) && route.data.showInSidebar) {
           permittedRoutes.unshift(route);
         } 
       }
@@ -89,10 +89,42 @@ export class AuthService {
     return this.http.post<ILoginResponse>('auth/signup', user);
   }
 
+  public signupBrand(brand: IBrandUser): Observable<ILoginResponse> {
+    return this.http.post<ILoginResponse>('auth/signup/brand', brand);
+  }
+
+  public signupBuyer(buyer: IBuyerUser): Observable<ILoginResponse> {
+    return this.http.post<ILoginResponse>('auth/signup/buyer', buyer);
+  }
+
   public logout() {
     this.accessToken = '';
     localStorage.removeItem('access_token');
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('auth_user');
+  }
+
+  public getUserAuthorities(): IAuthority[] | undefined {
+    return this.getUser()?.authorities;
+  }
+
+  public areActionsAvailable(routeAuthorities: string[]): boolean  {
+    
+    let allowedUser: boolean = false;
+    let isAdmin: boolean = false;
+    
+    let userAuthorities = this.getUserAuthorities();
+    // se valida que sea una ruta permitida para el usuario
+    for (const authority of routeAuthorities) {
+      if (userAuthorities?.some(item => item.authority == authority) ) {
+        allowedUser = userAuthorities?.some(item => item.authority == authority)
+      }
+      if (allowedUser) break;
+    }
+    // se valida que el usuario tenga un rol de administración
+    if (userAuthorities?.some(item => item.authority == IRoleType.superAdmin)) {
+      isAdmin = userAuthorities?.some(item => item.authority == IRoleType.superAdmin);
+    }
+    return allowedUser && isAdmin;
   }
 }

@@ -1,0 +1,41 @@
+<form class="container">
+  <div>
+    <h2 class="titulo">{{ action }}</h2>
+  </div>
+  <div class="divisor">
+  </div>
+  
+  <div class="row">
+    <div class="row-6 mb-2">
+      <input #name="ngModel" type="text" class="form-control" id="name" name="name" 
+        placeholder="Nombre"
+        [(ngModel)]="category.name" 
+        [ngClass]="{ 
+          'is-invalid': name.invalid && name.touched,
+          'is-valid': name.valid && name.touched
+        }" 
+        required 
+      />
+    </div>
+    <div class="row-6 mb-2">
+      <input #description="ngModel" type="text" class="form-control" id="description" name="description" 
+        placeholder="Descripción"
+        [(ngModel)]="category.description" 
+        [ngClass]="{ 
+          'is-invalid': description.invalid && description.touched,
+          'is-valid': description.valid && description.touched
+        }" 
+        required 
+      />
+    </div>
+    <div class="col-12 text-center d-grid">
+      <button
+      (click)="callEvent();"
+      type="button"
+      class="btn btn-up d-flex align-items-center">
+      <p class="mb-0"> {{action}} </p>
+    </button>
+    </div>
+  </div>
+  
+</form>

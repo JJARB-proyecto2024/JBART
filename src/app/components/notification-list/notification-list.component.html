@@ -1,0 +1,30 @@
+<div class="table-container table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Título</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Fecha</th>
+        <th class="text-center" scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of notifications; track $index) {
+      <tr>
+        <th scope="row">{{item.id}}</th>
+        <td>{{item.title}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</td>
+        <td>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <button (click)="deleteNotification(item)" type="button" class="btn btn-danger">
+              <i class="fa-solid fa-trash white"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

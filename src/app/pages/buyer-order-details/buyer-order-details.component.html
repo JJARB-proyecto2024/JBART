@@ -1,0 +1,34 @@
+<div class="row-md-12 my-2">
+  <h2 class="my-2">Orden #{{this.orderService.order.id}}</h2>
+  <p> {{this.orderService.order.createdAt | date: 'dd/MM/yyyy'}}</p>
+  <div class="row p-2 justify-content-start">
+    <div class="col-md-12 border p-3 bg-white rounded-3">
+      <h2>Informacion de la marca</h2>
+      <div>
+        <img *ngIf="this.orderService.order.product?.userBrand?.logoType"
+          [src]="this.orderService.order.product?.userBrand?.logoType" class="mb-2" alt="">
+        <p>Marca: {{this.orderService.order.product?.userBrand?.brandName}}</p>
+        <p>Correo electrónico: {{this.orderService.order.product?.userBrand?.email}}</p>
+        <p>Direccion del local: {{this.orderService.order.product?.userBrand?.mainLocationAddress}}</p>
+      </div>
+    </div>
+    <div class="col-md-12 border my-4 p-3 bg-white rounded-3">
+      <h2>Información del producto</h2>
+      <div>
+        <img *ngIf="this.orderService.order.product?.picture" [src]="this.orderService.order.product?.picture"
+          class="mb-2" alt="">
+        <p>Producto: #{{ this.orderService.order.product?.id + ' - ' + this.orderService.order.product?.name}}</p>
+        <p>Cantidad solicitada: {{this.orderService.order.quantity}}</p>
+        <p>Precio del producto: ${{this.orderService.order.total}}</p>
+        <p>Precio del envio: ${{this.orderService.order.shippingCost}}</p>
+        <p>Dirección de envio: {{this.orderService.order.deliveryLocation}}</p>
+        <p>Ubicacion actual: {{this.orderService.order.currentLocation}}</p>
+        <p>Estado: {{this.orderService.order.status}}</p>
+        <p>Fecha de creación: {{this.orderService.order.createdAt | date: 'dd/MM/yyyy'}}</p>
+      </div>
+    </div>
+    <div class="col-md-12 bg-white border p-3 rounded-3">
+      <h2>Ubicación actual del pedido</h2>
+      <app-order-map [order]="this.orderService.order" />
+    </div>
+  </div>

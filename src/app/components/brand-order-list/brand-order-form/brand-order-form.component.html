@@ -1,0 +1,38 @@
+<form class="container">
+  <div>
+    <h2>{{ action }}</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-6 mb-2">
+      <label for="orderStatus" class="form-label mb-2">Estado de la orden</label>
+      <select #orderStatus="ngModel" class="form-select" id="orderStatus" name="orderStatus" [(ngModel)]="order.status"
+        [ngClass]="{
+          'is-invalid': orderStatus.invalid && orderStatus.touched,
+          'is-valid': orderStatus.valid && orderStatus.touched
+        }"
+        required>
+        <!-- Placeholder -->
+        <option [ngValue]="null" disabled selected>Seleccione un estado</option>
+        <!-- Mostrar la el estado seleccionada previamente -->
+        <option *ngIf="order.status" [ngValue]="order.status">{{order.status}}</option>
+        <!-- Opciones de estado -->
+        <option *ngFor="let statusOption of statusOptions" [ngValue]="statusOption">
+          {{statusOption}}
+        </option>
+      </select>
+      <div *ngIf="orderStatus.invalid && orderStatus.touched" class="invalid-feedback">
+        Por favor, selecciona un estado para la orden
+      </div>
+    </div>
+
+    <div class="col-6">
+      <button
+        (click)="callEvent()"
+        type="button"
+        class="btn btn-primary d-flex align-items-center">
+        <p class="mb-0">{{ action }}</p>
+      </button>
+    </div>
+  </div>
+</form>

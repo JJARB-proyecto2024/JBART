@@ -1,0 +1,16 @@
+.rating {
+    font-size: 1.9rem;
+    color: #ccc; /* Color de estrella vacía */
+  }
+  
+  .rating .filled {
+    color: #ffd700; /* Color de estrella llena */
+  }
+  
+  .rating .empty {
+    color: #ccc; /* Color de estrella vacía */
+  }
+  
+  .rating span {
+    cursor: pointer;
+  }

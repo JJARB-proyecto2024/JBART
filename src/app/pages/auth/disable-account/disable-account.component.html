@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>Desactivar cuenta</h1>
+    <p>Ingresa tu contraseña para desactivar tu cuenta.</p>
+    <form (ngSubmit)="handleFormSubmit($event)" #frm="ngForm">
+      <div class="mb-3">
+        <label for="password">Contraseña:</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          placeholder="Ingresa tu contraseña"
+          [(ngModel)]="password"
+          #passwordModel="ngModel"
+          required
+        >
+        <div *ngIf="passwordModel.invalid && passwordModel.touched" class="invalid-feedback">
+          La contraseña es requerida.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-danger" [disabled]="frm.invalid">Desactivar cuenta</button>
+    </form>
+    <p class="warning">¿Estás seguro de que quieres desactivar tu cuenta?</p>
+  </div>
+  

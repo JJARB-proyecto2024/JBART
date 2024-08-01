@@ -1,0 +1,36 @@
+#particles-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000022;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#particles-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #062489;
+  z-index: -1;
+  pointer-events: none;
+}
+:host {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
