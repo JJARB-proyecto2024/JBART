@@ -25,3 +25,20 @@
    width: 200px;
    height: 200px;
   }
+
+  .color{
+    background-color: #212529 !important;
+  }
+
+  .titulo {
+    font: 600 40px / 35px Roboto;
+    color: #4b545c;
+    padding-left: 16px;
+    margin-bottom: 40px !important; 
+    margin-top: 30px !important;
+  }
+
+  .divisor {
+    position: relative;
+    margin-bottom: 40px; /* Espacio para la línea */
+  }
