@@ -130,15 +130,19 @@ export interface IOrder {
   createdAt?: string;
 }
 
+export interface ICart {
+  id?: number;
+  product?: IProduct;
+  userBuyer?: IBuyerUser;
+  quantity?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface ISales {
   productName?: string;
   category?: string;
   quantitySold?: number;
-}
-
-export interface IGeocoding {
-  lat: string;
-  lon: string;
 }
 
 export interface IAuthority {

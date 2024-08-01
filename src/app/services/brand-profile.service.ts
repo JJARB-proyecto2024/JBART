@@ -27,13 +27,13 @@ export class BrandProfileService extends BaseService<IBrandUser>{
   updateUserProfileInfo(user: IBrandUser) {
     this.editProfile(user.id, user).subscribe({
       next: (response: any) => {
-        this.snackBar.open('Profile updated successfully', 'Close', {
+        this.snackBar.open('Perfil actualizado correctamente', 'Cerrar', {
           duration: 2000
         });
         this.userBrandSignal.set(response);
       },
       error: (error: any) => {
-        this.snackBar.open('Profile update failed', 'Close', {
+        this.snackBar.open('Error al actualizar perfil', 'Cerrar', {
           duration: 2000
         });
         throwError(error);

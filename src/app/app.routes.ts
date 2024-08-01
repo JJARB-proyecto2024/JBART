@@ -32,6 +32,9 @@ import { auto } from '@cloudinary/url-gen/actions/resize';
 import { SalesComponent } from './pages/sales/sales.component';
 import { name } from '@cloudinary/url-gen/actions/namedTransformation';
 import { BrandOrderDetailsComponent } from './pages/brand-order-details/brand-order-details.component';
+import { BuyerOrderDetails } from './pages/buyer-order-details/buyer-order-details.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { NotificationListComponent } from './components/notification-list/notification-list.component';
 import { LandingTeamComponent } from './pages/landingTeam/landingTeam.component';
 import { LandingProductComponent } from './pages/landingProduct/landingProduct.component';
 import { RegisterOptionsComponent } from './pages/register-options/register-options.component';
@@ -149,6 +152,18 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'notifications',
+        component: NotificationsComponent,
+        data: { 
+          authorities: [
+            IRole.admin, 
+            IRole.superAdmin,
+            IRole.user
+          ],
+          name: 'Notifications'
+        }
+      },
+      {
         path: 'categories',
         component: CategoriesComponent,
         data: { 
@@ -208,6 +223,29 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'products-recommended-categories',
+        component: ProductsRecommendedCategoriesComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin,
+            IRole.user
+          ],
+          showInSidebar: true,
+          name: 'Productos por Categoria'
+        }
+      },
+      {
+        path: 'products-recommended-brands',
+        component: ProductsRecommendedBrandsComponent,
+        data: { 
+          authorities: [
+            IRole.superAdmin
+          ],
+          showInSidebar: true,
+          name: 'Productos por Marcas'
+        }
+      },
+      {
         path: 'orders',
         component: OrdersComponent,
         data: { 
@@ -236,6 +274,16 @@ export const routes: Routes = [
         data: {
           authorities: [
             IRole.userBrand
+          ],
+          name: 'Brand Order Details'
+        }
+      },
+      {
+        path: 'buyer-order-details/:id',
+        component: BuyerOrderDetails,
+        data: {
+          authorities: [
+            IRole.user
           ],
           name: 'Brand Order Details'
         }
