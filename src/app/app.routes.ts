@@ -41,6 +41,7 @@ import { RegisterOptionsComponent } from './pages/register-options/register-opti
 import { ViewOptionsComponent } from './pages/product-options/product-options.component';
 import { ProductsRecommendedCategoriesComponent } from './pages/productsRecommendedCategories/productsRecommendedCategories.component';
 import { ProductsRecommendedBrandsComponent } from './pages/productsRecommendedBrands/productsRecommendedBrands.component';
+import { UserBrandRoleGuard } from './guards/user-brand-role.guard';
 
 export const routes: Routes = [
   {
@@ -177,6 +178,8 @@ export const routes: Routes = [
       {
         path: 'products',
         component: ProductsComponent,
+        canActivate: [UserBrandRoleGuard],
+        canActivateChild: [AdminRoleGuard],
         data: { 
           authorities: [
             IRole.superAdmin,
@@ -360,6 +363,7 @@ export const routes: Routes = [
       {
         path: 'sales',
         component: SalesComponent,
+        canActivate: [UserBrandRoleGuard],
         data: { 
           authorities: [
             IRole.userBrand
