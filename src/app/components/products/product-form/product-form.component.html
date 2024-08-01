@@ -1,4 +1,4 @@
-<form class="container">
+<form class="container" #form="ngForm">
   <div>
     <h2 class="titulo">{{ action }}</h2>
   </div>
@@ -12,8 +12,8 @@
           alt="">
       </div>
       <div class="col-12 mb-3">
-        <button (click)="openCloudinaryWidget()" class="btn btn-up btn-block me-2">Añadir imagen</button>
-        <button (click)="handleRemoveImg()" class="btn btn-del btn-block">Eliminar imagen</button>
+        <button type="button" (click)="openCloudinaryWidget()" class="btn btn-dark btn-block me-2">Añadir imagen</button>
+        <button type="button" (click)="handleRemoveImg()" class="btn btn-danger btn-block">Eliminar imagen</button>
       </div>
     </div>
     <div class="row-6 mb-2">
@@ -23,8 +23,10 @@
         [ngClass]="{ 
           'is-invalid': name.invalid && name.touched,
           'is-valid': name.valid && name.touched
-        }" required 
-      />
+        }" required />
+      <div *ngIf="name.invalid && name.touched" class="invalid-feedback">
+        Por favor añade un nombre al producto
+      </div>
     </div>
     <div class="row-6 mb-2">
       <input #price="ngModel" type="number" class="form-control" id="price" name="price" 
@@ -33,8 +35,10 @@
         [ngClass]="{ 
           'is-invalid': price.invalid && price.touched,
           'is-valid': price.valid && price.touched
-        }" required 
-      />
+        }" required />
+      <div *ngIf="price.invalid && price.touched" class="invalid-feedback">
+        Por favor, establece un precio al producto
+      </div>
     </div>
     <div class="row-6 mb-2">
       <input #quantityInStock="ngModel" type="number" class="form-control" id="quantityInStock" name="quantityInStock"
@@ -43,8 +47,10 @@
         [ngClass]="{ 
           'is-invalid': quantityInStock.invalid && quantityInStock.touched,
           'is-valid': quantityInStock.valid && quantityInStock.touched
-        }" required 
-      />
+        }" required />
+      <div *ngIf="quantityInStock.invalid && quantityInStock.touched" class="invalid-feedback">
+        Por favor, establece una cantidad en stock
+      </div>
     </div>
     <div class="row-6 mb-4">
       <select #category="ngModel" class="form-select" id="category" name="category"
@@ -53,10 +59,8 @@
         'is-invalid': category.invalid && category.touched,
         'is-valid': category.valid && category.touched
       }" required>
-        <!-- Placeholder -->
-        <option [ngValue]="null" enabled selected>Seleccione una categoria</option>
         <!-- Mostrar la categoría seleccionada previamente -->
-        <option *ngIf="product.category" [ngValue]="product.category">{{ product.category.description }}</option>
+        <option [ngValue]="product.category">{{product.category?.description}}</option>
         <!-- Mostrar las demás categorías, excluyendo la seleccionada previamente -->
         <ng-container *ngFor="let category of categories">
           <option *ngIf="!product.category || product.category.id !== category.id" [ngValue]="category">
@@ -64,6 +68,9 @@
           </option>
         </ng-container>
       </select>
+      <div *ngIf="category.invalid && category.touched" class="invalid-feedback">
+        Por favor, selecciona una categoria para el producto
+      </div>
     </div>
     <div class="col-12 text-center d-grid">
       <button (click)="callEvent();" 

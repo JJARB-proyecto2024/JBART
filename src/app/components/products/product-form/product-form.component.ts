@@ -1,16 +1,10 @@
-import { Component, EventEmitter, Input, Output, effect, inject } from '@angular/core';
-import { IFeedBackMessage, IProduct, ICategory, IFeedbackStatus } from '../../../interfaces';
+import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges, ViewChild, AfterViewInit, inject } from '@angular/core';
+import { IProduct, ICategory } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { ModalComponent } from '../../modal/modal.component';
-import { CategoryService } from '../../../services/category.service';
-import { ProductService } from '../../../services/product.service';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
-import { UserService } from '../../../services/user.service';
-import { BrandUserService } from '../../../services/brand-user.service';
 import { BrandProfileService } from '../../../services/brand-profile.service';
-declare const cloudinary: any; 
+declare const cloudinary: any;
+
 @Component({
   selector: 'app-product-form',
   standalone: true,
@@ -19,20 +13,29 @@ declare const cloudinary: any;
     FormsModule
   ],
   templateUrl: './product-form.component.html',
-  styleUrl: './product-form.component.scss'
+  styleUrls: ['./product-form.component.scss']
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit {
   @Input() product: IProduct = {};
   @Input() action = '';
-  @Output() callParentEvent: EventEmitter<IProduct> = new EventEmitter<IProduct>()
-  public brandUserService: BrandProfileService = inject(BrandProfileService)
-  @Input() categories: ICategory[] = []
+  @Output() callParentEvent: EventEmitter<IProduct> = new EventEmitter<IProduct>();
+  public brandUserService: BrandProfileService = inject(BrandProfileService);
+  @Input() categories: ICategory[] = [];
+  @ViewChild('form') form!: NgForm;
 
   ngOnInit() {
     this.brandUserService.getUserProfileInfo();
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['categories']) {
+      this.resetForm()
+      this.product.category = this.categories[0];
+    }
+  }
+
   callEvent() {
-    this.product.status = 'Activo'
+    this.product.status = 'Activo';
     this.product.userBrand = {
       id: this.brandUserService.user$().id,
       role: this.brandUserService.user$().role
@@ -45,8 +48,8 @@ export class ProductFormComponent {
   }
 
   openCloudinaryWidget() {
-    cloudinary.openUploadWidget({ 
-      cloudName: 'drlznypvr', 
+    cloudinary.openUploadWidget({
+      cloudName: 'drlznypvr',
       uploadPreset: 'ml_default'
     }, (error: any, result: any) => {
       if (!error && result && result.event === 'success') {
@@ -56,4 +59,14 @@ export class ProductFormComponent {
     });
   }
 
+  resetForm() {
+    if (this.form) {
+      this.form.form.markAsUntouched();
+    }
+    this.product = {
+      name: '',
+      picture: '',
+      category: this.categories[0],
+    };
+  }
 }

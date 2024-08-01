@@ -1,4 +1,4 @@
-import { Component, effect, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, effect, inject, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { CategoryService } from '../../../services/category.service';
 import { IProduct, ICategory } from '../../../interfaces';
@@ -10,6 +10,7 @@ import { CategoryFormComponent } from '../../category/category-from/category-for
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { OrderMapComponent } from "../../order-map/order-map.component";
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class ProductListComponent implements OnChanges{
   public selectedItem: IProduct = {};
   public productService: ProductService = inject(ProductService);
   public categoryService: CategoryService = inject(CategoryService);
+  @ViewChild('detailModal') detailModal!: ModalComponent;
   constructor(private datePipe: DatePipe) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -51,6 +53,15 @@ export class ProductListComponent implements OnChanges{
   }
 
   handleFormAction(item: IProduct) {
+    this.productService.update(item).subscribe(() => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Producto actualizado correctamente',
+        text: 'El producto ha sido actualizado exitosamente.',
+        timer: 2000
+      });
+      this.detailModal.hide();
+    });
     this.productService.update(item);
   }
 

@@ -35,33 +35,6 @@
             </div>
             }
         </div>
-        <div class="col-md-6 mt-3">
-            <label for="email" class="form-label">Correo electrónico</label>
-            <input #email="ngModel" type="email" class="form-control" id="email" name="email"
-                [(ngModel)]="brandProfileService.user$().email" [ngClass]="{
-          'is-invalid': email.invalid && email.touched,
-          'is-valid': email.valid && email.touched
-          }" required>
-            @if (email.invalid) {
-            <div *ngIf="email.invalid" class="invalid-feedback">
-                Por favor, añade un correo electrónico válido
-            </div>
-            }
-        </div>
-        <div class="col-md-6 mt-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input #password="ngModel" type="password" class="form-control" id="password" name="password"
-                value="{{brandProfileService.user$().password}}" [(ngModel)]="brandProfileService.user$().password"
-                [ngClass]="{
-          'is-invalid': password.invalid && password.touched,
-          'is-valid': password.valid && password.touched
-        }" required>
-            @if (password.invalid) {
-            <div *ngIf="password.invalid" class="invalid-feedback">
-                Por favor, añade una contraseña válida
-            </div>
-            }
-        </div>
         <div class="col-md-6 mt-4 align-content-end">
             <button (click)="handleFormAction();" type="button" class="btn btn-dark">Guardar</button>
         </div>

@@ -19,6 +19,10 @@ export class BaseService<T> {
     return this.http.get<IResponse<T>>(this.source + '/user/' + id);
   }
 
+  public findCarts(id: string | number): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source + '/user/' + id);
+  }
+
   public findAll(s: string = ''): Observable<IResponse<T[]>> {
     return this.http.get<IResponse<T[]>>(this.source, { params: { s } });
   }
@@ -77,7 +81,7 @@ export class BaseService<T> {
 
   // Método para actualizar una entidad usando PUT a una ruta específica
   public updateStatus(id: number, status: string): Observable<IResponse<T>> {
-    return this.http.put<IResponse<T>>(this.source + '/upStatus/'+ id, { status });
+    return this.http.put<IResponse<T>>(this.source + '/upStatus/' + id, { status });
   }
 
   // Método especializado para generar OTP usando POST a una ruta específica
@@ -86,15 +90,15 @@ export class BaseService<T> {
   }
 
   public resetPassword(email: string, otpCode: string, newPassword: string): Observable<IResponse<T>> {
-    return this.http.post<IResponse<T>>(this.source+  '/resetPassword', { email, otpCode, newPassword });
+    return this.http.post<IResponse<T>>(this.source + '/resetPassword', { email, otpCode, newPassword });
   }
-  
+
   public disableAccount(user: IBuyerUser): Observable<string> {
-    return this.http.put<string>(`${this.source}/deactivate`, user , { responseType: 'text' as 'json' });
+    return this.http.put<string>(`${this.source}/deactivate`, user, { responseType: 'text' as 'json' });
   }
 
   public hasRatedBrand(brandId: number | undefined): Observable<IResponse<T>> {
-    return this.http.get<IResponse<T>>(this.source+  '/rate/' + brandId);
+    return this.http.get<IResponse<T>>(this.source + '/rate/' + brandId);
   }
 
 }
