@@ -24,6 +24,8 @@
   img{
     width: 200px;
     height: 200px;
+    float: right;
+    margin-bottom: 10px;
    }
   
   .color{
@@ -32,7 +34,7 @@
 
   .titulo {
     font: 600 40px / 35px Roboto;
-    color: #4b545c;
+    color: white;
     padding-left: 16px;
     margin-bottom: 40px !important; 
     margin-top: 30px !important;
@@ -42,3 +44,8 @@
     position: relative;
     margin-bottom: 40px; /* Espacio para la línea */
   }
+
+  .border-title {
+    border-radius: 10px;
+  }
+
