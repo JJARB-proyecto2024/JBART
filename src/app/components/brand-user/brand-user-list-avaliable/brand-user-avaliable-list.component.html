@@ -2,7 +2,7 @@
   
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div *ngFor="let item of paginatedList; trackBy: trackById" class="col">
-      <div class="card h-100">
+      <div class="card h-100" (click)="viewProducts(item)">
         <img [src]="item.logoType" class="card-img-top" alt="Logo de {{ item.brandName }}">
         <div class="card-body">
           <h5 class="card-title">{{ item.brandName }}</h5>
@@ -13,12 +13,12 @@
           </p>
           <div class="row">
               <div class="col-6 der">
-                <button (click)="viewProducts(item)" class="btn btn-primary">
+                <button (click)="viewProducts(item)" class="btn btn-add">
                   Ver Productos
                 </button>
               </div>
               <div class="col-6 izq">
-                <button (click)="showDetailModal(item, modal)" class="btn btn-secondary">
+                <button (click)="showDetailModal(item, modal)" class="btn btn-see">
                   Calificar
                 </button>
               </div>
