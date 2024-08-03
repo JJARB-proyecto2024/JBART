@@ -10,9 +10,18 @@
             <strong>Calificación:</strong>
             <igc-rating [value]="item.rate" min="0" max="5" readonly="true"></igc-rating>
           </p>
-          <!--<button type="button" (click)="viewProducts(item)" class="btn btn-add">
-            Ver Productos
-          </button>-->
+          <div class="row">
+            <div class="col-6 der">
+              <button (click)="viewProducts(item)" class="btn btn-add">
+                Ver Productos
+              </button>
+            </div>
+            <div class="col-6 izq">
+              <button (click)="showDetailModal(item, modal)" class="btn btn-see">
+                Calificar
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -38,4 +47,17 @@
     </div>
   </div>
   
+  <!-- Modal para calificar -->
+  <app-modal #modal>
+    <div class="modalE">
+      <div class="modal-body">
+        <h2 class="modal-title">Calificar a {{ selectedItem.name }}</h2>
+        <change-rating [rating]="ratingValue"  (ratingChange)="handleRatingChange($event)"></change-rating>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="handleFormAction($event, modal)">Calificar</button>
+      </div>
+    </div>
+  </app-modal>
+
 </div>

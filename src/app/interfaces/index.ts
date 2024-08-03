@@ -69,6 +69,18 @@ export interface IRateBrand {
   userBrand : IBrandUser;
 }
 
+export interface IRateProduct {
+  id?: number;
+  rate?: number;
+  product : IProduct;
+}
+
+export interface IRateOrder {
+  id?: number;
+  rate?: number;
+  order : IOrder;
+}
+
 export interface IPayment {
   intent: string;
   method: string;

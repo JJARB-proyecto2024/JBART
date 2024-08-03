@@ -13,12 +13,12 @@
           </p>
           <div class="row">
               <div class="col-6 der">
-                <button (click)="viewProducts(item)" class="btn btn-add">
+                <button (click)="viewProducts(item)" class="btn btn-primary">
                   Ver Productos
                 </button>
               </div>
               <div class="col-6 izq">
-                <button (click)="showDetailModal(item, modal)" class="btn btn-see">
+                <button (click)="showDetailModal(item, modal)" class="btn btn-secondary">
                   Calificar
                 </button>
               </div>
@@ -52,12 +52,8 @@
   <!-- Modal para calificar -->
   <app-modal #modal>
     <div class="modalE">
-      <div class="modal-header">
-        <h5 class="modal-title">Calificar a {{ selectedItem.brandName }}</h5>
-      </div>
       <div class="modal-body">
-        <label for="rating">Calificación:</label>
-        <br>
+        <h2 class="modal-title">Calificar a {{ selectedItem.brandName }}</h2>
         <change-rating [rating]="ratingValue"  (ratingChange)="handleRatingChange($event)"></change-rating>
       </div>
       <div class="modal-footer">
