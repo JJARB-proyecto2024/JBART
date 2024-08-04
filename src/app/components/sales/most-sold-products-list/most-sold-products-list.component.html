@@ -17,7 +17,10 @@
                 <td>{{item.category}}</td>
                 <td>{{item.quantitySold}}</td>
             </tr>
-            }
+            } @empty {
+            <tr>
+                <td colspan="6" class="text-center">No hay productos vendidos</td>
+                }
         </tbody>
     </table>
 </div>

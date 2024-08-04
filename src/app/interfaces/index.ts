@@ -157,6 +157,12 @@ export interface ISales {
   quantitySold?: number;
 }
 
+export interface IEarnings {
+  id?: number;
+  name?: string;
+  earnings?: number;
+}
+
 export interface IAuthority {
   authority: string;
 }
