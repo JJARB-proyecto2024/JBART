@@ -38,21 +38,23 @@ export class OrderService extends BaseService<IOrder> {
     });
   }
 
-  public getOrderByID(id: number) {
-    this.find(id).subscribe({
-      next: (response: any) => {
+  public getOrderByID(id: number): Observable<any> {
+    return this.find(id).pipe(
+      tap((response: any) => {
         this.orderSignal.set(response);
-      },
-      error: (error: any) => {
+      }),
+      catchError((error: any) => {
         console.error('Error fetching order by id', error);
         this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
         });
-      }
-    });
+        return throwError(error);
+      })
+    );
   }
+  
 
 
   public getOrdersListForBrand(): Observable<any> {
@@ -86,30 +88,21 @@ export class OrderService extends BaseService<IOrder> {
   }
 
 
-  public updateStat(item: IOrder) {
+  updateStat(item: IOrder): Observable<any> {
     if (item.id !== undefined && item.status !== undefined) {
-      this.updateStatus(item.id, item.status).subscribe({
-        next: (response: any) => {
-          const updatedItems = this.orderListSignal().map(o => o.id === item.id ? { ...o, status: item.status } : o);
+      return this.updateStatus(item.id, item.status).pipe(
+        tap((response: any) => {
+          const updatedItems = this.orderListSignal().map(u => u.id === item.id ? { ...u, status: item.status } : u);
           this.orderListSignal.set(updatedItems);
-          console.log(updatedItems);
-        },
-        error: (error: any) => {
+        }),
+        catchError((error: any) => {
           console.error('Error in updating order status', error);
-          /*this.snackBar.open(error.error.description, 'Close', {
-            horizontalPosition: 'right',
-            verticalPosition: 'top',
-            panelClass: ['error-snackbar']
-          });*/
-        }
-      });
+          return throwError(error);
+        })
+      );
     } else {
-      console.error('Order id or status is undefined');
-      /*this.snackBar.open('Order id or status is undefined', 'Close', {
-        horizontalPosition: 'right',
-        verticalPosition: 'top',
-        panelClass: ['error-snackbar']
-      });*/
+      console.error('Item id or status is undefined');
+      return new Observable<any>();
     }
   }
 

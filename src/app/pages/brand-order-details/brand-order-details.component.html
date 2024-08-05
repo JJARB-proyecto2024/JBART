@@ -20,7 +20,17 @@
         <p>Precio del envio: ${{this.orderService.order.shippingCost}}</p>
         <p>Dirección de envio: {{this.orderService.order.deliveryLocation}}</p>
         <p>Ubicacion actual: {{this.orderService.order.currentLocation}}</p>
-        <p>Estado: {{this.orderService.order.status}}</p>
+        <label for="orderStatus" class="form-label mb-2">Estado de la orden</label>
+        <select class="form-select" id="orderStatus" name="orderStatus" [(ngModel)]="order.status" required>
+            <option [ngValue]="null" disabled>Seleccione un estado</option>
+            <option *ngIf="order.status" [ngValue]="order.status">{{order.status}}</option>
+            <option *ngFor="let statusOption of statusOptions" [ngValue]="statusOption">
+                {{statusOption}}
+            </option>
+        </select>
+        <button (click)="updateOrderStatus()" type="button" class="btn btn-primary d-flex align-items-center my-2">
+          <p class="mb-0">Actualizar Estado</p>
+        </button>
         <p>Fecha de creación: {{this.orderService.order.createdAt | date: 'dd/MM/yyyy'}}</p>
       </div>
     </div>
@@ -29,3 +39,4 @@
       <app-order-map [order]="this.orderService.order" />
     </div>
   </div>
+</div>
