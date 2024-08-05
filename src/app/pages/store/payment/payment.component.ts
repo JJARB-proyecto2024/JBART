@@ -21,6 +21,7 @@ export class PaymentComponent implements OnInit {
   public areActionsAvailable: boolean = false;
   public authService: AuthService = inject(AuthService);
   public routeAuthorities: string[] = [];
+  public router: Router = inject(Router);
 
   ngOnInit(): void {
     this.product = history.state.product;
@@ -72,6 +73,7 @@ export class PaymentComponent implements OnInit {
         }).then((res) => res.json())
           .then((details) => {
             console.log(('Authorization created for ' + details.payer_given_name));
+            this.router.navigate(['/app/user-orders']);
           });
       },
       onCancel: (data, actions) => {
