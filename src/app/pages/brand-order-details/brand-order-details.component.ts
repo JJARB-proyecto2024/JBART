@@ -5,6 +5,8 @@ import { IOrder } from '../../interfaces';
 import { OrderMapComponent } from '../../components/order-map/order-map.component';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-order-details',
@@ -27,7 +29,7 @@ export class BrandOrderDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute) {
 
   }
-  
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.orderId = params['id'];
@@ -44,15 +46,36 @@ export class BrandOrderDetailsComponent implements OnInit {
     if (this.order && this.order.id && this.order.status) {
       this.orderService.updateStat(this.order).subscribe({
         next: (response: any) => {
+          Swal.fire({
+            title: 'Éxito',
+            text: 'Estado de la orden actualizado',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          }).then(() => {
+            // Opcional: Realiza alguna acción después de cerrar el alert
+            // Por ejemplo, redirigir a otra página o actualizar la vista
+          });
           console.log('Estado de la orden actualizado', response);
         },
         error: (error: any) => {
+          Swal.fire({
+            title: 'Error',
+            text: 'Error al actualizar el estado de la orden',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
           console.error('Error al actualizar el estado de la orden', error);
         }
       });
     } else {
-      console.error('Order id or status is undefined', this.order);
+      Swal.fire({
+        title: 'Advertencia',
+        text: 'El id o el estado de la orden están indefinidos',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar'
+      });
     }
   }
+  
   
 }
