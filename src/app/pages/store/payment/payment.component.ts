@@ -39,6 +39,7 @@ export class PaymentComponent implements OnInit {
     }
 
     const { name, price } = this.product;
+    const currency = 'USD';
 
     this.payPalConfig = {
       clientId: `${environment.Client_ID}`,
@@ -48,12 +49,16 @@ export class PaymentComponent implements OnInit {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${this.authService.getAccessToken()?.replace(/"/g, '')}`,
         },
-        body: JSON.stringify([
-          { name,
-            price,
-            quantity: 1,
-          },
-        ])
+        body: JSON.stringify({
+          items: [
+            {
+              name,
+              price,
+              quantity: 1,
+            },
+          ],
+          currency: currency
+        })
       })
         .then((res) => res.json())
         .then((order) => {
