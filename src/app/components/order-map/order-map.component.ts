@@ -19,7 +19,11 @@ export class OrderMapComponent {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['order']) {
-      this.getCoordinates(this.order.currentLocation)
+      if (!this.order.currentLocation) {
+        this.getCoordinates(this.order.product?.userBrand?.mainLocationAddress)
+      } else {
+        this.getCoordinates(this.order.currentLocation)
+      }
     }
   }
 
@@ -29,7 +33,7 @@ export class OrderMapComponent {
       try {
         const response = await fetch(url);
         const data = await response.json();
-  
+
         if (data && data.length > 0) {
           const location = data[0];
           this.latitude = parseFloat(location.lat);
