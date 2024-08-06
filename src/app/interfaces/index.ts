@@ -42,6 +42,12 @@ export interface IBrandUser {
   role?: IRole;
 }
 
+export interface IChatbot {
+  id: number;
+  question: string;
+  answer: string;
+}
+
 export interface IBuyerUser {
   id?: number;
   name?: number;

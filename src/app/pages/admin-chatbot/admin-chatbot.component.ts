@@ -6,34 +6,37 @@ import { ModalComponent } from '../../components/modal/modal.component';
 import { CategoryService } from '../../services/category.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { ICategory } from '../../interfaces';
+import { ICategory, IChatbot } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { ChatbotService } from '../../services/chatbot.service';
+import { ChatbotListComponent } from '../../components/chatbot/chatbot-list/chatbot-list.component';
+import { ChatbotFormComponent } from '../../components/chatbot/chatbot-form/chatbot-form.component';
 import { ChatbotFloatingComponent } from '../../components/chatbot/chatbot-floating/chatbot-floating.component';
 
 @Component({
-  selector: 'app-categories',
+  selector: 'app-admin-chatbot',
   standalone: true,
   imports: [
-    CategoryListComponent,
+    ChatbotListComponent,
     LoaderComponent,
     CommonModule,
     ModalComponent,
-    CategoryFormComponent,
+    ChatbotFormComponent,
     ChatbotFloatingComponent
   ],
-  templateUrl: './categories.component.html',
-  styleUrl: './categories.component.scss'
+  templateUrl: './admin-chatbot.component.html',
+  styleUrl: './admin-chatbot.component.scss'
 })
-export class CategoriesComponent implements OnInit{
-  public categoryService: CategoryService = inject(CategoryService);
+export class AdminChatbotComponent implements OnInit{
+  public chatbotService: ChatbotService = inject(ChatbotService);
   public route: ActivatedRoute = inject(ActivatedRoute);
   public areActionsAvailable: boolean = false;
   public authService: AuthService =  inject(AuthService);
   public routeAuthorities: string[] =  [];
 
   ngOnInit(): void {
-    this.categoryService.getAll();
+    this.chatbotService.getAll();
     this.route.data.subscribe( data => {
       this.routeAuthorities = data['authorities'] ? data['authorities'] : [];
       this.areActionsAvailable = this.authService.areActionsAvailable(this.routeAuthorities);
@@ -44,13 +47,13 @@ export class CategoriesComponent implements OnInit{
     modal.hide();
   }
 
-  handleFormAction(item: ICategory, modal: any) {
-    this.categoryService.save(item).subscribe({
+  handleFormAction(item: IChatbot, modal: any) {
+    this.chatbotService.save(item).subscribe({
       next: (response: any) => {
         // Mostrar mensaje de éxito
         Swal.fire(
           'Éxito',
-          'La categoría ha sido guardada exitosamente.',
+          'La pregunta ha sido guardada exitosamente.',
           'success'
         ).then(() => {
           // Ocultar el modal después de mostrar el mensaje de éxito
@@ -59,10 +62,9 @@ export class CategoriesComponent implements OnInit{
       },
       error: (error: any) => {
         // Manejar el error
-        console.error('Error saving category', error);
         Swal.fire(
           'Error',
-          'Hubo un problema al guardar la categoría.',
+          'Hubo un problema al guardar la pregunta.',
           'error'
         ).then(() => {
           // Ocultar el modal después de mostrar el mensaje de error
