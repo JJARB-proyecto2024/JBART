@@ -42,6 +42,7 @@ import { ViewOptionsComponent } from './pages/product-options/product-options.co
 import { ProductsRecommendedCategoriesComponent } from './pages/productsRecommendedCategories/productsRecommendedCategories.component';
 import { ProductsRecommendedBrandsComponent } from './pages/productsRecommendedBrands/productsRecommendedBrands.component';
 import { UserBrandRoleGuard } from './guards/user-brand-role.guard';
+import { EarningsComponent } from './pages/earnings/earnings.component';
 
 export const routes: Routes = [
   {
@@ -126,7 +127,7 @@ export const routes: Routes = [
             IRole.superAdmin
           ],
           showInSidebar: true,
-          name: 'Marcas'
+          name: 'Solicitudes de nuevas marcas'
         }
       },
       {
@@ -355,6 +356,19 @@ export const routes: Routes = [
           ],
           showInSidebar: true,
           name: 'Productos'
+        }
+      },
+      {
+        path: 'earnings',
+        component: EarningsComponent,
+        canActivate: [AdminRoleGuard],
+        data: { 
+          authorities: [
+            IRole.admin,
+            IRole.superAdmin
+          ],
+          showInSidebar: true,
+          name: 'Ganacias por Marca'
         }
       },
     ],

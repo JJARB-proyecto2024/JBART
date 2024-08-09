@@ -2,7 +2,7 @@
   
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div *ngFor="let item of paginatedList; trackBy: trackById" class="col">
-      <div class="card h-100">
+      <div class="card h-100" (click)="viewProducts(item)">
         <img [src]="item.logoType" class="card-img-top" alt="Logo de {{ item.brandName }}">
         <div class="card-body">
           <h5 class="card-title">{{ item.brandName }}</h5>
@@ -52,12 +52,8 @@
   <!-- Modal para calificar -->
   <app-modal #modal>
     <div class="modalE">
-      <div class="modal-header">
-        <h5 class="modal-title">Calificar a {{ selectedItem.brandName }}</h5>
-      </div>
       <div class="modal-body">
-        <label for="rating">Calificación:</label>
-        <br>
+        <h2 class="modal-title">Calificar a {{ selectedItem.brandName }}</h2>
         <change-rating [rating]="ratingValue"  (ratingChange)="handleRatingChange($event)"></change-rating>
       </div>
       <div class="modal-footer">
