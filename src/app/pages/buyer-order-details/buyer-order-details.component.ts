@@ -24,5 +24,6 @@ export class BuyerOrderDetails implements OnInit {
       this.orderId = params['id'];
     });
     this.orderService.getOrderByID(this.orderId);
+    console.log(this.orderService.order)
   }
 }

@@ -1,34 +1,102 @@
-<div class="row-md-12 my-2">
-  <h2 class="my-2">Orden #{{this.orderService.order.id}}</h2>
-  <p> {{this.orderService.order.createdAt | date: 'dd/MM/yyyy'}}</p>
-  <div class="row p-2 justify-content-start">
-    <div class="col-md-12 border p-3 bg-white rounded-3">
-      <h2>Informacion de la marca</h2>
-      <div>
-        <img *ngIf="this.orderService.order.product?.userBrand?.logoType"
-          [src]="this.orderService.order.product?.userBrand?.logoType" class="mb-2" alt="">
-        <p>Marca: {{this.orderService.order.product?.userBrand?.brandName}}</p>
-        <p>Correo electrónico: {{this.orderService.order.product?.userBrand?.email}}</p>
-        <p>Direccion del local: {{this.orderService.order.product?.userBrand?.mainLocationAddress}}</p>
-      </div>
-    </div>
-    <div class="col-md-12 border my-4 p-3 bg-white rounded-3">
-      <h2>Información del producto</h2>
-      <div>
-        <img *ngIf="this.orderService.order.product?.picture" [src]="this.orderService.order.product?.picture"
-          class="mb-2" alt="">
-        <p>Producto: #{{ this.orderService.order.product?.id + ' - ' + this.orderService.order.product?.name}}</p>
-        <p>Cantidad solicitada: {{this.orderService.order.quantity}}</p>
-        <p>Precio del producto: ${{this.orderService.order.total}}</p>
-        <p>Precio del envio: ${{this.orderService.order.shippingCost}}</p>
-        <p>Dirección de envio: {{this.orderService.order.deliveryLocation}}</p>
-        <p>Ubicacion actual: {{this.orderService.order.currentLocation}}</p>
-        <p>Estado: {{this.orderService.order.status}}</p>
-        <p>Fecha de creación: {{this.orderService.order.createdAt | date: 'dd/MM/yyyy'}}</p>
-      </div>
-    </div>
-    <div class="col-md-12 bg-white border p-3 rounded-3">
-      <h2>Ubicación actual del pedido</h2>
-      <app-order-map [order]="this.orderService.order" />
+<div class="d-flex flex-column p-2">
+  <div class="d-flex flex-row align-items-start flex-fill gap-3 mt-2">
+    <h2>Orden #{{orderService.order.id}}</h2>
+    <div class="d-flex flex-column align-items-center p-2 bg-info rounded-3">
+      {{orderService.order.status}}
     </div>
   </div>
+  <div class="my-2">
+    {{orderService.order.createdAt | date: 'dd/MM/yyyy hh:mm a'}}
+  </div>
+  <div class="d-flex flex-row gap-4 flex-wrap flex-wrap-reverse">
+    <div class="d-flex flex-column flex-fill">
+      <!-- Informacion del articulo -->
+      <div class="d-flex bg-white flex-row border p-4 rounded-3 gap-3 justify-content-start flex-wrap">
+        <div class="d-flex flex-column">
+          <h2 class>Información del articulo</h2>
+          <img class="rounded-3"
+            [src]="orderService.order.product?.picture ? orderService.order.product?.picture : 'https://res.cloudinary.com/drlznypvr/image/upload/v1723170702/g6douizuzdtcnbh6wlgq.jpg'"
+            alt="">
+        </div>
+        <div class="d-flex flex-row flex-fill justify-content-between align-items-center">
+          <div>
+            <p class="fs-5">{{orderService.order.product?.category?.description}}</p>
+            <h2 class="fs-4">{{orderService.order.product?.name}}</h2>
+          </div>
+          <div class="d-flex flex-row justify-content-end align-items-center gap-3">
+            <div class="border p-3 rounded-3 fs-4">
+              {{orderService.order.quantity}} x ${{orderService.order.product?.price}}
+            </div>
+            <div class="fs-4">
+              = ${{orderService.order.subtotal}}
+            </div>
+            <div>
+              <i class="fa-solid fa-trash" style="color: #db1414;"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Informacion de la orden -->
+      <div class="d-flex flex-column flex-fill border p-4 my-3 bg-white rounded-3 flex-wrap">
+        <div class="d-flex flex-column">
+          <h2>Información de la orden</h2>
+          <p class="fs-5">Resumen de precio a pagar de la orden</p>
+        </div>
+        <div class="d-flex flex-row justify-content-between my-2">
+          <div class="d-flex flex-column fs-5 gap-1">
+            <p>Subtotal:</p>
+            <p>Costo de envío:</p>
+            <p class="fw-bolder">Total</p>
+          </div>
+          <div class="d-flex flex-column gap-1 fs-5 align-items-end">
+            <div class="d-flex flex-row gap-1">
+              <p>{{orderService.order.quantity}} articulos = </p>
+              <p>${{orderService.order.subtotal}}</p>
+            </div>
+            <p>${{orderService.order.shippingCost}}</p>
+            <p class="fw-bolder">${{orderService.order.total}}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="d-flex flex-row flex-fill justify-content-between fs-5">
+          <div>
+            <p class="fw-bolder">Total pagado</p>
+          </div>
+          <div>
+            <p class="fw-bolder">${{orderService.order.total}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- Informacion de la ubicación -->
+      <div class="d-flex flex-column border p-4  bg-white rounded-3">
+        <div class="d-flex flex-column">
+          <h2>Ubicación actual del pedido</h2>
+          <app-order-map [order]="orderService.order"></app-order-map>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-column fs-5 gap-4 flex-fill">
+      <div class="d-flex flex-column border p-4 bg-white gap-2 rounded-3">
+        <h2>Informacion de la marca</h2>
+        <img class="rounded-3"
+          [src]="orderService.order.product?.userBrand?.logoType ? orderService.order.product?.userBrand?.logoType : 'https://res.cloudinary.com/drlznypvr/image/upload/c_fill,w_200,h_200/v1721447812/ch5sqtieivzzeaysvu8h.png'"
+          alt="">
+        <div class="my-2">
+          <p>Nombre: {{orderService.order.product?.userBrand?.brandName}}</p>
+          <p>Dirección del local: {{this.orderService.order.product?.userBrand?.mainLocationAddress}}</p>
+        </div>
+      </div>
+      <div class="d-flex flex-column border align-items-start p-4 bg-white gap-2 rounded-3">
+        <h2>Informacion de entrega</h2>
+        <p>{{orderService.order.userBuyer?.name + ' '
+          +orderService.order.userBuyer?.lastname}}</p>
+        <p>{{orderService.order.userBuyer?.email}}</p>
+        <p>Punto de recogida:
+          {{orderService.order.product?.userBrand?.mainLocationAddress}}</p>
+        <p *ngIf="orderService.order.currentLocation">
+          Dirección actual: {{orderService.order.currentLocation}}</p>
+        <p><i class="fas fa-map-pin"></i> Punto de entrega: {{orderService.order.deliveryLocation}}</p>
+      </div>
+    </div>
+  </div>
+</div>

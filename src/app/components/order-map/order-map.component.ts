@@ -18,8 +18,13 @@ export class OrderMapComponent {
   public orderService: OrderService = inject(OrderService);
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['order']) {
-      this.getCoordinates(this.order.currentLocation)
+    if (changes['order'] && this.order) {
+      const address = this.order.currentLocation || this.order.product?.userBrand?.mainLocationAddress;
+      if (address) {
+        this.getCoordinates(address);
+      } else {
+        console.warn('No hay una dirección definida para convertir a coordenadas');
+      }
     }
   }
 
@@ -29,7 +34,7 @@ export class OrderMapComponent {
       try {
         const response = await fetch(url);
         const data = await response.json();
-  
+
         if (data && data.length > 0) {
           const location = data[0];
           this.latitude = parseFloat(location.lat);
@@ -40,8 +45,6 @@ export class OrderMapComponent {
       } catch (error) {
         console.error('Error fetching coordinates:', error);
       }
-    } else {
-      console.error('Address is undefined.');
     }
   }
 }
