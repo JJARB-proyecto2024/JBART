@@ -43,6 +43,8 @@ import { ProductsRecommendedCategoriesComponent } from './pages/productsRecommen
 import { ProductsRecommendedBrandsComponent } from './pages/productsRecommendedBrands/productsRecommendedBrands.component';
 import { UserBrandRoleGuard } from './guards/user-brand-role.guard';
 import { EarningsComponent } from './pages/earnings/earnings.component';
+import { ActivateAccountSendEmailComponent } from './pages/auth/activate-account/activate-account-send-email/activate-account-send-email.component';
+import { ActivateAccountValidateComponent } from './pages/auth/activate-account/activate-account-validate/activate-account-validate.component';
 
 export const routes: Routes = [
   {
@@ -94,6 +96,15 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'landingTeam',
     pathMatch: 'full',
+  },
+  {
+    path: 'reset/status/email',
+    component: ActivateAccountSendEmailComponent
+  },
+  {
+    path: "reset/status/validate",
+    component: ActivateAccountValidateComponent,
+    canActivate: [GuestGuard],
   },
   {
     path: 'app',
