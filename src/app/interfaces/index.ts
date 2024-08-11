@@ -117,7 +117,6 @@ export interface INotification {
   notificationTemplate?: INotificationTemplate;
   seen?: boolean;
   user?: IUser;
-  redirectLink?: string;
   createdAt?: string;
   updatedAt?: string;
 }
