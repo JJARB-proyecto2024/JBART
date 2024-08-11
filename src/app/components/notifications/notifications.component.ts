@@ -31,8 +31,8 @@ export class NotificationsComponent implements OnInit {
     this.user = this.authService.getUser() || {};
     this.webSocketService.connect().subscribe(
       (message) => {
-        // this.notifications.push(message);
-        console.log(message);
+        const notification: INotification = JSON.parse(message);
+        this.notifications.push(notification);
       },
       (error) => {
         console.error(error);
