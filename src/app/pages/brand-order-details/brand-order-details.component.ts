@@ -7,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 
+// Define el tipo OrderStatus
+type OrderStatus = 'Pendiente' | 'En Proceso' | 'Enviado' | 'Entregado';
 
 @Component({
   selector: 'app-order-details',
@@ -19,11 +21,11 @@ export class BrandOrderDetailsComponent implements OnInit {
   public orderService: OrderService = inject(OrderService);
   public order: IOrder = {};
   public orderId: number = 0;
-  public statusOptions = [
+  public statusOptions: OrderStatus[] = [
     'Pendiente',
     'En Proceso',
-    'Completada',
-    'Cancelada'
+    'Enviado',
+    'Entregado'
   ];
 
   constructor(private route: ActivatedRoute) {
@@ -40,33 +42,54 @@ export class BrandOrderDetailsComponent implements OnInit {
       }
     });
   }
-  
 
   updateOrderStatus() {
     if (this.order && this.order.id && this.order.status) {
-      this.orderService.updateStat(this.order).subscribe({
-        next: (response: any) => {
-          Swal.fire({
-            title: 'Éxito',
-            text: 'Estado de la orden actualizado',
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-          }).then(() => {
-            // Opcional: Realiza alguna acción después de cerrar el alert
-            // Por ejemplo, redirigir a otra página o actualizar la vista
-          });
-          console.log('Estado de la orden actualizado', response);
-        },
-        error: (error: any) => {
-          Swal.fire({
-            title: 'Error',
-            text: 'Error al actualizar el estado de la orden',
-            icon: 'error',
-            confirmButtonText: 'Aceptar'
-          });
-          console.error('Error al actualizar el estado de la orden', error);
-        }
-      });
+      // Obtener el nuevo estado del select
+      const newStatus = this.order.status as OrderStatus;
+      const currentStatus = this.orderService.order.status as OrderStatus;
+  
+      // Validar las transiciones de estado permitidas
+      const allowedTransitions: { [key in OrderStatus]: OrderStatus[] } = {
+        'Pendiente': ['En Proceso'],
+        'En Proceso': ['Enviado'],
+        'Enviado': ['Entregado'],
+        'Entregado': []
+      };
+  
+      // Verifica si el estado actual permite la transición al nuevo estado
+      if (allowedTransitions[currentStatus]?.includes(newStatus) || newStatus === currentStatus) {
+        this.order.status = newStatus;
+        this.orderService.updateStat(this.order).subscribe({
+          next: (response: any) => {
+            Swal.fire({
+              title: 'Éxito',
+              text: 'Estado de la orden actualizado',
+              icon: 'success',
+              confirmButtonText: 'Aceptar'
+            });
+            console.log('Estado de la orden actualizado', response);
+          },
+          error: (error: any) => {
+            Swal.fire({
+              title: 'Error',
+              text: 'Error al actualizar el estado de la orden',
+              icon: 'error',
+              confirmButtonText: 'Aceptar'
+            });
+            console.error('Error al actualizar el estado de la orden', error);
+          }
+        });
+      } else {
+        Swal.fire({
+          title: 'Advertencia',
+          text: `No puedes cambiar el estado de "${currentStatus}" a "${newStatus}"`,
+          icon: 'warning',
+          confirmButtonText: 'Aceptar'
+        });
+        // Revertir el cambio en el select
+        this.order.status = currentStatus;
+      }
     } else {
       Swal.fire({
         title: 'Advertencia',
@@ -75,7 +98,6 @@ export class BrandOrderDetailsComponent implements OnInit {
         confirmButtonText: 'Aceptar'
       });
     }
-  }
-  
+  }  
   
 }
