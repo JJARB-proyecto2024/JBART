@@ -8,9 +8,11 @@ import { AuthService } from './auth.service';  // Suponiendo que tienes este ser
 export class WebSocketService {
   private socket!: WebSocket;
 
-  constructor() {
-    this.socket = new WebSocket(`http://localhost:8080/ws/notifications`);
+  constructor(private authService: AuthService) {
+    const user = this.authService.getUser();
+    this.socket = new WebSocket(`ws://localhost:8080/ws/notifications?userId=${user?.id}`);
   }
+
 
   public connect(): Observable<any> {
     return new Observable(observer => {
@@ -18,6 +20,12 @@ export class WebSocketService {
       this.socket.onerror = (event) => observer.error(event);
       this.socket.onclose = () => observer.complete();
     });
+  }
+
+  public disconnect(): void {
+    if (this.socket) {
+      this.socket.close();
+    }
   }
 
   public sendMessage(message: string): void {

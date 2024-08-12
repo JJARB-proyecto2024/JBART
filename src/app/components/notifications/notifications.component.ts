@@ -19,7 +19,6 @@ export class NotificationsComponent implements OnInit {
   public userService: UserService = inject(UserService);
   public authService: AuthService = inject(AuthService);
   public webSocketService: WebSocketService = inject(WebSocketService);
-  private websocketSubscription!: Subscription;
   public user: IUser = {};
   public seenAll = false;
   @Input() notifications: INotification[] = [];
@@ -44,6 +43,10 @@ export class NotificationsComponent implements OnInit {
     if (changes['notifications']) {
       this.handleSeenAll();
     }
+  }
+  
+  ngOnDestroy(): void {
+    this.webSocketService.disconnect();
   }
   handleNotificationRead(item: INotification) {
     this.selectedNotification = item;
