@@ -8,10 +8,8 @@ import { AuthService } from './auth.service';  // Suponiendo que tienes este ser
 export class WebSocketService {
   private socket!: WebSocket;
 
-  constructor(private authService: AuthService) {
-    const userId = this.authService.getUser()?.id;
-    console.log("userId", userId);
-    this.socket = new WebSocket(`http://localhost:8080/ws/notifications?userId=${userId}`);
+  constructor() {
+    this.socket = new WebSocket(`http://localhost:8080/ws/notifications`);
   }
 
   public connect(): Observable<any> {
