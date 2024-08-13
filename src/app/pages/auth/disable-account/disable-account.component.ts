@@ -56,7 +56,8 @@ export class DisableAccountComponent implements OnInit {
                 confirmButtonText: 'Cerrar'
               }).then(() => {
                 // Redirigir al inicio de sesión
-                this.router.navigateByUrl('login')
+                this.authService.logout();
+                this.router.navigateByUrl('/login');
               });
             },
             error: (error: any) => {
