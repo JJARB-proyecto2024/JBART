@@ -66,7 +66,7 @@ export interface IOtp {
 export interface IRateBrand {
   id?: number;
   rate?: number;
-  userBrand : IBrandUser;
+  userBrand: IBrandUser;
 }
 
 export interface IPayment {
@@ -105,13 +105,18 @@ export interface IProduct {
   updatedAt?: string;
 }
 
-export interface INotification {
+export interface INotificationTemplate {
   id?: number;
   title?: string;
   description?: string;
+  redirectLink?:string;
+}
+
+export interface INotification {
+  id?: number;
+  notificationTemplate?: INotificationTemplate;
   seen?: boolean;
   user?: IUser;
-  redirectLink?: string;
   createdAt?: string;
   updatedAt?: string;
 }
