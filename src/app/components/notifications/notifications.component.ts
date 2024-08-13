@@ -32,6 +32,7 @@ export class NotificationsComponent implements OnInit {
       (message) => {
         const notification: INotification = JSON.parse(message);
         this.notifications.push(notification);
+        this.handleSeenAll();
       },
       (error) => {
         console.error(error);
