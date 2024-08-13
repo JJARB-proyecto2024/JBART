@@ -1,0 +1,23 @@
+<form [formGroup]="reportProblemForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="problemArea">Área del Problema:</label>
+      <input id="problemArea" formControlName="problemArea" type="text" />
+    </div>
+    
+    <div>
+      <label for="description">Descripción:</label>
+      <textarea id="description" formControlName="description"></textarea>
+    </div>
+  
+    <div>
+      <label for="status">Estado:</label>
+      <select id="status" formControlName="status">
+        <option value="alta">Alta</option>
+        <option value="media">Media</option>
+        <option value="baja">Baja</option>
+      </select>
+    </div>
+  
+    <button type="submit">Enviar Reporte</button>
+  </form>
+  
