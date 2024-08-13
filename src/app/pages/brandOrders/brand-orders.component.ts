@@ -43,14 +43,6 @@ export class BrandOrdersComponent implements OnInit {
       next: (orders: IOrder[]) => {
         this.orders = orders;
         this.isLoading = false;
-        if (orders.length > 0) {
-        } else {
-          Swal.fire({
-            icon: 'info',
-            title: 'Sin órdenes',
-            text: 'No hay órdenes para mostrar.'
-          });
-        }
       },
       error: () => {
         this.isLoading = false;

@@ -21,38 +21,41 @@ export class OrderService extends BaseService<IOrder> {
     return this.orderSignal();
   }
 
-  public getAll() {
-    this.findAll().subscribe({
-      next: (response: any) => {
-        response.reverse();
-        this.orderListSignal.set(response);
-      },
-      error: (error: any) => {
+  public getAll(): Observable<any> {
+    return this.findAll().pipe(
+      tap((response: any) => {
+        if (response && response.data) {
+          // Extrae la lista de órdenes de la respuesta
+          const orders = response.data;
+          this.orderListSignal.set(orders);
+        }
+      }),
+      catchError((error: any) => {
         console.error('Error in get all orders request', error);
-        /*this.snackBar.open(error.error.description, 'Close', {
+        this.snackBar.open(error.error?.description || 'An error occurred', 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
-        });*/
-      }
-    });
+        });
+        return of([]); // Devuelve un observable con un array vacío en caso de error
+      })
+    );
   }
-
-  public getOrderByID(id: number): Observable<any> {
-    return this.find(id).pipe(
-      tap((response: any) => {
+  
+  public getOrderByID(id: number) {
+    this.find(id).subscribe({
+      next: (response: any) => {
         this.orderSignal.set(response);
-      }),
-      catchError((error: any) => {
+      },
+      error: (error: any) => {
         console.error('Error fetching order by id', error);
         this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
         });
-        return throwError(error);
-      })
-    );
+      }
+    });
   }
   
 

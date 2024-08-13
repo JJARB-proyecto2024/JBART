@@ -11,14 +11,33 @@
     margin-bottom: 40px; /* Espacio para la línea */
   }
   
-  .divisor::after {
-    content: "";
-    display: block;
-    width: 10%; /* Ajusta el ancho de la línea */
-    border-bottom: 2.5px solid #4a4d54; /* Línea divisoria */
-    position: absolute;
-    bottom: 0;
-    left: 3.5%; /* Ajusta para centrar la línea */
-    right: 60%;
-    top: 0;
-  }
+.divisor::after {
+  content: "";
+  display: block;
+  width: 10%; /* Ajusta el ancho de la línea */
+  border-bottom: 2.5px solid #4a4d54; /* Línea divisoria */
+  position: absolute;
+  bottom: 0;
+  left: 3.5%; /* Ajusta para centrar la línea */
+  right: 60%;
+  top: 0;
+}
+
+.no-orders-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh; /* O la altura que necesites */
+}
+
+.no-orders-icon {
+  font-size: 72px; /* Aumenta el tamaño del ícono */
+}
+
+.no-orders-text {
+  margin-top: 20px; /* Espacio entre el ícono y el texto */
+  font-size: 24px; /* Aumenta el tamaño del texto */
+  text-align: center;
+  color: #333; /* Ajusta el color del texto si es necesario */
+}
