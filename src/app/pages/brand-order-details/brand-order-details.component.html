@@ -2,16 +2,11 @@
   <div class="d-flex flex-row align-items-start flex-fill gap-3 mt-2">
     <h2>Orden #{{orderService.order.id}}</h2>
     <div class="d-flex flex-column align-items-center p-2 bg-info rounded-3">
-      <select class="form-select custom-select" id="orderStatus" name="orderStatus" [(ngModel)]="order.status" required>
-        <option [ngValue]="null" disabled>Seleccione un estado</option>
-        <option *ngFor="let statusOption of statusOptions" [ngValue]="statusOption">
-          {{statusOption}}
-        </option>
-      </select>      
-      <button (click)="updateOrderStatus()" type="button" class="btn btn-primary mt-2">
+      {{orderService.order.status}}
+      <button *ngIf="orderService.order.status !== 'Entregado'" (click)="updateOrderStatus()" type="button" class="btn btn-primary mt-2">
         Actualizar Estado
       </button>
-    </div>
+    </div>    
   </div>    
   <div class="my-2">
     {{orderService.order.createdAt | date: 'dd/MM/yyyy hh:mm a'}}

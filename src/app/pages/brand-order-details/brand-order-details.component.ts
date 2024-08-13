@@ -21,12 +21,6 @@ export class BrandOrderDetailsComponent implements OnInit {
   public orderService: OrderService = inject(OrderService);
   public order: IOrder = {};
   public orderId: number = 0;
-  public statusOptions: OrderStatus[] = [
-    'Pendiente',
-    'En Proceso',
-    'Enviado',
-    'Entregado'
-  ];
 
   constructor(private route: ActivatedRoute) {
 
@@ -45,26 +39,26 @@ export class BrandOrderDetailsComponent implements OnInit {
 
   updateOrderStatus() {
     if (this.order && this.order.id && this.order.status) {
-      // Obtener el nuevo estado del select
-      const newStatus = this.order.status as OrderStatus;
-      const currentStatus = this.orderService.order.status as OrderStatus;
-  
-      // Validar las transiciones de estado permitidas
-      const allowedTransitions: { [key in OrderStatus]: OrderStatus[] } = {
-        'Pendiente': ['En Proceso'],
-        'En Proceso': ['Enviado'],
-        'Enviado': ['Entregado'],
-        'Entregado': []
+      const currentStatus = this.order.status as OrderStatus;
+      
+      // Definir las transiciones de estado
+      const statusTransitions: { [key in OrderStatus]: OrderStatus | null } = {
+        'Pendiente': 'En Proceso',
+        'En Proceso': 'Enviado',
+        'Enviado': 'Entregado',
+        'Entregado': null
       };
   
-      // Verifica si el estado actual permite la transición al nuevo estado
-      if (allowedTransitions[currentStatus]?.includes(newStatus) || newStatus === currentStatus) {
+      // Obtener el próximo estado
+      const newStatus = statusTransitions[currentStatus];
+  
+      if (newStatus) {
         this.order.status = newStatus;
         this.orderService.updateStat(this.order).subscribe({
           next: (response: any) => {
             Swal.fire({
               title: 'Éxito',
-              text: 'Estado de la orden actualizado',
+              text: `Estado de la orden actualizado a "${newStatus}"`,
               icon: 'success',
               confirmButtonText: 'Aceptar'
             });
@@ -83,12 +77,10 @@ export class BrandOrderDetailsComponent implements OnInit {
       } else {
         Swal.fire({
           title: 'Advertencia',
-          text: `No puedes cambiar el estado de "${currentStatus}" a "${newStatus}"`,
+          text: 'No se puede actualizar el estado, la orden ya está en "Entregado"',
           icon: 'warning',
           confirmButtonText: 'Aceptar'
         });
-        // Revertir el cambio en el select
-        this.order.status = currentStatus;
       }
     } else {
       Swal.fire({
@@ -98,6 +90,7 @@ export class BrandOrderDetailsComponent implements OnInit {
         confirmButtonText: 'Aceptar'
       });
     }
-  }  
+  }
+  
   
 }
