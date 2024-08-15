@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth.service';
 import { ICategory } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { ChatbotFloatingComponent } from '../../components/chatbot/chatbot-floating/chatbot-floating.component';
 
 @Component({
   selector: 'app-categories',
@@ -18,7 +19,8 @@ import Swal from 'sweetalert2';
     LoaderComponent,
     CommonModule,
     ModalComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    ChatbotFloatingComponent
   ],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'

@@ -42,6 +42,12 @@ export interface IBrandUser {
   role?: IRole;
 }
 
+export interface IChatbot {
+  id: number;
+  question: string;
+  answer: string;
+}
+
 export interface IBuyerUser {
   id?: number;
   name?: number;
@@ -67,6 +73,18 @@ export interface IRateBrand {
   id?: number;
   rate?: number;
   userBrand: IBrandUser;
+}
+
+export interface IRateProduct {
+  id?: number;
+  rate?: number;
+  product : IProduct;
+}
+
+export interface IRateOrder {
+  id?: number;
+  rate?: number;
+  order : IOrder;
 }
 
 export interface IPayment {

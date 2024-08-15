@@ -101,6 +101,14 @@ export class BaseService<T> {
     return this.http.get<IResponse<T>>(this.source + '/rate/' + brandId);
   }
 
+  public hasRatedProduct(productId: number | undefined): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source + '/rate/' + productId);
+  }
+
+  public hasRatedOrder(orderId: number | undefined): Observable<IResponse<T>> {
+    return this.http.get<IResponse<T>>(this.source + '/rate/' + orderId);
+  }
+
   public findOrdersForBrand(s: string = ''): Observable<IResponse<T[]>> {
     return this.http.get<IResponse<T[]>>(this.source + '/brand', { params: { s } });
   }
