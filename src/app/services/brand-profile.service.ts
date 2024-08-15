@@ -3,6 +3,7 @@ import { BaseService } from './base-service';
 import { IBrandUser } from '../interfaces';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,16 +28,21 @@ export class BrandProfileService extends BaseService<IBrandUser>{
   updateUserProfileInfo(user: IBrandUser) {
     this.editProfile(user.id, user).subscribe({
       next: (response: any) => {
-        this.snackBar.open('Perfil actualizado correctamente', 'Cerrar', {
-          duration: 2000
-        });
+        Swal.fire({
+          title: 'Perfil actualizado',
+          text: 'El perfil se ha actualizado correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Cerrar',
+          confirmButtonColor: '#3085d6'
+        })
         this.userBrandSignal.set(response);
       },
       error: (error: any) => {
-        this.snackBar.open('Error al actualizar perfil', 'Cerrar', {
-          duration: 2000
-        });
-        throwError(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.error.description
+        })
       }
     });
   }
