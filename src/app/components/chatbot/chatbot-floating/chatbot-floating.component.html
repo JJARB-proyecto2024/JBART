@@ -1,0 +1,26 @@
+<div class="chatbot-container">
+  <div class="chatbot-icon" (click)="toggleChat()">
+    <i class="fa fa-comments" aria-hidden="true"></i>
+  </div>
+
+  <div class="chatbot-window" *ngIf="isChatOpen">
+    <div class="chatbot-header">
+      <i class="fa fa-comments" aria-hidden="true"></i><h5 class="titulo">Preguntas Frecuentes</h5>
+      <button (click)="toggleChat()">&times;</button>
+    </div>
+    <div class="chatbot-body" #chatbotBody>
+      <ul *ngIf="!selectedItem">
+        <li *ngFor="let item of items" (click)="selectQuestion(item)">
+          {{ item.question }}
+        </li>
+      </ul>
+      <div *ngIf="selectedItem">
+        <h5 class="question">Pregunta:</h5>
+        <p class="answer">{{ selectedItem.question }}</p>
+        <h5 class="question">Respuesta:</h5>
+        <p class="answer">{{ selectedItem.answer }}</p>
+        <button (click)="deselectQuestion()">Volver al menú</button>
+      </div>
+    </div>
+  </div>
+</div>

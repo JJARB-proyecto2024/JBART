@@ -1,0 +1,41 @@
+<form class="container">
+  <div>
+    <h2 class="titulo">{{ action }}</h2>
+  </div>
+  <div class="divisor">
+  </div>
+  
+  <div class="row">
+    <div class="row-6 mb-2">
+      <input #question="ngModel" type="text" class="form-control" id="question" name="question" 
+        placeholder="Pregunta"
+        [(ngModel)]="chatbot.question" 
+        [ngClass]="{ 
+          'is-invalid': question.invalid && question.touched,
+          'is-valid': question.valid && question.touched
+        }" 
+        required 
+      />
+    </div>
+    <div class="row-6 mb-2">
+      <input #answer="ngModel" type="text" class="form-control" id="answer" name="answer" 
+        placeholder="Respuesta"
+        [(ngModel)]="chatbot.answer" 
+        [ngClass]="{ 
+          'is-invalid': answer.invalid && answer.touched,
+          'is-valid': answer.valid && answer.touched
+        }" 
+        required 
+      />
+    </div>
+    <div class="col-12 text-center d-grid">
+      <button
+      (click)="callEvent();"
+      type="button"
+      class="btn btn-up d-flex align-items-center">
+      <p class="mb-0"> {{action}} </p>
+    </button>
+    </div>
+  </div>
+  
+</form>
