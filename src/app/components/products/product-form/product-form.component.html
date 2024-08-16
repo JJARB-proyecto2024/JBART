@@ -3,24 +3,23 @@
     <h2 class="titulo">{{ action }}</h2>
   </div>
   <div class="divisor"></div>
-  
+
   <div class="row">
     <div class="row-6 m-auto">
       <div class="col-12 mb-3">
-        <img class="rounded-3"
-          [src]="product.picture ? product.picture : 'https://res.cloudinary.com/drlznypvr/image/upload/c_fill,w_200,h_200/v1721447812/ch5sqtieivzzeaysvu8h.png'"
-          alt="">
+        <model-viewer *ngIf="product.model" class="rounded-3" [src]="product.model" alt="3D Model" auto-rotate
+          camera-controls ar>
+        </model-viewer>
       </div>
       <div class="col-12 mb-3">
-        <button type="button" (click)="openCloudinaryWidget()" class="btn btn-dark btn-block me-2">Añadir imagen</button>
-        <button type="button" (click)="handleRemoveImg()" class="btn btn-danger btn-block">Eliminar imagen</button>
+        <button type="button" (click)="openCloudinaryWidget()" class="btn btn-dark btn-block me-2">Añadir modelo
+          3D</button>
+        <button type="button" (click)="handleRemoveImg()" class="btn btn-danger btn-block">Eliminar modelo 3D</button>
       </div>
     </div>
     <div class="row-6 mb-2">
-      <input #name="ngModel" type="text" class="form-control" id="name" name="name" 
-        placeholder="Nombre"
-        [(ngModel)]="product.name" 
-        [ngClass]="{ 
+      <input #name="ngModel" type="text" class="form-control" id="name" name="name" placeholder="Nombre"
+        [(ngModel)]="product.name" [ngClass]="{ 
           'is-invalid': name.invalid && name.touched,
           'is-valid': name.valid && name.touched
         }" required />
@@ -29,32 +28,38 @@
       </div>
     </div>
     <div class="row-6 mb-2">
-      <input #price="ngModel" type="number" class="form-control" id="price" name="price" 
-        placeholder="Precio"
-        [(ngModel)]="product.price" 
-        [ngClass]="{ 
+      <input #price="ngModel" type="number" class="form-control" id="price" name="price" placeholder="Precio"
+        [(ngModel)]="product.price" [ngClass]="{ 
           'is-invalid': price.invalid && price.touched,
           'is-valid': price.valid && price.touched
-        }" required />
+        }" min="1" required />
       <div *ngIf="price.invalid && price.touched" class="invalid-feedback">
         Por favor, establece un precio al producto
       </div>
     </div>
     <div class="row-6 mb-2">
+      <input #size="ngModel" type="text" class="form-control" id="size" name="size" placeholder="Tallas"
+      [(ngModel)]="product.size" [ngClass]="{ 
+        'is-invalid': size.invalid && size.touched,
+        'is-valid': size.valid && size.touched
+      }" required />
+    <div *ngIf="size.invalid && size.touched" class="invalid-feedback">
+      Por favor, establece tallas al producto
+    </div>
+  
+    </div>
+    <div class="row-6 mb-2">
       <input #quantityInStock="ngModel" type="number" class="form-control" id="quantityInStock" name="quantityInStock"
-        placeholder="Stock" 
-        [(ngModel)]="product.quantityInStock" 
-        [ngClass]="{ 
+        placeholder="Stock" [(ngModel)]="product.quantityInStock" [ngClass]="{ 
           'is-invalid': quantityInStock.invalid && quantityInStock.touched,
           'is-valid': quantityInStock.valid && quantityInStock.touched
-        }" required />
+        }" min=1 required />
       <div *ngIf="quantityInStock.invalid && quantityInStock.touched" class="invalid-feedback">
         Por favor, establece una cantidad en stock
       </div>
     </div>
     <div class="row-6 mb-4">
-      <select #category="ngModel" class="form-select" id="category" name="category"
-        [(ngModel)]="product.category"
+      <select #category="ngModel" class="form-select" id="category" name="category" [(ngModel)]="product.category"
         [ngClass]="{ 
         'is-invalid': category.invalid && category.touched,
         'is-valid': category.valid && category.touched
@@ -73,9 +78,7 @@
       </div>
     </div>
     <div class="col-12 text-center d-grid">
-      <button (click)="callEvent();" 
-        type="button" 
-        class="btn btn-up d-flex align-items-center">
+      <button (click)="callEvent();" type="button" class="btn btn-up d-flex align-items-center">
         <p class="mb-0">{{ action }}</p>
       </button>
     </div>

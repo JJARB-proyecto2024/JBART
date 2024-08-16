@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges, ViewChild, AfterViewInit, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges, ViewChild, AfterViewInit, inject, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { IProduct, ICategory } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -12,6 +12,7 @@ declare const cloudinary: any;
     CommonModule,
     FormsModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
@@ -44,7 +45,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   handleRemoveImg() {
-    this.product.picture = '';
+    this.product.model = '';
   }
 
   openCloudinaryWidget() {
@@ -54,7 +55,7 @@ export class ProductFormComponent implements OnInit {
     }, (error: any, result: any) => {
       if (!error && result && result.event === 'success') {
         console.log('File uploaded successfully to Cloudinary');
-        this.product.picture = result.info.secure_url;
+        this.product.model = result.info.secure_url;
       }
     });
   }
@@ -65,7 +66,7 @@ export class ProductFormComponent implements OnInit {
     }
     this.product = {
       name: '',
-      picture: '',
+      model: '',
       category: this.categories[0],
     };
   }

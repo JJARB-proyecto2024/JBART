@@ -78,13 +78,13 @@ export interface IRateBrand {
 export interface IRateProduct {
   id?: number;
   rate?: number;
-  product : IProduct;
+  product: IProduct;
 }
 
 export interface IRateOrder {
   id?: number;
   rate?: number;
-  order : IOrder;
+  order: IOrder;
 }
 
 export interface IPayment {
@@ -114,9 +114,10 @@ export interface IProduct {
   name?: string;
   price?: number;
   quantityInStock?: number;
-  picture?: string;
+  model?: string;
   status?: string;
   rate?: number;
+  size?: string;
   category?: ICategory;
   userBrand?: IBrandUser;
   createdAt?: string;
@@ -127,7 +128,7 @@ export interface INotificationTemplate {
   id?: number;
   title?: string;
   description?: string;
-  redirectLink?:string;
+  redirectLink?: string;
 }
 
 export interface INotification {
@@ -152,7 +153,6 @@ export interface IOrder {
   currentLocation?: string;
   createdAt?: string;
 }
-
 export interface ICart {
   id?: number;
   product?: IProduct;
