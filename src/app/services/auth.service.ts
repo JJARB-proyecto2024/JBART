@@ -1,16 +1,18 @@
-import { Injectable } from '@angular/core';
-import { IAuthority, IBuyerUser , IBrandUser, ILoginResponse, IResponse, IRoleType, IUser } from '../interfaces';
+import { inject, Injectable } from '@angular/core';
+import { IAuthority, IBuyerUser, IBrandUser, ILoginResponse, IResponse, IRoleType, IUser } from '../interfaces';
 import { Observable, firstValueFrom, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { WebSocketService } from './web-socket.service';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private accessToken!: string;
-  private expiresIn! : number;
-  private user: IUser = {email: '', authorities: []};
-
+  private expiresIn!: number;
+  private user: IUser = { email: '', authorities: [] };
+  private notificationService: NotificationService = inject(NotificationService);
   constructor(private http: HttpClient) {
     this.load();
   }
@@ -22,7 +24,7 @@ export class AuthService {
       localStorage.setItem('access_token', JSON.stringify(this.accessToken));
 
     if (this.expiresIn)
-      localStorage.setItem('expiresIn',JSON.stringify(this.expiresIn));
+      localStorage.setItem('expiresIn', JSON.stringify(this.expiresIn));
   }
 
   private load(): void {
@@ -43,7 +45,7 @@ export class AuthService {
   }
 
   public check(): boolean {
-    if (!this.accessToken){
+    if (!this.accessToken) {
       return false;
     } else {
       return true;
@@ -61,12 +63,14 @@ export class AuthService {
         this.expiresIn = response.expiresIn;
         this.user = response.authUser;
         this.save();
+        this.notificationService.createWebSocket(this.user);
+        this.notificationService.connectWebSocket();
       })
     );
   }
 
   public hasRole(role: string): boolean {
-    return this.user.authorities ?  this.user?.authorities.some(authority => authority.authority == role) : false;
+    return this.user.authorities ? this.user?.authorities.some(authority => authority.authority == role) : false;
   }
 
   public hasAnyRole(roles: any[]): boolean {
@@ -76,10 +80,10 @@ export class AuthService {
   public getPermittedRoutes(routes: any[]): any[] {
     let permittedRoutes: any[] = [];
     for (const route of routes) {
-      if(route.data && route.data.authorities) {
+      if (route.data && route.data.authorities) {
         if (this.hasAnyRole(route.data.authorities) && route.data.showInSidebar) {
           permittedRoutes.unshift(route);
-        } 
+        }
       }
     }
     return permittedRoutes;
@@ -102,21 +106,22 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('auth_user');
+    this.notificationService.disconnectWebSocket();
   }
 
   public getUserAuthorities(): IAuthority[] | undefined {
     return this.getUser()?.authorities;
   }
 
-  public areActionsAvailable(routeAuthorities: string[]): boolean  {
-    
+  public areActionsAvailable(routeAuthorities: string[]): boolean {
+
     let allowedUser: boolean = false;
     let isAdmin: boolean = false;
-    
+
     let userAuthorities = this.getUserAuthorities();
     // se valida que sea una ruta permitida para el usuario
     for (const authority of routeAuthorities) {
-      if (userAuthorities?.some(item => item.authority == authority) ) {
+      if (userAuthorities?.some(item => item.authority == authority)) {
         allowedUser = userAuthorities?.some(item => item.authority == authority)
       }
       if (allowedUser) break;

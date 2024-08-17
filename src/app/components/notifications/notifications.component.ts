@@ -28,17 +28,6 @@ export class NotificationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.getUser() || {};
-    this.webSocketService.connect().subscribe(
-      (message) => {
-        const notification: INotification = JSON.parse(message);
-        this.notifications.push(notification);
-        console.log('notifications', this.notifications);
-        this.handleSeenAll();
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,9 +36,6 @@ export class NotificationsComponent implements OnInit {
     }
   }
   
-  ngOnDestroy(): void {
-    this.webSocketService.disconnect();
-  }
   handleNotificationRead(item: INotification) {
     this.selectedNotification = item;
     this.selectedNotification.seen = true;

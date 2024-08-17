@@ -75,7 +75,7 @@ export class ProductRecommendedListComponent implements OnInit{
 
   trackById(index: number, item: IProduct) {
     
-    console.log(item.rate);
+    // console.log(item.rate);
     return item.id;
   }
 

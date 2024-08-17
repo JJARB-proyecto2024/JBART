@@ -8,27 +8,34 @@ import { AuthService } from './auth.service';  // Suponiendo que tienes este ser
 export class WebSocketService {
   private socket!: WebSocket;
 
-  constructor(private authService: AuthService) {
-    const user = this.authService.getUser();
+  public createWebSocket(user: any): void {
     this.socket = new WebSocket(`ws://localhost:8080/ws/notifications?userId=${user?.id}`);
+    console.log('WebSocketService created');
   }
 
-
   public connect(): Observable<any> {
+    console.log('Connecting...');
     return new Observable(observer => {
-      this.socket.onmessage = (event) => observer.next(event.data);
-      this.socket.onerror = (event) => observer.error(event);
-      this.socket.onclose = () => observer.complete();
+      this.socket.onmessage = (event) => {
+        observer.next(event.data);
+        console.log("Event Data:", event.data);
+      }
+      this.socket.onerror = (event) => {
+        observer.error(event);
+        console.log("Event Error:", event);
+      }
+      this.socket.onclose = () => {
+        observer.complete();
+
+      }
     });
   }
 
   public disconnect(): void {
     if (this.socket) {
       this.socket.close();
+      console.log('Disconnecting...');
     }
-  }
-
-  public sendMessage(message: string): void {
-    this.socket.send(message);
+    console.log('Disconnecting outside if...');
   }
 }
