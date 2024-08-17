@@ -14,7 +14,9 @@
       <div class="d-flex bg-white flex-row border p-4 rounded-3 gap-3 justify-content-start flex-wrap">
         <div class="d-flex flex-column">
           <h2 class>Información del articulo</h2>
-          <img class="rounded-3" [src]="orderService.order.product?.picture ? orderService.order.product?.picture : 'https://res.cloudinary.com/drlznypvr/image/upload/v1723170702/g6douizuzdtcnbh6wlgq.jpg'" alt="">
+          <model-viewer *ngIf="orderService.order.product?.model" class="rounded-3"
+            [src]="orderService.order.product?.model" alt="3D Model" auto-rotate camera-controls ar>
+          </model-viewer>
         </div>
         <div class="d-flex flex-row flex-fill justify-content-between align-items-center">
           <div>

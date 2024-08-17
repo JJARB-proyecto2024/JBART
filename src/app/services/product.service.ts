@@ -3,6 +3,7 @@ import { BaseService } from './base-service';
 import { IProduct } from '../interfaces';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
@@ -41,7 +42,7 @@ export class ProductService extends BaseService<IProduct> {
       },
       error: (error: any) => {
         console.error('Error in get all products request', error);
-        this.snackBar.open(error.error.description, 'Close' , {
+        this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
@@ -58,7 +59,7 @@ export class ProductService extends BaseService<IProduct> {
       },
       error: (error: any) => {
         console.error('Error in get all products request', error);
-        this.snackBar.open(error.error.description, 'Close' , {
+        this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
@@ -66,7 +67,7 @@ export class ProductService extends BaseService<IProduct> {
       }
     })
   }
-  
+
   public getByBrand(item: number | undefined) {
     this.findByBrand(item).subscribe({
       next: (response: any) => {
@@ -75,7 +76,7 @@ export class ProductService extends BaseService<IProduct> {
       },
       error: (error: any) => {
         console.error('Error in get all products request', error);
-        this.snackBar.open(error.error.description, 'Close' , {
+        this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
@@ -92,7 +93,7 @@ export class ProductService extends BaseService<IProduct> {
       },
       error: (error: any) => {
         console.error('Error in get all products request', error);
-        this.snackBar.open(error.error.description, 'Close' , {
+        this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
@@ -135,19 +136,31 @@ export class ProductService extends BaseService<IProduct> {
     );
   }
 
-
   public delete(item: IProduct) {
     this.del(item.id).subscribe({
       next: () => {
-        this.itemListSignal.set(this.itemListSignal().filter(product => product.id != item.id));
+        Swal.fire({
+          title: '¿Está seguro?',
+          text: '¿Está seguro de que desea eliminar este producto?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.itemListSignal.set(this.itemListSignal().filter(product => product.id != item.id));
+          }
+        });
       },
       error: (error: any) => {
         console.error('response', error.description);
-        this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.error.description
+        })
       }
     })
   }

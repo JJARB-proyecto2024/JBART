@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { IOrder } from '../../interfaces';
 import { CommonModule } from '@angular/common';
+import { AvatarCreateComponent } from '../../components/avatar/avatar-create.component';
 
 @Component({
   selector: 'app-orders',
@@ -15,7 +16,8 @@ import { CommonModule } from '@angular/common';
     OrderListComponent,
     CommonModule,
     LoaderComponent,
-    ModalComponent
+    ModalComponent,
+    AvatarCreateComponent
   ],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']

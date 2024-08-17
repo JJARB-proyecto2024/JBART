@@ -42,6 +42,12 @@ export interface IBrandUser {
   role?: IRole;
 }
 
+export interface IChatbot {
+  id: number;
+  question: string;
+  answer: string;
+}
+
 export interface IBuyerUser {
   id?: number;
   name?: number;
@@ -66,19 +72,19 @@ export interface IOtp {
 export interface IRateBrand {
   id?: number;
   rate?: number;
-  userBrand : IBrandUser;
+  userBrand: IBrandUser;
 }
 
 export interface IRateProduct {
   id?: number;
   rate?: number;
-  product : IProduct;
+  product: IProduct;
 }
 
 export interface IRateOrder {
   id?: number;
   rate?: number;
-  order : IOrder;
+  order: IOrder;
 }
 
 export interface IPayment {
@@ -108,22 +114,28 @@ export interface IProduct {
   name?: string;
   price?: number;
   quantityInStock?: number;
-  picture?: string;
+  model?: string;
   status?: string;
   rate?: number;
+  size?: string;
   category?: ICategory;
   userBrand?: IBrandUser;
   createdAt?: string;
   updatedAt?: string;
 }
 
-export interface INotification {
+export interface INotificationTemplate {
   id?: number;
   title?: string;
   description?: string;
+  redirectLink?: string;
+}
+
+export interface INotification {
+  id?: number;
+  notificationTemplate?: INotificationTemplate;
   seen?: boolean;
   user?: IUser;
-  redirectLink?: string;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -141,7 +153,6 @@ export interface IOrder {
   currentLocation?: string;
   createdAt?: string;
 }
-
 export interface ICart {
   id?: number;
   product?: IProduct;

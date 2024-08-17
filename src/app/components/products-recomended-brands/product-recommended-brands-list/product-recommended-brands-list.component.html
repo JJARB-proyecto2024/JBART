@@ -3,7 +3,9 @@
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div *ngFor="let item of paginatedList; trackBy: trackById" class="col">
       <div class="card h-100">
-        <img [src]="item.picture" class="card-img-top" alt="Logo de {{ item.name }}">
+        <model-viewer *ngIf="item.model" class="rounded-3" [src]="item.model" alt="3D Model"
+        auto-rotate camera-controls ar>
+      </model-viewer>
         <div class="card-body">
           <h5 class="card-title">{{ item.name }}</h5>
           <p class="card-text">
