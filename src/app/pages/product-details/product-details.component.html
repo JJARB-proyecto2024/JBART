@@ -1,13 +1,62 @@
 <div class="d-flex bg-white flex-column p-3">
-  <div class="d-flex my-3">
-    <p>New Arrival > Man > Relaxed Fix </p>
-  </div>
-  <div class="d-flex flex-row gap-4">
-    <div class="d-flex flex-column">
-    <img src="" alt="">
+  <div class="d-flex flex-row align-items-center my-3 px-2 justify-content-between">
+    <div>
+      <h3>{{productService.item$().userBrand?.brandName}} > {{productService.item$().category?.description}} >
+        {{productService.item$().name}}</h3>
     </div>
-    <div class="d-flex flex-column">
-      <h1 class="text-uppercase">Relaxed Fit T-Shirt</h1>
+    <div>
+      <button type="button" class="btn btn-primary"><i class="fa fa-cart-plus" aria-hidden="true"></i> Agregar al
+        carrito</button>
+    </div>
+  </div>
+  <div class="d-flex flex-row gap-4 flex-wrap">
+    <div class="d-flex flex-column flex-fill gap-2">
+      <!-- Aqui ira el componente 3D, tomar como referencia el de Bray -->
+      <app-tridimentional-design [product]="productService.item$()"></app-tridimentional-design>
+      <div class="d-flex flex-column justify-content-center border p-2 rounded-3 gap-2">
+        <h2 class="m-0">{{productService.item$().userBrand?.brandName}}</h2>
+        <hr class="m-0">
+        <a class="btn btn-primary">Ver productos de la marca</a>
+      </div>
+    </div>
+    <div class="d-flex flex-column flex-fill gap-3">
+      <h1 class="text-uppercase">{{productService.item$().name}}</h1>
+      <div class="d-flex flex-row align-items-start gap-2">
+        <igc-rating [value]="productService.item$().rate" min="0" max="5" readonly="true"></igc-rating>
+        <p>({{productService.item$().rate ? productService.item$().rate : '0' }})</p>
+      </div>
+      <div class="d-flex flex-column">
+        <h1>${{productService.item$().price}}</h1>
+      </div>
+      <div class="d-flex flex-column">
+        <p>Seleccione una talla</p>
+        <div class="d-flex flex-row justify-content-start gap-2">
+          <div class="border p-2 rounded-3">
+            XL
+          </div>
+          <div class="border p-2 rounded-3">
+            L
+          </div>
+          <div class="border p-2 rounded-3">
+            M
+          </div>
+          <div class="border p-2 rounded-3">
+            S
+          </div>
+          <div class="border p-2 rounded-3">
+            XS
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-column gap-2">
+        <label class="quantity" for="quantity">Cantidad</label>
+        <input type="number" class="form-control" value="1" id="quantity">
+      </div>
+      <div class="d-flex flex-column">
+        <p>Seleccione un color</p>
+        <span [colorPicker]="color" [cpToggle]="true" [cpDialogDisplay]="'inline'" [cpCancelButton]="false"
+          [cpCancelButtonClass]="'btn btn-primary btn-xs'"></span>
+      </div>
 
     </div>
   </div>

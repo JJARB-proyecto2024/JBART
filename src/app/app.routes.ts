@@ -190,7 +190,7 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'product-details',
+        path: 'product-details/:id',
         component: ProductDetailsComponent,
         data: {
           authorities: [

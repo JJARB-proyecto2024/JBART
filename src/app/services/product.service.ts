@@ -12,9 +12,31 @@ export class ProductService extends BaseService<IProduct> {
   protected override source: string = 'products';
   private itemListSignal = signal<IProduct[]>([]);
   private snackBar: MatSnackBar = inject(MatSnackBar);
+  private itemSignal = signal<IProduct>({});
+
 
   get items$() {
     return this.itemListSignal;
+  }
+
+  get item$() {
+    return this.itemSignal;
+  }
+
+  public getById(id: number) {
+    this.find(id).subscribe({
+      next: (response: any) => {
+        this.itemSignal.set(response);
+      },
+      error: (error: any) => {
+        console.error('Error fetching order by id', error);
+        this.snackBar.open(error.error.description, 'Close', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          panelClass: ['error-snackbar']
+        });
+      }
+    });
   }
 
   public getAll() {
