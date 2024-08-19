@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AngularOpenlayersModule } from 'ng-openlayers';
 import { OrderService } from '../../services/order.service';
 import { IOrder } from '../../interfaces';
@@ -19,6 +19,7 @@ export class OrderMapComponent {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['order'] && this.order) {
+      console.log("Order:", this.order);
       const address = this.order.currentLocation || this.order.product?.userBrand?.mainLocationAddress;
       if (address) {
         this.getCoordinates(address);

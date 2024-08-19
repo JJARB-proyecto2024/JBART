@@ -1,9 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, CUSTOM_ELEMENTS_SCHEMA, Input, SimpleChanges, OnChanges, inject } from '@angular/core';
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { IProduct } from '../../interfaces';
 import { CommonModule } from '@angular/common';
+import { ProductService } from '../../services/product.service';
 @Component({
   selector: 'app-tridimentional-design',
   standalone: true,
@@ -12,22 +13,24 @@ import { CommonModule } from '@angular/common';
   templateUrl: './tridimentional-design.component.html',
   styleUrl: './tridimentional-design.component.scss'
 })
-export class TridimentionalDesignComponent implements OnInit {
+export class TridimentionalDesignComponent {
   @ViewChild('rendererContainer', { static: true }) rendererContainer!: ElementRef;
-  private product: IProduct = {}
+  @Input() product: IProduct = {};
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
   private controls!: OrbitControls;
   private productModel!: THREE.Group;
-  public productModelURL: string = '';
-
+  public productService: ProductService = inject(ProductService);
 
   ngOnInit(): void {
-    this.productModelURL = this.product.model || 'https://res.cloudinary.com/drlznypvr/image/upload/v1723795195/qr1ezt2j5fmtiacscmyf.glb';
-    this.initScene()
-    this.loadProduct()
+    this.initScene();
     this.animate();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['product'] && this.product) {
+      this.loadProduct();
+    }
   }
 
   private initScene(): void {
@@ -69,35 +72,36 @@ export class TridimentionalDesignComponent implements OnInit {
 
   private loadProduct(): void {
     const loader = new GLTFLoader();
+    if (this.product.model) {
+      loader.load(this.product.model, (gltf) => {
+        this.productModel = gltf.scene as THREE.Group;
+        // Ajustar la escala si es necesario, ancho centro largo, grosor manga
+        this.productModel.scale.set(0.5, 0.5, 0.5);
 
-    loader.load(this.productModelURL, (gltf) => {
-      this.productModel = gltf.scene as THREE.Group;
-      // Ajustar la escala si es necesario, ancho centro largo, grosor manga
-      this.productModel.scale.set(0.5, 0.5, 0.5);
+        // Ajustar la posición de la camisa sobre el cuerpo
+        this.productModel.position.set(0, 0, 0.1); // Ajustar la posición lados, arriba, atras
+        // Ajustar la rotación de la camisa
+        // Inclinar la camisa ligeramente hacia abajo en el eje X
+        this.productModel.rotation.set(Math.PI / 40, 0, 0); // Ajusta el valor del ángulo en el eje X
+        this.scene.add(this.productModel);
+        this.centerModel(this.productModel);
+        // Configurar la visibilidad y el material de la camisa
+        this.productModel.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            (child.material as THREE.Material).side = THREE.FrontSide;
+          }
+        });
 
-      // Ajustar la posición de la camisa sobre el cuerpo
-      this.productModel.position.set(0, 0, 0.1); // Ajustar la posición lados, arriba, atras
-      // Ajustar la rotación de la camisa
-      // Inclinar la camisa ligeramente hacia abajo en el eje X
-      this.productModel.rotation.set(Math.PI / 40, 0, 0); // Ajusta el valor del ángulo en el eje X
-      this.scene.add(this.productModel);
-      this.centerModel(this.productModel);
-      // Configurar la visibilidad y el material de la camisa
-      this.productModel.traverse((child) => {
-      if (child instanceof THREE.Mesh) {
-        (child.material as THREE.Material).side = THREE.FrontSide;
-      }
+        // Zoom out the product
+        const boundingBox = new THREE.Box3().setFromObject(this.productModel);
+        const size = boundingBox.getSize(new THREE.Vector3());
+        const maxDimension = Math.max(size.x, size.y, size.z);
+        const distance = maxDimension * 1;
+        this.camera.position.z = distance;
+      }, undefined, (error) => {
+        console.error('Error loading shirt model:', error);
       });
-
-      // Zoom out the product
-      const boundingBox = new THREE.Box3().setFromObject(this.productModel);
-      const size = boundingBox.getSize(new THREE.Vector3());
-      const maxDimension = Math.max(size.x, size.y, size.z);
-      const distance = maxDimension * 1;
-      this.camera.position.z = distance;
-    }, undefined, (error) => {
-      console.error('Error loading shirt model:', error);
-    });
+    }
   }
 
   private centerModel(model: THREE.Group): void {
@@ -109,8 +113,10 @@ export class TridimentionalDesignComponent implements OnInit {
 
   private animate(): void {
     requestAnimationFrame(() => this.animate());
-    this.controls.update();
-    this.renderer.render(this.scene, this.camera);
+    if (this.product) {
+      this.controls.update();
+      this.renderer.render(this.scene, this.camera);
+    }
   }
 
   private onWindowResize(): void {

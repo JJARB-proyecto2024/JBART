@@ -12,7 +12,7 @@
   <div class="d-flex flex-row gap-4 flex-wrap">
     <div class="d-flex flex-column flex-fill gap-2">
       <!-- Aqui ira el componente 3D, tomar como referencia el de Bray -->
-      <app-tridimentional-design [product]="productService.item$()"></app-tridimentional-design>
+      <app-tridimentional-design [product]="this.productService.item$()"></app-tridimentional-design>
       <div class="d-flex flex-column justify-content-center border p-2 rounded-3 gap-2">
         <h2 class="m-0">{{productService.item$().userBrand?.brandName}}</h2>
         <hr class="m-0">
