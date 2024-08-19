@@ -28,12 +28,4 @@ export class ProductDetailsComponent implements OnInit {
       this.productModelURL = this.productService.item$().model || '';
     });
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    if (changes['product']) {
-      console.log("Product:", this.productModelURL);
-    }
-  }
 }
