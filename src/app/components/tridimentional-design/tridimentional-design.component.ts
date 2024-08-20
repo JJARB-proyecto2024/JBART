@@ -85,6 +85,7 @@ export class TridimentionalDesignComponent {
         this.productModel.rotation.set(Math.PI / 40, 0, 0); // Ajusta el valor del ángulo en el eje X
         this.scene.add(this.productModel);
         this.centerModel(this.productModel);
+        this.changeProductModelColor(0x2889e9);
         // Configurar la visibilidad y el material de la camisa
         this.productModel.traverse((child) => {
           if (child instanceof THREE.Mesh) {
@@ -111,6 +112,17 @@ export class TridimentionalDesignComponent {
     model.position.sub(center); // Centrar el modelo en la escena
   }
 
+  private changeProductModelColor(color: number): void {
+    if (this.productModel) {
+      this.productModel.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          const meshMaterial = child.material as THREE.MeshBasicMaterial;
+          meshMaterial.color.set(color);
+        }
+      });
+    }
+  }
+  
   private animate(): void {
     requestAnimationFrame(() => this.animate());
     this.controls.update();
