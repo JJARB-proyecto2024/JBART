@@ -124,6 +124,14 @@ export interface IProduct {
   updatedAt?: string;
 }
 
+export interface IDesign {
+  id?: number;
+  color?: string;
+  picture?: string;
+  product?: IProduct;
+  buyerUser?: IBuyerUser;
+}
+
 export interface INotificationTemplate {
   id?: number;
   title?: string;
@@ -155,7 +163,7 @@ export interface IOrder {
 }
 export interface ICart {
   id?: number;
-  product?: IProduct;
+  design?: IDesign;
   userBuyer?: IBuyerUser;
   quantity?: number;
   createdAt?: string;
