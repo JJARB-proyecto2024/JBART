@@ -124,31 +124,4 @@ export class TridimentionalDesignComponent {
       this.renderer.setSize(this.rendererContainer.nativeElement.clientWidth, this.rendererContainer.nativeElement.clientHeight);
     }
   }
-
-  public deleteScene(): void {
-    // Traverse the scene and dispose of materials, geometries, and textures
-    this.scene.traverse((object) => {
-      if (object instanceof THREE.Mesh) {
-        object.geometry.dispose();
-        if (object.material instanceof THREE.Material) {
-          object.material.dispose();
-        } else if (Array.isArray(object.material)) {
-          object.material.forEach((material) => material.dispose());
-        }
-      }
-    });
-
-    // Remove all objects from the scene
-    while (this.scene.children.length > 0) {
-      this.scene.remove(this.scene.children[0]);
-    }
-
-    // Dispose of the renderer
-    this.renderer.dispose();
-
-    // Remove the renderer's DOM element
-    if (this.renderer.domElement.parentNode) {
-      this.renderer.domElement.parentNode.removeChild(this.renderer.domElement);
-    }
-  }
 }
