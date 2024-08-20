@@ -30,12 +30,8 @@ export class BrandOrderDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.orderId = params['id'];
-      if (this.orderId) {
-        this.orderService.getOrderByID(this.orderId).subscribe(order => {
-          this.order = order;
-        });
-      }
     });
+    this.orderService.getOrderByID(this.orderId);
   }
 
   updateOrderStatus() {
