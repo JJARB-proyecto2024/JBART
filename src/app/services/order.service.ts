@@ -21,23 +21,27 @@ export class OrderService extends BaseService<IOrder> {
     return this.orderSignal();
   }
 
-  public getAll() {
-    this.findAll().subscribe({
-      next: (response: any) => {
-        response.reverse();
-        this.orderListSignal.set(response);
-      },
-      error: (error: any) => {
+  public getAll(): Observable<any> {
+    return this.findAll().pipe(
+      tap((response: any) => {
+        if (response && response.data) {
+          // Extrae la lista de órdenes de la respuesta
+          const orders = response.data;
+          this.orderListSignal.set(orders);
+        }
+      }),
+      catchError((error: any) => {
         console.error('Error in get all orders request', error);
-        /*this.snackBar.open(error.error.description, 'Close', {
+        this.snackBar.open(error.error?.description || 'An error occurred', 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
-        });*/
-      }
-    });
+        });
+        return of([]); // Devuelve un observable con un array vacío en caso de error
+      })
+    );
   }
-
+  
   public getOrderByID(id: number) {
     this.find(id).subscribe({
       next: (response: any) => {
@@ -53,6 +57,7 @@ export class OrderService extends BaseService<IOrder> {
       }
     });
   }
+  
 
 
   public getOrdersListForBrand(): Observable<any> {
@@ -86,30 +91,21 @@ export class OrderService extends BaseService<IOrder> {
   }
 
 
-  public updateStat(item: IOrder) {
+  updateStat(item: IOrder): Observable<any> {
     if (item.id !== undefined && item.status !== undefined) {
-      this.updateStatus(item.id, item.status).subscribe({
-        next: (response: any) => {
-          const updatedItems = this.orderListSignal().map(o => o.id === item.id ? { ...o, status: item.status } : o);
+      return this.updateStatus(item.id, item.status).pipe(
+        tap((response: any) => {
+          const updatedItems = this.orderListSignal().map(u => u.id === item.id ? { ...u, status: item.status } : u);
           this.orderListSignal.set(updatedItems);
-          console.log(updatedItems);
-        },
-        error: (error: any) => {
+        }),
+        catchError((error: any) => {
           console.error('Error in updating order status', error);
-          /*this.snackBar.open(error.error.description, 'Close', {
-            horizontalPosition: 'right',
-            verticalPosition: 'top',
-            panelClass: ['error-snackbar']
-          });*/
-        }
-      });
+          return throwError(error);
+        })
+      );
     } else {
-      console.error('Order id or status is undefined');
-      /*this.snackBar.open('Order id or status is undefined', 'Close', {
-        horizontalPosition: 'right',
-        verticalPosition: 'top',
-        panelClass: ['error-snackbar']
-      });*/
+      console.error('Item id or status is undefined');
+      return new Observable<any>();
     }
   }
 

@@ -2,3 +2,25 @@ img{
   height: 200px;
   width: 200px;
 }
+
+.custom-select {
+  background-color: #0dcaf0; /* Color de fondo bg-info */
+  color: white; /* Color de texto */
+  border: 1px solid white; /* Borde blanco */
+  border-radius: 0.375rem; /* Para que coincida con el borde redondeado del contenedor */
+  padding: 0.375rem 0.75rem; /* Relleno */
+  appearance: none; /* Elimina la apariencia predeterminada del dropdown en algunos navegadores */
+}
+
+.custom-select option {
+  color: white; /* Color de las opciones en el dropdown */
+}
+
+.custom-select option:disabled {
+  color: white; /* Color de la opción "Seleccione un estado" */
+}
+
+.custom-select:focus {
+  outline: none; /* Elimina el contorno de enfoque predeterminado */
+  box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25); /* Añade un efecto de enfoque suave */
+}

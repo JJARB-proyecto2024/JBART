@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
 import { IOrder } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import { AvatarCreateComponent } from '../../components/avatar/avatar-create.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-orders',
@@ -32,9 +33,7 @@ export class OrdersComponent implements OnInit {
   public isLoading: boolean = true;
 
   ngOnInit(): void {
-    this.orderService.getAll();
-    this.orders = this.orderService.orders;
-    //this.loadOrders();
+    this.loadOrders();
     this.route.data.subscribe(data => {
       this.routeAuthorities = data['authorities'] ? data['authorities'] : [];
       this.areActionsAvailable = this.authService.areActionsAvailable(this.routeAuthorities);
@@ -42,8 +41,19 @@ export class OrdersComponent implements OnInit {
   }
 
   private loadOrders() {
-    this.orderService.getAll();
-    this.orders = this.orderService.orders;
-    this.isLoading = false;
+    this.orderService.getAll().subscribe({
+      next: (orders: IOrder[]) => {
+        this.orders = orders;
+        this.isLoading = false;
+      },
+      error: () => {
+        this.isLoading = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un error al cargar las órdenes.'
+        });
+      }
+    });
   }
 }
