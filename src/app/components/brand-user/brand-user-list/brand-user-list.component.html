@@ -1,47 +1,48 @@
 <div class="table-container table-responsive">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Cédula Jurídica</th>
-          <th scope="col">Nombre de la Marca</th>
-          <th scope="col">Representante Legal</th>
-          <th scope="col">Correo Electrónico</th>
-          <th scope="col">Dirección Principal</th>
-          <th scope="col">Estado</th>
-          <th scope="col">Categorías</th>
-          <th scope="col">Fecha de Creación</th>
-          <th class="text-center" scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (item of itemList; track $index) {
-        <tr>
-          <th scope="row">{{ item.legalId }}</th>
-            <td>{{ item.brandName }}</td>
-            <td>{{ item.legalRepresentativeName }}</td>
-            <td>{{ item.email }}</td>
-            <td>{{ item.mainLocationAddress }}</td>
-            <td>{{ item.status }}</td>
-            <td>{{ item.brandCategories }}</td>
-            <td>{{ item.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
-          <td >
-            <div class="d-flex justify-content-evenly align-items-center">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Cédula Jurídica</th>
+        <th scope="col">Nombre de la Marca</th>
+        <th scope="col">Representante Legal</th>
+        <th scope="col">Correo Electrónico</th>
+        <th scope="col">Dirección Principal</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Categorías</th>
+        <th scope="col">Fecha de Creación</th>
+        <th class="text-center" scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of itemList; track $index) {
+      <tr>
+        <th scope="row">{{ item.legalId }}</th>
+        <td>{{ item.brandName }}</td>
+        <td>{{ item.legalRepresentativeName }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.mainLocationAddress }}</td>
+        <td>{{ item.status }}</td>
+        <td>{{ item.brandCategories }}</td>
+        <td>{{ item.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>
+          <div class="d-flex justify-content-evenly align-items-center">
 
-              <button type="button" (click)="showDetailModal(item, detailModal)" class="btn btn-see">
-                <i class="fa-solid fa-eye white"></i>
-              </button>
-              
-            </div>
-          </td>
-        </tr>
-        } 
-      </tbody>
-    </table>
+            <button type="button" (click)="showDetailModal(item, detailModal)" class="btn btn-see">
+              <i class="fa-solid fa-eye white"></i>
+            </button>
+
+          </div>
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="10" class="text-center">No hay solicitudes para nuevas marcas</td>
+        }
+    </tbody>
+  </table>
 </div>
 
 <app-modal #detailModal>
-  <app-brand-user-form 
-    [brandUser]="selectedItem"
-    (callParentEvent)="handleFormAction($event, detailModal)" 
-    (deleteBrandUserEvent)="deleteBrandUser($event, detailModal)"/>
+  <app-brand-user-form [brandUser]="selectedItem" (callParentEvent)="handleFormAction($event, detailModal)"
+    (deleteBrandUserEvent)="deleteBrandUser($event, detailModal)" />
 </app-modal>
