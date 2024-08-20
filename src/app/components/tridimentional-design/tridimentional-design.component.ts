@@ -122,6 +122,7 @@ export class TridimentionalDesignComponent {
           const maxDimension = Math.max(size.x, size.y, size.z);
           const distance = maxDimension * 1;
           this.camera.position.z = distance;
+          console.log('Model loaded:', this.productModel);
         }, undefined, (error) => {
           console.error('Error loading product model:', error);
         });
