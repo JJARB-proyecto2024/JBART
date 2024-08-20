@@ -16,8 +16,8 @@ defineComponents(IgcRatingComponent);
 @Component({
   selector: 'app-product-recommended-list',
   standalone: true,
- imports: [
-    CommonModule, 
+  imports: [
+    CommonModule,
     FormsModule,
     ModalComponent,
     MatSnackBarModule,
@@ -28,7 +28,7 @@ defineComponents(IgcRatingComponent);
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [DatePipe]
 })
-export class ProductRecommendedListComponent implements OnInit{
+export class ProductRecommendedListComponent implements OnInit {
 
   @Input() itemList: IProduct[] = [];
   @Input() areActionsAvailable: boolean = false;
@@ -74,21 +74,22 @@ export class ProductRecommendedListComponent implements OnInit{
   }
 
   trackById(index: number, item: IProduct) {
-    
-    console.log(item.rate);
+
+    // console.log(item.rate);
     return item.id;
   }
 
   viewProducts(item: IProduct) {
     // Redirige a la página de productos
     //window.location.href = `/products/${item.id}`;
+    this.router.navigateByUrl('app/product-details/' + item.id);
   }
   buyProduct(item: IProduct) {
     this.router.navigate(['/app/payment'], { state: { product: item } });
   }
 
   showDetailModal(item: IProduct, modal: any) {
-    this.selectedItem = {...item}
+    this.selectedItem = { ...item }
     this.rateProductService.getHasRatedProduct(this.selectedItem.id).subscribe({
       next: (response: IResponse<IRateProduct>) => {
         if (response) {
@@ -132,7 +133,7 @@ export class ProductRecommendedListComponent implements OnInit{
       product: { id: this.selectedItem.id },
       rate: this.ratingValue
     };
-  
+
     this.rateProductService.save(rateData).subscribe({
       next: (response: IResponse<IRateProduct>) => {
         Swal.fire({

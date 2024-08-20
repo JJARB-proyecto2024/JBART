@@ -1,6 +1,7 @@
 <div class="d-flex align-items-center">
   <i class="fa-solid fa-cart-shopping"></i>
-  <span *ngIf="carts.length > 0" class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+  <span *ngIf="carts.length > 0"
+    class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
     <span class="visually-hidden">New alerts</span>
   </span>
 
@@ -15,7 +16,9 @@
     <div *ngFor="let item of carts | slice:0:3; let i = index" class="d-flex flex-column border-bottom">
       <div class="d-flex flex-row py-2 px-2 align-items-center">
         <div class="mx-2">
-          <img [src]="item.product?.picture" alt="">
+          <model-viewer *ngIf="item.product?.model" class="rounded-3" [src]="item.product?.model" alt="3D Model"
+            auto-rotate>
+          </model-viewer>
         </div>
         <div class="mx-2">
           <div>{{ item.product?.name }}</div>

@@ -2,6 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { INotification } from '../interfaces';
+import { WebSocketService } from './web-socket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,32 @@ export class NotificationService extends BaseService<INotification> {
   protected override source: string = 'notifications';
   protected notificationListSignal = signal<INotification[]>([]);
   private snackBar: MatSnackBar = inject(MatSnackBar);
-
+  public webSocketService: WebSocketService = inject(WebSocketService);
   get notifications$() {
     return this.notificationListSignal;
+  }
+
+  public createWebSocket(user: any) {
+    this.webSocketService.createWebSocket(user);
+  }
+
+  public connectWebSocket() {
+    this.webSocketService.connect().subscribe(
+      (message) => {
+        const notification: INotification = JSON.parse(message);
+        this.notificationListSignal.update((notifications: INotification[]) => [notification, ...notifications]);
+        console.log('Connected web socket:', message);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+    // Add the code to connect the web socket here
+  }
+
+  public disconnectWebSocket() {
+    this.webSocketService.disconnect();
+    console.log('Disconnected web socket');
   }
 
   public getAllByUserId(id: number): INotification[] {

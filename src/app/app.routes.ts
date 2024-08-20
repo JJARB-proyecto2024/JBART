@@ -45,6 +45,8 @@ import { UserBrandRoleGuard } from './guards/user-brand-role.guard';
 import { EarningsComponent } from './pages/earnings/earnings.component';
 import { ActivateAccountSendEmailComponent } from './pages/auth/activate-account/activate-account-send-email/activate-account-send-email.component';
 import { ActivateAccountValidateComponent } from './pages/auth/activate-account/activate-account-validate/activate-account-validate.component';
+import { AdminChatbotComponent } from './pages/admin-chatbot/admin-chatbot.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 export const routes: Routes = [
   {
@@ -119,10 +121,10 @@ export const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
-        canActivate:[AdminRoleGuard],
-        data: { 
+        canActivate: [AdminRoleGuard],
+        data: {
           authorities: [
-            IRole.admin, 
+            IRole.admin,
             IRole.superAdmin
           ],
           showInSidebar: true,
@@ -132,9 +134,9 @@ export const routes: Routes = [
       {
         path: 'brands',
         component: BrandUsersComponent,
-        data: { 
+        data: {
           authorities: [
-            IRole.admin, 
+            IRole.admin,
             IRole.superAdmin
           ],
           showInSidebar: true,
@@ -144,7 +146,7 @@ export const routes: Routes = [
       {
         path: 'account',
         component: DisableAccountComponent,
-        data: { 
+        data: {
           authorities: [
             IRole.user
           ],
@@ -155,9 +157,9 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        data: { 
+        data: {
           authorities: [
-            IRole.admin, 
+            IRole.admin,
             IRole.superAdmin,
             IRole.user
           ],
@@ -167,9 +169,9 @@ export const routes: Routes = [
       {
         path: 'notifications',
         component: NotificationsComponent,
-        data: { 
+        data: {
           authorities: [
-            IRole.admin, 
+            IRole.admin,
             IRole.superAdmin,
             IRole.user
           ],
@@ -179,9 +181,9 @@ export const routes: Routes = [
       {
         path: 'categories',
         component: CategoriesComponent,
-        data: { 
+        data: {
           authorities: [
-            IRole.admin, 
+            IRole.admin,
             IRole.superAdmin
           ],
           showInSidebar: true,
@@ -191,7 +193,7 @@ export const routes: Routes = [
       {
         path: 'products',
         component: ProductsComponent,
-        data: { 
+        data: {
           authorities: [
             IRole.userBrand
           ],
@@ -200,9 +202,20 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'product-details/:id',
+        component: ProductDetailsComponent,
+        data: {
+          authorities: [
+            IRole.user,
+          ],
+          showInSidebar: false,
+          name: 'Detalles del Producto'
+        }
+      },
+      {
         path: 'products-recommended',
         component: ProductsRecommendedComponent,
-        data: { 
+        data: {
           authorities: [
             IRole.superAdmin,
             IRole.user
@@ -214,7 +227,7 @@ export const routes: Routes = [
       {
         path: 'products-recommended-categories/:id',
         component: ProductsRecommendedCategoriesComponent,
-        data: { 
+        data: {
           authorities: [
             IRole.superAdmin,
             IRole.user
@@ -226,7 +239,7 @@ export const routes: Routes = [
       {
         path: 'products-recommended-brands/:id',
         component: ProductsRecommendedBrandsComponent,
-        data: { 
+        data: {
           authorities: [
             IRole.superAdmin,
             IRole.user
@@ -238,7 +251,7 @@ export const routes: Routes = [
       {
         path: 'orders',
         component: OrdersComponent,
-        data: { 
+        data: {
           authorities: [
             IRole.superAdmin
           ],
@@ -291,7 +304,7 @@ export const routes: Routes = [
       {
         path: 'brands-avaliable',
         component: BrandUsersAvaliableComponent,
-        data: { 
+        data: {
           authorities: [
             IRole.superAdmin,
             IRole.user
@@ -303,7 +316,7 @@ export const routes: Routes = [
       {
         path: 'buyer-profile',
         component: BuyerProfileComponent,
-        data: { 
+        data: {
           authorities: [
             IRole.user
           ],
@@ -314,7 +327,7 @@ export const routes: Routes = [
       {
         path: 'brand-profile',
         component: BrandProfileComponent,
-        data: { 
+        data: {
           authorities: [
             IRole.userBrand
           ],
@@ -325,7 +338,7 @@ export const routes: Routes = [
       {
         path: 'product-types',
         component: ProductTypesComponent,
-        data: { 
+        data: {
           authorities: [
             IRole.user,
             IRole.userBrand
@@ -349,7 +362,7 @@ export const routes: Routes = [
         path: 'sales',
         component: SalesComponent,
         canActivate: [UserBrandRoleGuard],
-        data: { 
+        data: {
           authorities: [
             IRole.userBrand
           ],
@@ -358,9 +371,20 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'admin-chatbot',
+        component: AdminChatbotComponent,
+        data: {
+          authorities: [
+            IRole.superAdmin
+          ],
+          showInSidebar: true,
+          name: 'Chatbot'
+        }
+      },
+      {
         path: 'BuyerProducts',
         component: ViewOptionsComponent,
-        data: { 
+        data: {
           authorities: [
             IRole.user,
             IRole.superAdmin
@@ -387,7 +411,7 @@ export const routes: Routes = [
   {
     path: 'register-options',
     component: RegisterOptionsComponent,
-  },
+  }
 ];
 
 @NgModule({

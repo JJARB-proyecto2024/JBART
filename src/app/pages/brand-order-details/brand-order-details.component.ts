@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { OrderService } from '../../services/order.service';
 import { CommonModule } from '@angular/common';
 import { IOrder } from '../../interfaces';
@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-order-details',
   standalone: true,
   imports: [CommonModule, OrderMapComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './brand-order-details.component.html',
   styleUrl: './brand-order-details.component.scss'
 })

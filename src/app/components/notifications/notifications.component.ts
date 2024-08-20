@@ -5,7 +5,8 @@ import { AuthService } from '../../services/auth.service';
 import { INotification, IUser } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-
+import { WebSocketService } from '../../services/web-socket.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-notifications',
   standalone: true,
@@ -17,11 +18,13 @@ export class NotificationsComponent implements OnInit {
   public notificationService: NotificationService = inject(NotificationService);
   public userService: UserService = inject(UserService);
   public authService: AuthService = inject(AuthService);
+  public webSocketService: WebSocketService = inject(WebSocketService);
   public user: IUser = {};
   public seenAll = false;
   @Input() notifications: INotification[] = [];
   public selectedNotification: INotification = {};
   constructor(public router: Router) { }
+
 
   ngOnInit(): void {
     this.user = this.authService.getUser() || {};
@@ -32,6 +35,7 @@ export class NotificationsComponent implements OnInit {
       this.handleSeenAll();
     }
   }
+  
   handleNotificationRead(item: INotification) {
     this.selectedNotification = item;
     this.selectedNotification.seen = true;
