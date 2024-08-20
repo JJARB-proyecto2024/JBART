@@ -72,38 +72,64 @@ export class TridimentionalDesignComponent {
 
   private loadProduct(): void {
     const loader = new GLTFLoader();
-    if (this.product.model) {
-      loader.load(this.product.model, (gltf) => {
-        this.productModel = gltf.scene as THREE.Group;
-        // Ajustar la escala si es necesario, ancho centro largo, grosor manga
-        this.productModel.scale.set(0.5, 0.5, 0.5);
-
-        // Ajustar la posición de la camisa sobre el cuerpo
-        this.productModel.position.set(0, 0, 0.1); // Ajustar la posición lados, arriba, atras
-        // Ajustar la rotación de la camisa
-        // Inclinar la camisa ligeramente hacia abajo en el eje X
-        this.productModel.rotation.set(Math.PI / 40, 0, 0); // Ajusta el valor del ángulo en el eje X
-        this.scene.add(this.productModel);
-        this.centerModel(this.productModel);
-        this.changeProductModelColor(0x2889e9);
-        // Configurar la visibilidad y el material de la camisa
-        this.productModel.traverse((child) => {
-          if (child instanceof THREE.Mesh) {
-            (child.material as THREE.Material).side = THREE.FrontSide;
+  
+    // Verificar y eliminar el modelo anterior si existe
+    if (this.productModel) {
+      this.scene.remove(this.productModel);
+  
+      // Recorrer y liberar la geometría y materiales del modelo anterior
+      this.productModel.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.geometry.dispose();
+          if (Array.isArray(child.material)) {
+            child.material.forEach((material) => material.dispose());
+          } else {
+            child.material.dispose();
           }
-        });
-
-        // Zoom out the product
-        const boundingBox = new THREE.Box3().setFromObject(this.productModel);
-        const size = boundingBox.getSize(new THREE.Vector3());
-        const maxDimension = Math.max(size.x, size.y, size.z);
-        const distance = maxDimension * 1;
-        this.camera.position.z = distance;
-      }, undefined, (error) => {
-        console.error('Error loading shirt model:', error);
+        }
       });
+  
+      // Forzar la eliminación de la referencia del modelo
+      this.productModel = null!;
+  
+      // Limpiar las listas de renderizado
+      this.renderer.renderLists.dispose();
     }
+  
+    // Solo cargar el nuevo modelo después de asegurarnos de que el anterior ha sido removido
+    setTimeout(() => {
+      if (this.product.model) {
+        loader.load(this.product.model, (gltf) => {
+          this.productModel = gltf.scene as THREE.Group;
+  
+          // Ajustar la escala y posición si es necesario
+          this.productModel.scale.set(0.5, 0.5, 0.5);
+          this.productModel.position.set(0, 0, 0.1);
+          this.productModel.rotation.set(Math.PI / 40, 0, 0);
+  
+          this.scene.add(this.productModel);
+          this.centerModel(this.productModel);
+          this.changeProductModelColor(0x2889e9);
+          this.productModel.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+              (child.material as THREE.Material).side = THREE.FrontSide;
+            }
+          });
+  
+          // Ajustar la cámara para el nuevo modelo
+          const boundingBox = new THREE.Box3().setFromObject(this.productModel);
+          const size = boundingBox.getSize(new THREE.Vector3());
+          const maxDimension = Math.max(size.x, size.y, size.z);
+          const distance = maxDimension * 1;
+          this.camera.position.z = distance;
+        }, undefined, (error) => {
+          console.error('Error loading product model:', error);
+        });
+      }
+    }, 100); // Esperar un pequeño intervalo para asegurarse de que el modelo anterior se elimine
   }
+  
+  
 
   private centerModel(model: THREE.Group): void {
     const box = new THREE.Box3().setFromObject(model);
