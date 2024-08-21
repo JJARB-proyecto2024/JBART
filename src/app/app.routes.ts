@@ -43,6 +43,7 @@ import { ProductsRecommendedCategoriesComponent } from './pages/productsRecommen
 import { ProductsRecommendedBrandsComponent } from './pages/productsRecommendedBrands/productsRecommendedBrands.component';
 import { UserBrandRoleGuard } from './guards/user-brand-role.guard';
 import { AdminChatbotComponent } from './pages/admin-chatbot/admin-chatbot.component';
+import { AvatarCComponent } from './pages/avatar/avatar-creator/avatar-c.component';
 
 export const routes: Routes = [
   {
@@ -367,6 +368,18 @@ export const routes: Routes = [
           ],
           showInSidebar: true,
           name: 'Productos'
+        }
+      },
+      {
+        path: 'Avatar',
+        component: AvatarCComponent,
+        data: { 
+          authorities: [
+            IRole.user,
+            IRole.superAdmin
+          ],
+          showInSidebar: true,
+          name: 'Avatar'
         }
       },
     ],

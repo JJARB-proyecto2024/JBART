@@ -24,6 +24,7 @@
     "@cloudinary/url-gen": "^1.19.0",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@paypal/paypal-js": "^8.1.0",
+    "@svgdotjs/svg.js": "^3.2.4",
     "@tsparticles/angular": "^3.0.0",
     "@tsparticles/engine": "^3.5.0",
     "chart.js": "^4.4.3",
