@@ -210,12 +210,10 @@ export const routes: Routes = [
       {
         path: 'avatarCreate',
         component: AvatarCreateComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
-            IRole.userBrand,
             IRole.user,
-            IRole.admin,
-            IRole.superAdmin
           ],
           showInSidebar: true,
           name: 'Crear Avatar'
@@ -224,12 +222,10 @@ export const routes: Routes = [
       {
         path: 'avatarView',
         component: AvatarViewComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
-            IRole.userBrand,
             IRole.user,
-            IRole.admin,
-            IRole.superAdmin
           ],
           showInSidebar: true,
           name: 'Ver Avatar'
