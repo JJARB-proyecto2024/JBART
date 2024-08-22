@@ -42,20 +42,21 @@ export class OrderService extends BaseService<IOrder> {
     );
   }
   
-  public getOrderByID(id: number) {
-    this.find(id).subscribe({
-      next: (response: any) => {
-        this.orderSignal.set(response);
-      },
-      error: (error: any) => {
+  public getOrderByID(id: number): Observable<any> {
+    return this.find(id).pipe(
+      tap((response: any) => {
+        this.orderSignal.set(response as IOrder);
+      }),
+      catchError((error: any) => {
         console.error('Error fetching order by id', error);
         this.snackBar.open(error.error.description, 'Close', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           panelClass: ['error-snackbar']
         });
-      }
-    });
+        return throwError(error);
+      })
+    );
   }
   
 
