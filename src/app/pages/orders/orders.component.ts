@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { IOrder } from '../../interfaces';
 import { CommonModule } from '@angular/common';
-import { AvatarCreateComponent } from '../../components/avatar/avatar-create.component';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,8 +16,7 @@ import Swal from 'sweetalert2';
     OrderListComponent,
     CommonModule,
     LoaderComponent,
-    ModalComponent,
-    AvatarCreateComponent
+    ModalComponent
   ],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']

@@ -75,6 +75,16 @@ export interface IRateBrand {
   userBrand: IBrandUser;
 }
 
+export interface IAvatar {
+  id?: number;
+  head?: string;
+  face?: string;
+  facialHair?: string;
+  accessories?: string;
+  pose?: string;
+  userBrand: IBrandUser;
+}
+
 export interface IRateProduct {
   id?: number;
   rate?: number;

@@ -47,6 +47,8 @@ import { ActivateAccountSendEmailComponent } from './pages/auth/activate-account
 import { ActivateAccountValidateComponent } from './pages/auth/activate-account/activate-account-validate/activate-account-validate.component';
 import { AdminChatbotComponent } from './pages/admin-chatbot/admin-chatbot.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { AvatarCreateComponent } from './pages/avatar/avatar-create/avatar-create.component';
+import { AvatarViewComponent } from './pages/avatar/avatar-view/avatar-view.component';
 
 export const routes: Routes = [
   {
@@ -199,6 +201,34 @@ export const routes: Routes = [
           ],
           showInSidebar: true,
           name: 'Lista de Productos'
+        }
+      },
+      {
+        path: 'avatarCreate',
+        component: AvatarCreateComponent,
+        data: {
+          authorities: [
+            IRole.userBrand,
+            IRole.user,
+            IRole.admin,
+            IRole.superAdmin
+          ],
+          showInSidebar: true,
+          name: 'Crear Avatar'
+        }
+      },
+      {
+        path: 'avatarView',
+        component: AvatarViewComponent,
+        data: {
+          authorities: [
+            IRole.userBrand,
+            IRole.user,
+            IRole.admin,
+            IRole.superAdmin
+          ],
+          showInSidebar: true,
+          name: 'Ver Avatar'
         }
       },
       {
