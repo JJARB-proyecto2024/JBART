@@ -47,6 +47,7 @@ import { ActivateAccountSendEmailComponent } from './pages/auth/activate-account
 import { ActivateAccountValidateComponent } from './pages/auth/activate-account/activate-account-validate/activate-account-validate.component';
 import { AdminChatbotComponent } from './pages/admin-chatbot/admin-chatbot.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { UserBuyerRoleGuard } from './guards/user-buyer-role.guard';
 
 export const routes: Routes = [
   {
@@ -134,6 +135,7 @@ export const routes: Routes = [
       {
         path: 'brands',
         component: BrandUsersComponent,
+        canActivate: [AdminRoleGuard],
         data: {
           authorities: [
             IRole.admin,
@@ -146,6 +148,7 @@ export const routes: Routes = [
       {
         path: 'account',
         component: DisableAccountComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
             IRole.user
@@ -172,15 +175,15 @@ export const routes: Routes = [
         data: {
           authorities: [
             IRole.admin,
-            IRole.superAdmin,
             IRole.user
           ],
-          name: 'Notifications'
+          name: 'Notificationes'
         }
       },
       {
         path: 'categories',
         component: CategoriesComponent,
+        canActivate: [AdminRoleGuard],
         data: {
           authorities: [
             IRole.admin,
@@ -193,6 +196,7 @@ export const routes: Routes = [
       {
         path: 'products',
         component: ProductsComponent,
+        canActivate: [UserBrandRoleGuard],
         data: {
           authorities: [
             IRole.userBrand
@@ -204,6 +208,7 @@ export const routes: Routes = [
       {
         path: 'product-details/:id',
         component: ProductDetailsComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
             IRole.user,
@@ -251,6 +256,7 @@ export const routes: Routes = [
       {
         path: 'orders',
         component: OrdersComponent,
+        canActivate: [AdminRoleGuard],
         data: {
           authorities: [
             IRole.superAdmin
@@ -262,6 +268,7 @@ export const routes: Routes = [
       {
         path: 'brand-orders',
         component: BrandOrdersComponent,
+        canActivate: [UserBrandRoleGuard],
         data: {
           authorities: [
             IRole.userBrand
@@ -273,6 +280,7 @@ export const routes: Routes = [
       {
         path: 'brand-order-details/:id',
         component: BrandOrderDetailsComponent,
+        canActivate: [UserBrandRoleGuard],
         data: {
           authorities: [
             IRole.userBrand
@@ -283,6 +291,7 @@ export const routes: Routes = [
       {
         path: 'buyer-order-details/:id',
         component: BuyerOrderDetails,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
             IRole.user
@@ -293,6 +302,7 @@ export const routes: Routes = [
       {
         path: 'user-orders',
         component: UserOrdersComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
             IRole.user
@@ -316,6 +326,7 @@ export const routes: Routes = [
       {
         path: 'buyer-profile',
         component: BuyerProfileComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
             IRole.user
@@ -327,6 +338,7 @@ export const routes: Routes = [
       {
         path: 'brand-profile',
         component: BrandProfileComponent,
+        canActivate: [UserBrandRoleGuard],
         data: {
           authorities: [
             IRole.userBrand
@@ -350,6 +362,7 @@ export const routes: Routes = [
       {
         path: 'payment',
         component: PaymentComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           autorities: [
             IRole.user
@@ -373,6 +386,7 @@ export const routes: Routes = [
       {
         path: 'admin-chatbot',
         component: AdminChatbotComponent,
+        canActivate: [AdminRoleGuard],
         data: {
           authorities: [
             IRole.superAdmin
