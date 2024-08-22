@@ -30,71 +30,67 @@ export class BrandOrderDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.orderId = params['id'];
-      if (this.orderId) {
-        this.orderService.getOrderByID(this.orderId).subscribe(order => {
-          this.order = order;
-        });
-      }
     });
+    this.orderService.getOrderByID(this.orderId);
   }
-
+  
   updateOrderStatus() {
-    if (this.order && this.order.id && this.order.status) {
-        const currentStatus = this.order.status as OrderStatus;
-        
-        console.log('Estado actual de la orden:', currentStatus);
-        
-        // Definir las transiciones de estado
-        const statusTransitions: { [key in OrderStatus]: OrderStatus | null } = {
-            'Pendiente': 'En Proceso',
-            'En Proceso': 'Enviado',
-            'Enviado': 'Entregado',
-            'Entregado': null
-        };
-    
-        // Obtener el próximo estado
-        const newStatus = statusTransitions[currentStatus];
-    
-        if (newStatus) {
-            this.order.status = newStatus;
-            this.orderService.updateStat(this.order).subscribe({
-                next: (response: any) => {
-                    Swal.fire({
-                        title: 'Éxito',
-                        text: `Estado de la orden actualizado a "${newStatus}"`,
-                        icon: 'success',
-                        confirmButtonText: 'Aceptar'
-                    });
-                    console.log('Estado de la orden actualizado', response);
-                },
-                error: (error: any) => {
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Error al actualizar el estado de la orden',
-                        icon: 'error',
-                        confirmButtonText: 'Aceptar'
-                    });
-                    console.error('Error al actualizar el estado de la orden', error);
-                }
-            });
-        } else {
-            Swal.fire({
-                title: 'Advertencia',
-                text: 'No se puede actualizar el estado, la orden ya está en "Entregado"',
-                icon: 'warning',
-                confirmButtonText: 'Aceptar'
-            });
-        }
-        } else {
-            Swal.fire({
-                title: 'Advertencia',
-                text: 'El id o el estado de la orden están indefinidos',
-                icon: 'warning',
-                confirmButtonText: 'Aceptar'
-            });
-        }
+    // Asegúrate de que el objeto order esté actualizado antes de continuar
+    this.order = this.orderService.order;
+
+    if (!this.order || !this.order.id || !this.order.status) {
+      Swal.fire({
+        title: 'Advertencia',
+        text: 'El id o el estado de la orden están indefinidos',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
     }
 
+    const currentStatus = this.order.status as OrderStatus;
+    console.log('Estado actual de la orden:', currentStatus);
+
+    const statusTransitions: { [key in OrderStatus]: OrderStatus | null } = {
+      'Pendiente': 'En Proceso',
+      'En Proceso': 'Enviado',
+      'Enviado': 'Entregado',
+      'Entregado': null
+    };
+
+    const newStatus = statusTransitions[currentStatus];
+
+    if (newStatus) {
+      this.order.status = newStatus;
+      this.orderService.updateStat(this.order).subscribe({
+        next: (response: any) => {
+          Swal.fire({
+            title: 'Éxito',
+            text: `Estado de la orden actualizado a "${newStatus}"`,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
+          console.log('Estado de la orden actualizado', response);
+        },
+        error: (error: any) => {
+          Swal.fire({
+            title: 'Error',
+            text: 'Error al actualizar el estado de la orden',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+          console.error('Error al actualizar el estado de la orden', error);
+        }
+      });
+    } else {
+      Swal.fire({
+        title: 'Advertencia',
+        text: 'No se puede actualizar el estado, la orden ya está en "Entregado"',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar'
+      });
+    }
+  }
   
   
 }
