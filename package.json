@@ -25,6 +25,7 @@
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@paypal/paypal-js": "^8.1.0",
+    "@svgdotjs/svg.js": "^3.2.4",
     "@tsparticles/angular": "^3.0.0",
     "@tsparticles/engine": "^3.5.0",
     "angular2-multiselect-dropdown": "^10.0.0",

@@ -1,0 +1,90 @@
+.avatar-wrapper {
+  display: flex;
+  /*justify-content: space-between;*/
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.avatar-options {
+  flex: 1;
+  max-width: 500px; /* Ajusta según sea necesario */
+  margin-right: 50px;
+  margin-left: 250px;
+  margin-top: 150px;
+}
+
+.avatar-preview {
+  flex: 2;
+  position: relative;
+  max-width: 300px; /* Ajusta según el tamaño del avatar */
+  height: 600px; /* Ajusta según el tamaño del avatar */
+  top: -70px
+}
+
+.boton{
+  margin-top: 15px;
+  margin-right: 39px;
+  margin-left: -3px;
+}
+
+.btn-up{
+  justify-content: center;
+}
+
+.avatar-part-img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.avatar-part{
+  font: 600 18px/35px sans-serif;
+}
+.fas{
+  color: #007bffbd;
+}
+
+.head-img {
+  top: 0; /* Posiciona la cabeza en la parte superior */
+  z-index: 2;
+  max-width: 155px;
+  margin-left: 25px;
+}
+
+.body-img {
+  top: 155px; /* Ajusta la posición del cuerpo para que esté debajo de la cabeza */
+  z-index: 0;
+  max-width: 155px;
+}
+
+.face-img {
+  top: 53px; /* Ajusta la posición de la cara para que se alinee con la cabeza */
+  z-index: 3;
+  max-width: 108px;
+  margin-left: 37px;
+}
+
+.facial-hair-img {
+  top: 108px; /* Ajusta la posición del vello facial para que se alinee con la cara */
+  z-index: 4;
+  max-width: 98px;
+  margin-left: 30px;
+}
+
+.accessories-img {
+  top: 70px; /* Ajusta la posición de los accesorios para que se alineen con la cara/cabeza */
+  z-index: 5;
+  max-width: 130px;
+  margin-left: 18px;
+}
+
+.pose-img {
+  top: 150px; /* Ajusta la posición de la pose para que esté debajo del cuerpo */
+  z-index: 1;
+  margin-left: 35px;
+  max-width: 380px;
+}
+
+.avatar-part {
+  margin-bottom: 10px;
+}

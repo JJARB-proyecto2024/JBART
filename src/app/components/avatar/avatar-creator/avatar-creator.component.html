@@ -1,0 +1,122 @@
+  <div class="avatar-wrapper">
+  <!-- Contenedor de Opciones -->
+  <div class="avatar-options">
+      <!-- Tono de Piel -->
+    <div class="avatar-part">
+      <div class="row">
+        <div class="col-4">
+          <i class="fas fa-palette me-2"></i>
+          <label for="skinTone">Tono piel:</label>
+        </div>
+        <div class="col-7">
+          <select id="skinTone" class="form-select" [(ngModel)]="selectedSkinTone" (ngModelChange)="updateSkinTone($event)">
+            <option value="">Seleccione el tono de piel</option>
+            <option value="claro">Claro</option>
+            <option value="medio">Medio</option>
+            <option value="oscuro">Oscuro</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Head -->
+    <div class="avatar-part">
+      <div class="row">
+        <div class="col-4">
+          <i class="fas fa-brush me-2"></i>
+          <label for="head">Cabello:</label>
+        </div>
+        <div class="col-7">
+          <select id="head" class="form-select" [(ngModel)]="selectedHead" (ngModelChange)="updateAvatarPart($event, 'head')">
+            <option value="">Seleccione el cabello</option>
+            <option *ngFor="let head of headOptions" [value]="head">{{ head | titlecase }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Face -->
+    <div class="avatar-part">
+      <div class="row">
+        <div class="col-4">
+          <i class="fas fa-smile me-2"></i>
+          <label for="face">Rostro:</label>
+        </div>
+        <div class="col-7">
+          <select id="face" class="form-select" [(ngModel)]="selectedFace" (ngModelChange)="updateAvatarPart($event, 'face')">
+            <option value="">Seleccione el rosto</option>
+            <option *ngFor="let face of faceOptions" [value]="face">{{ face | titlecase }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Facial Hair -->
+    <div class="avatar-part">
+      <div class="row">
+        <div class="col-4">
+          <i class="fas fa-cut me-2"></i>
+          <label for="facialHair">Vello:</label>
+        </div>
+        <div class="col-7">
+          <select id="facialHair" class="form-select" [(ngModel)]="selectedFacialHair" (ngModelChange)="updateAvatarPart($event, 'facialHair')">
+            <option value="">Seleccione el vello facial</option>
+            <option *ngFor="let facialHair of facialHairOptions" [value]="facialHair">{{ facialHair | titlecase }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accessories -->
+    <div class="avatar-part">
+      <div class="row">
+        <div class="col-4">
+          <i class="fas fa-glasses me-2"></i>
+          <label for="accessories">Accesorio:</label>
+        </div>
+        <div class="col-7">
+          <select id="accessories" class="form-select" [(ngModel)]="selectedAccessories" (ngModelChange)="updateAvatarPart($event, 'accessories')">
+            <option value="">Seleccione los accesorios</option>
+            <option *ngFor="let accessory of accessoriesOptions" [value]="accessory">{{ accessory | titlecase }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pose -->
+    <div class="avatar-part">
+      <div class="row">
+        <div class="col-4">
+          <i class="fas fa-user-tie me-2"></i>
+          <label for="pose">Cuerpo:</label>
+        </div>
+        <div class="col-7">
+          <select id="pose" class="form-select" [(ngModel)]="selectedPose" (ngModelChange)="updateAvatarPart($event, 'pose')">
+            <option value="">Seleccione el cuerpo</option>
+            <option *ngFor="let pose of poseOptions" [value]="pose">{{ pose | titlecase }}</option>
+          </select>
+        </div>
+      </div>      
+    </div>
+
+    <div class="row boton">
+      <button
+        (click)="saveAvatar();"
+        type="button"
+        class="btn btn-up d-flex align-items-center">
+        <p class="mb-0"> Guardar Avatar </p>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Contenedor del Avatar -->
+  <div class="avatar-preview">
+    <!-- Las imágenes se superponen en el orden correcto -->
+    <img [src]="headSvgPath + selectedHead" *ngIf="selectedHead" class="avatar-part-img head-img" alt="Head">
+    <img [src]="faceSvgPath + selectedFace" *ngIf="selectedFace" class="avatar-part-img face-img" alt="Face">
+    <img [src]="facialHairSvgPath + selectedFacialHair" *ngIf="selectedFacialHair" class="avatar-part-img facial-hair-img" alt="Facial Hair">
+    <img [src]="accessoriesSvgPath + selectedAccessories" *ngIf="selectedAccessories" class="avatar-part-img accessories-img" alt="Accessories">
+    <img [src]="poseSvgPath + selectedPose" *ngIf="selectedPose" class="avatar-part-img pose-img" alt="Pose">
+  </div>
+</div>
