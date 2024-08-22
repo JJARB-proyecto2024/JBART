@@ -89,7 +89,20 @@ export class CartService extends BaseService<ICart> {
   public delete(item: ICart) {
     this.del(item.id).subscribe({
       next: () => {
-        this.cartListSignal.set(this.cartListSignal().filter(cart => cart.id != item.id));
+        Swal.fire({
+          title: 'Eliminar producto del carrito',
+          text: '¿Está seguro de que desea eliminar este producto del carrito?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.cartListSignal.set(this.cartListSignal().filter(cart => cart.id != item.id));
+          }
+        });
       },
       error: (error: any) => {
         console.error('response', error.description);

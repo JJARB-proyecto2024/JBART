@@ -44,6 +44,7 @@ import { ProductsRecommendedBrandsComponent } from './pages/productsRecommendedB
 import { UserBrandRoleGuard } from './guards/user-brand-role.guard';
 import { AdminChatbotComponent } from './pages/admin-chatbot/admin-chatbot.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 export const routes: Routes = [
   {
@@ -164,6 +165,16 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Notifications'
+        }
+      },
+      {
+        path: 'cart',
+        component: CartComponent,
+        data: {
+          authorities: [
+            IRole.user
+          ],
+          name: 'Cart'
         }
       },
       {

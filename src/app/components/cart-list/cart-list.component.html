@@ -1,0 +1,35 @@
+<div class="table-container table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Fecha de creación</th>
+        <th class="text-center" scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of carts; track $index) {
+      <tr>
+        <th scope="row">{{item.id}}</th>
+        <td>{{item.design?.product?.name}}</td>
+        <td>{{item.quantity}}</td>
+        <td>${{item.design?.product?.price}}</td>
+        <td>{{item.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+        <td>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <button type="button" class="btn btn-see">
+              <i class="fa-solid fa-eye white"></i>
+            </button>
+            <button type="button" (click)="handleDelete(item)" class="btn btn-del">
+              <i class="fa-solid fa-trash white"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
