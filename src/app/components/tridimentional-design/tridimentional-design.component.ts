@@ -10,6 +10,9 @@ import { UserBuyerService } from '../../services/user-buyer.service';
 import { BuyerProfileService } from '../../services/buyer-profile.service';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { Cloudinary } from '@cloudinary/url-gen';
+
+declare const cloudinary: any;
 @Component({
   selector: 'app-tridimentional-design',
   standalone: true,
@@ -18,6 +21,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './tridimentional-design.component.html',
   styleUrl: './tridimentional-design.component.scss'
 })
+
+
 export class TridimentionalDesignComponent {
   @ViewChild('rendererContainer', { static: true }) rendererContainer!: ElementRef;
   @Input() product: IProduct = {};
@@ -93,10 +98,16 @@ export class TridimentionalDesignComponent {
     this.controls.dampingFactor = 0.25;
     this.controls.enableZoom = true;
 
-    // Iluminación
-    const ambientLight = new THREE.AmbientLight(0x404040);
+    // Iluminación ambiental
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); // Luz ambiental suave
     this.scene.add(ambientLight);
 
+    // Luz hemisférica para iluminar uniformemente el modelo desde arriba y abajo
+    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);
+    hemisphereLight.position.set(0, 1, 0);
+    this.scene.add(hemisphereLight);
+
+    // Luz direccional para proporcionar una fuente de luz principal
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
     directionalLight.position.set(5, 5, 5);
     this.scene.add(directionalLight);
@@ -198,6 +209,50 @@ export class TridimentionalDesignComponent {
       this.camera.aspect = this.rendererContainer.nativeElement.clientWidth / this.rendererContainer.nativeElement.clientHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(this.rendererContainer.nativeElement.clientWidth, this.rendererContainer.nativeElement.clientHeight);
+    }
+  }
+
+  openCloudinaryWidget() {
+    cloudinary.openUploadWidget({
+      cloudName: 'drlznypvr',
+      uploadPreset: 'ml_default'
+    }, (error: any, result: any) => {
+      if (!error && result && result.event === 'success') {
+        console.log('File uploaded successfully to Cloudinary');
+        this.design.picture = result.info.secure_url;
+        this.attachImageToProductModel(result.info.secure_url);
+      }
+    });
+  }
+
+  private attachImageToProductModel(imageUrl: string): void {
+    if (this.productModel) {
+      const textureLoader = new THREE.TextureLoader();
+      const texture = textureLoader.load(imageUrl);
+      this.productModel.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          const meshMaterial = child.material as THREE.MeshBasicMaterial;
+          meshMaterial.map = texture;
+          meshMaterial.needsUpdate = true;
+        }
+      });
+    }
+  }
+
+  handleRemovePicture() {
+    this.design.picture = '';
+    this.removeImageFromProductModel();
+  }
+
+  private removeImageFromProductModel(): void {
+    if (this.productModel) {
+      this.productModel.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          const meshMaterial = child.material as THREE.MeshBasicMaterial;
+          meshMaterial.map = null;
+          meshMaterial.needsUpdate = true;
+        }
+      });
     }
   }
 }
