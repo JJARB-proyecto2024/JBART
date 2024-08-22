@@ -97,6 +97,31 @@
           Dirección actual: {{orderService.order.currentLocation}}</p>
         <p><i class="fas fa-map-pin"></i> Punto de entrega: {{orderService.order.deliveryLocation}}</p>
       </div>
+      <div class="row">
+        <div class="col-6 d-flex flex-column fs-5 gap-4 flex-fill">
+          <button class="btn btn-add">
+            Calificar Orden
+          </button>
+        </div>
+        <div class="col-6 d-flex flex-column fs-5 gap-4 flex-fill">
+          <button (click)="showDetailModal(orderService.order, modal)" class="btn btn-up">
+            Calificar Producto
+          </button>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- Modal para calificar -->
+  <app-modal #modal>
+    <div class="modalE">
+      <div class="modal-body">
+        <h2 class="modal-title">Calificar a {{ selectedItem.product?.name }}</h2>
+        <change-rating [rating]="ratingValue"  (ratingChange)="handleRatingChange($event)"></change-rating>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="handleFormAction($event, modal)">Calificar</button>
+      </div>
+    </div>
+  </app-modal>
 </div>
