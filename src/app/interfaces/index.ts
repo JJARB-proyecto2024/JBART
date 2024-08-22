@@ -129,6 +129,8 @@ export interface IDesign {
   color?: string;
   picture?: string;
   product?: IProduct;
+  selectedSize?: string;
+  modifiedModel?: string;
   buyerUser?: IBuyerUser;
 }
 

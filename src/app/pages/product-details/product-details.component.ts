@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, NgModule, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, NgModule, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { StarRatingComponent } from "../../components/star-rating/star-rating.component";
 import { ColorPickerModule } from 'ngx-color-picker';
 import { TridimentionalDesignComponent } from '../../components/tridimentional-design/tridimentional-design.component';
@@ -15,7 +15,6 @@ import { IBrandUser, IProduct } from '../../interfaces';
   styleUrl: './product-details.component.scss'
 })
 export class ProductDetailsComponent implements OnInit {
-  color: string = '#2889e9';
   public productService: ProductService = inject(ProductService)
   public productModelURL: string = '';
   public router: Router = inject(Router);
