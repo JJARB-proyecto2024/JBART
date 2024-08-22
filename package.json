@@ -27,6 +27,7 @@
     "@tsparticles/angular": "^3.0.0",
     "@tsparticles/engine": "^3.5.0",
     "angular2-multiselect-dropdown": "^10.0.0",
+    "axios": "^1.7.4",
     "chart.js": "^4.4.3",
     "dat.gui": "^0.7.9",
     "demo-angular-front": "file:",

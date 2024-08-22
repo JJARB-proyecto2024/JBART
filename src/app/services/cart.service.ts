@@ -1,13 +1,16 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { ICart } from '../interfaces';
 import Swal from 'sweetalert2';
+import { catchError, Observable, tap, throwError } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService extends BaseService<ICart> {
   protected override source: string = 'carts';
+  private snackBar: MatSnackBar = inject(MatSnackBar);
   protected cartListSignal = signal<ICart[]>([]);
 
   get carts$() {
@@ -44,21 +47,25 @@ export class CartService extends BaseService<ICart> {
     })
   }
 
-  public save(item: ICart) {
-    this.add(item).subscribe({
-      next: (response: any) => {
-        this.cartListSignal.update((carts: ICart[]) => [response, ...carts]);
-      },
-      error: (error: any) => {
+  public save(item: ICart): Observable<any> {
+    return this.add(item).pipe(
+      tap((response: any) => {
+        this.cartListSignal.update((carts: ICart[]) => [response, ...carts
+
+        ]);
+      }),
+      catchError((error: any) => {
         console.error('response', error.description);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: error.error.description
-        })
-      }
-    })
+        this.snackBar.open(error.error.description, 'Close', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          panelClass: ['error-snackbar']
+        });
+        return throwError(error);
+      })
+    );
   }
+
 
   public update(item: ICart) {
     console.log('item', item);

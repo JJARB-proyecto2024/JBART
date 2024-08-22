@@ -20,7 +20,8 @@
     </div>
     <div class="d-flex flex-column">
       <p>Seleccione una talla</p>
-      <select #size="ngModel" [(ngModel)]="design.selectedSize" class="form-select" (ngModelChange)="handleSizeChange($event)">
+      <select #size="ngModel" [(ngModel)]="design.selectedSize" class="form-select"
+        (ngModelChange)="handleSizeChange($event)">
         <option *ngFor="let size of productService.item$()?.size?.split(', ')">
           {{size}}
         </option>
@@ -28,7 +29,15 @@
     </div>
     <div class="d-flex flex-column gap-2">
       <label class="quantity" for="quantity">Cantidad</label>
-      <input type="number" class="form-control" value="1" id="quantity" min="1">
+      <input #quantity="ngModel"  type="number" [(ngModel)]="cart.quantity" class="form-control" id="quantity"
+        [(ngModel)]="cart.quantity" [ngClass]="{ 
+        'is-invalid': quantity.invalid && quantity.touched,
+        'is-valid': quantity.valid && quantity.touched
+      }" min="1" required />
+      <div *ngIf="quantity.invalid && quantity.touched" class="invalid-feedback">
+        Por favor, establece una cantidad
+      </div>
+
     </div>
     <div class="d-flex flex-column">
       <p>Seleccione un color</p>
