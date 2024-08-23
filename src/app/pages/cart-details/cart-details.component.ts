@@ -19,8 +19,8 @@ export class CartDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute) {
 
   }
-  buyDesign(product: IProduct) {
-    this.router.navigate(['/app/payment'], { state: { product: product } });
+  buyDesign(design: IDesign) {
+    this.router.navigate(['/app/payment'], { state: { design: design } });
   }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
