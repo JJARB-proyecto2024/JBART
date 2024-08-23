@@ -51,6 +51,7 @@ import { AvatarCreateComponent } from './pages/avatar/avatar-create/avatar-creat
 import { AvatarViewComponent } from './pages/avatar/avatar-view/avatar-view.component';
 import { UserBuyerRoleGuard } from './guards/user-buyer-role.guard';
 import { CartComponent } from './pages/cart/cart.component';
+import { CartDetailsComponent } from './pages/cart-details/cart-details.component';
 
 export const routes: Routes = [
   {
@@ -186,6 +187,16 @@ export const routes: Routes = [
       {
         path: 'cart',
         component: CartComponent,
+        data: {
+          authorities: [
+            IRole.user
+          ],
+          name: 'Cart'
+        }
+      },
+      {
+        path: 'cart-details/:id',
+        component: CartDetailsComponent,
         data: {
           authorities: [
             IRole.user

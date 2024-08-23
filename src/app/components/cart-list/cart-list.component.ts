@@ -14,6 +14,7 @@ import { CartService } from '../../services/cart.service';
 export class CartListComponent {
   @Input() carts: ICart[] = [];
   public cartService: CartService = inject(CartService);
+
   handleDelete(cart: ICart) {
     this.cartService.delete(cart);
   }
