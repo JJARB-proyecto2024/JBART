@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, OnInit, SimpleChanges } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ICart, IDesign } from '../../interfaces';
+import { ICart, IDesign, IProduct } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import { PaymentComponent } from "../store/payment/payment.component";
 
@@ -19,8 +19,8 @@ export class CartDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute) {
 
   }
-  buyDesign(design: IDesign): void {
-    
+  buyDesign(design: IDesign) {
+    this.router.navigate(['/app/payment'], { state: { design: design } });
   }
   ngOnInit(): void {
     this.route.params.subscribe(params => {

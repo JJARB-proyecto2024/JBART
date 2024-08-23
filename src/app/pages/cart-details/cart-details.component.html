@@ -29,7 +29,7 @@
           <h2>{{this.cartService.cart$().quantity}}</h2>
         </div>
         <div>
-          <button type="button" class="btn btn-primary">Comprar producto</button>
+          <button type="button" (click)="buyDesign(this.cartService.cart$().design ?? {})" class="btn btn-primary">Comprar producto</button>
         </div>
       </div>
     </div>

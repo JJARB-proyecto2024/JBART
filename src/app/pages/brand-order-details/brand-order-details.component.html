@@ -18,18 +18,18 @@
       <div class="d-flex bg-white flex-row border p-4 rounded-3 gap-3 justify-content-start flex-wrap">
         <div class="d-flex flex-column">
           <h2 class>Información del articulo</h2>
-          <model-viewer *ngIf="orderService.order.product?.model" class="rounded-3"
-            [src]="orderService.order.product?.model" alt="3D Model" auto-rotate camera-controls ar>
+          <model-viewer *ngIf="orderService.order.design?.modifiedModel" class="rounded-3"
+            [src]="orderService.order.design?.modifiedModel" alt="3D Model" auto-rotate camera-controls ar>
           </model-viewer>
         </div>
         <div class="d-flex flex-row flex-fill justify-content-between align-items-center">
           <div>
-            <p class="fs-5">{{orderService.order.product?.category?.description}}</p>
-            <h2 class="fs-4">{{orderService.order.product?.name}}</h2>
+            <p class="fs-5">{{orderService.order.design?.product?.category?.description}}</p>
+            <h2 class="fs-4">{{orderService.order.design?.product?.name}}</h2>
           </div>
           <div class="d-flex flex-row justify-content-end align-items-center gap-3">
             <div class="border p-3 rounded-3 fs-4">
-              {{orderService.order.quantity}} x ${{orderService.order.product?.price}}
+              {{orderService.order.quantity}} x ${{orderService.order.design?.product?.price}}
             </div>
             <div class="fs-4">
               = ${{orderService.order.subtotal}}
@@ -55,7 +55,7 @@
           +orderService.order.userBuyer?.lastname}}</p>
         <p>{{orderService.order.userBuyer?.email}}</p>
         <p>Punto de recogida:
-          {{orderService.order.product?.userBrand?.mainLocationAddress}}</p>
+          {{orderService.order.design?.product?.userBrand?.mainLocationAddress}}</p>
         <p *ngIf="orderService.order.currentLocation">
           Dirección actual: {{orderService.order.currentLocation}}</p>
         <p><i class="fas fa-map-pin"></i> Punto de entrega: {{orderService.order.deliveryLocation}}</p>

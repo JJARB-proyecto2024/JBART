@@ -20,7 +20,7 @@ export class OrderMapComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['order'] && this.order) {
       console.log("Order:", this.order);
-      const address = this.order.currentLocation || this.order.product?.userBrand?.mainLocationAddress;
+      const address = this.order.currentLocation || this.order.design?.product?.userBrand?.mainLocationAddress;
       if (address) {
         this.getCoordinates(address);
       } else {

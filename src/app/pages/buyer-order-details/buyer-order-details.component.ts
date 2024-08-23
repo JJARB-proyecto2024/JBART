@@ -18,7 +18,7 @@ defineComponents(IgcRatingComponent);
   selector: 'app-order-details',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     FormsModule,
     ModalComponent,
     MatSnackBarModule,
@@ -46,9 +46,12 @@ export class BuyerOrderDetails implements OnInit {
 
   public selectedItem: IOrder = {
     id: 0,
-    product: {
+    design: {
       id: 0,
-      name: ""
+      product: {
+        id: 0,
+        name: ""
+      }
     }
   };
 
@@ -69,14 +72,14 @@ export class BuyerOrderDetails implements OnInit {
 
   showDetailModal(item: IOrder, modal: any) {
 
-    if (this.selectedItem.product && item.product) {
-      this.selectedItem.product.id = item.product.id;
-      console.log("ID:" + this.selectedItem.product.id)
-      this.selectedItem.product.name = item.product.name;
-      console.log("Name:" + this.selectedItem.product.name)
+    if (this.selectedItem.design?.product && item.design?.product) {
+      this.selectedItem.design.product.id = item.design.product.id;
+      console.log("ID:" + this.selectedItem.design.product.id)
+      this.selectedItem.design.product.name = item.design.product.name;
+      console.log("Name:" + this.selectedItem.design.product.name)
     }
 
-    this.rateProductService.getHasRatedProduct(this.selectedItem.product?.id).subscribe({
+    this.rateProductService.getHasRatedProduct(this.selectedItem.design?.product?.id).subscribe({
       next: (response: IResponse<IRateProduct>) => {
         if (response) {
           Swal.fire({
@@ -116,10 +119,10 @@ export class BuyerOrderDetails implements OnInit {
 
   handleFormAction(event: any, modal: any) {
     const rateData: IRateProduct = {
-      product: { id: this.selectedItem.product?.id },
+      product: { id: this.selectedItem.design?.product?.id },
       rate: this.ratingValue
     };
-  
+
     this.rateProductService.save(rateData).subscribe({
       next: (response: IResponse<IRateProduct>) => {
         Swal.fire({
