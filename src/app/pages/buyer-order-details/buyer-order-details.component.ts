@@ -138,7 +138,32 @@ export class BuyerOrderDetails implements OnInit {
   }
 
   showOrderDetailModal(item: IOrder, modal: any) {
-    this.selectedItem = { ...item }
+  
+    this.selectedItem = { ...item };
+  
+    this.orderService.getOrderByStatus(this.selectedItem.id).subscribe({
+      next: (response: IOrder[]) => {
+        if (response && response.length > 0) {
+          console.log("SI", response);
+          this.createOrderScore(item, modal);
+        } else {
+          Swal.fire({
+            title: 'Rating Error',
+            text: 'La orden aún no ha sido completada.',
+            icon: 'error',
+            confirmButtonText: 'Close',
+            confirmButtonColor: '#FF5733'
+          });
+          console.log("NO");
+        }
+      },
+      error: (error: any) => {
+        console.error('Error handling order status check:', error);
+      }
+    });
+  }
+  
+  createOrderScore(item: IOrder, modal: any) {
     this.rateOrderService.getHasRatedOrder(this.selectedItem.id).subscribe({
       next: (response: IResponse<IRateOrder>) => {
         if (response) {
@@ -159,7 +184,7 @@ export class BuyerOrderDetails implements OnInit {
         console.error('Error handling rating check:', error);
         Swal.fire({
           title: 'Error',
-          text: 'Error al revisar la calificación.',
+          text: 'Error al revisar la calificación de la orden.',
           icon: 'error',
           confirmButtonText: 'Close',
           confirmButtonColor: '#FF5733'
@@ -167,7 +192,7 @@ export class BuyerOrderDetails implements OnInit {
       }
     });
   }
-
+  
   hideModal(modal: any) {
     modal.hide();
   }

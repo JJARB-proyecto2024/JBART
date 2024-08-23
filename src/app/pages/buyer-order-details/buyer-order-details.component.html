@@ -126,7 +126,7 @@
    <app-modal #modalOrder>
     <div class="modalE">
       <div class="modal-body">
-        <h2 class="modal-title">Calificar a {{ selectedItem.id }}</h2>
+        <h2 class="modal-title">Calificar la orden # {{ selectedItem.id }}</h2>
         <change-rating [rating]="orderRatingValue" (ratingChange)="handleOrderRatingChange($event)"></change-rating>
       </div>
       <div class="modal-footer">
