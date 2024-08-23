@@ -1,4 +1,4 @@
-import { Component, inject, Input, input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, inject, Input, OnInit, SimpleChanges } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
@@ -6,7 +6,7 @@ import { INotification, IUser } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { WebSocketService } from '../../services/web-socket.service';
-import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-notifications',
   standalone: true,

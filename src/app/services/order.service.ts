@@ -25,18 +25,12 @@ export class OrderService extends BaseService<IOrder> {
     return this.findAll().pipe(
       tap((response: any) => {
         if (response && response.data) {
-          // Extrae la lista de órdenes de la respuesta
           const orders = response.data;
           this.orderListSignal.set(orders);
         }
       }),
       catchError((error: any) => {
         console.error('Error in get all orders request', error);
-        this.snackBar.open(error.error?.description || 'An error occurred', 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
         return of([]); // Devuelve un observable con un array vacío en caso de error
       })
     );
@@ -49,28 +43,35 @@ export class OrderService extends BaseService<IOrder> {
       },
       error: (error: any) => {
         console.error('Error fetching order by id', error);
-        this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
       }
     });
   }
-  
 
+
+  public getOrderByStatus(id: number | undefined): Observable<any>{
+    return this.http.get<IOrder[]>(this.source + '/ByOrderStatus/' + id).pipe(
+      tap((response: any) => {
+        console.log("Response from backend:", response);
+        this.orderListSignal.set(response);
+      }),
+      catchError((error: any) => {
+        console.error('Error fetching order', error);
+        return throwError(error);
+      })
+    );
+  }
 
   public getOrdersListForBrand(): Observable<any> {
     return this.findOrdersForBrand().pipe(
       tap((response: any) => {
         if (response && response.data) {
-          const sortedOrders = response.data; // Ordenar de mayor a menor
+          const sortedOrders = response.data;
           this.orderListSignal.set(sortedOrders);
         }
       }),
       catchError((error: any) => {
         console.error('Error fetching orders for brand', error);
-        return of([]); // Devuelve un observable con un array vacío en caso de error
+        return of([]);
       })
     );
   }
@@ -79,13 +80,13 @@ export class OrderService extends BaseService<IOrder> {
     return this.findOrdersForUser().pipe(
       tap((response: any) => {
         if (response && response.data) {
-          const sortedOrders = response.data; // Ordenar de mayor a menor
+          const sortedOrders = response.data;
           this.orderListSignal.set(sortedOrders);
         }
       }),
       catchError((error: any) => {
         console.error('Error fetching orders for brand', error);
-        return of([]); // Devuelve un observable con un array vacío en caso de error
+        return of([]);
       })
     );
   }

@@ -28,16 +28,9 @@ export class OtpService extends BaseService<IOtp> {
       }
     });
   }
-
-  // Método personalizado para generar OTP y manejar suscripción
   public generateOtpAndHandle(email: string) {
     this.http.post<IResponse<IOtp>>(`${this.source}/generatePasswordResetOtp`, { email }).subscribe({
       next: (response: IResponse<IOtp>) => {
-        this.snackBar.open('OTP generado exitosamente y enviado', 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['success-snackbar']
-        });
       },
       error: (error: any) => {
         console.error('Error generando OTP:', error);
@@ -47,11 +40,6 @@ export class OtpService extends BaseService<IOtp> {
         } else if (error && error.error && error.error.description) {
           errorMessage = error.error.description;
         }
-        this.snackBar.open(errorMessage, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
       }
     });
   }
@@ -60,7 +48,6 @@ export class OtpService extends BaseService<IOtp> {
     this.http.post<boolean>(`${this.source}/resetPassword`, { email, otpCode, newPassword }).subscribe({
       next: (response: boolean) => {
         if (response === false) {
-          // Manejar el caso en el que el servidor devuelve false
           Swal.fire({
             title: '¡Error!',
             text: 'No se pudo restablecer la contraseña. Verifica el OTP y el correo electrónico.',
@@ -68,7 +55,6 @@ export class OtpService extends BaseService<IOtp> {
             confirmButtonText: 'Aceptar',
           });
         } else {
-          // Caso en el que el servidor devuelve true
           Swal.fire({
             title: 'Éxito!',
             text: 'Contraseña restablecida exitosamente',
@@ -100,19 +86,9 @@ export class OtpService extends BaseService<IOtp> {
       next: () => {
         const updatedOtps = this.itemListSignal().filter(o => o.id !== otp.id);
         this.itemListSignal.set(updatedOtps);
-        this.snackBar.open('OTP eliminado exitosamente', 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['success-snackbar']
-        });
       },
       error: (error: any) => {
         console.error('Error deleting OTP', error);
-        this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
       }
     });
   }

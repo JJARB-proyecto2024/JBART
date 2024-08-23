@@ -1,14 +1,13 @@
-import { Component, effect, inject, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, inject, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { CategoryService } from '../../../services/category.service';
-import { IProduct, ICategory } from '../../../interfaces';
+import { IProduct } from '../../../interfaces';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
 import { ProductFormComponent } from '../product-form/product-form.component';
 import { CategoryFormComponent } from '../../category/category-from/category-form.component';
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { OrderMapComponent } from "../../order-map/order-map.component";
 import Swal from 'sweetalert2';
 

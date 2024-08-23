@@ -1,12 +1,11 @@
-import { Component, effect, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { BrandUserService } from '../../../services/brand-user.service';
 import { IBrandUser } from '../../../interfaces';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
 import { BrandUserFormComponent } from '../brand-user-form/brand-user-form.component';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -72,7 +71,7 @@ export class BrandUserListComponent implements OnChanges{
     item.status = "Activo";
     console.log(item.status);
 
-    // Usar SweetAlert para la confirmación
+   
     Swal.fire({
       title: '¿Está seguro?',
       text: '¿Está seguro de que desea aprobar esta solicitud?',
@@ -85,13 +84,10 @@ export class BrandUserListComponent implements OnChanges{
     }).then((result) => {
       if (result.isConfirmed) {
         this.brandUserService.updateStat(item).subscribe({
-          next: () => {
-            // Actualizar la lista de elementos
-            this.itemList = this.itemList.filter(u => u.id !== item.id);
-            // Ocultar el modal
+          next: () => {         
+            this.itemList = this.itemList.filter(u => u.id !== item.id);            
             this.hideModal(modal);
             this.updateItemList();
-            // Mostrar mensaje de éxito
             Swal.fire(
               'Aprobado',
               'La solicitud ha sido aprobada.',
@@ -99,7 +95,6 @@ export class BrandUserListComponent implements OnChanges{
             );
           },
           error: (error: any) => {
-            // Manejar el error
             console.error('Error updating item status', error);
             Swal.fire(
               'Error',
@@ -126,11 +121,8 @@ export class BrandUserListComponent implements OnChanges{
       if (result.isConfirmed) {
         this.brandUserService.delete(item).subscribe({
           next: () => {
-            // Actualizar la lista de elementos
             this.itemList = this.itemList.filter(u => u.id !== item.id);
-            // Ocultar el modal
             this.hideModal(modal);
-            // Mostrar mensaje de éxito
             Swal.fire(
               'Rechazado',
               'La solicitud ha sido rechazada.',
@@ -138,7 +130,6 @@ export class BrandUserListComponent implements OnChanges{
             );
           },
           error: (error: any) => {
-            // Manejar el error
             console.error('Error deleting item', error);
             Swal.fire(
               'Error',

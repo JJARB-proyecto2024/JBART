@@ -8,8 +8,8 @@ body {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #fff; /* Agregado para fondo blanco */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agregado para sombra suave */
+  background-color: #fff; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 h1 {
@@ -31,7 +31,7 @@ input[type="password"] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 10px; /* Espacio inferior añadido */
+  margin-bottom: 10px; 
 }
 
 button {
@@ -41,7 +41,7 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 10px; /* Espacio superior añadido */
+  margin-top: 10px; 
 }
 
 button:hover {

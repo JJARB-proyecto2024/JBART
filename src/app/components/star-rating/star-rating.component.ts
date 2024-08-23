@@ -1,9 +1,8 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgModule } from '@angular/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ModalComponent } from '../modal/modal.component';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'change-rating',
@@ -20,13 +19,13 @@ import { FormsModule, NgForm } from '@angular/forms';
   })
 
   export class StarRatingComponent {
-    @Input() rating: number = 0; // Calificación actual
-    @Input() min: number = 0;    // Valor mínimo
-    @Input() max: number = 5;    // Valor máximo
-    @Input() readonly: boolean = false; // Modo solo lectura
+    @Input() rating: number = 0; 
+    @Input() min: number = 0;    
+    @Input() max: number = 5;    
+    @Input() readonly: boolean = false; 
     @Output() ratingChange: EventEmitter<number> = new EventEmitter<number>();
   
-    stars: number[] = [];  // Array para almacenar estrellas
+    stars: number[] = [];  
   
     ngOnInit() {
       this.stars = Array(this.max).fill(0).map((_, i) => i + 1);

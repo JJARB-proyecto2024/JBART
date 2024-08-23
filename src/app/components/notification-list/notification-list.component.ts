@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
 import { INotification } from '../../interfaces';
 import { CommonModule } from '@angular/common';

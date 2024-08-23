@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
-import { FormsModule, NgModel } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { BackgroundParticlesModule } from '../../components/background-particles/background-particles.module';
 import { AppLayoutLandingComponent } from '../../components/app-layout-landing/app-layout.component';

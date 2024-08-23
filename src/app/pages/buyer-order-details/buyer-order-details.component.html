@@ -96,7 +96,7 @@
       </div>
       <div class="row">
         <div class="col-6 d-flex flex-column fs-5 gap-4 flex-fill">
-          <button class="btn btn-add">
+          <button (click)= "showOrderDetailModal(orderService.order, modalOrder)" class="btn btn-add">
             Calificar Orden
           </button>
         </div>
@@ -109,7 +109,7 @@
     </div>
   </div>
 
-  <!-- Modal para calificar -->
+
   <app-modal #modal>
     <div class="modalE">
       <div class="modal-body">
@@ -118,6 +118,19 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="handleFormAction($event, modal)">Calificar</button>
+      </div>
+    </div>
+  </app-modal>
+
+
+   <app-modal #modalOrder>
+    <div class="modalE">
+      <div class="modal-body">
+        <h2 class="modal-title">Calificar la orden # {{ selectedItem.id }}</h2>
+        <change-rating [rating]="orderRatingValue" (ratingChange)="handleOrderRatingChange($event)"></change-rating>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="handleOrderFormAction($event, modal)">Calificar</button>
       </div>
     </div>
   </app-modal>

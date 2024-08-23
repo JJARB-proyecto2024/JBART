@@ -119,14 +119,12 @@ export class AuthService {
     let isAdmin: boolean = false;
 
     let userAuthorities = this.getUserAuthorities();
-    // se valida que sea una ruta permitida para el usuario
     for (const authority of routeAuthorities) {
       if (userAuthorities?.some(item => item.authority == authority)) {
         allowedUser = userAuthorities?.some(item => item.authority == authority)
       }
       if (allowedUser) break;
     }
-    // se valida que el usuario tenga un rol de administración
     if (userAuthorities?.some(item => item.authority == IRoleType.superAdmin)) {
       isAdmin = userAuthorities?.some(item => item.authority == IRoleType.superAdmin);
     }

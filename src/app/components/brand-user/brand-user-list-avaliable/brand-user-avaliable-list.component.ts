@@ -1,11 +1,11 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, effect, inject, Input, NgModule, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { BrandUserService } from '../../../services/brand-user.service';
 import { IBrandUser, IRateBrand, IResponse } from '../../../interfaces';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { defineComponents, IgcRatingComponent } from 'igniteui-webcomponents';
 import { RateBrandService } from '../../../services/rate_brand-user.service';
 import Swal from 'sweetalert2';
@@ -48,7 +48,7 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
   paginatedList: IBrandUser[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 6;
-  ratingValue: number = 0; // Valor inicial de la calificación
+  ratingValue: number = 0; 
 
   ngOnInit() {
     this.updatePaginatedList();
@@ -79,7 +79,7 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
     return item.id;
   }
 
-  // Cambiado para redirigir a products-recommended
+ 
   viewProducts(item: IBrandUser) {
     this.router.navigateByUrl('app/products-recommended-brands/' + item.id);
   }
@@ -119,7 +119,7 @@ export class BrandUserAvaliableListComponent implements OnInit, OnChanges {
     modal.hide();
   }
 
-  // Método para manejar el cambio de calificación
+
   handleRatingChange(event: number) {
     this.ratingValue = event;
   }

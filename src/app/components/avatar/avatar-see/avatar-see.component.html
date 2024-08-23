@@ -1,7 +1,5 @@
 <div class="avatar-wrapper">
-  <!-- Contenedor del Avatar -->
   <div class="avatar-preview" *ngIf="avatar; else noAvatar">
-    <!-- Las imágenes se superponen en el orden correcto -->
     <img [src]="avatar.head" *ngIf="avatar?.head" class="avatar-part-img head-img" alt="Head">
     <img [src]="avatar.face" *ngIf="avatar?.face" class="avatar-part-img face-img" alt="Face">
     <img [src]="avatar.facialHair" *ngIf="avatar?.facialHair" class="avatar-part-img facial-hair-img" alt="Facial Hair">

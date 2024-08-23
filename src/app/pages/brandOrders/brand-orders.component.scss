@@ -8,17 +8,17 @@
 
 .divisor {
     position: relative;
-    margin-bottom: 40px; /* Espacio para la línea */
+    margin-bottom: 40px; 
   }
   
 .divisor::after {
   content: "";
   display: block;
-  width: 10%; /* Ajusta el ancho de la línea */
-  border-bottom: 2.5px solid #4a4d54; /* Línea divisoria */
+  width: 10%;
+  border-bottom: 2.5px solid #4a4d54; 
   position: absolute;
   bottom: 0;
-  left: 3.5%; /* Ajusta para centrar la línea */
+  left: 3.5%; 
   right: 60%;
   top: 0;
 }
@@ -28,18 +28,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh; /* O la altura que necesites */
+  height: 50vh; 
 }
 
 .no-orders-icon {
-  font-size: 72px; /* Aumenta el tamaño del ícono */
+  font-size: 72px;
 }
 
 .no-orders-text {
-  margin-top: 20px; /* Espacio entre el ícono y el texto */
-  font-size: 24px; /* Aumenta el tamaño del texto */
+  margin-top: 20px; 
+  font-size: 24px; 
   text-align: center;
-  color: #333; /* Ajusta el color del texto si es necesario */
+  color: #333; 
 }
   
   

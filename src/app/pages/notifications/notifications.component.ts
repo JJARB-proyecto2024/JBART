@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
 import { AuthService } from '../../services/auth.service';
-import { INotification, IUser } from '../../interfaces';
+import { IUser } from '../../interfaces';
 import { NotificationListComponent } from "../../components/notification-list/notification-list.component";
 
 @Component({

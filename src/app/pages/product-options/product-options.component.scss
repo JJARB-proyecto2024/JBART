@@ -22,7 +22,7 @@ html, body {
   background-color: #f8f8f8;
   border-radius: 8px;
   text-align: center;
-  width: 100%; /* Ajusta el ancho según sea necesario */
+  width: 100%; 
   padding-top: 200px;
 }
 .icon{
@@ -37,14 +37,14 @@ html, body {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
-  background-color: #007bff; /* Color de fondo por defecto */
-  color: #fff; /* Color del texto */
+  background-color: #007bff; 
+  color: #fff; 
   margin-right: 20px;
 }
 
 .register-btn:hover {
-  background-color: #a6ce38; /* Color de fondo al pasar el cursor */
-  color: #fff; /* Color del texto al pasar el cursor */
+  background-color: #a6ce38; 
+  color: #fff; 
 }
 
 .card-title {
@@ -60,17 +60,17 @@ html, body {
 
 .divisor {
   position: relative;
-  margin-bottom: 40px; /* Espacio para la línea */
+  margin-bottom: 40px; 
 }
 
 .divisor::after {
   content: "";
   display: block;
-  width: 20%; /* Ajusta el ancho de la línea */
-  border-bottom: 2.8px solid #4a4d54; /* Línea divisoria */
+  width: 20%; 
+  border-bottom: 2.8px solid #4a4d54; 
   position: absolute;
   bottom: 0;
-  left: 30%; /* Ajusta para centrar la línea */
+  left: 30%; 
   right: 40%;
   top: 0;
 }

@@ -24,7 +24,6 @@ export class DisableAccountComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Puedes implementar lógica aquí para obtener detalles adicionales del usuario si es necesario
   }
 
   handleFormSubmit(event: Event): void {
@@ -38,15 +37,13 @@ export class DisableAccountComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        const userId = this.authService.getUser()?.id; // Obtiene el id del usuario desde el servicio de autenticación
+        const userId = this.authService.getUser()?.id; 
   
         if (userId) {
           const user: IBuyerUser = {
             id: +userId,
             password: this.password
           };
-  
-          // Llamada al servicio para desactivar la cuenta
           this.userBuyerService.disableAcct(user).subscribe({
             next: (response: any) => {
               Swal.fire({
@@ -55,7 +52,6 @@ export class DisableAccountComponent implements OnInit {
                 icon: 'success',
                 confirmButtonText: 'Cerrar'
               }).then(() => {
-                // Redirigir al inicio de sesión
                 this.authService.logout();
                 this.router.navigateByUrl('/login');
               });

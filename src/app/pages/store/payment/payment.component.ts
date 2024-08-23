@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { IPayPalConfig, ICreateOrderRequest , NgxPayPalModule } from 'ngx-paypal';
+import { IPayPalConfig, NgxPayPalModule } from 'ngx-paypal';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { IDesign, IProduct } from '../../../interfaces';
@@ -63,8 +63,8 @@ export class PaymentComponent implements OnInit {
       })
         .then((res) => res.json())
         .then((order) => {
-          console.log('Payment ID:', order.id); // Make sure this displays the payment ID
-          return order.token;  // Return the token here
+          console.log('Payment ID:', order.id); 
+          return order.token;  
         }),
       authorizeOnServer: async (approveData: any) => {
         return fetch(`${environment.apiUrl}/auth/executePayment`, {

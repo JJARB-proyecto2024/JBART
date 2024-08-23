@@ -1,7 +1,5 @@
   <div class="avatar-wrapper">
-  <!-- Contenedor de Opciones -->
   <div class="avatar-options">
-      <!-- Tono de Piel -->
     <div class="avatar-part">
       <div class="row">
         <div class="col-4">
@@ -19,7 +17,6 @@
       </div>
     </div>
 
-    <!-- Head -->
     <div class="avatar-part">
       <div class="row">
         <div class="col-4">
@@ -35,7 +32,6 @@
       </div>
     </div>
 
-    <!-- Face -->
     <div class="avatar-part">
       <div class="row">
         <div class="col-4">
@@ -51,7 +47,6 @@
       </div>
     </div>
 
-    <!-- Facial Hair -->
     <div class="avatar-part">
       <div class="row">
         <div class="col-4">
@@ -67,7 +62,6 @@
       </div>
     </div>
 
-    <!-- Accessories -->
     <div class="avatar-part">
       <div class="row">
         <div class="col-4">
@@ -83,7 +77,6 @@
       </div>
     </div>
 
-    <!-- Pose -->
     <div class="avatar-part">
       <div class="row">
         <div class="col-4">
@@ -107,12 +100,10 @@
         <p class="mb-0"> Guardar Avatar </p>
       </button>
     </div>
-
   </div>
 
-  <!-- Contenedor del Avatar -->
+
   <div class="avatar-preview">
-    <!-- Las imágenes se superponen en el orden correcto -->
     <img [src]="headSvgPath + selectedHead" *ngIf="selectedHead" class="avatar-part-img head-img" alt="Head">
     <img [src]="faceSvgPath + selectedFace" *ngIf="selectedFace" class="avatar-part-img face-img" alt="Face">
     <img [src]="facialHairSvgPath + selectedFacialHair" *ngIf="selectedFacialHair" class="avatar-part-img facial-hair-img" alt="Facial Hair">

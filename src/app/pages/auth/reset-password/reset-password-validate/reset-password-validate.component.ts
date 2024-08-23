@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -35,8 +35,6 @@ export class ResetPasswordValidateComponent {
 
   resetPassword(event: Event): void {
     event.preventDefault();
-
-    // Validar que todos los campos estén llenos y válidos
   if (!this.emailModel.valid) {
     this.emailModel.control.markAsTouched();
     Swal.fire({
@@ -73,12 +71,9 @@ export class ResetPasswordValidateComponent {
     this.email = this.emailModel.value;
     this.otpCode = this.otpCodeModel.value;
     this.newPassword = this.newPasswordModel.value;
-
-    // Llamar al servicio para restablecer la contraseña
   this.otpService.resetPassword(this.email, this.otpCode, this.newPassword).subscribe({
     next: (response: any) => {
       if (response === false) {
-        // Manejar el caso en el que el servidor devuelve false
         Swal.fire({
           title: '¡Error!',
           text: 'No se pudo restablecer la contraseña. Verifica el OTP y el correo electrónico.',
@@ -86,12 +81,10 @@ export class ResetPasswordValidateComponent {
           confirmButtonText: 'Aceptar',
         }).then((result) => {
           if (result.isConfirmed) {
-            // Redirigir al usuario al componente de login después de cerrar el mensaje
             this.otpCodeModel.control.markAsUntouched();
           }
         });
       } else {
-        // Caso en el que el servidor devuelve true
         Swal.fire({
           title: 'Éxito!',
           text: 'Contraseña restablecida exitosamente',
@@ -99,7 +92,6 @@ export class ResetPasswordValidateComponent {
           confirmButtonText: 'Aceptar',
         }).then((result) => {
           if (result.isConfirmed) {
-            // Redirigir al usuario al componente de login después de cerrar el mensaje
             this.router.navigateByUrl('/login');
           }
         });

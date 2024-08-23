@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';  // Suponiendo que tienes este servicio para obtener el usuario
 
 @Injectable({
   providedIn: 'root'

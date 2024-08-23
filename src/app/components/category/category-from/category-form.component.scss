@@ -1,31 +1,31 @@
-/* Estilo general para el contenedor del modal */
+
 .modal-container {
   width: 100%;
-  max-width: 600px; /* Ajusta el ancho máximo del modal */
-  margin: 0 auto; /* Centra el modal horizontalmente */
-  background-color: #ffffff; /* Fondo blanco para el modal */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  max-width: 600px; 
+  margin: 0 auto; 
+  background-color: #ffffff; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-/* Estilo para la parte superior del modal, incluyendo el encabezado */
+
 .modal-header {
-  background-color: #007bff; /* Color de fondo del encabezado */
-  color: #ffffff; /* Color del texto del título */
-  padding: 1rem; /* Espaciado interno */
+  background-color: #007bff; 
+  color: #ffffff; 
+  padding: 1rem; 
   display: flex;
-  justify-content: space-between; /* Espacia el título y el botón de cierre */
-  align-items: center; /* Alinea verticalmente los elementos */
-  border-top-left-radius: 8px; /* Redondea la esquina superior izquierda */
-  border-top-right-radius: 8px; /* Redondea la esquina superior derecha */
+  justify-content: space-between; 
+  align-items: center; 
+  border-top-left-radius: 8px; 
+  border-top-right-radius: 8px; 
 }
 
 
 h2 {
   
   font: 600 30px / 35px Roboto;
-  color: #4b545c; /* Color del título */
-  margin-bottom: 40px; /* Espaciado inferior */
+  color: #4b545c;
+  margin-bottom: 40px; 
 }
 
 .titulo {
@@ -37,73 +37,73 @@ h2 {
 
 .divisor {
   position: relative;
-  margin-bottom: 40px; /* Espacio para la línea */
+  margin-bottom: 40px; 
 }
 
 .divisor::after {
   content: "";
   display: block;
-  width: 20%; /* Ajusta el ancho de la línea */
-  border-bottom: 2.8px solid #4a4d54; /* Línea divisoria */
+  width: 20%; 
+  border-bottom: 2.8px solid #4a4d54; 
   position: absolute;
   bottom: 0;
-  left: 3.5%; /* Ajusta para centrar la línea */
+  left: 3.5%; 
   right: 40%;
   top: 0;
 }
 
 .row {
-  display: flex; /* Flexbox para las columnas */
-  flex-wrap: wrap; /* Permite que las columnas se envuelvan */
+  display: flex; 
+  flex-wrap: wrap; 
 }
 
 .col-6 {
-  flex: 0 0 50%; /* Ancho de la columna */
-  max-width: 50%; /* Ancho máximo de la columna */
-  padding: 10px; /* Espaciado interno de las columnas */
+  flex: 0 0 50%; 
+  max-width: 50%; 
+  padding: 10px; 
 }
 
 .mb-2 {
-  margin-bottom: 20px; /* Espaciado inferior */
+  margin-bottom: 20px; 
 }
 
 .form-control {
-  width: 100%; /* Ancho completo del campo */
-  padding: 10px; /* Espaciado interno del campo */
-  border: 1px solid #ced4da; /* Borde del campo */
-  border-radius: 5px; /* Bordes redondeados */
-  transition: border-color 0.3s; /* Transición para el borde */
+  width: 100%; 
+  padding: 10px; 
+  border: 1px solid #ced4da; 
+  border-radius: 5px; 
+  transition: border-color 0.3s; 
 }
 
 .is-invalid {
-  border-color: #dc3545; /* Color del borde cuando es inválido */
+  border-color: #dc3545; 
 }
 
 .is-valid {
-  border-color: #28a745; /* Color del borde cuando es válido */
+  border-color: #28a745; 
 }
 
 .btn {
-  display: inline-flex; /* Flexbox para el botón */
-  align-items: center; /* Alinea los elementos en el centro */
-  justify-content: center; /* Centra los elementos horizontalmente */
-  padding: 10px 20px; /* Espaciado interno del botón */
-  font-size: 16px; /* Tamaño de la fuente del botón */
-  border-radius: 5px; /* Bordes redondeados */
-  transition: background-color 0.3s; /* Transición para el color de fondo */
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  border-radius: 5px; 
+  transition: background-color 0.3s; 
 }
 
 .btn-primary {
-  background-color: #007bff; /* Color de fondo del botón */
-  border-color: #007bff; /* Color del borde del botón */
-  color: #ffffff; /* Color del texto del botón */
+  background-color: #007bff; 
+  border-color: #007bff; 
+  color: #ffffff; 
 }
 
 .btn-primary:hover {
-  background-color: #0056b3; /* Color de fondo del botón al pasar el cursor */
-  border-color: #0056b3; /* Color del borde del botón al pasar el cursor */
+  background-color: #0056b3; 
+  border-color: #0056b3; 
 }
 
 .mb-0 {
-  margin-bottom: 0; /* Sin espaciado inferior */
+  margin-bottom: 0; 
 }
