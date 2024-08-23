@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,7 +21,7 @@ import { BackgroundParticlesModule } from '../../../../components/background-par
 })
 export class ResetPasswordSendEmailComponent {
   @ViewChild('email') emailModel!: NgModel;
-  public email: string = ''; // Asegúrate de inicializar correctamente la variable email
+  public email: string = ''; 
   public signUpError!: String;
 
   public loginForm: { email: string;} = {
@@ -44,11 +44,9 @@ export class ResetPasswordSendEmailComponent {
           confirmButtonText: 'Aceptar',
         });
       } else {
-        // Llamada al servicio para generar OTP
         this.otpService.generateOtp(this.email).subscribe({
           next: (response: any) => {
             console.log('Respuesta del servidor:', response);
-            // Mostrar mensaje de éxito
           Swal.fire({
             title: 'Éxito!',
             text: 'OTP generado con éxito',
@@ -56,7 +54,6 @@ export class ResetPasswordSendEmailComponent {
             confirmButtonText: 'Aceptar',
           }).then((result) => {
             if (result.isConfirmed) {
-              // Redirigir a la ruta reset/validate después de que el usuario confirme
               this.router.navigateByUrl('reset/validate');
             }
           });

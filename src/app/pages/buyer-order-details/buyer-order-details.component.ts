@@ -2,7 +2,6 @@ import { Component, inject, Input, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angul
 import { OrderService } from '../../services/order.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { IOrder, IProduct, IRateProduct,IRateOrder, IResponse } from '../../interfaces';
-import { OrderMapComponent } from '../../components/order-map/order-map.component';
 import { ActivatedRoute } from '@angular/router';
 import { StarRatingComponent } from '../../components/star-rating/star-rating.component';
 import { RateProductService } from '../../services/rate_product.service';
@@ -44,7 +43,7 @@ export class BuyerOrderDetails implements OnInit {
   public Math = Math;
 
   paginatedList: IProduct[] = [];
-  ratingValue: number = 0; // Valor inicial de la calificación
+  ratingValue: number = 0; 
   orderRatingValue: number = 0;
 
   public selectedItem: IOrder = {
@@ -201,7 +200,6 @@ export class BuyerOrderDetails implements OnInit {
     modal.hide();
   }
 
-  // Método para manejar el cambio de calificación
   handleRatingChange(event: number) {
     this.ratingValue = event;
   }

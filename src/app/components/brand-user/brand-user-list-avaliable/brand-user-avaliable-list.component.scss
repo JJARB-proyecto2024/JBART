@@ -47,7 +47,6 @@
     }
   }
 
-  // Estilos para la paginación
   .pagination {
     .page-item {
       .page-link {
@@ -78,14 +77,14 @@
   }
 }
 
-// Estilos específicos para el igc-rating
+
 igc-rating {
-  --rating-star-fill: #f39c12;  // Color de las estrellas llenas
-  --rating-star-empty: #ddd;    // Color de las estrellas vacías
-  --rating-star-size: 24px;     // Tamaño de las estrellas
+  --rating-star-fill: #f39c12;  
+  --rating-star-empty: #ddd;    
+  --rating-star-size: 24px;     
 
   .igc-rating-star {
-    margin: 0 2px; // Espaciado entre las estrellas
+    margin: 0 2px; 
   }
 }
 

@@ -1,16 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild, CUSTOM_ELEMENTS_SCHEMA, Input, SimpleChanges, OnChanges, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, CUSTOM_ELEMENTS_SCHEMA, Input, SimpleChanges, inject } from '@angular/core';
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { IBrandUser, IBuyerUser, ICart, IDesign, IProduct, IUser } from '../../interfaces';
+import { IBuyerUser, ICart, IDesign, IProduct } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { UserBuyerService } from '../../services/user-buyer.service';
-import { BuyerProfileService } from '../../services/buyer-profile.service';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
-import { Cloudinary } from '@cloudinary/url-gen';
 import { DesignService } from '../../services/design.service';
 import { CartService } from '../../services/cart.service';
 import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
@@ -54,7 +51,7 @@ export class TridimentionalDesignComponent {
       this.design.product = this.product;
       if (!this.design.selectedSize && this.product.size) {
         const sizes = this.product.size.split(', ');
-        this.design.selectedSize = sizes[0]; // Inicializa con la primera talla disponible
+        this.design.selectedSize = sizes[0];
         console.log('Initial size set to:', this.design.selectedSize);
       }
 
@@ -84,10 +81,7 @@ export class TridimentionalDesignComponent {
       if (!this.productModel) {
         return reject('No model loaded to export.');
       }
-
       const exporter = new GLTFExporter();
-
-      // Añadir la opción para exportar como binario
       const options = {
         binary: true
       };
@@ -105,7 +99,7 @@ export class TridimentionalDesignComponent {
         (error) => {
           reject('Error occurred during GLB export: ' + error);
         },
-        options // Pasar las opciones aquí
+        options 
       );
     });
   }
@@ -188,8 +182,6 @@ export class TridimentionalDesignComponent {
   handleSizeChange(size: string): void {
     this.design.selectedSize = size;
     console.log('Selected size changed:', this.design.selectedSize);
-    // Aquí puedes añadir lógica adicional para hacer cualquier otra cosa que necesites
-    // por ejemplo, actualizar el modelo en 3D si es necesario.
   }
 
   private initScene(): void {
@@ -197,52 +189,32 @@ export class TridimentionalDesignComponent {
       console.error('Renderer container is not available.');
       return;
     }
-
     this.scene = new THREE.Scene();
-
-    // Configuración de la cámara
     this.camera = new THREE.PerspectiveCamera(75, this.rendererContainer.nativeElement.clientWidth / this.rendererContainer.nativeElement.clientHeight);
-
-    this.camera.position.set(0, 1.2, 5); // Ajustar la posición de la cámara
-
-    // Configuración del renderizador
+    this.camera.position.set(0, 1.2, 5); 
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(this.rendererContainer.nativeElement.clientWidth, this.rendererContainer.nativeElement.clientHeight);
-    this.renderer.setClearColor(0xFFFFFF); // Fondo negro
+    this.renderer.setClearColor(0xFFFFFF); 
     this.rendererContainer.nativeElement.appendChild(this.renderer.domElement);
-
-    // Controles de órbita
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.25;
     this.controls.enableZoom = true;
-
-    // Iluminación ambiental
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); // Luz ambiental suave
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); 
     this.scene.add(ambientLight);
-
-    // Luz hemisférica para iluminar uniformemente el modelo desde arriba y abajo
     const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);
     hemisphereLight.position.set(0, 1, 0);
     this.scene.add(hemisphereLight);
-
-    // Luz direccional para proporcionar una fuente de luz principal
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
     directionalLight.position.set(5, 5, 5);
     this.scene.add(directionalLight);
-
-    // Ajustar el tamaño de la ventana
     window.addEventListener('resize', this.onWindowResize.bind(this));
   }
 
   private loadProduct(): void {
     const loader = new GLTFLoader();
-
-    // Verificar y eliminar el modelo anterior si existe
     if (this.productModel) {
       this.scene.remove(this.productModel);
-
-      // Recorrer y liberar la geometría y materiales del modelo anterior
       this.productModel.traverse((child) => {
         if (child instanceof THREE.Mesh) {
           child.geometry.dispose();
@@ -253,25 +225,16 @@ export class TridimentionalDesignComponent {
           }
         }
       });
-
-      // Forzar la eliminación de la referencia del modelo
       this.productModel = null!;
-
-      // Limpiar las listas de renderizado
       this.renderer.renderLists.dispose();
     }
-
-    // Solo cargar el nuevo modelo después de asegurarnos de que el anterior ha sido removido
     setTimeout(() => {
       if (this.product.model) {
         loader.load(this.product.model, (gltf) => {
           this.productModel = gltf.scene as THREE.Group;
-
-          // Ajustar la escala y posición si es necesario
           this.productModel.scale.set(0.5, 0.5, 0.5);
           this.productModel.position.set(0, 0, 0.1);
           this.productModel.rotation.set(Math.PI / 40, 0, 0);
-
           this.scene.add(this.productModel);
           this.centerModel(this.productModel);
           this.changeProductModelColor(this.design.color ?? '#ffffff');
@@ -280,8 +243,6 @@ export class TridimentionalDesignComponent {
               (child.material as THREE.Material).side = THREE.FrontSide;
             }
           });
-
-          // Ajustar la cámara para el nuevo modelo
           const boundingBox = new THREE.Box3().setFromObject(this.productModel);
           const size = boundingBox.getSize(new THREE.Vector3());
           const maxDimension = Math.max(size.x, size.y, size.z);
@@ -292,7 +253,7 @@ export class TridimentionalDesignComponent {
           console.error('Error loading product model:', error);
         });
       }
-    }, 100); // Esperar un pequeño intervalo para asegurarse de que el modelo anterior se elimine
+    }, 100); 
   }
 
   getDesign(): IDesign {
@@ -303,7 +264,7 @@ export class TridimentionalDesignComponent {
     const box = new THREE.Box3().setFromObject(model);
     const center = box.getCenter(new THREE.Vector3());
 
-    model.position.sub(center); // Centrar el modelo en la escena
+    model.position.sub(center); 
   }
 
   private changeProductModelColor(color: string): void {

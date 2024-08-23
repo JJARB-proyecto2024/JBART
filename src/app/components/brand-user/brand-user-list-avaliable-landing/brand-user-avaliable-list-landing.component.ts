@@ -1,14 +1,13 @@
-import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, effect, inject, Input, NgModule, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { BrandUserService } from '../../../services/brand-user.service';
-import { IBrandUser, IRateBrand, IResponse } from '../../../interfaces';
+import { IBrandUser } from '../../../interfaces';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { defineComponents, IgcRatingComponent } from 'igniteui-webcomponents';
 import { RateBrandService } from '../../../services/rate_brand-user.service';
-import Swal from 'sweetalert2';
 import { StarRatingComponent } from '../../star-rating/star-rating.component';
 
 defineComponents(IgcRatingComponent);
@@ -48,7 +47,7 @@ export class BrandUserAvaliableListComponentLanding implements OnInit, OnChanges
   paginatedList: IBrandUser[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 3;
-  ratingValue: number = 0; // Valor inicial de la calificación
+  ratingValue: number = 0; 
 
   ngOnInit() {
     this.updatePaginatedList();

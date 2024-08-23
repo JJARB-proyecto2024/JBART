@@ -28,8 +28,6 @@ export class OtpService extends BaseService<IOtp> {
       }
     });
   }
-
-  // Método personalizado para generar OTP y manejar suscripción
   public generateOtpAndHandle(email: string) {
     this.http.post<IResponse<IOtp>>(`${this.source}/generatePasswordResetOtp`, { email }).subscribe({
       next: (response: IResponse<IOtp>) => {
@@ -60,7 +58,6 @@ export class OtpService extends BaseService<IOtp> {
     this.http.post<boolean>(`${this.source}/resetPassword`, { email, otpCode, newPassword }).subscribe({
       next: (response: boolean) => {
         if (response === false) {
-          // Manejar el caso en el que el servidor devuelve false
           Swal.fire({
             title: '¡Error!',
             text: 'No se pudo restablecer la contraseña. Verifica el OTP y el correo electrónico.',
@@ -68,7 +65,6 @@ export class OtpService extends BaseService<IOtp> {
             confirmButtonText: 'Aceptar',
           });
         } else {
-          // Caso en el que el servidor devuelve true
           Swal.fire({
             title: 'Éxito!',
             text: 'Contraseña restablecida exitosamente',

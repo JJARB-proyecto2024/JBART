@@ -1,31 +1,31 @@
-/* Estilo general para el contenedor del modal */
+
 .modal-container {
   width: 100%;
-  max-width: 600px; /* Ajusta el ancho máximo del modal */
-  margin: 0 auto; /* Centra el modal horizontalmente */
-  background-color: #ffffff; /* Fondo blanco para el modal */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  max-width: 600px; 
+  margin: 0 auto; 
+  background-color: #ffffff; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-/* Estilo para la parte superior del modal, incluyendo el encabezado */
+
 .modal-header {
-  background-color: #007bff; /* Color de fondo del encabezado */
-  color: #ffffff; /* Color del texto del título */
-  padding: 1rem; /* Espaciado interno */
+  background-color: #007bff; 
+  color: #ffffff; 
+  padding: 1rem; 
   display: flex;
-  justify-content: space-between; /* Espacia el título y el botón de cierre */
-  align-items: center; /* Alinea verticalmente los elementos */
-  border-top-left-radius: 8px; /* Redondea la esquina superior izquierda */
-  border-top-right-radius: 8px; /* Redondea la esquina superior derecha */
+  justify-content: space-between; 
+  align-items: center; 
+  border-top-left-radius: 8px; 
+  border-top-right-radius: 8px; 
 }
 
 
 h2 {
   
   font: 600 30px / 35px Roboto;
-  color: #4b545c; /* Color del título */
-  margin-bottom: 40px; /* Espaciado inferior */
+  color: #4b545c; 
+  margin-bottom: 40px; 
 }
 
 .titulo {

@@ -31,7 +31,6 @@ export class NotificationService extends BaseService<INotification> {
         console.error(error);
       }
     );
-    // Add the code to connect the web socket here
   }
 
   public disconnectWebSocket() {
@@ -49,7 +48,7 @@ export class NotificationService extends BaseService<INotification> {
         console.error('Error fetching notifications', error);
       }
     });
-    return []; // Add a return statement here
+    return []; 
   }
 
   public getAll() {

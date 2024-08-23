@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit , CUSTOM_ELEMENTS_SCHEMA, inject} from '@angular/core';
+import { Component, Input, CUSTOM_ELEMENTS_SCHEMA, inject} from '@angular/core';
 import { ICart } from '../../interfaces';
 import { CartService } from '../../services/cart.service';
 import { FormsModule } from '@angular/forms';

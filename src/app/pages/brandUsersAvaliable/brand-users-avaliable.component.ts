@@ -5,7 +5,6 @@ import { ModalComponent } from '../../components/modal/modal.component';
 import { BrandUserService } from '../../services/brand-user.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { IBrandUser } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 
 @Component({

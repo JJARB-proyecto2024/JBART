@@ -4,7 +4,6 @@ import { LoaderComponent } from '../../components/loader/loader.component';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { IProduct } from '../../interfaces';
 import { CategoryCardsComponent } from '../../components/category/category-cards/category-cards.component';

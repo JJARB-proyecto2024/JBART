@@ -4,8 +4,7 @@ import { IProduct } from '../../../interfaces';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { defineComponents, IgcRatingComponent } from 'igniteui-webcomponents';
 
 defineComponents(IgcRatingComponent);

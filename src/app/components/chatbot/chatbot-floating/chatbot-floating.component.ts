@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ChatbotService } from '../../../services/chatbot.service';
 import { IChatbot } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chatbot-floating',
@@ -25,10 +24,7 @@ export class ChatbotFloatingComponent implements OnInit {
   }
 
   loadQuestions() {
-    // Trigger the service call to fetch data
     this.chatbotService.getAll();
-    
-    // Access the signal value directly
     this.items = this.chatbotService.items$();
   }
 
@@ -38,7 +34,7 @@ export class ChatbotFloatingComponent implements OnInit {
 
   selectQuestion(item: IChatbot) {
     this.selectedItem = item;
-    this.scrollToBottom();  // Hacer scroll al final del contenedor
+    this.scrollToBottom();
   }
 
   deselectQuestion() {

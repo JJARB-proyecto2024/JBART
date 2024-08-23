@@ -31,7 +31,6 @@ export class AvatarService extends BaseService<IAvatar> {
   public getByUserBuyer(): Observable<any> {
     return this.http.get<IAvatar>(`${this.source}/AvatarByUser`).pipe(
       tap((response: any) => {
-        // Emitir el avatar en el `itemListSignal`
         this.itemListSignal.set([response]);
       }),
       catchError((error: any) => {

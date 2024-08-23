@@ -1,13 +1,13 @@
 .avatar-wrapper {
   display: flex;
-  /*justify-content: space-between;*/
+
   align-items: flex-start;
   padding: 20px;
 }
 
 .avatar-options {
   flex: 1;
-  max-width: 500px; /* Ajusta según sea necesario */
+  max-width: 500px; 
   margin-right: 50px;
   margin-left: 250px;
   margin-top: 150px;
@@ -16,8 +16,8 @@
 .avatar-preview {
   flex: 2;
   position: relative;
-  max-width: 300px; /* Ajusta según el tamaño del avatar */
-  height: 600px; /* Ajusta según el tamaño del avatar */
+  max-width: 300px; 
+  height: 600px; 
   top: -70px
 }
 
@@ -45,41 +45,41 @@
 }
 
 .head-img {
-  top: 0; /* Posiciona la cabeza en la parte superior */
+  top: 0; 
   z-index: 2;
   max-width: 155px;
   margin-left: 25px;
 }
 
 .body-img {
-  top: 155px; /* Ajusta la posición del cuerpo para que esté debajo de la cabeza */
+  top: 155px; 
   z-index: 0;
   max-width: 155px;
 }
 
 .face-img {
-  top: 53px; /* Ajusta la posición de la cara para que se alinee con la cabeza */
+  top: 53px; 
   z-index: 3;
   max-width: 108px;
   margin-left: 37px;
 }
 
 .facial-hair-img {
-  top: 108px; /* Ajusta la posición del vello facial para que se alinee con la cara */
+  top: 108px; 
   z-index: 4;
   max-width: 98px;
   margin-left: 30px;
 }
 
 .accessories-img {
-  top: 70px; /* Ajusta la posición de los accesorios para que se alineen con la cara/cabeza */
+  top: 70px; 
   z-index: 5;
   max-width: 130px;
   margin-left: 18px;
 }
 
 .pose-img {
-  top: 150px; /* Ajusta la posición de la pose para que esté debajo del cuerpo */
+  top: 150px; 
   z-index: 1;
   margin-left: 35px;
   max-width: 380px;

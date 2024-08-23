@@ -68,7 +68,6 @@ export class BuyerSignupComponent {
         'Por favor, inicia sesión',
         'success'
       ).then(() => {
-        // Ocultar el modal después de mostrar el mensaje de éxito
         this.router.navigateByUrl('login')
       });
     },

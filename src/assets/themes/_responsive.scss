@@ -1,8 +1,4 @@
-/**=====================
-     62. Responsive CSS Start
-==========================**/
 
-/* ========= min and max scss for 1200 to 1366 screen ========= */
 @media (max-width: 1800px) {
   .todo-wrap {
     .todo-list-body {
@@ -14,7 +10,6 @@
       }
     }
   }
-  // chat page //
   .caller-img {
     display: none;
   }
@@ -53,7 +48,6 @@
           margin: 0 auto;
         }
         > div {
-          //height: 545px;
           z-index: 2;
           background-color: rgba(255, 255, 255, 0.75);
           background-blend-mode: overlay;
@@ -110,7 +104,7 @@
     }
   }
 
-  // timeline small page
+
   .timeline-small {
     .media {
       .timeline-round {
@@ -141,7 +135,7 @@
     }
   }
 
-  // chat page //
+
   .chat-box {
     .chat-right-aside {
       .chat {
@@ -313,7 +307,7 @@
     }
   }
 
-  // chat
+
   .chat-body {
     padding: 10px;
   }
@@ -410,7 +404,6 @@
     }
   }
 
-  //blog scss
   .blog-box {
     .blog-details-main {
       .blog-bottom-details {
@@ -446,7 +439,6 @@
     }
   }
 
-  // email-app
   .email-wrap {
     .email-left-aside {
       .email-app-sidebar {
@@ -535,7 +527,7 @@
     }
   }
 
-  // alert page
+
   .alert-dismissible {
     p {
       overflow: hidden;
@@ -545,7 +537,7 @@
     }
   }
 
-  // touchspin page
+
   .bootstrap-touchspin {
     .touchspin-vertical-tab {
       .input-group {
@@ -561,7 +553,7 @@
       height: auto;
     }
   }
-  // product page
+
   .grid-options {
     ul {
       li {
@@ -582,14 +574,13 @@
     }
   }
 
-  // cart page
+
   .cart {
     .qty-box {
       width: 40%;
     }
   }
 
-  // alert page
   .alert-dismissible {
     strong {
       & ~ p {
@@ -598,7 +589,7 @@
     }
   }
 
-  // timeline small page
+
   .timeline-small {
     .media {
       .media-body {
@@ -613,7 +604,7 @@
     height: 350px;
   }
 
-  // chat page
+
   .chat-right-aside {
     flex: 0 0 60%;
     max-width: 60%;
@@ -707,7 +698,6 @@
     }
   }
 
-  //ecommerce dashboard
   .ecommerce-widget {
     .total-num {
       font-size: 23px;
@@ -725,7 +715,6 @@
     }
   }
 
-  //default dashboard
   .custom-card {
     padding: 15px;
 
@@ -756,7 +745,6 @@
     height: 360px;
   }
 
-  //chart widget
   .status-details {
     h3 {
       font-size: 18px;
@@ -775,7 +763,6 @@
     }
   }
 
-  //general widget
   .browser-widget {
     .media {
       flex-wrap: wrap;
@@ -816,7 +803,7 @@
     }
   }
 
-  //chat
+
   .chat-body {
     padding: 10px;
   }
@@ -833,7 +820,6 @@
       }
       .receiver-img {
         margin-top: 30px;
-        //margin-bottom: 30px;
       }
       .call-icons {
         margin-top: 20px;
@@ -936,21 +922,21 @@
     left: 37px;
   }
 
-  // mega-menu
+
   .mega-menu {
     .onhover-show-div {
       left: 164px;
     }
   }
 
-  // image cropper page
+
   .img-cropper {
     .docs-toggles {
       margin-top: 8px;
     }
   }
 
-  // touchspin page
+
   .bootstrap-touchspin {
     .dropdown-basic {
       .dropdown {
@@ -961,14 +947,14 @@
     }
   }
 
-  // datatable advance page
+
   #advance-5_wrapper {
     .dataTables_paginate {
       margin-bottom: 8px;
     }
   }
 
-  // jsgrid-table page
+
   #batchDelete {
     .jsgrid-grid-header {
       .jsgrid-table {
@@ -995,7 +981,6 @@
     }
   }
 
-  // forget password page
   .reset-password-box {
     .theme-form {
       .form-group {
@@ -1135,7 +1120,7 @@
     }
   }
 
-  // sidebar css
+
   .page-wrapper {
     .page-header {
       .header-wrapper {
@@ -1167,7 +1152,6 @@
     }
   }
 
-  // social app page
   .photos {
     ul {
       li {
@@ -1206,7 +1190,6 @@
     }
   }
 
-  // timeline small page
   .timeline-small {
     .media {
       .timeline-round {
@@ -1372,7 +1355,7 @@
     min-height: unset !important;
   }
 
-  //mega menu
+
   .mega-menu {
     .onhover-show-div {
       height: 435px;
@@ -1396,7 +1379,7 @@
     }
   }
 
-  //blog
+
   .blog-single {
     .comment-box {
       ul {
@@ -1411,7 +1394,6 @@
     }
   }
 
-  //error and maintenace
   .error-wrapper {
     .maintenance-heading {
       margin-top: 30px;
@@ -1428,7 +1410,7 @@
     }
   }
 
-  // general widget
+
   .testimonial {
     p {
       margin-top: 17px;
@@ -1455,21 +1437,21 @@
     }
   }
 
-  //ecommerce dashboard
+
   .crm-overall {
     .overall-chart {
       height: 200px;
     }
   }
 
-  // eccommerce product
+
   .product-table {
     table.dataTable thead > tr > th {
       padding-right: 50px;
     }
   }
 
-  //chat
+ 
   .chat-menu-icons {
     display: block;
     clear: both;
@@ -1575,7 +1557,7 @@
     }
   }
 
-  // Email app
+
   .email-wrap {
     .email-right-aside {
       .email-body {
@@ -1602,7 +1584,7 @@
     }
   }
 
-  // icons
+
   .icon-lists {
     div {
       overflow: hidden;
@@ -1611,17 +1593,15 @@
     }
   }
 
-  // tour page
+
   .like-comment-lg-mb {
     margin-bottom: 12px;
   }
 
-  // ribbons page
   .ribbon-space-bottom {
     top: 9px;
   }
 
-  // touchspin page
   .bootstrap-touchspin {
     .touchspin-vertical-tab {
       .input-group {
@@ -1630,7 +1610,6 @@
     }
   }
 
-  // jsgrid-table page
   #batchDelete {
     .jsgrid-grid-header {
       .jsgrid-table {
@@ -1657,14 +1636,12 @@
     }
   }
 
-  // user-profile page
   .profile-img-style {
     #aniimated-thumbnials-3 {
       text-align: center;
     }
   }
 
-  // vertical page
   .vertical-menu-mt {
     margin-top: 80px !important;
 
@@ -1673,14 +1650,12 @@
     }
   }
 
-  // calender page
   .calendar-wrap {
     .fc-day-grid-event {
       width: 87%;
     }
   }
 
-  // product-page //
   .product-page-main {
     .product-page-details {
       h3 {
@@ -1893,7 +1868,6 @@
     padding-bottom: 25px !important;
   }
 
-  // datatable css
   table {
     &.dataTable {
       &.fixedHeader-locked,
@@ -1904,7 +1878,6 @@
     }
   }
 
-  // main header css
   .page-wrapper {
     .section-space {
       padding: 60px 0;
@@ -2122,7 +2095,7 @@
     }
   }
 
-  // general widget page
+
   .crm-activity {
     > {
       li {
@@ -2134,21 +2107,18 @@
     }
   }
 
-  // add post page
   .add-post {
     .dropzone {
       margin-bottom: 20px;
     }
   }
 
-  // avatar page
   .customers {
     &.avatar-group {
       margin-right: 20px;
     }
   }
 
-  //social app page css
   .socialprofile {
     .social-btngroup {
       margin: 20px 0;
@@ -2217,7 +2187,6 @@
     margin-bottom: 20px;
   }
 
-  // timeline small page css
   .timeline-small {
     .media {
       margin-bottom: 20px;
@@ -2265,12 +2234,10 @@
     }
   }
 
-  // helper classes page start
   .helper-classes {
     padding: 20px;
   }
 
-  // helper classes page ends
   .floated-customizer-btn,
   .floated-customizer-panel {
     display: none;
@@ -2508,7 +2475,6 @@
     }
   }
 
-  //user profile
   .user-profile {
     .hovercard {
       .info {
@@ -2519,12 +2485,10 @@
     }
   }
 
-  // search page //
   .search-list {
     justify-content: center;
   }
 
-  //blog
   .blog-single {
     .comment-box {
       .comment-social {
@@ -2535,7 +2499,6 @@
     }
   }
 
-  //error and maintenace
   .error-wrapper {
     padding: 35px 0;
 
@@ -2559,7 +2522,6 @@
     }
   }
 
-  // editor_container //
   .editor_container {
     .CodeMirror {
       min-height: 250px;
@@ -2567,7 +2529,6 @@
     }
   }
 
-  //search
   .search-page {
     .info-block {
       flex-wrap: wrap;
@@ -2579,12 +2540,10 @@
     }
   }
 
-  // general widget
   .xl-none {
     display: block;
   }
 
-  //blog
   .top-radius-blog {
     width: 100%;
   }
@@ -2594,23 +2553,17 @@
     height: 100%;
   }
 
-  /*Form Wizard One start*/
+
   .form-wizard {
     .btn-mb {
       margin-bottom: 20px;
     }
   }
 
-  /*Form Wizard One ends*/
-
-  /*Form Wizard Two Start*/
   .stepwizard {
     margin-bottom: 20px;
   }
 
-  /*Form Wizard Two Ends*/
-
-  /*Form Wizard Three Start*/
   .f1 {
     .f1-steps {
       margin-top: 20px;
@@ -2618,9 +2571,6 @@
     }
   }
 
-  /*Form Wizard Three ends*/
-
-  /*Form Wizard Four Start*/
   .wizard-4 {
     ul.anchor {
       padding-right: 20px;
@@ -2669,8 +2619,7 @@
     }
   }
 
-  /*Form Wizard Four ends*/
-  // tab material
+
   .border-tab.nav-tabs {
     margin-bottom: 20px;
   }
@@ -2683,7 +2632,6 @@
     }
   }
 
-  // support ticket
   .dataTables_wrapper {
     .dataTables_length {
       margin-bottom: 20px;
@@ -2694,7 +2642,6 @@
     }
   }
 
-  // search page
   .search-page {
     .info-block {
       + .info-block {
@@ -2724,19 +2671,16 @@
     }
   }
 
-  // clipboard
   .clipboaard-container {
     p {
       margin-bottom: 8px;
     }
   }
 
-  // summer-note
   .m-b-30 {
     margin-bottom: 20px !important;
   }
 
-  // email app
   .email-wrap {
     .email-left-aside {
       .email-app-sidebar {
@@ -2751,7 +2695,6 @@
     }
   }
 
-  // navs page
   .nav-md-mt {
     margin-top: 20px;
   }
@@ -2782,7 +2725,6 @@
     }
   }
 
-  // animated modal page
   .animated-modal {
     .form-group {
       width: 100%;
@@ -2794,12 +2736,11 @@
     }
   }
 
-  // steps page
+
   .steps-md-mt {
     margin-top: 20px;
   }
 
-  // button group page
   .btn-group-wrapper {
     .m-b-30 {
       &:last-child {
@@ -2808,14 +2749,12 @@
     }
   }
 
-  // datatable advance page
   #advance-5_wrapper {
     .dataTables_paginate {
       margin-bottom: 20px;
     }
   }
 
-  // summer-note page
   .click2edit {
     & ~ .note-editor {
       &.note-frame {
@@ -2824,7 +2763,6 @@
     }
   }
 
-  // call-chat page
   .chat-box {
     .chat-left-aside {
       .people-list {
@@ -3050,12 +2988,10 @@
     }
   }
 
-  // button page //
   .btn-showcase {
     text-align: center;
   }
 
-  // social app page css
   .user-profile {
     .hovercard {
       .user-image {
@@ -3081,7 +3017,6 @@
     }
   }
 
-  // timeline small page css
   .timeline-small {
     .media {
       .media-body {
@@ -3092,7 +3027,6 @@
     }
   }
 
-  // icon-compact layout page
   .my-gallery {
     figure {
       &:nth-child(9),
@@ -3102,7 +3036,6 @@
     }
   }
 
-  // project list //
   .project-list {
     .btn {
       float: left;
@@ -3110,7 +3043,6 @@
     }
   }
 
-  // chat
   .chat-box {
     .chat-right-aside {
       .chat {
@@ -3204,7 +3136,6 @@
     }
   }
 
-  // form-builder
   .lg-mt-col {
     margin-top: 20px;
   }
@@ -3227,7 +3158,6 @@
     }
   }
 
-  //mega menu
   .mega-menu {
     .onhover-show-div {
       height: 415px;
@@ -3500,7 +3430,6 @@
     }
   }
 
-  //mega menu
   .mega-menu {
     .onhover-show-div {
       height: 350px;
@@ -3529,7 +3458,7 @@
     }
   }
 
-  /* font-awesom icon page */
+
   .icon-hover-bottom {
     .form-group {
       input {
@@ -3538,7 +3467,6 @@
     }
   }
 
-  //user profile
   .user-profile {
     .hovercard {
       .cardheader {
@@ -3559,7 +3487,7 @@
     }
   }
 
-  //calendar
+
   .calendar-wrap {
     .fc {
       button {
@@ -3588,7 +3516,6 @@
     }
   }
 
-  //blog
   .blog-single {
     .comment-box {
       .media {
@@ -3612,7 +3539,6 @@
     }
   }
 
-  //material tab
   .tabbed-card {
     ul {
       &.border-tab {
@@ -3636,7 +3562,6 @@
     }
   }
 
-  //search
   .search-page {
     #image-links {
       .info-block {
@@ -3647,7 +3572,6 @@
     }
   }
 
-  //authentication
   .authentication-main {
     .authentication-box {
       width: 100%;
@@ -3658,7 +3582,7 @@
     }
   }
 
-  //default dashboard
+
   .map-chart {
     .chart-container {
       height: 300px;
@@ -3669,7 +3593,6 @@
     height: 250px;
   }
 
-  //chart widget
   .bar-chart-widget {
     .earning-details {
       i {
@@ -3690,7 +3613,6 @@
     }
   }
 
-  // from wizard two
   .stepwizard {
     .stepwizard-row {
       &:before {
@@ -3699,7 +3621,7 @@
     }
   }
 
-  // icons
+
   .icon-hover-bottom {
     .icon-popup {
       display: block;
@@ -3730,7 +3652,7 @@
     }
   }
 
-  //footer
+
   .footer-links {
     text-align: center;
   }
@@ -3750,7 +3672,7 @@
     }
   }
 
-  // email app
+
   .email-wrap {
     .email-right-aside {
       .email-content {
@@ -3786,7 +3708,6 @@
     }
   }
 
-  // alert page
   .alert-dismissible {
     p {
       overflow: hidden;
@@ -3796,12 +3717,10 @@
     }
   }
 
-  // button group page
   .button-group-mb-sm {
     margin-bottom: 5px;
   }
 
-  // table components page
   .card-block {
     .table-responsive {
       .table {
@@ -3846,7 +3765,6 @@
     }
   }
 
-  // jsgrid-table page
   #batchDelete {
     .jsgrid-grid-header {
       .jsgrid-table {
@@ -3878,7 +3796,7 @@
     }
   }
 
-  // chat page
+
   .chat-box {
     .chat-right-aside {
       .chat {
@@ -3909,7 +3827,7 @@
     }
   }
 
-  // user-profile page
+
   .hovercard {
     .info {
       .follow {
@@ -3925,7 +3843,7 @@
     }
   }
 
-  // forget-password page
+
   .reset-password-box {
     .theme-form {
       .form-group {
@@ -3936,7 +3854,7 @@
     }
   }
 
-  // gallery page
+
   .lg-outer {
     .lg-actions .lg-next,
     .lg-actions .lg-prev {
@@ -3944,7 +3862,7 @@
     }
   }
 
-  // product page
+
   .feature-products {
     .filter-toggle {
       padding: 8px 15px;
@@ -4196,7 +4114,6 @@
     }
   }
 
-  // invoice template page
   .invoice {
     .text-md-end {
       margin-top: 10px;
@@ -4209,7 +4126,7 @@
     }
   }
 
-  // Login page
+
   .login-card {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -4445,14 +4362,13 @@
     margin-right: 15px;
   }
 
-  // cart page //
+
   .wishlist {
     .text-end {
       text-align: left !important;
     }
   }
 
-  // Add post page css
   .add-post {
     form {
       .m-checkbox-inline {
@@ -4467,7 +4383,6 @@
     }
   }
 
-  //form-wizard-four page css
   .wizard-4 {
     .msg-box {
       top: 10px !important;
@@ -4492,7 +4407,7 @@
     }
   }
 
-  // avatar page css
+  
   .customers {
     &.avatar-group {
       margin-right: 15px;
@@ -4503,7 +4418,6 @@
     top: 19px;
   }
 
-  //notify index page
   .alert-theme {
     i {
       margin-right: 10px !important;
@@ -4565,7 +4479,7 @@
     padding-bottom: 30px !important;
   }
 
-  // social app page css
+ 
   .avatar-showcase {
     .pepole-knows {
       text-align: center;
@@ -4784,7 +4698,6 @@
     }
   }
 
-  // chat page //
   .chat-box {
     .chat-history {
       .call-content {
@@ -4795,7 +4708,7 @@
     }
   }
 
-  // timeline small page css
+
   .timeline-small {
     .media {
       margin-bottom: 15px;
@@ -4831,12 +4744,12 @@
     }
   }
 
-  // helper classes page start
+
   .helper-classes {
     padding: 15px;
   }
 
-  // helper classes page ends
+
   .form-builder-2-header {
     ul {
       li {
@@ -4932,7 +4845,7 @@
     border-bottom: none;
   }
 
-  // editor_container //
+
   .editor_container {
     .CodeMirror {
       min-height: 190px;
@@ -4940,7 +4853,7 @@
     }
   }
 
-  // order history //
+
   .order-history {
     table.dataTable.table {
       thead {
@@ -4951,7 +4864,6 @@
     }
   }
 
-  // tab material start
   .border-tab.nav-left {
     .nav-link {
       text-align: center;
@@ -4978,7 +4890,6 @@
     }
   }
 
-  // tab material end
   .nav-pills {
     text-align: center;
   }
@@ -5417,7 +5328,6 @@
     }
   }
 
-  //user profile
   .user-profile {
     hr {
       margin: 15px 0;
@@ -5462,7 +5372,7 @@
     }
   }
 
-  //user card
+
   .custom-card {
     .card-footer {
       > div {
@@ -5478,7 +5388,6 @@
     }
   }
 
-  //calendar
   .calendar-wrap {
     .fc-toolbar {
       .fc-center {
@@ -5491,7 +5400,6 @@
     }
   }
 
-  // megaoption page responsive scss
   .mega-inline {
     display: block;
   }
@@ -5500,7 +5408,6 @@
     padding-bottom: 30px !important;
   }
 
-  //blog
   .blog-box.blog-shadow {
     .blog-details {
       padding: 15px;
@@ -5541,7 +5448,6 @@
     }
   }
 
-  //error and maintenace
   .error-wrapper {
     padding: 20px 0;
 
@@ -5578,7 +5484,7 @@
     }
   }
 
-  //coming soon
+
   .comingsoon {
     .comingsoon-inner {
       .coming-soon-bottom-link {
@@ -5613,23 +5519,19 @@
     }
   }
 
-  // Form Wizard One start
+
   .form-wizard {
     .btn-mb {
       margin-bottom: 15px;
     }
   }
 
-  // Form Wizard One ends
 
-  // Form Wizard Two Start
   .stepwizard {
     margin-bottom: 15px;
   }
 
-  // Form Wizard Two Ends
 
-  // Form Wizard Three Start
   .f1 {
     .f1-steps {
       margin-top: 15px;
@@ -5637,9 +5539,7 @@
     }
   }
 
-  //Form Wizard Three ends
-
-  // form wizard--4 scss
+ 
   .wizard-4 {
     ul.anchor {
       width: 100%;
@@ -5651,14 +5551,14 @@
     }
   }
 
-  //chart
+
   .status-widget {
     .text-sm-right {
       text-align: right;
     }
   }
 
-  //mega menu
+
   .mega-menu {
     padding-left: 15px;
 
@@ -5678,7 +5578,7 @@
     }
   }
 
-  // navs page
+
   .nav-md-mt {
     margin-top: 15px;
   }
@@ -5713,7 +5613,7 @@
     margin-top: 15px;
   }
 
-  // scroll reval
+
   #aniimated-thumbnials {
     a {
       &:last-child {
@@ -5724,7 +5624,7 @@
     }
   }
 
-  // tilt
+
   .tilt-showcase {
     .mt-4 {
       margin-top: 15px !important;
@@ -5737,19 +5637,18 @@
     }
   }
 
-  // state color page
   .xs-mt {
     margin-top: 15px;
   }
 
-  // tag-pills page
+  
   span:last-child.tag-pills-sm-mb {
     margin-top: 3px;
   }
 
-  // alert page
 
-  // animated modal page
+
+ 
   .animated-modal {
     .form-group {
       .form-control {
@@ -5763,7 +5662,7 @@
     }
   }
 
-  // steps page
+
   .steps-md-mt {
     margin-top: 15px;
   }
@@ -5772,7 +5671,7 @@
     margin-bottom: 15px;
   }
 
-  // touchspin page
+
   .bootstrap-touchspin {
     .touchspin-vertical-tab {
       .input-group {
@@ -5781,7 +5680,7 @@
     }
   }
 
-  // datatable API page
+
   #API-chield-row_wrapper {
     #API-chield-row {
       tbody {
@@ -5796,7 +5695,7 @@
     }
   }
 
-  // chart-flot page
+
   .chart-block {
     .flot-chart-container {
       p#choices {
@@ -5809,7 +5708,7 @@
     }
   }
 
-  // summer-note page
+
   .click2edit {
     & ~ .note-editor {
       &.note-frame {
@@ -5818,14 +5717,14 @@
     }
   }
 
-  // support ticket page
+
   .ecommerce-widget {
     .progress-showcase {
       margin-top: 15px;
     }
   }
 
-  // forget-password page
+ 
   .reset-password-box {
     .theme-form {
       .form-group {
@@ -5836,7 +5735,7 @@
     }
   }
 
-  // gallery-with-description page
+
   .gallery-with-description {
     a {
       > div {
@@ -5845,17 +5744,14 @@
     }
   }
 
-  // gallery hover page
   .gallery-img-mb-sm {
     margin-bottom: 15px;
   }
 
-  // peity chart page
   .xm-mb-peity {
     margin-bottom: 8px;
   }
 
-  // login page
   .authentication-main {
     padding: 30px 15px;
   }
@@ -5879,17 +5775,6 @@
   .onhover-dropdown {
     &:hover {
       .onhover-show-div {
-        // opacity: 0;
-        // transform: none;
-        // visibility: hidden;
-
-        // &.active {
-        //   opacity: 1;
-        //   transform: translateY(0px);
-        //   visibility: visible;
-        //   border-radius: 5px;
-        //   overflow: hidden;
-        // }
       }
     }
   }
@@ -5935,7 +5820,7 @@
     }
   }
 
-  // dropdown-basic //
+
   .dropdown-basic {
     .btn-group {
       margin-right: unset;
@@ -6131,7 +6016,6 @@
     }
   }
 
-  // timeline small page css
   .timeline-small {
     .media {
       .timeline-round {
@@ -6150,7 +6034,7 @@
     }
   }
 
-  // dropdown page //
+
   .dropdown-basic {
     text-align: center;
   }
@@ -6158,7 +6042,6 @@
     text-align: center;
   }
 
-  //blog
   .blog-box.blog-shadow {
     .blog-details {
       padding: 10px;
@@ -6168,7 +6051,7 @@
       }
     }
   }
-  // from wizard two
+
   .stepwizard {
     .stepwizard-row {
       &:before {
@@ -6183,7 +6066,7 @@
     }
   }
 
-  // email app
+
   .email-wrap {
     .email-right-aside {
       .email-content {
@@ -6203,7 +6086,6 @@
     }
   }
 
-  //mega menu
   .mega-menu {
     padding-left: 20px;
     padding-top: 3px;
@@ -6216,12 +6098,12 @@
     }
   }
 
-  //  tag-pills
+ 
   .badge {
     padding: 0.42em 0.7em;
   }
 
-  // alert page
+
   .alert-dismissible {
     .close {
       top: -1px;
@@ -6232,12 +6114,12 @@
     }
   }
 
-  // bootstrap notify page
+
   .notify-alert {
     width: 90%;
   }
 
-  // chat page //
+
   .chat-box {
     .chat-right-aside {
       .chat {
@@ -6282,7 +6164,7 @@
     font-size: 37px;
   }
 
-  // tab css
+
   .tabbed-card {
     ul {
       &.border-tab {
@@ -6297,7 +6179,7 @@
     }
   }
 
-  // compact sidebar css
+
   .page-wrapper {
     &.compact-sidebar {
       .page-body-wrapper {
@@ -6343,7 +6225,7 @@
     }
   }
 
-  // login form //
+
   .login-card {
     .login-main {
       .theme-form {
@@ -6435,7 +6317,7 @@
       }
     }
   }
-  // chart widget page css
+
   .status-widget {
     svg {
       width: 18px;
@@ -6443,7 +6325,7 @@
     }
   }
 
-  // social app page css
+ 
   .tabs-scoial {
     &.border-tab {
       &.nav-tabs {
@@ -6493,7 +6375,6 @@
     }
   }
 
-  // timeline small page css
   .timeline-small {
     .media {
       .timeline-round {
@@ -6604,7 +6485,6 @@
     max-width: 100%;
   }
 
-  //default dashboard
   .browser-widget {
     .media {
       i {
@@ -6626,7 +6506,7 @@
     }
   }
 
-  // serach page //
+
   .search-page {
     .theme-form {
       .input-group {
@@ -6643,7 +6523,6 @@
     }
   }
 
-  // from wizard two
   .stepwizard {
     .stepwizard-row {
       .stepwizard-step {
@@ -6654,7 +6533,7 @@
     }
   }
 
-  //from wizard four
+
   .wizard-4 {
     ul {
       &.anchor {
@@ -6671,7 +6550,7 @@
     min-width: 100%;
   }
 
-  // email app
+
   .email-wrap {
     .action-wrapper {
       .actions {
@@ -6715,7 +6594,6 @@
     }
   }
 
-  // form-builder
   .form-builder {
     #components {
       .component {
@@ -6728,7 +6606,6 @@
     }
   }
 
-  // according
   .default-according {
     .card {
       .card-header {
@@ -6746,7 +6623,6 @@
     }
   }
 
-  //rating
   .star-ratings {
     .stars {
       .title {
@@ -6755,7 +6631,7 @@
     }
   }
 
-  // tour page
+
   .user-profile {
     .hovercard {
       .social-media {
@@ -6766,7 +6642,6 @@
     }
   }
 
-  // touchspin page
   .bootstrap-touchspin {
     .touchspin-vertical-tab {
       .input-group {
@@ -6775,12 +6650,10 @@
     }
   }
 
-  // form-wizard-four page
   .step-container {
     height: 280px !important;
   }
 
-  // jsgrid-table page
   .sort-panel {
     .d-inline {
       .btn {
@@ -6789,7 +6662,6 @@
     }
   }
 
-  // jsgrid-table css
   .jsgrid {
     .jsgrid-pager-container {
       .jsgrid-pager {
@@ -6800,7 +6672,6 @@
     }
   }
 
-  // chat page
   .chat-box {
     .chat-right-aside {
       flex: 0 0 96%;
@@ -6814,7 +6685,6 @@
     }
   }
 
-  // error 400 page
   .error-wrapper {
     .error-heading {
       .headline {
@@ -6823,14 +6693,12 @@
     }
   }
 
-  // gallery page
   .lg-toolbar {
     .lg-icon {
       width: 40px;
     }
   }
 
-  // calender page
   .calendar-wrap {
     a.fc-more {
       font-size: 0.59em;
@@ -6843,7 +6711,6 @@
     }
   }
 
-  //modal footer
   .modal-footer {
     display: block;
     text-align: center;
@@ -6853,7 +6720,6 @@
     }
   }
 
-  // checkout //
   .order-box {
     .qty {
       li {

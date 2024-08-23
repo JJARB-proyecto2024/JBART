@@ -1,6 +1,4 @@
-/**=====================
-    60. RTL CSS Start
-==========================**/
+
 html[dir="rtl"] {
   ul {
     padding-right: 0;
@@ -278,7 +276,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // task page css
+
   .date-details {
     > div {
       + div {
@@ -287,7 +285,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // contact page css
+ 
   .contact-editform {
     &.ps-0 {
       padding-left: 20px !important;
@@ -332,7 +330,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // file manager css
+
   .file-content {
     .form-inline {
       i {
@@ -349,7 +347,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // projects page css
+
   .form-select {
     background-position: left 0.75rem center;
   }
@@ -380,7 +378,7 @@ html[dir="rtl"] {
       left: 30px;
     }
   }
-  // kanban board css
+
   .kanban-board {
     float: right;
   }
@@ -407,7 +405,7 @@ html[dir="rtl"] {
       }
     }
   }
-  //horizontal-sidebar
+
   .page-wrapper {
     &.horizontal-wrapper {
       .header-logo-wrapper {
@@ -459,7 +457,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // compact icon css
+
   .page-wrapper {
     .page-header {
       .header-wrapper {
@@ -662,7 +660,7 @@ html[dir="rtl"] {
   .apexcharts-canvas {
     direction: ltr;
   }
-  // bookmark app css
+
   .email-wrap {
     .btn-mail {
       text-align: right;
@@ -703,7 +701,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // index page css start
+
   .appointment-table {
     table {
       tr {
@@ -730,7 +728,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // index page css end
+
   @each $progress-gradient-name,
     $progress-gradient-color in (primary, var(--theme-default)),
     (secondary, $secondary-color), (success, $success-color),
@@ -759,7 +757,7 @@ html[dir="rtl"] {
       right: unset;
     }
   }
-  // ecommerce dashboard css end
+
   .me-4 {
     margin-left: 1.5rem !important;
     margin-right: unset !important;
@@ -1462,7 +1460,7 @@ html[dir="rtl"] {
   .border-tab.nav-left .nav-link {
     text-align: left;
   }
-  // social app page css
+
   .socialprofile {
     .social-group {
       ul {
@@ -1560,7 +1558,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // faq page css
+
   .faq-form {
     .search-icon {
       left: 12px;
@@ -1614,7 +1612,7 @@ html[dir="rtl"] {
     margin-right: unset;
     margin-left: 20px;
   }
-  // knowledgebase page css
+
   .browse {
     .browse-articles {
       span {
@@ -1625,14 +1623,14 @@ html[dir="rtl"] {
       }
     }
   }
-  // learning app page css
+
   .categories {
     .learning-header {
       padding-right: 15px;
       padding-left: unset;
     }
   }
-  // internationalization page css
+
   .main {
     .langChoice {
       left: 30px;
@@ -1644,7 +1642,7 @@ html[dir="rtl"] {
       direction: ltr;
     }
   }
-  // chart peity css
+
   p {
     &.data-attributes {
       svg {
@@ -1653,7 +1651,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // avatars page css
+
   .avatars {
     .avatar {
       margin-left: 10px;
@@ -1680,7 +1678,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // knob chart css
+ 
   .knob-chart {
     .chart-clock-main {
       .clock-small {
@@ -1689,7 +1687,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // to-do css
+
   .todo {
     .todo-list-wrapper {
       .mark-all-tasks {
@@ -1758,13 +1756,13 @@ html[dir="rtl"] {
       }
     }
   }
-  //sticky note css
+
   .sticky-note {
     .note {
       float: right;
     }
   }
-  // mega-menu css
+
   .mega-menu {
     .list-unstyled {
       div {
@@ -1830,7 +1828,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // email css
+
   .email-wrap {
     .row {
       .col-xl-6 {
@@ -1882,7 +1880,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // calender css
+
   #renderRange {
     float: left;
     padding-left: unset;
@@ -1930,7 +1928,7 @@ html[dir="rtl"] {
       margin-right: 0 !important;
     }
   }
-  // buttons css
+
   .btn-group-showcase {
     .btn-group {
       margin-left: 20px;
@@ -1951,7 +1949,7 @@ html[dir="rtl"] {
       border-bottom-right-radius: 0 !important;
     }
   }
-  // button-builder css
+
   &.button-builder {
     ul.the-icons {
       li {
@@ -1986,7 +1984,7 @@ html[dir="rtl"] {
       margin: 0 0 8px 8px;
     }
   }
-  // modal page
+
   .modal-dialog {
     .modal-content {
       .modal-body {
@@ -1998,7 +1996,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // forms page
+
   .drag-box {
     fieldset {
       .component {
@@ -2175,7 +2173,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // compact small page
+
   .page-wrapper {
     .page-body-wrapper {
       .logo-wrapper {
@@ -2186,7 +2184,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // search page
+
   .search-page {
     .nav i {
       margin-left: 10px;
@@ -2204,7 +2202,7 @@ html[dir="rtl"] {
     padding: 10px 70px 10px 10px;
     text-align: right;
   }
-  // icons page
+
   .icon-hover-bottom {
     .icon-title {
       text-align: right;
@@ -2225,7 +2223,7 @@ html[dir="rtl"] {
       padding-right: 30px;
     }
   }
-  // customizer
+
   .floated-customizer-btn {
     &.third-floated-btn {
       left: 35px;
@@ -2251,7 +2249,7 @@ html[dir="rtl"] {
       padding-right: 0;
     }
   }
-  // form builder-2 page
+
   .form-builder-2-header {
     > div {
       nav {
@@ -2270,7 +2268,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // sidebar main page
+
   .page-wrapper {
     .page-body-wrapper {
       .page-title {
@@ -2339,7 +2337,7 @@ html[dir="rtl"] {
     }
   }
 
-  // page main header
+
   .page-header {
     .header-wrapper {
       .nav-right {
@@ -2458,7 +2456,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // alert page
+
   .card-body {
     .alert {
       svg {
@@ -2498,7 +2496,6 @@ html[dir="rtl"] {
       display: inline-block;
     }
   }
-  // blog page
   .blog-box {
     .blog-details {
       padding-left: 20px;
@@ -2575,7 +2572,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // button builder page
+
   .button-builder-wrap {
     .form-group {
       .btn {
@@ -2592,7 +2589,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // chat page
+
   .call-chat-body {
     .chat-box {
       .chat-right-aside {
@@ -2693,7 +2690,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // cke editor page
+
   .cke_toolbar,
   .cke_toolgroup,
   a.cke_button,
@@ -2721,13 +2718,13 @@ html[dir="rtl"] {
       }
     }
   }
-  // coming soon page
+
   #clockdiv {
     ul {
       padding-right: 0;
     }
   }
-  // social app page
+
   .custom-card {
     .card-footer {
       & > div {
@@ -2747,7 +2744,7 @@ html[dir="rtl"] {
       left: unset;
     }
   }
-  // datatables page
+
   .dataTables_wrapper {
     .dataTables_filter {
       input[type="search"] {
@@ -2864,7 +2861,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // datetime picker page
+
   .datetime-picker {
     .theme-form {
       .form-group {
@@ -2885,7 +2882,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // dropdown page
+
   .dropdown-basic {
     .btn {
       border-top-left-radius: 0;
@@ -2905,7 +2902,7 @@ html[dir="rtl"] {
       margin-left: 18px;
     }
   }
-  // error page
+
   .error-wrapper {
     .col-md-8 {
       &.offset-md-2 {
@@ -2913,7 +2910,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // product page
+
   .product-price {
     del {
       padding-left: 20px;
@@ -2980,7 +2977,7 @@ html[dir="rtl"] {
       right: unset;
     }
   }
-  // form wizard 4 page
+
   .wizard-4 {
     ul {
       &.anchor {
@@ -3009,7 +3006,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // tree view page
+
   .jstree-default {
     .jstree-node {
       margin-left: unset;
@@ -3018,7 +3015,7 @@ html[dir="rtl"] {
       background-repeat: repeat-y;
     }
   }
-  // image cropper page
+
   .img-cropper {
     .btn-group {
       margin-right: 0;
@@ -3076,18 +3073,18 @@ html[dir="rtl"] {
       margin-right: 0;
     }
   }
-  // authentication page
+
   .authentication-box {
     text-align: right;
   }
-  // mega options page
+
   .mega-horizontal {
     .offset-sm-3 {
       margin-right: 25%;
       margin-left: unset;
     }
   }
-  // navs page
+
   .navs-icon {
     svg {
       margin-left: 10px;
@@ -3139,7 +3136,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // search page css
+
   .search-form {
     .form-group {
       &:after {
@@ -3152,7 +3149,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // order history page css
+
   .order-history {
     table {
       tbody {
@@ -3179,7 +3176,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // product-page
+
   .product-page-details {
     span {
       padding-right: 15px;
@@ -3197,7 +3194,7 @@ html[dir="rtl"] {
       text-align: left;
     }
   }
-  // rating page
+
   .br-theme-bars-reversed,
   .br-theme-bars-movie,
   .br-theme-bars-1to10,
@@ -3211,7 +3208,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // ribbons page
+
   .ribbon-left {
     right: auto;
     left: -2px;
@@ -3224,7 +3221,7 @@ html[dir="rtl"] {
     right: auto;
     left: 12px;
   }
-  // search page
+
   .star-ratings {
     ul {
       &.search-info {
@@ -3242,7 +3239,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // select 2 page
+
   .select2-container--default {
     .select2-selection--single {
       .select2-selection__arrow {
@@ -3283,7 +3280,7 @@ html[dir="rtl"] {
       padding-right: 0;
     }
   }
-  // steps page
+
   .u-step-desc {
     text-align: right;
   }
@@ -3309,7 +3306,7 @@ html[dir="rtl"] {
     margin-left: 0.5em;
     margin-right: unset;
   }
-  // summernote page
+
   .list-icons {
     padding-right: 0;
   }
@@ -3346,19 +3343,19 @@ html[dir="rtl"] {
       }
     }
   }
-  // input group page
+
   .dropdown-toggle::after {
     margin-right: 0.255em;
     margin-left: unset;
   }
-  // tabbed card page
+
   .tabbed-card {
     ul {
       left: 22px;
       right: unset;
     }
   }
-  // checkbox & radios page
+
   .checkbox {
     label {
       padding-right: 16px;
@@ -3381,7 +3378,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // timeline page
+
   .cd-timeline-content {
     &::before {
       border-right: 7px solid $light-color;
@@ -3422,7 +3419,7 @@ html[dir="rtl"] {
       left: unset;
     }
   }
-  // tour page
+
   .introjs-tooltip {
     right: 0;
     left: unset;
@@ -3474,7 +3471,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // gallery page
+
   .gallery {
     .hover-5 {
       img {
@@ -3498,7 +3495,7 @@ html[dir="rtl"] {
     padding-left: unset;
     float: right;
   }
-  // chart widget page
+
   .chart-widget-top {
     .text-end {
       text-align: left !important;
@@ -3527,7 +3524,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // dashboard project page
+
   .chart-vertical-center {
     #myDoughnutGraph,
     #myPolarGraph {
@@ -3558,7 +3555,7 @@ html[dir="rtl"] {
   .dt-button-collection {
     left: -39px !important;
   }
-  // dropzone page
+ 
   .dropzone {
     .dz-preview {
       .dz-error-mark,
@@ -3570,7 +3567,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // footer page
+
   .page-wrapper {
     .page-body-wrapper {
       footer {
@@ -3611,7 +3608,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // popover page
+
   .popover.top,
   .popover.bottom {
     > .arrow:after {
@@ -3619,7 +3616,7 @@ html[dir="rtl"] {
       margin-left: unset;
     }
   }
-  // touchspin page
+
   .bootstrap-touchspin {
     > .input-group-append {
       > .btn,
@@ -3640,7 +3637,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // typahead page
+
   .typeahead {
     span {
       &.twitter-typeahead {
@@ -3654,13 +3651,13 @@ html[dir="rtl"] {
       margin-right: 5px;
     }
   }
-  // call-chat page
+
   .follow {
     .text-md-right {
       text-align: left !important;
     }
   }
-  // vector map page
+
   .jvectormap-zoomin,
   .jvectormap-zoomout,
   .jvectormap-goback {
@@ -3668,7 +3665,6 @@ html[dir="rtl"] {
     left: unset;
   }
 
-  //customizer rtl css
   .customizer-links {
     right: unset;
     left: 0;
@@ -3714,7 +3710,7 @@ html[dir="rtl"] {
       }
     }
   }
-  // boxes layout rtl css
+  
   .box-layout {
     &.page-wrapper.horizontal-wrapper {
       .page-header {
@@ -3778,9 +3774,9 @@ html[dir="rtl"] {
       }
     }
   }
-  // responsive css
+
   @media screen and (max-width: 1660px) {
-    // video chat page
+
     .caller-img {
       left: unset;
       right: 15px;
@@ -3817,7 +3813,7 @@ html[dir="rtl"] {
         }
       }
     }
-    // chat page
+
     .chat-left-aside {
       .status-circle {
         left: unset;
@@ -3829,7 +3825,7 @@ html[dir="rtl"] {
     .float-xl-end {
       float: left !important;
     }
-    // chat page
+
     .chat-box {
       .pe-xl-0 {
         padding-left: 0 !important;
@@ -3840,7 +3836,6 @@ html[dir="rtl"] {
         padding-left: 15px !important;
       }
     }
-    // vertical page
     .pixelstrap {
       ul {
         a {
@@ -4458,6 +4453,4 @@ html[dir="rtl"] {
   }
 }
 
-/**=====================
-    60. RTL CSS Ends
-==========================**/
+

@@ -1,6 +1,4 @@
-/**=====================
-    78. Sidebar CSS Start
-==========================**/
+
 %sidebar-after {
   position: absolute;
   content: "";
@@ -1008,7 +1006,6 @@
                         transition: all 0.3s ease;
 
                         &.active {
-                          //background-image: linear-gradient(90deg, var(--theme-default) 0%, #a26cf8 100%);
                           background-color: lighten($primary-color, 22%);
                           transition: all 0.3s ease;
 
@@ -1037,7 +1034,6 @@
 
                       .sidebar-submenu {
                         position: fixed;
-                        // left: 0;
                         z-index: 4;
                         box-shadow: 0 0 1px 0 $dark-gray;
                         padding: 15px 0px 15px 0px;
@@ -1281,11 +1277,10 @@
       margin-bottom: 5px;
       letter-spacing: 0.4px;
       padding-bottom: 5px;
-      border-bottom: 1px solid #4f5962; /* Línea divisoria inferior */
+      border-bottom: 1px solid #4f5962; 
     }
   }
 
-  // left sidebar css
   &.compact-wrapper {
     .page-header {
       margin-left: $sidebar-compact-width;
@@ -1933,7 +1928,7 @@
 
                             span {
                               transition: all 0.3s ease;
-                              color: #ffffff; // Color blanco para el texto
+                              color: #ffffff; 
                             }
                           }
                         }
@@ -1993,7 +1988,6 @@
         min-height: calc(93vh - 80px);
         margin-top: 80px;
         margin-left: $sidebar-compact-width;
-        // animation: pagebody 1000ms ease-in-out;
       }
     }
 
@@ -2174,7 +2168,7 @@
     }
   }
 
-  // compact icon css
+
   &.compact-sidebar {
     ~ .bg-overlay1 {
       transition: 0.8s;
@@ -2509,7 +2503,7 @@
     }
   }
 
-  // compact small css
+
   &.compact-small {
     .toggle-sidebar {
       position: relative;
@@ -2636,7 +2630,7 @@
     }
   }
 
-  // only body css
+
   &.only-body {
     background-color: #f2f0fa;
     .page-body-wrapper {
@@ -2726,7 +2720,6 @@
     }
   }
 
-  // modern css
   &.modern-type {
     .progress-chart-wrap {
       margin-left: -22px;
@@ -2863,7 +2856,7 @@
     }
   }
 
-  // material css
+
   &.material-type {
     position: relative;
 
@@ -3008,7 +3001,7 @@
   }
 }
 
-// sidebar filter
+
 .md-sidebar {
   position: relative;
   .md-sidebar-toggle {
@@ -3019,37 +3012,7 @@
   }
 }
 
-// Responsive menu css start //
-// @media screen and (max-width: 1780px) {
-//   .page-wrapper {
-//     &.horizontal-wrapper {
-//       .page-body-wrapper {
-//         .sidebar-wrapper {
-//           .sidebar-main {
-//             .sidebar-links {
-//               .simplebar-wrapper {
-//                 .simplebar-mask {
-//                   .simplebar-content-wrapper {
-//                     .simplebar-content {
-//                        >li {
-//                          .mega-menu-container {
 
-//                            right: -18%;
-//                            width: 91%;
-//                          }
-//                        }
-//                     }
-//                   }
-//                 }
-//               }
-
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
 
 @media screen and (max-width: 1480px) {
   .page-wrapper {
@@ -3350,7 +3313,7 @@
 }
 
 @media only screen and (min-width: 768px) {
-  // material icon css
+
   .page-wrapper {
     &.material-icon {
       position: relative;
@@ -3505,7 +3468,6 @@
 }
 
 @media only screen and (min-width: 992px) {
-  // material icon css
   .page-wrapper {
     &.material-icon {
       &::before {
@@ -3535,6 +3497,3 @@
   }
 }
 
-/**=====================
-    78. Sidebar CSS Ends
-==========================**/

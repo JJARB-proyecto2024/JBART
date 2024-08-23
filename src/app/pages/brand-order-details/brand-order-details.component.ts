@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { Component, inject, OnInit, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { OrderService } from '../../services/order.service';
 import { CommonModule } from '@angular/common';
 import { IOrder } from '../../interfaces';
@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 
-// Define el tipo OrderStatus
 type OrderStatus = 'Pendiente' | 'En Proceso' | 'Enviado' | 'Entregado';
 
 @Component({
@@ -35,7 +34,6 @@ export class BrandOrderDetailsComponent implements OnInit {
   }
   
   updateOrderStatus() {
-    // Asegúrate de que el objeto order esté actualizado antes de continuar
     this.order = this.orderService.order;
 
     if (!this.order || !this.order.id || !this.order.status) {
