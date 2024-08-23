@@ -14,7 +14,7 @@
     <tbody>
       <tr *ngFor="let order of brandOrderList; trackBy: trackByFn">
         <th scope="row">{{order.id}}</th>
-        <td>{{order.product?.name}}</td>
+        <td>{{order.design?.product?.name}}</td>
         <td>{{order.userBuyer?.name}} {{order.userBuyer?.lastname}}</td>
         <td>{{order.deliveryLocation}} {{order.userBuyer?.deliveryLocation}}</td>
         <td>{{order.status}}</td>

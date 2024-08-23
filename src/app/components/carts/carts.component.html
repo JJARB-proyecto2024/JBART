@@ -24,7 +24,7 @@
         <p>Cantidad: {{item.quantity}}</p>
       </div>
       <div class="d-flex flex-row gap-2">
-        <button type="button" class="btn btn-primary">Ver producto</button>
+        <button type="button" class="btn btn-primary" (click)="handleViewCart(item)">Ver producto</button>
         <button (click)="handleDeleteCart(item)" type="button" class=" btn btn-danger">Eliminar producto</button>
       </div>
     </div>

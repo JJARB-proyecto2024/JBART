@@ -162,7 +162,7 @@ export interface INotification {
 
 export interface IOrder {
   id?: number;
-  product?: IProduct;
+  design?: IDesign;
   userBuyer?: IBuyerUser;
   quantity?: number;
   subtotal?: number;

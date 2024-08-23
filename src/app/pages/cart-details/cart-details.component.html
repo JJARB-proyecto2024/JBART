@@ -1,1 +1,37 @@
-<p>cart-details works!</p>
+<div class="d-flex flex-column p-2">
+  <h2>Detalles del producto</h2>
+  <div class="d-flex flex-column gap-3">
+    <div class="d-flex flex-column flex-fill">
+      <model-viewer class="d-flex bg-white border rounded-3" *ngIf="this.cartService.cart$().design?.modifiedModel"
+        [src]="this.cartService.cart$().design?.modifiedModel" alt="A 3D model of an astronaut" auto-rotate
+        camera-controls></model-viewer>
+    </div>
+    <div class="d-flex flex-column flex-fill p-3 border bg-white justify-content-start">
+      <div>
+        <h2>{{this.cartService.cart$().design?.product?.name}}</h2>
+        <hr>
+      </div>
+      <div class="d-flex flex-column">
+        <div class="d-flex flex-row justify-content-between">
+          <h2>Marca:</h2>
+          <h2>{{this.cartService.cart$().design?.product?.userBrand?.brandName}}</h2>
+        </div>
+        <div class="d-flex flex-row justify-content-between">
+          <h2>Precio:</h2>
+          <h2>${{this.cartService.cart$().design?.product?.price}}</h2>
+        </div>
+        <div class="d-flex flex-row justify-content-between">
+          <h2>Talla seleccionada:</h2>
+          <h2>{{this.cartService.cart$().design?.selectedSize}}</h2>
+        </div>
+        <div class="d-flex flex-row justify-content-between">
+          <h2>Cantidad:</h2>
+          <h2>{{this.cartService.cart$().quantity}}</h2>
+        </div>
+        <div>
+          <button type="button" (click)="buyDesign(this.cartService.cart$().design ?? {})" class="btn btn-primary">Comprar producto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

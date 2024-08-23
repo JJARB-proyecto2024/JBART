@@ -12,9 +12,13 @@ export class CartService extends BaseService<ICart> {
   protected override source: string = 'carts';
   private snackBar: MatSnackBar = inject(MatSnackBar);
   protected cartListSignal = signal<ICart[]>([]);
-
+  protected cartSignal = signal<ICart>({});
   get carts$() {
     return this.cartListSignal;
+  }
+
+  get cart$() {
+    return this.cartSignal;
   }
 
   public getAllByUserId(id: number): ICart[] {
@@ -28,6 +32,22 @@ export class CartService extends BaseService<ICart> {
       }
     });
     return [];
+  }
+
+  public getById(id: number) {
+    this.find(id).subscribe({
+      next: (response: any) => {
+        this.cartSignal.set(response);
+      },
+      error: (error: any) => {
+        console.error('Error fetching order by id', error);
+        this.snackBar.open(error.error.description, 'Close', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          panelClass: ['error-snackbar']
+        });
+      }
+    });
   }
 
   public getAll() {

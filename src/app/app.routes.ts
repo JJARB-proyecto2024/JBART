@@ -48,6 +48,7 @@ import { AvatarViewComponent } from './pages/avatar/avatar-view/avatar-view.comp
 import { UserBuyerRoleGuard } from './guards/user-buyer-role.guard';
 import { CartComponent } from './pages/cart/cart.component';
 import { ReportProblemsComponent } from './pages/report-problems/report-problems.component';
+import { CartDetailsComponent } from './pages/cart-details/cart-details.component';
 
 export const routes: Routes = [
   {
@@ -188,6 +189,27 @@ export const routes: Routes = [
             IRole.user
           ],
           name: 'Cart'
+        }
+      },
+      {
+        path: 'cart-details/:id',
+        component: CartDetailsComponent,
+        data: {
+          authorities: [
+            IRole.user
+          ],
+          name: 'Cart'
+        }
+      },
+      {
+        path: 'cart',
+        component: CartDetailsComponent,
+        data: {
+          authorities: [
+            IRole.user
+          ],
+          showInSidebar:true,
+          name: 'Carrito'
         }
       },
       {
