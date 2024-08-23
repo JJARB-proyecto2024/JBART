@@ -159,6 +159,7 @@ export interface IOrder {
   shippingCost?: number;
   total?: number;
   status?: string;
+  rate?: number;
   deliveryLocation?: string;
   currentLocation?: string;
   createdAt?: string;
