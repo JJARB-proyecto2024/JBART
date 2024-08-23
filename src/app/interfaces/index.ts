@@ -50,7 +50,7 @@ export interface IChatbot {
 
 export interface IBuyerUser {
   id?: number;
-  name?: number;
+  name?: string;
   lastname?: string;
   status?: string;
   email?: string;
