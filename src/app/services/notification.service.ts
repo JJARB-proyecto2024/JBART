@@ -31,7 +31,6 @@ export class NotificationService extends BaseService<INotification> {
         console.error(error);
       }
     );
-    // Add the code to connect the web socket here
   }
 
   public disconnectWebSocket() {
@@ -49,7 +48,7 @@ export class NotificationService extends BaseService<INotification> {
         console.error('Error fetching notifications', error);
       }
     });
-    return []; // Add a return statement here
+    return [];
   }
 
   public getAll() {
@@ -60,11 +59,6 @@ export class NotificationService extends BaseService<INotification> {
       },
       error: (error: any) => {
         console.error('Error in get all notifications request', error);
-        this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
       }
     })
   }
@@ -76,11 +70,6 @@ export class NotificationService extends BaseService<INotification> {
       },
       error: (error: any) => {
         console.error('response', error.description);
-        this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
       }
     })
   }
@@ -94,11 +83,6 @@ export class NotificationService extends BaseService<INotification> {
       },
       error: (error: any) => {
         console.error('response', error.description);
-        this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
       }
     })
   }
@@ -111,11 +95,6 @@ export class NotificationService extends BaseService<INotification> {
       },
       error: (error: any) => {
         console.error('response', error.description);
-        this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
       }
     })
   }

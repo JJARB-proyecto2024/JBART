@@ -35,11 +35,6 @@ export class CartService extends BaseService<ICart> {
       },
       error: (error: any) => {
         console.error('Error in get all carts request', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: error.error.description
-        })
       }
     })
   }
@@ -51,11 +46,6 @@ export class CartService extends BaseService<ICart> {
       },
       error: (error: any) => {
         console.error('response', error.description);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: error.error.description
-        })
       }
     })
   }
@@ -69,11 +59,6 @@ export class CartService extends BaseService<ICart> {
       },
       error: (error: any) => {
         console.error('response', error.description);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: error.error.description
-        })
       }
     })
   }
@@ -86,11 +71,6 @@ export class CartService extends BaseService<ICart> {
       },
       error: (error: any) => {
         console.error('response', error.description);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: error.error.description
-        })
       }
     })
   }

@@ -28,11 +28,6 @@ export class EarningsService extends BaseService<IEarnings>{
       },
       error: (error: any) => {
         console.log("Error in get all earnings request", error);
-        this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
       }
     })
   }

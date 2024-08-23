@@ -11,7 +11,6 @@ export class BuyerProfileService extends BaseService<IUser> {
   protected override  source: string = 'usersBuyer';
   protected override findSource: string = 'usersBuyer/me';
   private userSignal = signal<IUser>({});
-  private snackBar: MatSnackBar = inject(MatSnackBar);
   get user$() {
     return this.userSignal
   }

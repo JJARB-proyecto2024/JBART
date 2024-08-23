@@ -30,11 +30,6 @@ export class SalesService extends BaseService<ISales>{
       },
       error: (error: any) => {
         console.log("Error in get all sales request", error);
-        this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
       }
     })
   }

@@ -24,11 +24,6 @@ export class BrandUserService extends BaseService<IBrandUser> {
       },
       error: (error: any) => {
         console.error('Error in get active users brand request', error);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
       }
     })
   }
@@ -41,11 +36,6 @@ export class BrandUserService extends BaseService<IBrandUser> {
       },
       error: (error: any) => {
         console.error('Error in get active users brand request', error);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
       }
     })
   }
@@ -58,11 +48,6 @@ export class BrandUserService extends BaseService<IBrandUser> {
       },
       error: (error: any) => {
         console.error('Error in get new requests users brand request', error);
-        this.snackBar.open(error.error.description, 'Close' , {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
       }
     })
   }
