@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { UserOrderListComponent } from '../../components/user-order-list/user-order-list/user-order-list.component';
+import { UserOrderListComponent } from '../../components/user-order/user-order-list/user-order-list.component';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { OrderService } from '../../services/order.service';

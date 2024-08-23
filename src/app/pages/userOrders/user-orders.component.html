@@ -5,14 +5,6 @@
   <div class="divisor"></div>
   
   <div *ngIf="!isLoading">
-    <ng-container *ngIf="orders.length > 0; else noOrders">
       <app-user-order-list [userOrderList]="orders" [areActionsAvailable]="false"></app-user-order-list>
-    </ng-container>
-    <ng-template #noOrders>
-      <div class="no-orders-container">
-        <i class="fa-solid fa-circle-exclamation no-orders-icon"></i>
-        <div class="no-orders-text">No hay órdenes para mostrar.</div>
-      </div>
-    </ng-template>
   </div>
 </div>

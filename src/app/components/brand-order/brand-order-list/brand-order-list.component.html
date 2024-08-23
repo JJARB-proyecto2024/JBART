@@ -1,5 +1,5 @@
 <div class="table-container">
-  <div class="col-4 text-start">
+  <div class="container text-start center">
     <input type="text" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="searchTerm" (input)="applyFilter()" />
   </div>
 </div>
@@ -34,6 +34,8 @@
           </div>
         </td>
       </tr>
+      <tr *ngIf="paginatedList.length === 0">
+        <td colspan="7" class="text-center">No hay ordenes registradas</td>
     </tbody>
   </table>
 </div>
