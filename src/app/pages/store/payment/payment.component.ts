@@ -21,6 +21,7 @@ export class PaymentComponent implements OnInit {
   public areActionsAvailable: boolean = false;
   public authService: AuthService = inject(AuthService);
   public routeAuthorities: string[] = [];
+  public router: Router = inject(Router);
 
   ngOnInit(): void {
     this.product = history.state.product;
@@ -38,6 +39,7 @@ export class PaymentComponent implements OnInit {
     }
 
     const { name, price } = this.product;
+    const currency = 'USD';
 
     this.payPalConfig = {
       clientId: `${environment.Client_ID}`,
@@ -47,12 +49,16 @@ export class PaymentComponent implements OnInit {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${this.authService.getAccessToken()?.replace(/"/g, '')}`,
         },
-        body: JSON.stringify([
-          { name,
-            price,
-            quantity: 1,
-          },
-        ])
+        body: JSON.stringify({
+          items: [
+            {
+              name,
+              price,
+              quantity: 1,
+            },
+          ],
+          currency: currency
+        })
       })
         .then((res) => res.json())
         .then((order) => {
@@ -72,6 +78,7 @@ export class PaymentComponent implements OnInit {
         }).then((res) => res.json())
           .then((details) => {
             console.log(('Authorization created for ' + details.payer_given_name));
+            this.router.navigate(['/app/user-orders']);
           });
       },
       onCancel: (data, actions) => {

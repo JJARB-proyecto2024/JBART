@@ -2,19 +2,14 @@
 <div class="form-container">
     <div class="text-center">
         <a class="logo text-center" routerLink="/">
-          <img
-            width="250"
-            class="img-fluid"
-            src="../../../../assets/icons/jbart-logo.png"
-            alt="Logo"
-          />
+            <img width="250" class="img-fluid" src="../../../../assets/icons/jbart-logo.png" alt="Logo" />
         </a>
-      </div>
+    </div>
     <form (ngSubmit)="handleSignup($event)" autocomplete="off" #frm="ngForm">
         <div class="mb-3">
             <h4 class="titulo">Registrarse</h4>
             <div class="divisor"></div>
-          </div>
+        </div>
         <div class="row">
             <!-- Campos del formulario -->
             <div class="col-md-6 mb-3">
@@ -22,22 +17,36 @@
                 <div class="input-group">
                     <input #legalDocuments="ngModel" type="hidden" class="form-control" id="legalDocuments"
                         name="legalDocuments" [(ngModel)]="userBrand.legalDocuments" required>
-                    <button type="button" class="btn btn-up" (click)="openCloudinaryWidget()">Subir
+                    <button type="button" class="btn btn-up" (click)="openCloudinaryWidgetLegalDocuments()">Subir
                         Documento</button>
+                    <span *ngIf="userBrand.legalDocuments" class="input-group-text text-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-file-check-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2m-1.146 6.854-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
+                        </svg>
+                    </span>
                 </div>
-                <div *ngIf="logoType.invalid" class="invalid-feedback">
-                    El Logotipo es requerido
+                <div *ngIf="legalDocuments.invalid" class="invalid-feedback">
+                    Los Documentos Legales son requeridos
                 </div>
             </div>
+
             <div class="col-md-6 mb-3">
                 <label for="logoType" class="form-label">Logotipo</label>
                 <div class="input-group">
                     <input #logoType="ngModel" type="hidden" class="form-control" id="logoType" name="logoType"
                         [(ngModel)]="userBrand.logoType" required>
-                    <button type="button" class="btn btn-up" (click)="openCloudinaryWidget()">Subir
-                        Logotipo</button>
+                    <button type="button" class="btn btn-up" (click)="openCloudinaryWidget()">Subir Logotipo</button>
+                    <span *ngIf="userBrand.logoType" class="input-group-text text-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-file-check-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2m-1.146 6.854-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
+                        </svg>
+                    </span>
                 </div>
-                <div *ngIf="logoType.invalid" class="invalid-feedback">
+                <div *ngIf="logoType.invalid " class="invalid-feedback">
                     El Logotipo es requerido
                 </div>
             </div>

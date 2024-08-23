@@ -5,12 +5,7 @@
       <div class="w-100">
         <div class="text-center">
           <a class="logo text-center" routerLink="/">
-            <img
-              width="250"
-              class="img-fluid mb-4"
-              src="../../../../assets/icons/jbart-logo.png"
-              alt="Logo"
-            />
+            <img width="250" class="img-fluid mb-4" src="../../../../assets/icons/jbart-logo.png" alt="Logo" />
           </a>
         </div>
         <div class="login-main">
@@ -23,8 +18,7 @@
             <div class="form-group mb-3">
               <label for="email" class="form-label mb-2">Dirección de correo electrónico</label>
               <input #email="ngModel" type="text" class="form-control" id="email" name="email"
-                placeholder="agent@gmail.com" [(ngModel)]="loginForm.email" 
-                [ngClass]="{
+                placeholder="agent@gmail.com" [(ngModel)]="loginForm.email" [ngClass]="{
                   'is-invalid': email.invalid && email.touched,
                   'is-valid': email.valid && email.touched
                 }" required />
@@ -34,8 +28,7 @@
               <label for="password" class="form-label mb-2">Contraseña</label>
               <div class="form-input position-relative">
                 <input #password="ngModel" type="password" class="form-control" id="password" name="password"
-                placeholder="*****" [(ngModel)]="loginForm.password" 
-                [ngClass]="{
+                  placeholder="*****" [(ngModel)]="loginForm.password" [ngClass]="{
                   'is-invalid': password.invalid && password.touched,
                   'is-valid': password.valid && password.touched
                 }" required />
@@ -53,6 +46,9 @@
               </a>
               <a routerLink="/reset/email" class="link">
                 Restablecer contraseña
+              </a>
+              <a href="reset/status/email" class="link">
+                Reactivacion de Cuenta
               </a>
             </div>
           </form>

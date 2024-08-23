@@ -48,22 +48,24 @@ export class LoginComponent {
     if (this.emailModel.valid && this.passwordModel.valid) {
       this.authService.login(this.loginForm).subscribe({
         next: () => {
-          Swal.fire({
-            title: 'Éxito',
-            text: 'Iniciaste sesión correctamente.',
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-          }).then(() => {
             this.router.navigateByUrl('/app/dashboard');
-          });
         },
         error: (err: any) => {
-          Swal.fire({
-            title: 'Error',
-            text: err.error.description || 'Ocurrió un error al iniciar sesión.',
-            icon: 'error',
-            confirmButtonText: 'Aceptar'
-          });
+          if (err.error.errorMessage) {
+            Swal.fire({
+              title: 'Error',
+              text: err.error.errorMessage,
+              icon: 'error',
+              confirmButtonText: 'Aceptar'
+            });
+          } else {
+            Swal.fire({
+              title: 'Error',
+              text: 'Ocurrió un error al iniciar sesión.',
+              icon: 'error',
+              confirmButtonText: 'Aceptar'
+            });
+          }
         },
       });
     } else {
