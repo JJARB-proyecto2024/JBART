@@ -49,6 +49,7 @@ import { AdminChatbotComponent } from './pages/admin-chatbot/admin-chatbot.compo
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { AvatarCreateComponent } from './pages/avatar/avatar-create/avatar-create.component';
 import { AvatarViewComponent } from './pages/avatar/avatar-view/avatar-view.component';
+import { UserBuyerRoleGuard } from './guards/user-buyer-role.guard';
 
 export const routes: Routes = [
   {
@@ -136,6 +137,7 @@ export const routes: Routes = [
       {
         path: 'brands',
         component: BrandUsersComponent,
+        canActivate: [AdminRoleGuard],
         data: {
           authorities: [
             IRole.admin,
@@ -148,6 +150,7 @@ export const routes: Routes = [
       {
         path: 'account',
         component: DisableAccountComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
             IRole.user
@@ -174,15 +177,15 @@ export const routes: Routes = [
         data: {
           authorities: [
             IRole.admin,
-            IRole.superAdmin,
             IRole.user
           ],
-          name: 'Notifications'
+          name: 'Notificationes'
         }
       },
       {
         path: 'categories',
         component: CategoriesComponent,
+        canActivate: [AdminRoleGuard],
         data: {
           authorities: [
             IRole.admin,
@@ -195,6 +198,7 @@ export const routes: Routes = [
       {
         path: 'products',
         component: ProductsComponent,
+        canActivate: [UserBrandRoleGuard],
         data: {
           authorities: [
             IRole.userBrand
@@ -206,12 +210,10 @@ export const routes: Routes = [
       {
         path: 'avatarCreate',
         component: AvatarCreateComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
-            IRole.userBrand,
             IRole.user,
-            IRole.admin,
-            IRole.superAdmin
           ],
           showInSidebar: true,
           name: 'Crear Avatar'
@@ -220,12 +222,10 @@ export const routes: Routes = [
       {
         path: 'avatarView',
         component: AvatarViewComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
-            IRole.userBrand,
             IRole.user,
-            IRole.admin,
-            IRole.superAdmin
           ],
           showInSidebar: true,
           name: 'Ver Avatar'
@@ -234,6 +234,7 @@ export const routes: Routes = [
       {
         path: 'product-details/:id',
         component: ProductDetailsComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
             IRole.user,
@@ -281,6 +282,7 @@ export const routes: Routes = [
       {
         path: 'orders',
         component: OrdersComponent,
+        canActivate: [AdminRoleGuard],
         data: {
           authorities: [
             IRole.superAdmin
@@ -292,6 +294,7 @@ export const routes: Routes = [
       {
         path: 'brand-orders',
         component: BrandOrdersComponent,
+        canActivate: [UserBrandRoleGuard],
         data: {
           authorities: [
             IRole.userBrand
@@ -303,6 +306,7 @@ export const routes: Routes = [
       {
         path: 'brand-order-details/:id',
         component: BrandOrderDetailsComponent,
+        canActivate: [UserBrandRoleGuard],
         data: {
           authorities: [
             IRole.userBrand
@@ -313,6 +317,7 @@ export const routes: Routes = [
       {
         path: 'buyer-order-details/:id',
         component: BuyerOrderDetails,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
             IRole.user
@@ -323,6 +328,7 @@ export const routes: Routes = [
       {
         path: 'user-orders',
         component: UserOrdersComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
             IRole.user
@@ -346,6 +352,7 @@ export const routes: Routes = [
       {
         path: 'buyer-profile',
         component: BuyerProfileComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           authorities: [
             IRole.user
@@ -357,6 +364,7 @@ export const routes: Routes = [
       {
         path: 'brand-profile',
         component: BrandProfileComponent,
+        canActivate: [UserBrandRoleGuard],
         data: {
           authorities: [
             IRole.userBrand
@@ -380,6 +388,7 @@ export const routes: Routes = [
       {
         path: 'payment',
         component: PaymentComponent,
+        canActivate: [UserBuyerRoleGuard],
         data: {
           autorities: [
             IRole.user
@@ -403,6 +412,7 @@ export const routes: Routes = [
       {
         path: 'admin-chatbot',
         component: AdminChatbotComponent,
+        canActivate: [AdminRoleGuard],
         data: {
           authorities: [
             IRole.superAdmin

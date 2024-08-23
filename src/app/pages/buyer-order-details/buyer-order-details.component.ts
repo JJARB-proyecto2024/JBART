@@ -83,7 +83,31 @@ export class BuyerOrderDetails implements OnInit {
       this.selectedItem.product.name = item.product.name;
       console.log("Name:" + this.selectedItem.product.name)
     }
+    
+    this.orderService.getOrderByStatus(this.selectedItem.product?.id).subscribe({
+      next: (response: IOrder[]) => {
+        if (response && response.length > 0) {
+          console.log("SI", response);
+          this.createScore(item, modal);
+          
+        } else {
+          Swal.fire({
+            title: 'Rating Error',
+            text: 'El producto aún no ha sido entregado.',
+            icon: 'error',
+            confirmButtonText: 'Close',
+            confirmButtonColor: '#FF5733'
+          });
+          console.log("NO");
+        }
+      },
+      error: (error: any) => {
+        console.error('Error handling rating check:', error);
+      }
+    });    
+  }
 
+  createScore(item: IOrder, modal: any){
     this.rateProductService.getHasRatedProduct(this.selectedItem.product?.id).subscribe({
       next: (response: IResponse<IRateProduct>) => {
         if (response) {

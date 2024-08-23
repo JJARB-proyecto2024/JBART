@@ -2,26 +2,40 @@ import { Component, ElementRef, OnInit, ViewChild, CUSTOM_ELEMENTS_SCHEMA, Input
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { IProduct } from '../../interfaces';
+import { IBuyerUser, IDesign, IProduct, IUser } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/product.service';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { UserBuyerService } from '../../services/user-buyer.service';
+import { BuyerProfileService } from '../../services/buyer-profile.service';
+import { AuthService } from '../../services/auth.service';
+import { FormsModule } from '@angular/forms';
+import { Cloudinary } from '@cloudinary/url-gen';
+
+declare const cloudinary: any;
 @Component({
   selector: 'app-tridimentional-design',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ColorPickerModule, FormsModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './tridimentional-design.component.html',
   styleUrl: './tridimentional-design.component.scss'
 })
+
+
 export class TridimentionalDesignComponent {
   @ViewChild('rendererContainer', { static: true }) rendererContainer!: ElementRef;
   @Input() product: IProduct = {};
+  @Input() design: IDesign = {
+    color: "#ffffff"
+  };
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
   private controls!: OrbitControls;
   private productModel!: THREE.Group;
   public productService: ProductService = inject(ProductService);
+  public authService: AuthService = inject(AuthService);
 
   ngOnInit(): void {
     this.initScene();
@@ -29,8 +43,34 @@ export class TridimentionalDesignComponent {
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['product'] && this.product) {
+      this.design.product = this.product;
+
+      if (!this.design.selectedSize && this.product.size) {
+        const sizes = this.product.size.split(', ');
+        this.design.selectedSize = sizes[0]; // Inicializa con la primera talla disponible
+        console.log('Initial size set to:', this.design.selectedSize);
+      }
+
       this.loadProduct();
     }
+  }
+  handleColorPickerChange(color: string): void {
+    this.design.color = color;
+    this.changeProductModelColor(color);
+  }
+
+  handleCreateDesign(): void {
+    this.design = {
+      buyerUser: this.authService.getUser() as IBuyerUser,
+      ...this.design
+    }
+    console.log('Design created:', this.design);
+  }
+  handleSizeChange(size: string): void {
+    this.design.selectedSize = size;
+    console.log('Selected size changed:', this.design.selectedSize);
+    // Aquí puedes añadir lógica adicional para hacer cualquier otra cosa que necesites
+    // por ejemplo, actualizar el modelo en 3D si es necesario.
   }
 
   private initScene(): void {
@@ -58,10 +98,16 @@ export class TridimentionalDesignComponent {
     this.controls.dampingFactor = 0.25;
     this.controls.enableZoom = true;
 
-    // Iluminación
-    const ambientLight = new THREE.AmbientLight(0x404040);
+    // Iluminación ambiental
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); // Luz ambiental suave
     this.scene.add(ambientLight);
 
+    // Luz hemisférica para iluminar uniformemente el modelo desde arriba y abajo
+    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);
+    hemisphereLight.position.set(0, 1, 0);
+    this.scene.add(hemisphereLight);
+
+    // Luz direccional para proporcionar una fuente de luz principal
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
     directionalLight.position.set(5, 5, 5);
     this.scene.add(directionalLight);
@@ -72,11 +118,11 @@ export class TridimentionalDesignComponent {
 
   private loadProduct(): void {
     const loader = new GLTFLoader();
-  
+
     // Verificar y eliminar el modelo anterior si existe
     if (this.productModel) {
       this.scene.remove(this.productModel);
-  
+
       // Recorrer y liberar la geometría y materiales del modelo anterior
       this.productModel.traverse((child) => {
         if (child instanceof THREE.Mesh) {
@@ -88,48 +134,51 @@ export class TridimentionalDesignComponent {
           }
         }
       });
-  
+
       // Forzar la eliminación de la referencia del modelo
       this.productModel = null!;
-  
+
       // Limpiar las listas de renderizado
       this.renderer.renderLists.dispose();
     }
-  
+
     // Solo cargar el nuevo modelo después de asegurarnos de que el anterior ha sido removido
     setTimeout(() => {
       if (this.product.model) {
         loader.load(this.product.model, (gltf) => {
           this.productModel = gltf.scene as THREE.Group;
-  
+
           // Ajustar la escala y posición si es necesario
           this.productModel.scale.set(0.5, 0.5, 0.5);
           this.productModel.position.set(0, 0, 0.1);
           this.productModel.rotation.set(Math.PI / 40, 0, 0);
-  
+
           this.scene.add(this.productModel);
           this.centerModel(this.productModel);
-          this.changeProductModelColor(0x2889e9);
+          this.changeProductModelColor(this.design.color ?? '#ffffff');
           this.productModel.traverse((child) => {
             if (child instanceof THREE.Mesh) {
               (child.material as THREE.Material).side = THREE.FrontSide;
             }
           });
-  
+
           // Ajustar la cámara para el nuevo modelo
           const boundingBox = new THREE.Box3().setFromObject(this.productModel);
           const size = boundingBox.getSize(new THREE.Vector3());
           const maxDimension = Math.max(size.x, size.y, size.z);
           const distance = maxDimension * 1;
           this.camera.position.z = distance;
+          console.log('Model loaded:', this.productModel);
         }, undefined, (error) => {
           console.error('Error loading product model:', error);
         });
       }
     }, 100); // Esperar un pequeño intervalo para asegurarse de que el modelo anterior se elimine
   }
-  
-  
+
+  getDesign(): IDesign {
+    return this.design;
+  }
 
   private centerModel(model: THREE.Group): void {
     const box = new THREE.Box3().setFromObject(model);
@@ -138,7 +187,7 @@ export class TridimentionalDesignComponent {
     model.position.sub(center); // Centrar el modelo en la escena
   }
 
-  private changeProductModelColor(color: number): void {
+  private changeProductModelColor(color: string): void {
     if (this.productModel) {
       this.productModel.traverse((child) => {
         if (child instanceof THREE.Mesh) {
@@ -148,7 +197,7 @@ export class TridimentionalDesignComponent {
       });
     }
   }
-  
+
   private animate(): void {
     requestAnimationFrame(() => this.animate());
     this.controls.update();
@@ -160,6 +209,50 @@ export class TridimentionalDesignComponent {
       this.camera.aspect = this.rendererContainer.nativeElement.clientWidth / this.rendererContainer.nativeElement.clientHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(this.rendererContainer.nativeElement.clientWidth, this.rendererContainer.nativeElement.clientHeight);
+    }
+  }
+
+  openCloudinaryWidget() {
+    cloudinary.openUploadWidget({
+      cloudName: 'drlznypvr',
+      uploadPreset: 'ml_default'
+    }, (error: any, result: any) => {
+      if (!error && result && result.event === 'success') {
+        console.log('File uploaded successfully to Cloudinary');
+        this.design.picture = result.info.secure_url;
+        this.attachImageToProductModel(result.info.secure_url);
+      }
+    });
+  }
+
+  private attachImageToProductModel(imageUrl: string): void {
+    if (this.productModel) {
+      const textureLoader = new THREE.TextureLoader();
+      const texture = textureLoader.load(imageUrl);
+      this.productModel.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          const meshMaterial = child.material as THREE.MeshBasicMaterial;
+          meshMaterial.map = texture;
+          meshMaterial.needsUpdate = true;
+        }
+      });
+    }
+  }
+
+  handleRemovePicture() {
+    this.design.picture = '';
+    this.removeImageFromProductModel();
+  }
+
+  private removeImageFromProductModel(): void {
+    if (this.productModel) {
+      this.productModel.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          const meshMaterial = child.material as THREE.MeshBasicMaterial;
+          meshMaterial.map = null;
+          meshMaterial.needsUpdate = true;
+        }
+      });
     }
   }
 }

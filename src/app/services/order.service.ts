@@ -57,8 +57,20 @@ export class OrderService extends BaseService<IOrder> {
       }
     });
   }
-  
 
+
+  public getOrderByStatus(id: number | undefined): Observable<any>{
+    return this.http.get<IOrder[]>(this.source + '/ByOrderStatus/' + id).pipe(
+      tap((response: any) => {
+        console.log("Response from backend:", response); // Añade esto para depuración
+        this.orderListSignal.set(response);
+      }),
+      catchError((error: any) => {
+        console.error('Error fetching order', error);
+        return throwError(error);
+      })
+    );
+  }
 
   public getOrdersListForBrand(): Observable<any> {
     return this.findOrdersForBrand().pipe(
