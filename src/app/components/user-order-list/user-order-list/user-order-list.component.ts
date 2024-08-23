@@ -46,8 +46,8 @@ export class UserOrderListComponent implements OnChanges {
   updateFilteredOrderList() {
     this.filteredOrderList = this.userOrderList.filter(order => {
       return (
-        order.product?.userBrand?.brandName?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        order.product?.name?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        order.design?.product?.userBrand?.brandName?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        order.design?.product?.name?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
         order.userBuyer?.name?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
         order.userBuyer?.lastname?.toLowerCase().includes(this.searchTerm.toLowerCase())
       );

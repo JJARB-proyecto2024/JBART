@@ -49,7 +49,7 @@ export class OrderListComponent implements OnChanges, OnInit {
     // Aplica el filtro
     this.filteredOrderList = this.orderList.filter(order => {
       return (
-        order.product?.name?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        order.design?.product?.name?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
         order.userBuyer?.name?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
         order.userBuyer?.lastname?.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
