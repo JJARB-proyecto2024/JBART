@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild, CUSTOM_ELEMENTS_SCHEMA, Input
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { IBuyerUser, ICart, IDesign, IProduct, IUser } from '../../interfaces';
+import { IBrandUser, IBuyerUser, ICart, IDesign, IProduct, IUser } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { ColorPickerModule } from 'ngx-color-picker';
@@ -15,6 +15,7 @@ import { DesignService } from '../../services/design.service';
 import { CartService } from '../../services/cart.service';
 import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 declare const cloudinary: any;
 @Component({
   selector: 'app-tridimentional-design',
@@ -42,6 +43,7 @@ export class TridimentionalDesignComponent {
   public authService: AuthService = inject(AuthService);
   public designService: DesignService = inject(DesignService);
   public cartService: CartService = inject(CartService);
+  public router: Router = inject(Router);
 
   ngOnInit(): void {
     this.initScene();
@@ -82,14 +84,14 @@ export class TridimentionalDesignComponent {
       if (!this.productModel) {
         return reject('No model loaded to export.');
       }
-  
+
       const exporter = new GLTFExporter();
-      
+
       // Añadir la opción para exportar como binario
       const options = {
         binary: true
       };
-  
+
       exporter.parse(
         this.productModel,
         (result) => {
@@ -372,4 +374,9 @@ export class TridimentionalDesignComponent {
       });
     }
   }
+
+  viewBrandProducts(id: number) {
+    this.router.navigateByUrl('app/products-recommended-brands/' + id);
+  }
+
 }
