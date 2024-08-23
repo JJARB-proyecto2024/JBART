@@ -35,6 +35,12 @@ export class ProductListComponent implements OnChanges{
   public productService: ProductService = inject(ProductService);
   public categoryService: CategoryService = inject(CategoryService);
   @ViewChild('detailModal') detailModal!: ModalComponent;
+
+  public paginatedList: IProduct[] = [];
+  public currentPage: number = 1;
+  public itemsPerPage: number = 6;
+  public Math = Math;
+
   constructor(private datePipe: DatePipe) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -43,7 +49,26 @@ export class ProductListComponent implements OnChanges{
     }
     if (changes['itemList']) {
       console.log('itemList', this.itemList);
+      this.updatePaginatedList();
     }
+  }
+  
+  updatePaginatedList() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.paginatedList = this.itemList.slice(startIndex, endIndex);
+  }
+
+  goToPage(page: number) {
+    if (page < 1 || page > Math.ceil(this.itemList.length / this.itemsPerPage)) {
+      return; // No hacer nada si la página es inválida
+    }
+    this.currentPage = page;
+    this.updatePaginatedList();
+  }
+
+  trackById(index: number, item: IProduct) {
+    return item.id;
   }
 
   showDetailModal(item: IProduct, modal: any) {

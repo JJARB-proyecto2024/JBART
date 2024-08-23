@@ -15,42 +15,8 @@
       
       th {
         padding: 0.75rem;
-        
-        th {
-          padding: 0.75rem;
-          text-align: left;
-          border-bottom: 2px solid #dee2e6;
-          text-align: center;
-          font: 550 19px/35px Roboto, sans-serif;
-        }
-      }
-  
-      tbody {
-        tr {
-          background-color: #ffffff; 
-          &:hover {
-            background-color: #f1f1f1 !important; 
-          }
-  
-          td,
-          th {
-            padding: 0.75rem;
-            vertical-align: top;
-            border-top: 1px solid #dee2e6;
-            text-align: center;
-          }
-  
-          th,
-          td {
-            border-bottom: 1px solid #dee2e6;
-            border-left: 0;
-            border-right: 0;
-            font: 400 16px/35px Roboto, sans-serif;
-          }
-        }
-      }
-  
-      .text-center {
+        text-align: left;
+        border-bottom: 2px solid #dee2e6;
         text-align: center;
         font: 550 19px/35px Roboto, sans-serif;
       }
@@ -58,9 +24,9 @@
 
     tbody {
       tr {
-        background-color: #ffffff; /* Fondo blanco por defecto */
+        background-color: #ffffff;
         &:hover {
-          background-color: #f1f1f1 !important; /* Color de fondo en hover */
+          background-color: #f1f1f1 !important;
         }
 
         td,
@@ -128,7 +94,6 @@
     }
   }
 
-  // Estilos para la paginación
   .pagination {
     .page-item {
       .page-link {
