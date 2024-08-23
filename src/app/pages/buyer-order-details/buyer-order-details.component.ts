@@ -78,24 +78,18 @@ export class BuyerOrderDetails implements OnInit {
   }
 
   showDetailModal(item: IOrder, modal: any) {
-
-    if (this.selectedItem.design?.product && item.design?.product) {
-      this.selectedItem.design.product.id = item.design.product.id;
-      console.log("ID:" + this.selectedItem.design.product.id)
-      this.selectedItem.design.product.name = item.design.product.name;
-      console.log("Name:" + this.selectedItem.design.product.name)
-    }
-    
-    this.orderService.getOrderByStatus(this.selectedItem.design?.product?.id).subscribe({
+  
+    this.selectedItem = { ...item };
+  
+    this.orderService.getOrderByStatus(this.selectedItem.id).subscribe({
       next: (response: IOrder[]) => {
         if (response && response.length > 0) {
           console.log("SI", response);
           this.createScore(item, modal);
-          
         } else {
           Swal.fire({
             title: 'Rating Error',
-            text: 'El producto aún no ha sido entregado.',
+            text: 'La orden aún no ha sido completada.',
             icon: 'error',
             confirmButtonText: 'Close',
             confirmButtonColor: '#FF5733'
@@ -104,9 +98,9 @@ export class BuyerOrderDetails implements OnInit {
         }
       },
       error: (error: any) => {
-        console.error('Error handling rating check:', error);
+        console.error('Error handling order status check:', error);
       }
-    });    
+    });
   }
 
   createScore(item: IOrder, modal: any){

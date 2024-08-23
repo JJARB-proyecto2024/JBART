@@ -1,5 +1,5 @@
 <div class="table-container">
-  <div class="col-4 text-start">
+  <div class="container text-start center">
     <input type="text" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="searchTerm"
       (input)="applyFilter()" />
   </div>
@@ -27,6 +27,8 @@
         <td>{{order.status}}</td>
         <td>{{order.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
       </tr>
+      <tr *ngIf="paginatedList.length === 0">
+        <td colspan="6" class="text-center">No hay ordenes registradas</td>
     </tbody>
   </table>
 </div>
