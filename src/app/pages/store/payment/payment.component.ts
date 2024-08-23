@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest , NgxPayPalModule } from 'ngx-paypal';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { IProduct } from '../../../interfaces';
+import { IDesign, IProduct } from '../../../interfaces';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -16,7 +16,7 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class PaymentComponent implements OnInit {
   public payPalConfig?: IPayPalConfig;
-  public product: IProduct | null = null;
+  public design: IDesign | null = null;
   public route: ActivatedRoute = inject(ActivatedRoute);
   public areActionsAvailable: boolean = false;
   public authService: AuthService = inject(AuthService);
@@ -24,7 +24,7 @@ export class PaymentComponent implements OnInit {
   public router: Router = inject(Router);
 
   ngOnInit(): void {
-    this.product = history.state.product;
+    this.design = history.state.design;
     this.route.data.subscribe( data => {
       this.routeAuthorities = data['authorities'] ? data['authorities'] : [];
       this.areActionsAvailable = this.authService.areActionsAvailable(this.routeAuthorities);
@@ -33,12 +33,12 @@ export class PaymentComponent implements OnInit {
   }
 
   private initConfig(): void {
-    if(!this.product) {
+    if(!this.design) {
       console.error('Product not found');
       return;
     }
 
-    const { name, price } = this.product;
+    const { product } = this.design;
     const currency = 'USD';
 
     this.payPalConfig = {
@@ -52,8 +52,9 @@ export class PaymentComponent implements OnInit {
         body: JSON.stringify({
           items: [
             {
-              name,
-              price,
+              id: this.design?.id,
+              name: product?.name,
+              price: product?.price,
               quantity: 1,
             },
           ],
