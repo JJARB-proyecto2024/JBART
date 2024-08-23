@@ -141,7 +141,7 @@ export interface IDesign {
   product?: IProduct;
   selectedSize?: string;
   modifiedModel?: string;
-  buyerUser?: IBuyerUser;
+  userBuyer?: IBuyerUser;
 }
 
 export interface INotificationTemplate {

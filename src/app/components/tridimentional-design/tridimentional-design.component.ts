@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild, CUSTOM_ELEMENTS_SCHEMA, Input
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { IBuyerUser, IDesign, IProduct, IUser } from '../../interfaces';
+import { IBrandUser, IBuyerUser, ICart, IDesign, IProduct, IUser } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { ColorPickerModule } from 'ngx-color-picker';
@@ -11,7 +11,11 @@ import { BuyerProfileService } from '../../services/buyer-profile.service';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Cloudinary } from '@cloudinary/url-gen';
-
+import { DesignService } from '../../services/design.service';
+import { CartService } from '../../services/cart.service';
+import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 declare const cloudinary: any;
 @Component({
   selector: 'app-tridimentional-design',
@@ -29,6 +33,7 @@ export class TridimentionalDesignComponent {
   @Input() design: IDesign = {
     color: "#ffffff"
   };
+  @Input() cart: ICart = {};
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
@@ -36,6 +41,9 @@ export class TridimentionalDesignComponent {
   private productModel!: THREE.Group;
   public productService: ProductService = inject(ProductService);
   public authService: AuthService = inject(AuthService);
+  public designService: DesignService = inject(DesignService);
+  public cartService: CartService = inject(CartService);
+  public router: Router = inject(Router);
 
   ngOnInit(): void {
     this.initScene();
@@ -44,7 +52,6 @@ export class TridimentionalDesignComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['product'] && this.product) {
       this.design.product = this.product;
-
       if (!this.design.selectedSize && this.product.size) {
         const sizes = this.product.size.split(', ');
         this.design.selectedSize = sizes[0]; // Inicializa con la primera talla disponible
@@ -60,12 +67,124 @@ export class TridimentionalDesignComponent {
   }
 
   handleCreateDesign(): void {
-    this.design = {
-      buyerUser: this.authService.getUser() as IBuyerUser,
-      ...this.design
-    }
-    console.log('Design created:', this.design);
+    this.exportModelToGLB().then((glbBlob) => {
+      this.uploadGLBToCloudinary(glbBlob).then((cloudinaryUrl) => {
+        this.design.modifiedModel = cloudinaryUrl;
+        this.saveDesignAndCart();
+      }).catch((error) => {
+        console.error('Error uploading GLB to Cloudinary:', error);
+      });
+    }).catch((error) => {
+      console.error('Error exporting model to GLB:', error);
+    });
   }
+
+  private exportModelToGLB(): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      if (!this.productModel) {
+        return reject('No model loaded to export.');
+      }
+
+      const exporter = new GLTFExporter();
+
+      // Añadir la opción para exportar como binario
+      const options = {
+        binary: true
+      };
+
+      exporter.parse(
+        this.productModel,
+        (result) => {
+          if (result instanceof ArrayBuffer) {
+            const blob = new Blob([result], { type: 'model/gltf-binary' });
+            resolve(blob);
+          } else {
+            reject('Failed to export model to GLB.');
+          }
+        },
+        (error) => {
+          reject('Error occurred during GLB export: ' + error);
+        },
+        options // Pasar las opciones aquí
+      );
+    });
+  }
+
+  private uploadGLBToCloudinary(glbBlob: Blob): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const formData = new FormData();
+      formData.append('file', glbBlob, 'model.glb');
+      formData.append('upload_preset', 'ml_default');
+
+      fetch(`https://api.cloudinary.com/v1_1/drlznypvr/auto/upload`, {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => response.json())
+        .then(result => {
+          if (result.secure_url) {
+            resolve(result.secure_url);
+          } else {
+            reject('Failed to upload GLB to Cloudinary.');
+          }
+        })
+        .catch(reject);
+    });
+  }
+
+  private saveDesignAndCart(): void {
+    const userBuyer = this.authService.getUser() as IBuyerUser;
+    const userBrand = this.product.userBrand;
+
+    this.design.userBuyer = {
+      id: userBuyer.id,
+      name: userBuyer.name,
+      lastname: userBuyer.lastname,
+      role: userBuyer.role
+    };
+
+    if (this.design.product) {
+      this.design.product.userBrand = {
+        id: userBrand?.id,
+        brandName: userBrand?.brandName,
+        role: userBrand?.role,
+      };
+    }
+
+    this.designService.save(this.design).subscribe({
+      next: (designResponse: any) => {
+        console.log('Design created successfully:', designResponse);
+
+        designResponse.userBuyer = this.design.userBuyer;
+        designResponse.product.userBrand = this.design.product?.userBrand;
+
+        this.cart = {
+          ...this.cart,
+          design: designResponse,
+          userBuyer: this.design.userBuyer
+        };
+
+        this.cartService.save(this.cart).subscribe({
+          next: (cartResponse: any) => {
+            Swal.fire({
+              title: 'Diseño agregado al carrito',
+              text: 'Tu diseño ha sido creado y añadido al carrito.',
+              icon: 'success',
+              confirmButtonText: 'Aceptar'
+            });
+          },
+          error: (cartError: any) => {
+            console.error('Error creating cart item:', cartError);
+          }
+        });
+      },
+      error: (designError: any) => {
+        console.error('Error creating design:', designError);
+      }
+    });
+  }
+
+
   handleSizeChange(size: string): void {
     this.design.selectedSize = size;
     console.log('Selected size changed:', this.design.selectedSize);
@@ -255,4 +374,9 @@ export class TridimentionalDesignComponent {
       });
     }
   }
+
+  viewBrandProducts(id: number) {
+    this.router.navigateByUrl('app/products-recommended-brands/' + id);
+  }
+
 }
