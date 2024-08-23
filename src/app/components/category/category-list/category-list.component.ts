@@ -100,11 +100,12 @@ export class CategoryListComponent implements OnChanges{
             });
           },
           error: (error: any) => {
-            console.error('Error deleting category', error);
+            const errorMessage = error?.error?.message || error.message || 'Hubo un problema desconocido al eliminar la categoría.';
             Swal.fire(
               'Error',
-              'Hubo un problema al eliminar la categoría.',
+              'Hubo un problema al eliminar la categoría: ${errorMessage}',
               'error'
+              
             ).then(() => {
               this.hideModal(modal);
             });

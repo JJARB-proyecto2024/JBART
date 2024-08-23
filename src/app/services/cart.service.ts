@@ -41,12 +41,7 @@ export class CartService extends BaseService<ICart> {
       },
       error: (error: any) => {
         console.error('Error fetching order by id', error);
-        this.snackBar.open(error.error.description, 'Close', {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
-      }
+        }
     });
   }
 
@@ -58,6 +53,11 @@ export class CartService extends BaseService<ICart> {
       },
       error: (error: any) => {
         console.error('Error in get all carts request', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.error.description
+        })
       }
     })
   }
@@ -71,8 +71,9 @@ export class CartService extends BaseService<ICart> {
       }),
       catchError((error: any) => {
         console.error('response', error.description);
-      }
-    })
+        return throwError(error);
+      })
+    );
   }
 
 
@@ -85,6 +86,11 @@ export class CartService extends BaseService<ICart> {
       },
       error: (error: any) => {
         console.error('response', error.description);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.error.description
+        })
       }
     })
   }
@@ -110,6 +116,11 @@ export class CartService extends BaseService<ICart> {
       },
       error: (error: any) => {
         console.error('response', error.description);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.error.description
+        })
       }
     })
   }

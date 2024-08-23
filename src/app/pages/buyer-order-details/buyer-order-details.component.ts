@@ -86,7 +86,7 @@ export class BuyerOrderDetails implements OnInit {
       console.log("Name:" + this.selectedItem.design.product.name)
     }
     
-    this.orderService.getOrderByStatus(this.selectedItem.product?.id).subscribe({
+    this.orderService.getOrderByStatus(this.selectedItem.design?.product?.id).subscribe({
       next: (response: IOrder[]) => {
         if (response && response.length > 0) {
           console.log("SI", response);
@@ -109,6 +109,7 @@ export class BuyerOrderDetails implements OnInit {
     });    
   }
 
+  createScore(item: IOrder, modal: any){
     this.rateProductService.getHasRatedProduct(this.selectedItem.design?.product?.id).subscribe({
       next: (response: IResponse<IRateProduct>) => {
         if (response) {
