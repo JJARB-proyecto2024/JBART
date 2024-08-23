@@ -1,10 +1,9 @@
-<div class="container">
-  <div class="row mb-3">
-    <div class="col-4 text-start">
-      <input type="text" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="searchTerm" (input)="applyFilter()" />
-    </div>
+<div class="table-container">
+  <div class="col-4 text-start">
+    <input type="text" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="searchTerm" (input)="applyFilter()" />
   </div>
-</div>  
+</div>
+ 
 
 <div class="table-container table-responsive">
   <table class="table table-striped">
