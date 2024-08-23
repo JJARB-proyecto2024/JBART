@@ -205,6 +205,17 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'cart',
+        component: CartDetailsComponent,
+        data: {
+          authorities: [
+            IRole.user
+          ],
+          showInSidebar:true,
+          name: 'Carrito'
+        }
+      },
+      {
         path: 'categories',
         component: CategoriesComponent,
         canActivate: [AdminRoleGuard],

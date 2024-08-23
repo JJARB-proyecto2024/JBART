@@ -20,7 +20,7 @@
         <td>{{item.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
         <td>
           <div class="d-flex justify-content-evenly align-items-center">
-            <button type="button" class="btn btn-see">
+            <button type="button" (click)="handleViewCart(item)" class="btn btn-see">
               <i class="fa-solid fa-eye white"></i>
             </button>
             <button type="button" (click)="handleDelete(item)" class="btn btn-del">

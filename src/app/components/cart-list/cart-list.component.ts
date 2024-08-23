@@ -3,6 +3,7 @@ import { ICart } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-list',
@@ -13,7 +14,13 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartListComponent {
   @Input() carts: ICart[] = [];
+  public router: Router = inject(Router);
   public cartService: CartService = inject(CartService);
+
+  handleViewCart(cart: ICart) {
+    this.router.navigateByUrl('app/cart-details/' + cart.id);
+  }
+
 
   handleDelete(cart: ICart) {
     this.cartService.delete(cart);
