@@ -47,6 +47,7 @@ import { AvatarCreateComponent } from './pages/avatar/avatar-create/avatar-creat
 import { AvatarViewComponent } from './pages/avatar/avatar-view/avatar-view.component';
 import { UserBuyerRoleGuard } from './guards/user-buyer-role.guard';
 import { CartComponent } from './pages/cart/cart.component';
+import { ReportProblemsComponent } from './pages/report-problems/report-problems.component';
 
 export const routes: Routes = [
   {
@@ -453,6 +454,19 @@ export const routes: Routes = [
           name: 'Ganacias por Marca'
         }
       },
+      {
+        path: 'ReportProblems',
+        component: ReportProblemsComponent,
+        data: { 
+          authorities: [
+            IRole.user,
+            IRole.userBrand
+          ],
+          showInSidebar: true,
+          name: 'Reportar Problemas'
+        }
+      },
+
     ],
   },
   {
