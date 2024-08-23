@@ -1,13 +1,16 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { BaseService } from './base-service';
 import { ICart } from '../interfaces';
 import Swal from 'sweetalert2';
+import { catchError, Observable, tap, throwError } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService extends BaseService<ICart> {
   protected override source: string = 'carts';
+  private snackBar: MatSnackBar = inject(MatSnackBar);
   protected cartListSignal = signal<ICart[]>([]);
 
   get carts$() {
@@ -39,16 +42,19 @@ export class CartService extends BaseService<ICart> {
     })
   }
 
-  public save(item: ICart) {
-    this.add(item).subscribe({
-      next: (response: any) => {
-        this.cartListSignal.update((carts: ICart[]) => [response, ...carts]);
-      },
-      error: (error: any) => {
+  public save(item: ICart): Observable<any> {
+    return this.add(item).pipe(
+      tap((response: any) => {
+        this.cartListSignal.update((carts: ICart[]) => [response, ...carts
+
+        ]);
+      }),
+      catchError((error: any) => {
         console.error('response', error.description);
       }
     })
   }
+
 
   public update(item: ICart) {
     console.log('item', item);
@@ -67,7 +73,20 @@ export class CartService extends BaseService<ICart> {
   public delete(item: ICart) {
     this.del(item.id).subscribe({
       next: () => {
-        this.cartListSignal.set(this.cartListSignal().filter(cart => cart.id != item.id));
+        Swal.fire({
+          title: 'Eliminar producto del carrito',
+          text: '¿Está seguro de que desea eliminar este producto del carrito?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.cartListSignal.set(this.cartListSignal().filter(cart => cart.id != item.id));
+          }
+        });
       },
       error: (error: any) => {
         console.error('response', error.description);

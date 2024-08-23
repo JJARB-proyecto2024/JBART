@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./svg-wave.component.scss']
 })
 export class SvgWaveComponent {
-  // Si necesitas agregar lógica en el futuro, puedes hacerlo aquí.
 }

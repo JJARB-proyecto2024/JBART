@@ -21,7 +21,6 @@ export class CategoryCardsComponent {
   public Math = Math;
 
   constructor(private router: Router) {}
-  // Cambiado para redirigir a products-recommended
   viewProducts(item: ICategory) {
     this.router.navigateByUrl('app/products-recommended-categories/' + item.id);
   }

@@ -7,7 +7,6 @@ import { AuthService } from '../../../services/auth.service';
 import Swal from 'sweetalert2';
 import { BackgroundParticlesModule } from '../../../components/background-particles/background-particles.module';
 import { BrandUserListComponent } from '../../../components/brand-user/brand-user-list/brand-user-list.component';
-import { Cloudinary } from '@cloudinary/url-gen';
 declare const cloudinary: any; 
 
 @Component({
@@ -109,7 +108,7 @@ export class BrandSignupComponent {
           icon: 'success',
           confirmButtonText: 'Aceptar',
         }).then(() => {
-          this.router.navigate(['/login']); // Redirige al usuario a la pantalla de login
+          this.router.navigate(['/login']); 
         });
       },
       error: (err: any) => {

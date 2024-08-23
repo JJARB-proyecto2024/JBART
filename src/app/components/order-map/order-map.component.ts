@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, inject, Input, SimpleChanges } from '@angular/core';
 import { AngularOpenlayersModule } from 'ng-openlayers';
 import { OrderService } from '../../services/order.service';
 import { IOrder } from '../../interfaces';

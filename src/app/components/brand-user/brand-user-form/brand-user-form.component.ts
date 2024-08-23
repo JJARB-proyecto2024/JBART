@@ -1,11 +1,7 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { IBrandUser, IFeedBackMessage, IFeedbackStatus } from '../../../interfaces';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { IBrandUser} from '../../../interfaces';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
-import { BrandUserService } from '../../../services/brand-user.service';
-import { ModalComponent } from '../../modal/modal.component';
-import { UserFormComponent } from '../../user/user-from/user-form.component';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-brand-user-form',

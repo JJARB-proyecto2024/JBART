@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
-// import { Background } from '@tsparticles/engine';
 import { BackgroundParticlesModule } from '../../../../components/background-particles/background-particles.module';
 import { Router } from '@angular/router';
 import { OtpService } from '../../../../services/otp.service';

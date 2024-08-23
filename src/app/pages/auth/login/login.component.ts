@@ -36,7 +36,6 @@ export class LoginComponent {
   public handleLogin(event: Event) {
     event.preventDefault();
     
-    // Mark fields as touched
     if (!this.emailModel.valid) {
       this.emailModel.control.markAsTouched();
     }
@@ -44,7 +43,6 @@ export class LoginComponent {
       this.passwordModel.control.markAsTouched();
     }
 
-    // Validate fields
     if (this.emailModel.valid && this.passwordModel.valid) {
       this.authService.login(this.loginForm).subscribe({
         next: () => {

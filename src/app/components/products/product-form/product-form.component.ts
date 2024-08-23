@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges, ViewChild, AfterViewInit, inject, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges, ViewChild, inject, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { IProduct, ICategory } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';

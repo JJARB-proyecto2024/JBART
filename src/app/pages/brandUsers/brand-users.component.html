@@ -6,15 +6,6 @@
   </div>
   <div>
     @defer {
-    <!--<div class="d-flex justify-content-end pb-2">
-        <button
-          (click)="addModal.show()" 
-          type="button" 
-          class="btn btn-primary d-flex align-items-center">
-          <i class="fa-solid fa-plus white"></i>
-          <p class="mb-0">Add Brand User</p>
-        </button>
-      </div>-->
     <app-brand-user-list [areActionsAvailable]="areActionsAvailable" [itemList]="brandUserService.items$()" />
     } @loading (after 100ms; minimum 1s){
     <app-loader></app-loader>

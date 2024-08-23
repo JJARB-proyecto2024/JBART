@@ -1,12 +1,10 @@
-import { Component, effect, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { CategoryService } from '../../../services/category.service';
-import { ICategory, IChatbot } from '../../../interfaces';
+import { Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { IChatbot } from '../../../interfaces';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
 import { ChatbotFormComponent } from '../chatbot-form/chatbot-form.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ChatbotService } from '../../../services/chatbot.service';
 
@@ -58,13 +56,11 @@ export class ChatbotListComponent implements OnChanges{
   handleFormAction(item: IChatbot, modal: any) {
     this.chatbotService.update(item).subscribe({
       next: (response: any) => {
-        // Mostrar mensaje de éxito
         Swal.fire(
           'Éxito',
           'La pregunta ha sido actualizada exitosamente.',
           'success'
         ).then(() => {
-          // Ocultar el modal después de mostrar el mensaje de éxito
           this.hideModal(modal);
         });
       },
@@ -74,7 +70,6 @@ export class ChatbotListComponent implements OnChanges{
           'Hubo un problema al actualizar la pregunta.',
           'error'
         ).then(() => {
-          // Ocultar el modal después de mostrar el mensaje de error
           this.hideModal(modal);
         });
       }
@@ -82,7 +77,6 @@ export class ChatbotListComponent implements OnChanges{
   }
 
   deleteChatbot(item: IChatbot, modal: any) {
-    // Mostrar mensaje de confirmación
     Swal.fire({
       title: '¿Está seguro?',
       text: '¿Está seguro de que desea eliminar la pregunta?',
@@ -94,27 +88,22 @@ export class ChatbotListComponent implements OnChanges{
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Si el usuario confirma, proceder con la eliminación
         this.chatbotService.delete(item).subscribe({
           next: (response: any) => {
-            // Mostrar mensaje de éxito
             Swal.fire(
               'Eliminado',
               'La pregunta ha sido eliminada exitosamente.',
               'success'
             ).then(() => {
-              // Ocultar el modal después de mostrar el mensaje de éxito
               this.hideModal(modal);
             });
           },
           error: (error: any) => {
-            // Manejar el error
             Swal.fire(
               'Error',
               'Hubo un problema al eliminar la pregunta.',
               'error'
             ).then(() => {
-              // Ocultar el modal después de mostrar el mensaje de error
               this.hideModal(modal);
             });
           }

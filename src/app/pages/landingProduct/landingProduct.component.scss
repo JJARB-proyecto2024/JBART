@@ -5,10 +5,10 @@
   
   .header-section {
     position: relative;
-    height: 80vh; /* Ocupa toda la altura de la pantalla */
+    height: 80vh; 
     display: flex;
-    align-items: center; /* Centra verticalmente */
-    justify-content: center; /* Centra horizontalmente */
+    align-items: center; 
+    justify-content: center; 
     background-color: #062489;
   }
   
@@ -16,20 +16,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1500px; /* Limita el ancho máximo del container */
-    height: 470px; /* Limita el ancho máximo del container */
+    max-width: 1500px;
+    height: 470px; 
   }
   
   .left-content {
-    flex: 2; /* Más espacio para el contenido de la izquierda */
+    flex: 2; 
     text-align: center;
-    padding: 20px; /* Espacio alrededor del contenido */
+    padding: 20px; 
   }
   
   .right-content {
-    flex: 1; /* Menos espacio para el contenido de la derecha */
+    flex: 1; 
     text-align: center;
-    padding: 20px; /* Espacio alrededor del contenido */
+    padding: 20px; 
   }
   
   .left-content h1 {
@@ -85,42 +85,40 @@
     background-color: #fb6837;
   }
 
-
-  /* Nueva sección para el SVG */
 .tools-wave-section {
-    position: relative; /* Asegura que el SVG se posicione correctamente dentro de esta sección */
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-    height: 100px; /* Ajusta la altura según el diseño */
-    overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+    position: relative; 
+    width: 100%; 
+    height: 100px; 
+    overflow: hidden;
     background-color: #062489;
   }
   
-  /* SVG de ondas en la orilla inferior */
+ 
   .hero-waves {
-    bottom: 0; /* Alineado a la parte inferior */
+    bottom: 0; 
     left: 0;
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-    height: 100px; /* Ajusta la altura según el diseño */
-    z-index: -1; /* Asegura que el SVG esté detrás del contenido */
+    width: 100%; 
+    height: 100px; 
+    z-index: -1; 
   }
   
 
 .tools-wave-section-top {
-  position: relative; /* Asegura que el SVG se posicione correctamente dentro de esta sección */
-  width: 100%; /* Ocupa todo el ancho del contenedor */
-  height: 100px; /* Ajusta la altura según el diseño */
-  overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+  position: relative; 
+  width: 100%; 
+  height: 100px; 
+  overflow: hidden; 
   background-color: #062489;
 }
 
-/* SVG de ondas en la orilla inferior */
+
 .hero-waves-top {
-  top: 0;  /* Alineado a la parte inferior */
+  top: 0;  
   left: 0;
-  width: 100%; /* Ocupa todo el ancho del contenedor */
-  height: 100px; /* Ajusta la altura según el diseño */
-  z-index: -1; /* Asegura que el SVG esté detrás del contenido */
-  transform: rotate(180deg); /* Voltea el SVG verticalmente */
+  width: 100%; 
+  height: 100px; 
+  z-index: -1; 
+  transform: rotate(180deg); 
 }
 
 
@@ -140,22 +138,22 @@
 
 .services-intro {
   position: relative;
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    height: 100vh;
     display: flex;
     background-color: #062489;
-    align-items: center; /* Centra verticalmente */
-    justify-content: center; /* Centra horizontalmente */
+    align-items: center; 
+    justify-content: center; 
   animation: fadeIn 1s ease-out forwards;
   
   .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 800px; /* Limita el ancho máximo del container */
+    height: 800px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1); /* Fondo con sombra */
+    background: rgba(255, 255, 255, 0.1); 
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   }
 
   .left-content h1 {
@@ -191,7 +189,7 @@
     margin-bottom: 30px;
     line-height: 1.6;
     animation: fadeIn 1s ease-out forwards;
-    animation-delay: 0.3s; /* Retraso para que aparezca después del título */
+    animation-delay: 0.3s; 
     max-width: 700px;
     margin: 0 auto;
   }
@@ -201,7 +199,7 @@
     padding: 15px 30px;
     font-size: 1.1em;
     color: #fff;
-    background-color: #007bff; /* Color del botón */
+    background-color: #007bff;
     border: none;
     border-radius: 5px;
     text-decoration: none;
@@ -209,11 +207,11 @@
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.3s ease;
     animation: fadeIn 1s ease-out forwards;
-    animation-delay: 0.6s; /* Retraso para que aparezca después de la descripción */
+    animation-delay: 0.6s; 
 
     &:hover {
-      background-color: #0056b3; /* Color del botón al pasar el cursor */
-      transform: scale(1.05); /* Efecto de escala en hover */
+      background-color: #0056b3; 
+      transform: scale(1.05); 
     }
   }
 }

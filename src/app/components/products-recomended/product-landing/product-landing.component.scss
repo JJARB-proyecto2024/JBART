@@ -44,7 +44,6 @@
     }
   }
 
-  // Estilos para la paginación
   .pagination {
     .page-item {
       .page-link {
@@ -84,17 +83,17 @@
 
 .divisor {
   position: relative;
-  margin-bottom: 30px; /* Espacio para la línea */
+  margin-bottom: 30px; 
 }
 
 .divisor::after {
   content: "";
   display: block;
-  width: 10%; /* Ajusta el ancho de la línea */
-  border-bottom: 2.8px solid #062489; /* Línea divisoria */
+  width: 10%; 
+  border-bottom: 2.8px solid #062489; 
   position: absolute;
   bottom: 0;
-  left: 2%; /* Ajusta para centrar la línea */
+  left: 2%; 
   right: 40%;
   top: 0;
 }

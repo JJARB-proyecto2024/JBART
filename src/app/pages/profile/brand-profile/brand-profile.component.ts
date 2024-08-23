@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { IBrandUser } from '../../../interfaces';
 import { CommonModule } from '@angular/common';
 import { BrandProfileService } from '../../../services/brand-profile.service';
-import { Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 declare const cloudinary: any; 
 @Component({

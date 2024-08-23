@@ -43,11 +43,9 @@ export class ActivateAccountSendEmailComponent {
           confirmButtonText: 'Aceptar',
         });
       } else {
-        // Llamada al servicio para generar OTP
         this.otpService.generateOtp(this.email).subscribe({
           next: (response: any) => {
             console.log('Respuesta del servidor:', response);
-            // Mostrar mensaje de éxito
           Swal.fire({
             title: 'Éxito!',
             text: 'OTP generado con éxito',
@@ -55,7 +53,6 @@ export class ActivateAccountSendEmailComponent {
             confirmButtonText: 'Aceptar',
           }).then((result) => {
             if (result.isConfirmed) {
-              // Redirigir a la ruta reset/validate después de que el usuario confirme
               this.router.navigateByUrl('reset/status/validate');
             }
           });

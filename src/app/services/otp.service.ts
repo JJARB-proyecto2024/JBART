@@ -28,7 +28,6 @@ export class OtpService extends BaseService<IOtp> {
       }
     });
   }
-
   public generateOtpAndHandle(email: string) {
     this.http.post<IResponse<IOtp>>(`${this.source}/generatePasswordResetOtp`, { email }).subscribe({
       next: (response: IResponse<IOtp>) => {
@@ -56,7 +55,6 @@ export class OtpService extends BaseService<IOtp> {
             confirmButtonText: 'Aceptar',
           });
         } else {
-          // Caso en el que el servidor devuelve true
           Swal.fire({
             title: 'Éxito!',
             text: 'Contraseña restablecida exitosamente',

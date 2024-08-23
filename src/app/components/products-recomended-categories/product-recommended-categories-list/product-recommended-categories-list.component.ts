@@ -4,8 +4,7 @@ import { IProduct, IRateProduct, IResponse } from '../../../interfaces';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { defineComponents, IgcRatingComponent } from 'igniteui-webcomponents';
 import Swal from 'sweetalert2';
 import { StarRatingComponent } from '../../star-rating/star-rating.component';
@@ -39,7 +38,7 @@ export class ProductRecommendedCategoriesListComponent implements OnInit{
   paginatedList: IProduct[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 6;
-  ratingValue: number = 0; // Valor inicial de la calificación
+  ratingValue: number = 0; 
 
   public selectedItem: IProduct = {
     id: 0,
@@ -79,8 +78,6 @@ export class ProductRecommendedCategoriesListComponent implements OnInit{
   }
 
   viewProducts(item: IProduct) {
-    // Redirige a la página de productos
-    //window.location.href = `/products/${item.id}`;
   }
 
   showDetailModal(item: IProduct, modal: any) {
@@ -118,7 +115,6 @@ export class ProductRecommendedCategoriesListComponent implements OnInit{
     modal.hide();
   }
   
-  // Método para manejar el cambio de calificación
   handleRatingChange(event: number) {
     this.ratingValue = event;
   }

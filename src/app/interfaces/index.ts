@@ -141,7 +141,7 @@ export interface IDesign {
   product?: IProduct;
   selectedSize?: string;
   modifiedModel?: string;
-  buyerUser?: IBuyerUser;
+  userBuyer?: IBuyerUser;
 }
 
 export interface INotificationTemplate {
@@ -169,6 +169,7 @@ export interface IOrder {
   shippingCost?: number;
   total?: number;
   status?: string;
+  rate?: number;
   deliveryLocation?: string;
   currentLocation?: string;
   createdAt?: string;

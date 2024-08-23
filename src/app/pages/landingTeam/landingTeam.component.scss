@@ -5,34 +5,34 @@
 
 .header-section {
   position: relative;
-  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  height: 100vh;
   display: flex;
-  align-items: center; /* Centra verticalmente */
-  justify-content: center; /* Centra horizontalmente */
+  align-items: center; 
+  justify-content: center; 
 }
 
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px; /* Limita el ancho máximo del container */
-  height: 470px; /* Limita el ancho máximo del container */
+  max-width: 1200px; 
+  height: 470px; 
   padding: 20px;
-  background: rgba(255, 255, 255, 0.1); /* Fondo con sombra */
+  background: rgba(255, 255, 255, 0.1); 
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .left-content {
-  flex: 2; /* Más espacio para el contenido de la izquierda */
+  flex: 2; 
   text-align: center;
-  padding: 20px; /* Espacio alrededor del contenido */
+  padding: 20px; 
 }
 
 .right-content {
-  flex: 1; /* Menos espacio para el contenido de la derecha */
+  flex: 1; 
   text-align: center;
-  padding: 20px; /* Espacio alrededor del contenido */
+  padding: 20px; 
 }
 
 .left-content h1 {
@@ -90,8 +90,8 @@
 
 .tools-content {
   background-color: #062489;
-  align-items: center; /* Centra verticalmente */
-  justify-content: center; /* Centra horizontalmente */
+  align-items: center; 
+  justify-content: center; 
   width: 100%;
   padding-top: 160px;
 }
@@ -102,8 +102,8 @@
 
 .tools-title {
   color: #a6ce38;
-  justify-content: center; /* Centra horizontalmente */  
-  align-items: center; /* Centra verticalmente */
+  justify-content: center; 
+  align-items: center; 
   font: 600 50px / 35px Roboto;
   padding-bottom: 20px;
 }
@@ -111,8 +111,8 @@
 .intro-text{
   color: #ffffff;
   font: 300 20px / 35px Roboto;
-  justify-content: center; /* Centra horizontalmente */  
-  align-items: center; /* Centra verticalmente */
+  justify-content: center; 
+  align-items: center; 
   padding: 0 100px;
 }
 
@@ -127,9 +127,9 @@
 
 .category-title{
   font: 500 25px / 35px Roboto;
-  border-bottom: 2px solid #cbe5ff; /* Línea divisoria debajo del título */
+  border-bottom: 2px solid #cbe5ff; 
   padding-top: 10px;
-  padding-bottom: 10px; /* Espaciado entre el título y la lista */
+  padding-bottom: 10px; 
 }
 
 .tool-list {
@@ -137,76 +137,76 @@
 }
 
 .tool-category {
-  flex: 0 0 calc(22%); /* Ancho fijo para cada cuadro, ajusta el porcentaje según desees */
+  flex: 0 0 calc(22%); 
   width: 100%;
-  margin: 0 5px; /* Margen entre los cuadros */
+  margin: 0 5px; 
   background-color: #1938a2;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza la transición en hover */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 
-/* Nueva sección para el SVG */
+
 .tools-wave-section {
-  position: relative; /* Asegura que el SVG se posicione correctamente dentro de esta sección */
-  width: 100%; /* Ocupa todo el ancho del contenedor */
-  height: 100px; /* Ajusta la altura según el diseño */
-  overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+  position: relative; 
+  width: 100%; 
+  height: 100px; 
+  overflow: hidden; 
   background-color: #062489;
 }
 
-/* SVG de ondas en la orilla inferior */
+
 .hero-waves {
-  bottom: 0; /* Alineado a la parte inferior */
+  bottom: 0; 
   left: 0;
-  width: 100%; /* Ocupa todo el ancho del contenedor */
-  height: 100px; /* Ajusta la altura según el diseño */
-  z-index: -1; /* Asegura que el SVG esté detrás del contenido */
+  width: 100%; 
+  height: 100px; 
+  z-index: -1; 
 }
 
 .tools-wave-section-top {
-  position: relative; /* Asegura que el SVG se posicione correctamente dentro de esta sección */
-  width: 100%; /* Ocupa todo el ancho del contenedor */
-  height: 100px; /* Ajusta la altura según el diseño */
-  overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+  position: relative; 
+  width: 100%; 
+  height: 100px; 
+  overflow: hidden; 
   background-color: #062489;
 }
 
-/* SVG de ondas en la orilla inferior */
+
 .hero-waves-top {
-  top: 0;  /* Alineado a la parte inferior */
+  top: 0;  
   left: 0;
-  width: 100%; /* Ocupa todo el ancho del contenedor */
-  height: 100px; /* Ajusta la altura según el diseño */
-  z-index: -1; /* Asegura que el SVG esté detrás del contenido */
-  transform: rotate(180deg); /* Voltea el SVG verticalmente */
+  width: 100%; 
+  height: 100px; 
+  z-index: -1; 
+  transform: rotate(180deg); 
 }
 
 
 
 
-/* Define la animación para el texto desplazándose hacia la derecha */
+
 @keyframes slideRight {
   0% {
     opacity: 0;
-    transform: translateX(-20px); /* Inicialmente desplazado hacia la izquierda */
+    transform: translateX(-20px); 
   }
   100% {
     opacity: 1;
-    transform: translateX(0); /* Posición original */
+    transform: translateX(0); 
   }
 }
 
-/* Estilo inicial para los elementos de texto */
+
 .tools-content .intro-text, 
 .tools-content .tools-title{
-  opacity: 1; /* Inicialmente oculto */
-  transform: slideRight 0.50s ease-out forwards; /* Inicialmente desplazado hacia la izquierda */
+  opacity: 1; 
+  transform: slideRight 0.50s ease-out forwards; 
 }
 
-/* Animación cuando el cursor pasa sobre la sección */
+
 .tools-content:hover .intro-text, 
 .tools-content:hover .tools-title {
-  animation: slideRight 0.10s ease-out forwards; /* Aplica la animación al pasar el cursor */
+  animation: slideRight 0.10s ease-out forwards; 
 }
 
 .tools-content {
@@ -217,48 +217,48 @@
 @keyframes moveUp {
   0% {
     opacity: 0;
-    transform: translateY(20px); /* Inicialmente desplazado hacia abajo */
+    transform: translateY(20px); 
   }
   100% {
     opacity: 1;
-    transform: translateY(0); /* Posición original */
+    transform: translateY(0); 
   }
 }
 
 @keyframes hoverMove {
   0% {
-    transform: translateY(0); /* Posición original */
+    transform: translateY(0); 
     box-shadow: none;
   }
   100% {
-    transform: translateY(-10px); /* Mueve el cuadro hacia arriba al pasar el mouse */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade sombra al cuadro en hover */
+    transform: translateY(-10px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   }
 }
 
-/* Los cuadros de categorías inicialmente ocultos */
+
 .tools-container .tool-category,
 .tools-container .tools-grid {
   opacity: 0;
-  transform: translateY(20px); /* Inicialmente desplazado hacia abajo */
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Suaviza la transición */
-  animation: moveUp 0.10s ease-out 0.50s forwards; /* Aplica la animación al cargar la página */
+  transform: translateY(20px); 
+  transition: transform 0.3s ease, opacity 0.3s ease; 
+  animation: moveUp 0.10s ease-out 0.50s forwards; 
 }
 
-/* Aplica la animación al pasar el cursor por la sección */
+
 .tools-container:hover .tool-category,
 .tools-container .tools-grid {
-  animation: moveUp 0.10s ease-out 0.50s forwards; /* Aplica la animación al ser visible */
-  animation-delay: 0s; /* Sin retraso antes de que comience la animación */
-  animation-duration: 2s; /* Duración de la animación */
+  animation: moveUp 0.10s ease-out 0.50s forwards; 
+  animation-delay: 0s; 
+  animation-duration: 2s; 
   opacity: 1;
   transform: translateY(0);
-  animation-fill-mode: forwards; /* Mantiene el estado final de la animación */
+  animation-fill-mode: forwards; 
 }
 
-/* Animación cuando el cursor pasa sobre el elemento */
+
 .tools-container .tool-category:hover {
-  animation: hoverMove 0.20s ease-out forwards; /* Aplica la animación al pasar el cursor */
+  animation: hoverMove 0.20s ease-out forwards; 
 }
 
 
@@ -267,11 +267,11 @@
 @keyframes fadeInUp {
   0% {
     opacity: 0;
-    transform: translateY(20px); /* Inicialmente desplazado hacia abajo */
+    transform: translateY(20px); 
   }
   100% {
     opacity: 1;
-    transform: translateY(0); /* Posición original */
+    transform: translateY(0); 
   }
 }
 
@@ -280,12 +280,12 @@
   background-color: #f9f9f9;
   text-align: center;
 
-  /* Animación inicial para las tarjetas del equipo */
+
   .team-container .team-card {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.5s ease forwards;
-    animation-delay: calc(var(--card-index) * 0.2s); /* Para que las tarjetas aparezcan una después de otra */
+    animation-delay: calc(var(--card-index) * 0.2s); 
   }
 }
 
@@ -353,11 +353,11 @@
 @keyframes fadeInUp {
   0% {
     opacity: 0;
-    transform: translateY(20px); /* Inicialmente desplazado hacia abajo */
+    transform: translateY(20px); 
   }
   100% {
     opacity: 1;
-    transform: translateY(0); /* Posición original */
+    transform: translateY(0); 
   }
 }
 
@@ -389,7 +389,7 @@
     gap: 40px;
     opacity: 0;
     animation: fadeInUp 0.5s ease forwards;
-    animation-delay: 0.3s; /* Retraso para que aparezca después del título */
+    animation-delay: 0.3s; 
     margin-bottom: 70px;
   }
 
@@ -404,14 +404,14 @@
     justify-content: center;
     opacity: 0;
     animation: fadeInUp 0.5s ease forwards;
-    animation-delay: 0.5s; /* Retraso para que aparezca después del contenedor */
+    animation-delay: 0.5s; 
     
     &.mission-card {
-      animation-delay: 0.5s; /* Retraso para la tarjeta de misión */
+      animation-delay: 0.5s; 
     }
     
     &.vision-card {
-      animation-delay: 0.7s; /* Retraso para la tarjeta de visión */
+      animation-delay: 0.7s; 
     }
 
     .card-title {
@@ -432,11 +432,11 @@
 @keyframes fadeInUp {
   0% {
     opacity: 0;
-    transform: translateY(20px); /* Inicialmente desplazado hacia abajo */
+    transform: translateY(20px); 
   }
   100% {
     opacity: 1;
-    transform: translateY(0); /* Posición original */
+    transform: translateY(0); 
   }
 }
 
@@ -452,7 +452,7 @@
   }
 }
 
-/* General section styling */
+
 .values-section {
   padding: 60px 20px;
   background-color: #f8f9fa;
@@ -473,7 +473,7 @@
   padding: 20px 140px;
 }
 
-/* Card container styling */
+
 .values-section .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -481,14 +481,14 @@
   gap: 20px;
 }
 
-/* Individual card styling */
+
 .values-section .card {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 20px;
   max-width: 300px;
-  flex: 1 1 calc(25% - 40px); /* Adjusts for spacing between cards */
+  flex: 1 1 calc(25% - 40px); 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
 }
@@ -527,23 +527,23 @@
 
 .services-intro {
   position: relative;
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    height: 100vh; 
     display: flex;
     background-color: #062489;
-    align-items: center; /* Centra verticalmente */
-    justify-content: center; /* Centra horizontalmente */
+    align-items: center; 
+    justify-content: center; 
   animation: fadeIn 1s ease-out forwards;
   
   .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px; /* Limita el ancho máximo del container */
-    height: 800px; /* Limita el ancho máximo del container */
+    max-width: 1200px; 
+    height: 800px; 
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1); /* Fondo con sombra */
+    background: rgba(255, 255, 255, 0.1); 
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   }
   
 
@@ -561,7 +561,7 @@
     margin-bottom: 30px;
     line-height: 1.6;
     animation: fadeIn 1s ease-out forwards;
-    animation-delay: 0.3s; /* Retraso para que aparezca después del título */
+    animation-delay: 0.3s; 
     max-width: 700px;
     margin: 0 auto;
   }
@@ -571,7 +571,7 @@
     padding: 15px 30px;
     font-size: 1.1em;
     color: #fff;
-    background-color: #007bff; /* Color del botón */
+    background-color: #007bff; 
     border: none;
     border-radius: 5px;
     text-decoration: none;
@@ -579,18 +579,18 @@
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.3s ease;
     animation: fadeIn 1s ease-out forwards;
-    animation-delay: 0.6s; /* Retraso para que aparezca después de la descripción */
+    animation-delay: 0.6s; 
 
     &:hover {
-      background-color: #0056b3; /* Color del botón al pasar el cursor */
-      transform: scale(1.05); /* Efecto de escala en hover */
+      background-color: #0056b3; 
+      transform: scale(1.05); 
     }
   }
 }
 
 
 .footer-small {
-  background-color: #181818; /* Color de fondo */
+  background-color: #181818; 
   color: #fff;
   padding: 20px;
   text-align: center;
@@ -599,13 +599,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px; /* Espacio entre los elementos */
+    gap: 15px; 
 
     .logo-container {
       align-items: center;
       
       .logo {
-        width: 150px; /* Ajusta según el tamaño deseado del logo */
+        width: 150px; 
         height: auto;
         margin-right: 40px;
         margin-bottom: 15px;

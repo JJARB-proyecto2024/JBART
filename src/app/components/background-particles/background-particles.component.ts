@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-background-particles',
@@ -10,8 +10,8 @@ export class BackgroundParticlesComponent implements AfterViewInit, OnDestroy {
   private particles: { x: number, y: number, vx: number, vy: number, radius: number, opacity: number }[] = [];
   private mouseX: number | null = null;
   private mouseY: number | null = null;
-  private attractionDistance: number = 150; // Distancia de atracción del cursor
-  private attractionForce: number = 0.01; // Fuerza de atracción
+  private attractionDistance: number = 150; 
+  private attractionForce: number = 0.01; 
 
   ngAfterViewInit(): void {
     this.createParticles();
@@ -42,7 +42,7 @@ export class BackgroundParticlesComponent implements AfterViewInit, OnDestroy {
     this.mouseY = null;
   }
 
-   // Función principal para crear y animar las partículas
+
   createParticles(): void {
     const canvas = document.getElementById('particles-canvas') as HTMLCanvasElement;
     const context = canvas.getContext('2d');
@@ -52,19 +52,19 @@ export class BackgroundParticlesComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    const numParticles = 100; // Cantidad de partículas 
-    const moveSpeed = 1.7; // Velocidad de movimiento de las partículas
-    const particleRadiusMin = 4; // Tamaño mínimo del radio de las partículas
-    const particleRadiusMax = 8; // Tamaño máximo del radio de las partículas
-    const particleOpacity = 0.3; // Nivel de opacidad de las partículas
-    const linkDistance = 250; // Distancia máxima para conectar partículas
-    const linkOpacity = 0.3; // Opacidad de las líneas de conexión
-    const linkWidth = 2.0; // Ancho de las líneas de conexión
+    const numParticles = 100; 
+    const moveSpeed = 1.7; 
+    const particleRadiusMin = 4; 
+    const particleRadiusMax = 8; 
+    const particleOpacity = 0.3; 
+    const linkDistance = 250; 
+    const linkOpacity = 0.3; 
+    const linkWidth = 2.0; 
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Crea partículas con propiedades aleatorias dentro de los rangos definidos
+   
     for (let i = 0; i < numParticles; i++) {
       this.particles.push({
         x: Math.random() * canvas.width,
@@ -79,10 +79,9 @@ export class BackgroundParticlesComponent implements AfterViewInit, OnDestroy {
     const animate = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Actualiza la posición de cada partícula y dibuja en el lienzo
+   
       this.particles.forEach(particle => {
 
-         // Aplica la atracción del cursor
          if (this.mouseX !== null && this.mouseY !== null) {
           const dx = this.mouseX - particle.x;
           const dy = this.mouseY - particle.y;
@@ -99,7 +98,7 @@ export class BackgroundParticlesComponent implements AfterViewInit, OnDestroy {
         particle.x += particle.vx;
         particle.y += particle.vy;
 
-        // Rebotar partículas al chocar con los bordes
+    
         if (particle.x < 0 || particle.x > canvas.width) particle.vx = -particle.vx;
         if (particle.y < 0 || particle.y > canvas.height) particle.vy = -particle.vy;
 
@@ -109,7 +108,7 @@ export class BackgroundParticlesComponent implements AfterViewInit, OnDestroy {
         context.fill();
       });
 
-      // Conectar partículas dentro de la distancia especificada
+    
       this.connectParticles(context, canvas, linkDistance, linkOpacity, linkWidth);
 
       this.animationFrameId = requestAnimationFrame(animate);
@@ -119,7 +118,7 @@ export class BackgroundParticlesComponent implements AfterViewInit, OnDestroy {
   }
 
   connectParticles(context: CanvasRenderingContext2D, canvas: HTMLCanvasElement, linkDistance: number, linkOpacity: number, linkWidth: number): void {
-    //const maxDistance = 400; // Ajusta la distancia máxima para conectar partículas
+   
 
     for (let i = 0; i < this.particles.length; i++) {
       for (let j = i + 1; j < this.particles.length; j++) {
@@ -127,7 +126,7 @@ export class BackgroundParticlesComponent implements AfterViewInit, OnDestroy {
         const dy = this.particles[i].y - this.particles[j].y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Dibujar líneas entre partículas si están dentro de la distancia de enlace
+        
         if (distance < linkDistance) {
           context.beginPath();
           context.moveTo(this.particles[i].x, this.particles[i].y);

@@ -1,7 +1,6 @@
 
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { SVG } from '@svgdotjs/svg.js';
 import { FormsModule } from '@angular/forms';
 import { IAvatar } from '../../../interfaces';
 import { AvatarService } from '../../../services/avatar.service';
@@ -68,7 +67,6 @@ export class AvatarSeeComponent {
               'El avatar ha sido eliminado.',
               'success'
             ).then(() => {
-              // Limpiar el avatar en el componente después de eliminarlo
               this.avatar = null;
             });
           },

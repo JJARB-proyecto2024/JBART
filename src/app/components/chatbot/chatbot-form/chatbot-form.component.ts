@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { IFeedBackMessage, ICategory, IFeedbackStatus, IChatbot} from '../../../interfaces';
+import { IChatbot} from '../../../interfaces';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
-import { ChatbotService } from '../../../services/chatbot.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-chatbot-form',
