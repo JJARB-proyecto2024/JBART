@@ -99,13 +99,13 @@ export class CategoryListComponent implements OnChanges{
               this.hideModal(modal);
             });
           },
-          error: (error: any) => {
-            const errorMessage = error?.error?.message || error.message || 'Hubo un problema desconocido al eliminar la categoría.';
-            Swal.fire(
-              'Error',
-              'Hubo un problema al eliminar la categoría: ${errorMessage}',
-              'error'
-              
+          error: (err: any) => {
+            Swal.fire({
+              title: 'Error',
+              text: err.error.errorMessage,
+              icon: 'error',
+              confirmButtonText: 'Aceptar'
+            }
             ).then(() => {
               this.hideModal(modal);
             });
