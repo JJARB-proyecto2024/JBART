@@ -16,13 +16,13 @@
     <div *ngFor="let item of carts | slice:0:3; let i = index" class="d-flex flex-column border-bottom">
       <div class="d-flex flex-row py-2 px-2 align-items-center">
         <div class="mx-2">
-          <model-viewer *ngIf="item.product?.model" class="rounded-3" [src]="item.product?.model" alt="3D Model"
+          <model-viewer *ngIf="item.design?.product?.model" class="rounded-3" [src]="item.design?.product?.model" alt="3D Model"
             auto-rotate>
           </model-viewer>
         </div>
         <div class="mx-2">
-          <div>{{ item.product?.name }}</div>
-          <div> Costo: ${{ item.product?.price }}</div>
+          <div>{{ item.design?.product?.name }}</div>
+          <div> Costo: ${{ item.design?.product?.price }}</div>
           <div> Cantidad: {{ item.quantity }}</div>
           <a type="button" class="my-2 btn btn-primary">Ver producto</a>
         </div>
