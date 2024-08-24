@@ -81,7 +81,7 @@ export class BuyerOrderDetails implements OnInit {
   
     this.selectedItem = { ...item };
   
-    this.orderService.getOrderByStatus(this.selectedItem.id).subscribe({
+    this.orderService.getOrderByStatus(this.selectedItem.design?.product?.id).subscribe({
       next: (response: IOrder[]) => {
         if (response && response.length > 0) {
           console.log("SI", response);
@@ -137,7 +137,7 @@ export class BuyerOrderDetails implements OnInit {
   
     this.selectedItem = { ...item };
   
-    this.orderService.getOrderByStatus(this.selectedItem.id).subscribe({
+    this.orderService.getOrderByStatus(this.selectedItem.design?.product?.id).subscribe({
       next: (response: IOrder[]) => {
         if (response && response.length > 0) {
           console.log("SI", response);
